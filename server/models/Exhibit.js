@@ -1,5 +1,10 @@
 const mongoose = require("mongoose");
+const { ObjectId } = require('mongodb');
 const ExhibitSchema = new mongoose.Schema({ //schema for the exhibits. more to be added soon
+    ID:{
+        type:ObjectId,
+        required:true
+    },
     title: {
         type:String,
         required:true,
@@ -10,4 +15,4 @@ const ExhibitSchema = new mongoose.Schema({ //schema for the exhibits. more to b
     },
 })
 
-module.exports = Exhibit = mongoose.model("exhibit", ExhibitSchema);
+module.exports = Exhibit = mongoose.model('exhibits', ExhibitSchema);

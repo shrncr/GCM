@@ -1,25 +1,21 @@
-const { MongoClient } = require("mongodb");
-const Db = process.env.ATLAS_URI; //grabs authentification from env file
-const client = new MongoClient(Db, {
-  //useNewUrlParser: true,
-  //useUnifiedTopology: true,
-});
 
-var _db;
-module.exports = {
-  connectToServer: function (callback) {
-    client.connect(function (err, db) {
-      // Verify we got a good "db" object
-      if (db)
-      {
-        _db = db;
-        console.log("Successfully connected to MongoDB."); 
-      }
-      return callback(err);
-         });
-  },
- 
-  getDb: function () {
-    return _db; //returns db if found
-  },
+const mongoose = require('mongoose');
+const path = require('path');
+//const config = require('config')
+const db = "mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority";
+
+const connectDB = async () => {
+  try {
+    mongoose.set('strictQuery', true);
+    await mongoose.connect(db, {
+      useNewUrlParser: true,
+    });
+
+    console.log('MongoDB is Connected...');
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
 };
+
+module.exports = connectDB;

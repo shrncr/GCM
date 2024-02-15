@@ -1,58 +1,66 @@
 const express = require("express");
+//import axios from 'axios'; 
  
 // exhibitRoutes is an instance of the express router.
 // We use it to define our routes. Look up https requests (think CRUD)
 // The router will be added as a middleware and will take control of requests starting with path /exhibits.
 const exhibitRoutes = express.Router();
- 
+const Exhibit = require("../models/Exhibit")
 // This will help us connect to the database
 const dbo = require("../db/conn");
- 
+const mongoose = require('mongoose');
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
 
-//const exhibit = require('../../models/Exhibit');
+//const Exhibit = require("../models/Exhibit");
  
  
-// This section will help you get a list of all the exhibits.
-exhibitRoutes.route("/exhibit").get(function (req, res) {
- let db_connect = dbo.getDb("exhibits");
- db_connect
-   .collection("exhibits")
-   .find({})
-   .toArray(function (err, result) {
-     if (err) throw err;
-     res.json(result);
-   });
-});
+
  
-// This section will help you get a single exhibit by id
-exhibitRoutes.route("/exhibit/:id").get(function (req, res) {
- let db_connect = dbo.getDb();
- let myquery = { _id: ObjectId(req.params.id) };
- db_connect
-   .collection("exhibits")
-   .findOne(myquery, function (err, result) {
-     if (err) throw err;
-     res.json(result);
-   });
-});
 
  
 // This section will help you create a new exhibit.
-exhibitRoutes.route("/exhibit/add").post(function (req, response) {
- let db_connect = dbo.getDb();
- let myobj = {
-   title: req.body.title,
-   desc: req.body.desc,
- };
- db_connect.collection("exhibits").insertOne(myobj, function (err, res) {
-   if (err) throw err;
-   response.json(res);
- });
+exhibitRoutes.post("/", async (req, res) => {
+ try{
+  console.log("lig");
+  var id = new mongoose.Types.ObjectId();
+  console.log("ma");
+  await Exhibit.create({
+    ID: id,
+    title: req.body.name,
+    desc: req.body.description,
+  }
+  );
+  console.log("bawls");
+ }catch(err){
+  console.log(err);
+
+ }
+ 
+
+//  db_connect.collection("exhibits").insertOne(newExhibit, function (err, res) {
+//    if (err) throw err;
+//    response.json(res);
+//  });
+
 });
+
+exhibitRoutes.get('/', async (req, res) =>  {
+  try{
+    let data = await Exhibit.find({});
+    res.json(data);
+  }catch(err){
+    res.error;
+    console.log("err");
+  }
+ });
+  
+
+
+
  
 // This section will help you update an exhibit by id.
+/*
 exhibitRoutes.route("/update/:id").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
@@ -82,5 +90,5 @@ exhibitRoutes.route("/:id").delete((req, response) => {
    response.json(obj);
  });
 });
- 
+ */
 module.exports = exhibitRoutes;
