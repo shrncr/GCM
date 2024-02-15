@@ -2,18 +2,17 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 require("dotenv").config({ path: "./config.env" });
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5000; //port 5000 or whats defined in ENV (used after deployment)
 
 app.use(cors({ origin: true, credentials: true }));
-app.use(express.json());
+app.use(express.json()); //we use json
 
-const exhibitRoutes = require("./routes/exhibits");
-app.use("/",exhibitRoutes);
+const exhibitRoutes = require("./routes/exhibits"); //use exhibits file to access routes
+app.use("/",exhibitRoutes); //at the main page, "/", we will refer to the exhibit routes CRUD operations. Just for testing purposes
 
-// get driver connection
 const connectDB = require("./db/conn");
-connectDB();
-app.listen(port, () => {
-  // perform a database connection when server starts
+connectDB(); //connect to db
+
+app.listen(port, () => { //start server on defined port
   console.log(`Server is running on port: ${port}`);
 });

@@ -1,10 +1,10 @@
 
 const mongoose = require('mongoose');
-const path = require('path');
-//const config = require('config')
+const path = require('path');//allows to clearly define filepaths
 const db = "mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority";
+//literally the password to access the db
 
-const connectDB = async () => {
+const connectDB = async () => { //connects db
   try {
     mongoose.set('strictQuery', true);
     await mongoose.connect(db, {
@@ -18,4 +18,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+module.exports = connectDB; //to use in other filess
