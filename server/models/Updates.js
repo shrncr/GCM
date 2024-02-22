@@ -17,7 +17,7 @@ const UpdatesSchema = new mongoose.Schema({
     },
     date:{
         type:Date,
-        required:true, // string will be the URL pointing to the image stored externally
+        required:true, 
     },
 })
 
