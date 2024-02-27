@@ -5,6 +5,7 @@ function ExhibitAdd() {
   //name and descriptions are variables which start as emty strings. upone calling setname/setdesc, they will change to whatever is defined
   const [name, setName] = useState(''); 
   const [description, setDescription] = useState('');
+  const [image, setImage] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,12 +20,19 @@ function ExhibitAdd() {
       console.error('error:', error);
       alert('An error occured.');
     }
+    const handleImageChange = (e) =>{
+      setImage(e.target.files[0]);
+    }
   };
   //the html returned
   return (
     <div> 
       <h2>Add Exhibit</h2>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label>Image:</label>
+          <input type="file" onChange={handleImageChange} />
+        </div>
         <div>
           <label>Name:</label>
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
@@ -33,6 +41,7 @@ function ExhibitAdd() {
           <label>Description:</label>
           <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
+        
         <button type="submit">Submit</button>
       </form>
     </div>
