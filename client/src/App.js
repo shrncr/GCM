@@ -14,6 +14,9 @@ function App() {
       <Route path="/" element={<ExhibitAdd/>} />
       <Route path="/map" element={<Map/>} />
       <Route path="/playstyles" element={<ExhibitAdd/>} />
+      <Route path="/admin" element={<ExhibitAdd/>} />
+      <Route path="/admin/editmap" element={<ExhibitAdd/>} />
+      <Route path="/admin/editlearningstyle" element={<ExhibitAdd/>} />
     </Routes>
   </BrowserRouter>
   );
