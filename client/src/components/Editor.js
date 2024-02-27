@@ -19,7 +19,7 @@ function Editor() {
     const isConfirmed = window.confirm('Are you sure you want to submit these changes? Click OK to confirm.');
     if (isConfirmed) {
       alert('Changes Submitted.');
-      useEffect(() =>{
+      useEffect( async (e) =>{
         try {
           await axios.post('http://localhost:5000', { setTitle, setDescription, setImage }); //post title, description, and image as json obj to base route of the server
         } catch(error){
