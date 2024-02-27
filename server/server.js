@@ -7,8 +7,8 @@ const port = process.env.PORT || 5000; //port 5000 or whats defined in ENV (used
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json()); //we use json
 
-const exhibitRoutes = require("./routes/exhibits"); //use exhibits file to access routes
-app.use("/",exhibitRoutes); //at the main page, "/", we will refer to the exhibit routes CRUD operations. Just for testing purposes
+const router = require("./routes/exhibits"); //use exhibits file to access routes
+app.use("/",router); //at the main page, "/", we will refer to the exhibit routes CRUD operations. Just for testing purposes
 
 const connectDB = require("./db/conn");
 connectDB(); //connect to db
