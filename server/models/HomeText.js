@@ -1,12 +1,8 @@
 const mongoose = require("mongoose");
 const { ObjectId } = require('mongodb');
-const ExhibitSchema = new mongoose.Schema({ 
-    exhibit_id:{
+const HomeTextSchema = new mongoose.Schema({ 
+    hometext_id:{
         type:ObjectId,
-        required:true,
-    },
-    title:{
-        type:String,
         required:true,
     },
     desc:{
@@ -17,11 +13,6 @@ const ExhibitSchema = new mongoose.Schema({
         type:String,
         required:true, // string will be the URL pointing to the image stored externally
     },
-    // is the exhibit active or hidden
-    status:{
-        type:Boolean,
-        required:true,
-    },
 })
 
-module.exports = Exhibit = mongoose.model('exhibits', ExhibitSchema);
+module.exports = HomeText = mongoose.model('exhibits', HomeTextSchema);
