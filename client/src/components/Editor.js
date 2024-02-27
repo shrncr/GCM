@@ -21,15 +21,11 @@ function Editor() {
       alert('Changes Submitted.');
       useEffect(() =>{
         try {
-          await axios.post('http://localhost:5000', { submittedTitle, submittedDescription, submittedImage }); //post title, description, and image as json obj to base route of the server
-        } catch (error) { //error handling
+          await axios.post('http://localhost:5000', { setTitle, setDescription, setImage }); //post title, description, and image as json obj to base route of the server
+        } catch(error){
           console.error('error:', error);
           alert('An error occured.');
-        } 
-      // Store the information into variables
-      const submittedTitle = title;
-      const submittedDescription = description;
-      const submittedImage = image;
+        }
       // Clear the editor boxes
       setTitle('');
       setDescription('');
