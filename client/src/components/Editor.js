@@ -8,6 +8,7 @@ function Editor() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
+  const [visible, setVisible] = useState(False)
   // Image changer
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -53,6 +54,9 @@ function Editor() {
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Enter description"
       />
+      <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
+         <label className="form-check-label" for="flexSwitchCheckDefault">Make visible?</label>
+
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );
