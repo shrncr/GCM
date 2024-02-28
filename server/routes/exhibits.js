@@ -6,9 +6,11 @@ const Updates = require("../models/Updates")
 const dbo = require("../db/conn");
 const mongoose = require('mongoose');
 const HomeText = require("../models/HomeText");
+const Map = require("../models/Map");
 const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you create a new exhibit.
+
 
 
 //hometxt data get
@@ -23,13 +25,13 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
   }catch(err){
     res.error;
     console.log("err");
-    
+
   }
  });
 
  router.get('/map', async (req, res)=>{ //must load in all the pins
   try{
-    let data = await Exhibit.find({}); //find all
+    let data = await Map.find({}); //find all
     res.json(data)
   }catch(err){
     console.log(err);
