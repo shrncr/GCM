@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 export default function Map(props) {
-  const tampa = {lat: 27.9469,lng: -82.4672,};
-  useEffect(() => {
-      axios.get('http://localhost:5000/map').then(
-        //for loop making new pins
-      );
-});
+  const tampa = {lat: 27.9469,lng: -82.4672};
+//   useEffect(() => {
+//       axios.get('http://localhost:3000/map').then(
+//         //for loop making new pins
+//       );
+// });
     let map;
     let marker;
     // Function to initialize the map

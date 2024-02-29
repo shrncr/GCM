@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router(); //to define routes aligning with the exhibits 
-const Exhibit = require("../models/exhibit") //exhibit schema
+const Exhibit = require("../models/Exhibit") //exhibit schema
 const Admin = require("../models/Admin"); //admin schema
 const Updates = require("../models/Updates")
 const dbo = require("../db/conn");

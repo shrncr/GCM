@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Banner from './banner';
 import GridBoxes from './gridBoxes';
 import Footer from './footer';
-import playExample from '../images/play_example.jpg'; // Corrected import path
+import playExample from '../components/images/playExample.webp'; // Corrected import path
 
 
 function PlayPlaces() {
