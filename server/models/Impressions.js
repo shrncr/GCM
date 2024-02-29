@@ -22,6 +22,10 @@ const ImpressionsSchema = new mongoose.Schema({
         type:Number,
         required:true,
     },
+    time_of_day:{
+        type:Date,
+        required:true,
+    },
 })
 
 module.exports = Impressions = mongoose.model('impressions', ImpressionsSchema);
