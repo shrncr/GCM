@@ -54,8 +54,11 @@ function Editor() {
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Enter description"
       />
-      <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
-         <label className="form-check-label" for="flexSwitchCheckDefault">Make visible?</label>
+      <Switch
+        checked={checked}
+        onChange={(e) => setVisible(e.target.value)}
+        inputProps={{ 'aria-label': 'controlled' }}
+      />
 
       <button onClick={handleSubmit}>Submit</button>
     </div>
