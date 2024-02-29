@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const PlayStyles = require('./models/PlayStyle'); 
+const PlayStyles = require('../models/PlayStyles');
 
 // mongodb connection string
-const mongoURI = 'mmongodb+srv://swish:xCjo8H8cbamHr5CQ@gcm.odjguc7.mongodb.net/';
+const mongoURI = 'mongodb+srv://swish:xCjo8H8cbamHr5CQ@gcm.odjguc7.mongodb.net/';
 
 // sample data
 const playStylesData = [
