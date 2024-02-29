@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const path = require('path');//allows to clearly define filepaths
 const db = "mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority";
-//literally the password to access the db
+//literally the password to access the db 
 
 const connectDB = async () => { //connects db
   try {

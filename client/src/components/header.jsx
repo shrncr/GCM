@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import glazerLogo from '../images/glazerLogo.png'; // Corrected import path
+import glazerLogo from '../components/images/glazerLogo.webp'; // Corrected import path
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 

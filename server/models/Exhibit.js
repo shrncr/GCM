@@ -24,4 +24,4 @@ const ExhibitSchema = new mongoose.Schema({
     },
 })
 
-module.exports = Exhibit = mongoose.model('exhibits', ExhibitSchema);
+module.exports = Exhibit = mongoose.model('exhibit', ExhibitSchema);

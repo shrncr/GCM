@@ -8,6 +8,7 @@ function Editor() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
+  const [visible, setVisible] = useState(False)
   // Image changer
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -53,6 +54,12 @@ function Editor() {
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Enter description"
       />
+      <Switch
+        checked={checked}
+        onChange={(e) => setVisible(e.target.value)}
+        inputProps={{ 'aria-label': 'controlled' }}
+      />
+
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );

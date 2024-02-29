@@ -5,6 +5,8 @@ import Home from './home';
 import PlayStylesPage from './playstyles';
 import PlayInfo from './playInfo';
 import PlayPlaces from './playPlaces';
+import Map from './map'
+
 
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
                     <Route path = "/playstyles" element={<PlayStylesPage />} />
                     <Route path="/playInfo" element={<PlayInfo />} />
                     <Route path="/playPlaces" element={<PlayPlaces />} />
+                    <Route path="/map" element={<Map />} />
 
                 </Routes>
             </div>

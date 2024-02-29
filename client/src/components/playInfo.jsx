@@ -1,7 +1,7 @@
 import React from 'react';
 import Banner from './banner';
 import Accordion from './accordion';
-import playExample from '../images/play_example.jpg'; // Corrected import path
+import playExample from '../components/images/playExample.webp'; // Corrected import path
 import Footer from './footer';
 
 function PlayInfo() {
