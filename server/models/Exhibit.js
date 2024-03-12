@@ -13,6 +13,7 @@ const ExhibitSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    
     photo:{
         type:String,
         required:true, // string will be the URL pointing to the image stored externally

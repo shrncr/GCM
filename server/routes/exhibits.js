@@ -6,6 +6,7 @@ const Updates = require("../models/Updates")
 const dbo = require("../db/conn");
 const mongoose = require('mongoose');
 const HomeText = require("../models/HomeText");
+const PlayStyle = require("../models/PlayStyles")
 const Map = require("../models/Map");
 const ObjectId = require("mongodb").ObjectId;
 
@@ -40,7 +41,7 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
 
  router.get('/playstyles', async (req, res)=>{ //must load in all the learning style data
   try{
-    let data = await Exhibit.find({});
+    let data = await PlayStyle.find({});
   }catch(err){
     console.log(err);
   }
@@ -49,7 +50,7 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
 
  router.get('/playstyles/:id', async (req, res)=>{ //must load in all the learning style data
   try{
-    let data = await Exhibit.findById(id)
+    let data = await Exhibit.findById(req.id)
   }catch(err){
     console.log(err);
   }
@@ -84,7 +85,9 @@ router.post('/admin/editmap', async (req,res) => {
         playtype: req.body.play
       });
     }else{
-      let data = await Exhibit.findOneAndUpdate({});
+      let data = await Exhibit.findOneAndUpdate({id: req.body.ID}).then(
+        //
+      )
     }
 
     //put new update in database
@@ -104,7 +107,6 @@ router.post('/admin/editmap', async (req,res) => {
 });
 
 router.post('/admin/editlearningstyle', async (req,res) => {
-
 
       //put new update in database
       var id = new mongoose.Types.ObjectId(); //make a unique objID

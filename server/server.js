@@ -9,9 +9,12 @@ app.use(express.json()); //we use json
 
 const router = require("./routes/exhibits"); //use exhibits file to access routes
 app.use("/",router); //at the main page, "/", we will refer to the exhibit routes CRUD operations. Just for testing purposes
+require('core-js');
 
 const connectDB = require("./db/conn");
+
 connectDB(); //connect to db
+
 
 app.listen(port, () => { //start server on defined port
   console.log(`Server is running on port: ${port}`);
