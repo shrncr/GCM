@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { ObjectId } = require('mongodb');
 const MapSchema = new mongoose.Schema({
-    exhibit_id:{
+    map_id:{
         type:ObjectId,
         required:true,
     },
@@ -16,11 +16,6 @@ const MapSchema = new mongoose.Schema({
     desc:{
         type:String,
         required:false, 
-    },
-    // is the exhibit active or hidden
-    status:{
-        type:Boolean,
-        required:true,
     },
 })
 

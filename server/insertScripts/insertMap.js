@@ -1,24 +1,22 @@
 const mongoose = require('mongoose');
-const PlayStyles = require('../models/PlayStyles');
+const Map = require('../models/Map');
 
 // mongodb connection string
 const mongoURI = 'mongodb+srv://swish:xCjo8H8cbamHr5CQ@gcm.odjguc7.mongodb.net/';
 
 // sample data
-const playStylesData = [
+const MapData = [
     {
-        style_id: new mongoose.Types.ObjectId(),
-        title: "Explorative",
-        desc: "Focuses on open-ended exploration and discovery",
-        photos: "https://i.imgur.com/nxfFAAi.png",
-        activities: "safari, walking around"
+        map_id: new mongoose.Types.ObjectId(),
+        longitude: -82.50261707677507,
+        latitude: 27.901313674533228,
+        desc: "The YMCA is a place for kids to be active."
     },
     {
-        style_id: new mongoose.Types.ObjectId(),
-        title: "Competitive",
-        desc: "Emphasizes competition and achievement",
-        photos: "https://i.imgur.com/s4cdqFE.png",
-        activities: "basketball, soccer, board games",
+        map_id: new mongoose.Types.ObjectId(),
+        longitude: -82.48147005267664,
+        latitude: 27.88930362717901,
+        desc: "Ballast point park."
     }
 ];
 
@@ -30,7 +28,7 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 // function to insert sample data
 const insertSampleData = async () => {
     try {
-        await PlayStyles.insertMany(playStylesData);
+        await Map.insertMany(MapData);
         console.log('Sample data inserted successfully');
     } catch (error) {
         console.error('Error inserting sample data', error);

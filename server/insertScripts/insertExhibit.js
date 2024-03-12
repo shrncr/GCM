@@ -1,24 +1,24 @@
 const mongoose = require('mongoose');
-const PlayStyles = require('../models/PlayStyles');
+const Exhibit = require('../models/Exhibit');
 
 // mongodb connection string
 const mongoURI = 'mongodb+srv://swish:xCjo8H8cbamHr5CQ@gcm.odjguc7.mongodb.net/';
 
 // sample data
-const playStylesData = [
+const ExhibitData = [
     {
-        style_id: new mongoose.Types.ObjectId(),
-        title: "Explorative",
-        desc: "Focuses on open-ended exploration and discovery",
-        photos: "https://i.imgur.com/nxfFAAi.png",
-        activities: "safari, walking around"
+        exhibit_id: new mongoose.Types.ObjectId(),
+        title: "Publix",
+        desc: "Children can roleplay as a cashier or shopper",
+        photo: "https://i.imgur.com/bu1spm9.jpeg",
+        status: True
     },
     {
-        style_id: new mongoose.Types.ObjectId(),
-        title: "Competitive",
-        desc: "Emphasizes competition and achievement",
-        photos: "https://i.imgur.com/s4cdqFE.png",
-        activities: "basketball, soccer, board games",
+        exhibit_id: new mongoose.Types.ObjectId(),
+        title: "Big John",
+        desc: "Children learn about dinosuars",
+        photo: "https://i.imgur.com/mGaFbYD.jpeg",
+        status: True
     }
 ];
 
@@ -30,7 +30,7 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 // function to insert sample data
 const insertSampleData = async () => {
     try {
-        await PlayStyles.insertMany(playStylesData);
+        await Exhibit.insertMany(ExhibitData);
         console.log('Sample data inserted successfully');
     } catch (error) {
         console.error('Error inserting sample data', error);
