@@ -6,8 +6,7 @@ import PlayStylesPage from './playstyles';
 import PlayInfo from './playInfo';
 import PlayPlaces from './playPlaces';
 import Map from './map'
-
-
+import Editor from './Editor'
 
 function App() {
     return (
@@ -20,6 +19,7 @@ function App() {
                     <Route path="/playInfo" element={<PlayInfo />} />
                     <Route path="/playPlaces" element={<PlayPlaces />} />
                     <Route path="/map" element={<Map />} />
+                    <Route path="/edit" element={<Editor />}/>
 
                 </Routes>
             </div>
