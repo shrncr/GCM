@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './Editor.css';
-//import axios from 'axios'
-//const axios = require('axios')
+import axios from 'axios'
 
 // Editor function
 function Editor() {
   const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [about, setAbout] = useState('');
   const [image, setImage] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
   // Image changer
@@ -23,23 +22,41 @@ function Editor() {
     const isConfirmed = window.confirm('Are you sure you want to submit these changes? Click OK to confirm.');
     if (isConfirmed) {
       alert('Changes Submitted.');
+      
+      axios({
+        url:'http://localhost:5000',
+        method: 'POST',
+        headers: {
+          authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+        },
+        data: { setTitle, setAbout, setImage, setIsChecked },
+        
+        catch(error) {console.error('error:', error);
+        alert('An error occured.')}
+      });
       /*
+      IF THE ABOVE AXIOS IS NOT WORKING, TEST THIS:
       useEffect( async (e) =>{
         try {
-          await axios.post('http://localhost:5000', { setTitle, setDescription, setImage }); //post title, description, and image as json obj to base route of the server
+          await axios.post('http://localhost:5000', { setTitle, setAbout, setImage, setIsChecked }); //post title, about, image, and visibility as json obj to base route of the server
         } catch(error){
           console.error('error:', error);
           alert('An error occured.');
-        }*/
+        }
+      });
+      */
       // Clear the editor boxes
       setTitle('');
-      setDescription('');
+      setAbout('');
       setImage(null);
-    };
+      setIsChecked(false);
+  };
   };
 
   return (
     <div className="editor">
+      <label className="Editor-header"
+      >Welcome</label>
       <input
         type="file"
         onChange={handleImageChange}
@@ -53,19 +70,18 @@ function Editor() {
         placeholder="Enter title"
       />
       <textarea
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        placeholder="Enter description"
+        value={about}
+        onChange={(e) => setAbout(e.target.value)}
+        placeholder="Enter about section"
       />
       <input
         type="checkbox"
         className="btn-check"
-        id="btn-check-2-outlined"
         checked={isChecked}
         onChange={handleCheckboxChange}
         autoComplete="off"
       />
-      <label className="btn btn-outline-secondary" htmlFor="btn-check-2-outlined">
+      <label htmlFor="myCheck">
         Make visible?
       </label>
 
