@@ -15,7 +15,7 @@ function App() {
                 <Navbar />
                 <Routes> {/* Wrap your routes with Routes */}
                     <Route exact path="/" element={<Home />} /> {/* Define route for Home component */}
-                    <Route path = "/playstyles" element={<PlayStylesPage />} />
+                    <Route path = "/playstyles/" element={<PlayStylesPage />} />
                     <Route path="/playInfo" element={<PlayInfo />} />
                     <Route path="/playPlaces" element={<PlayPlaces />} />
                     <Route path="/map" element={<Map />} />

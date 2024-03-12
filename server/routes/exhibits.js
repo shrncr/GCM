@@ -123,14 +123,14 @@ router.post('/admin/editlearningstyle', async (req,res) => {
 router.post("/admin/addexhibit", async (req, res) => {
   try{
    console.log("lig");
-   var id = new mongoose.Types.ObjectId(); //make a unique objID
+   let id = new mongoose.Types.ObjectId(); //make a unique objID
    console.log("ma");
    await Exhibit.create({ //create new exhibit w/ the model
-     ID: id,
-     title: req.body.name,
-     desc: req.body.description,
-     photo:"",
-     status:""
+     'exhibit_id': id,
+     'title': req.body.name,
+     'desc': req.body.desc,
+     'photo':req.body.image,
+     'status':req.body.checked
    }
    );
    console.log("bawls");

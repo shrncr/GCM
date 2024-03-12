@@ -24,12 +24,12 @@ function Editor() {
       alert('Changes Submitted.');
       
       axios({
-        url:'http://localhost:5000',
+        url:'http://localhost:5000/admin/addexhibit',
         method: 'POST',
         headers: {
           authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
         },
-        data: { setTitle, setAbout, setImage, setIsChecked },
+        data: { "name": title, "desc": about, "checked": isChecked, "image":image},
         
         catch(error) {console.error('error:', error);
         alert('An error occured.')}
