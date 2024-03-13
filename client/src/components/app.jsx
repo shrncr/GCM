@@ -7,6 +7,7 @@ import PlayInfo from './playInfo';
 import PlayPlaces from './playPlaces';
 import Map from './map'
 import Editor from './Editor'
+import Exhbits from "./exhibits"
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                     <Route path="/playPlaces" element={<PlayPlaces />} />
                     <Route path="/map" element={<Map />} />
                     <Route path="/edit" element={<Editor />}/>
+                    <Route path="/exhibits" element={<Exhbits />}/>
 
                 </Routes>
             </div>

@@ -50,7 +50,21 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
 
  router.get('/playstyles/:id', async (req, res)=>{ //must load in all the learning style data
   try{
+    let data = await PlayStyle.findById(req.id)
+  }catch(err){
+    console.log(err);
+  }
+ });
+ router.get('/exhibit/:id', async (req, res)=>{ //must load in all the learning style data
+  try{
     let data = await Exhibit.findById(req.id)
+  }catch(err){
+    console.log(err);
+  }
+ });
+ router.get('/exhibits', async (req, res)=>{ //find all exhibit
+  try{
+    let data = await Exhibit.find({});
   }catch(err){
     console.log(err);
   }
