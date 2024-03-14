@@ -1,39 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Banner from './banner';
 import GridBoxes from './gridBoxes';
 import Footer from './footer';
 import playExample from '../components/images/playExample.webp'; // Corrected import path
 
+import axios from 'axios'
 
 function PlayStylesPage() {
-    // Define state for boxesData
-    const [boxesData, setBoxesData] = useState([
-        { id: 1, text: 'Play Style 1', link: '/playInfo', imageUrl: playExample},
-        { id: 2, text: 'Play Style 2' },
-        { id: 3, text: 'Play Style 3' },
-        { id: 4, text: 'Play Style 4' },
-        { id: 5, text: 'Play Style 5' },
-        { id: 6, text: 'Play Style 6' },
-        { id: 7, text: 'Play Style 7' },
-        { id: 8, text: 'Play Style 8' },
-        { id: 9, text: 'Play Style 9' },
-    ]);
-
-    // Function to update boxesData if needed
-    const updateBoxesData = (newData) => {
-        setBoxesData(newData);
-    };
-
+    const [exdata, setExhibitData] = useState([]);
+    useEffect(()=>{
+        axios({
+            url:'http://localhost:5000/playstyles',
+            method: 'GET',
+            headers: {
+              authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+            },
+            catch(error) {console.error('error:', error);
+            alert('An error occured.')}
+          }).then((res) => {
+            setExhibitData(res.data)});
+    });
+    
     return (
-        <div>
-            <Banner className="playstyles-background" text="How to Play" />
-            <h1>I want to learn about...</h1>
-            <hr />
-            {/* Pass boxesData and updateBoxesData as props */}
-            <GridBoxes data={boxesData} updateData={updateBoxesData} />
-            <Footer />
-        </div>
+        <>
+        <Banner className="playstyles-background" text="Places to Play" />
+        <h1>I want to play at...</h1>
+        <GridBoxes  data = {exdata}/>
+        <Footer />
+        </>
+      
     );
-}
-
-export default PlayStylesPage;
+  }
+  
+  export default PlayStylesPage;

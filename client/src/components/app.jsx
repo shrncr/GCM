@@ -8,7 +8,13 @@ import PlayPlaces from './playPlaces';
 import Map from './map'
 import Editor from './Editor'
 import Exhbits from "./exhibits"
+import Login from "./login"
+import SingleInfo from './showzillowboxdeets';
 
+
+// <Route path="/exhibits/:id" element={<SingleInfo />}/>
+// <Route path="/playstyles/:id" element={<SingleInfo />}/>
+// <Route path="/playPlaces/:id" element={<SingleInfo />}/>
 function App() {
     return (
         <Router>
@@ -16,12 +22,15 @@ function App() {
                 <Navbar />
                 <Routes> {/* Wrap your routes with Routes */}
                     <Route exact path="/" element={<Home />} /> {/* Define route for Home component */}
-                    <Route path = "/playstyles/" element={<PlayStylesPage />} />
+                    <Route path = "/playstyles" element={<PlayStylesPage />} />
                     <Route path="/playInfo" element={<PlayInfo />} />
                     <Route path="/playPlaces" element={<PlayPlaces />} />
                     <Route path="/map" element={<Map />} />
                     <Route path="/edit" element={<Editor />}/>
                     <Route path="/exhibits" element={<Exhbits />}/>
+                    <Route path="/:dest/:id" element={<SingleInfo />}/>
+                    <Route path="/login" element={<Login />}/>
+
 
                 </Routes>
             </div>

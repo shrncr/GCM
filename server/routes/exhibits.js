@@ -42,29 +42,41 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
  router.get('/playstyles', async (req, res)=>{ //must load in all the learning style data
   try{
     let data = await PlayStyle.find({});
+    res.json(data);
   }catch(err){
     console.log(err);
   }
  });
 
-
  router.get('/playstyles/:id', async (req, res)=>{ //must load in all the learning style data
   try{
-    let data = await PlayStyle.findById(req.id)
+    let data = await PlayStyle.findById(req.params.id)
+    res.json(data);
+  }catch(err){
+    console.log(err);
+  }
+ });
+ router.get('/playPlaces/:id', async (req, res)=>{ //must load in all the learning style data
+  try{
+    let data = await Map.findById(req.params.id)
+    res.json(data);
   }catch(err){
     console.log(err);
   }
  });
  router.get('/exhibit/:id', async (req, res)=>{ //must load in all the learning style data
   try{
-    let data = await Exhibit.findById(req.id)
+    console.log(req.params.id);
+    let data = await Exhibit.findById(req.params.id);
+    res.json(data);
   }catch(err){
     console.log(err);
   }
  });
  router.get('/exhibits', async (req, res)=>{ //find all exhibit
   try{
-    let data = await Exhibit.find({});
+    let data = await Exhibit.find({status:true});
+    res.json(data);
   }catch(err){
     console.log(err);
   }
@@ -72,11 +84,14 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
 
  router.get('/playplace', async (req, res)=>{ //must load in all the learning style data
   try{
-    let data = await learning
+    let data = await Exhibit.find({status:true});
+    res.json(data);
   }catch(err){
     console.log(err);
   }
  });
+
+
 
 //ADMIN OPTIONS
 router.post('/admin', async (req,res) =>{ //post request from admin route is to login

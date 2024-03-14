@@ -1,25 +1,26 @@
+/**
+ * GRIDBOXES USED TO DISPLAY ALL
+ * a. EXHIBITS
+ * b. PLAYPLACES
+ * c. LEARNING STYLES
+ * 
+ * WHEN A GRIDBOX IS CLICKED, NAVIGATES USER TO A MORE SPECIFIC PAGE DETAILING THE TOPIC IN THE BOX 
+ * THIS PAGE IS DEFINED IN THE SHOWZILLOWBOXDEETS.JSX FILE, OR SINGLEINFO COMPONENT
+ */
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function GridBoxes({ data, updateData }) {
+function GridBoxes(props) {
     // Function to handle updating data
-    const handleUpdateData = () => {
-        const newData = [
-            { id: 1, text: 'New Box 1', link: '/newPlayInfo' },
-            { id: 2, text: 'New Box 2' },
-            // Add or modify data as needed
-        ];
-        // Call the updateData function passed from the parent component
-        updateData(newData);
-    };
-
+    
+    console.log((props.data.toString()))
     return (
         <div className="grid-container">
             {/* Map over the data array to render each box */}
-            {data.map(box => (
-                <Link key={box.id} to={box.link}>
+            {props.data.map(box => (
+                <Link key={box._id} to={box.link ? box.link : box._id}>
                     <div className="box">
-                      {box.text}
+                      {box.title}
                     
                         
                         

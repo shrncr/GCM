@@ -6,8 +6,8 @@ import GridBoxes from './gridBoxes';
 
 function Home() {
   const [boxesData, setBoxesData] = useState([
-    { id: 1, text: 'Learn to Play', link: '/playstyles'},
-    { id: 2, text: 'Places to Play', link: '/playPlaces' },
+    { id: 1, title: 'Learn to Play', link: '/playstyles'},
+    { id: 2, title: 'Places to Play', link: '/playPlaces' },
     
 ]);
 
