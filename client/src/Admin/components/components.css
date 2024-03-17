@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+
+
+.navbar {
+    background-color: purple;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2rem;
+    padding: 0 1rem;
+    z-index: 2;
+    width: 100%;
+
+}
+
+.navbar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    text-decoration: none;
+
+}
+
+.navbar a {
+    color: inherit;
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    padding: .25rem;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.navbar li:hover {
+    color: gray;
+}
+
+.navbar img {
+    border-radius: 10px;
+    height: 50px;
+    width: auto;
+    margin: 10px;
+}
+
+
+.zillow-box {
+    background-color: purple;
+    text-decoration: none;
+    width: 200px;
+    height: 200px;
+    color: white;
+    margin: 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+
+.company {
+    font-size: 3rem;
+    font-family: 'Times New Roman', Times, serif;
+    align-items: center;
+    justify-content: center;
+
+}
