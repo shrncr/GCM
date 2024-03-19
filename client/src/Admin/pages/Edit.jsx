@@ -2,24 +2,29 @@ import React, { useContext, useState } from "react";
 import { ExhibitContext } from "../SetData.jsx";
 import Exhibit from "../classes/exhibit";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
+import axios from 'axios';
 
-export default function EditZillow(props) {
+export default function Edit(props) {
     const navigate = useNavigate();
     const { exhibits, setExhibits, playstyles, setPlaystyles } = useContext(ExhibitContext);
     const location = useLocation();
 
     let done = "Add Exhibit";
     let data = [];
-    let exh;
+    let exh = {};
     if (location.pathname.includes("edit")) {
         done = "Done"
         if (props.title === "Playstyles") {
-            data = playstyles;
-            exh = playstyles[props.index];
+        
+            //data = playstyles;
+            exh = playstyles[props.index]; //the current playstyle
         } else {
-            data = exhibits;
-            exh = exhibits[props.index];
+            //data = exhibits;
+            exh = exhibits[props.index]; //the current exhibit
+            
         }
+        console.log(exh);
+        console.log(exh._id)
 
     } else {
         exh = new Exhibit("New Exhibit", "")
@@ -32,27 +37,86 @@ export default function EditZillow(props) {
 
     }
 
-    const [name, setName] = useState(exh.name);
-    const [description, setDescription] = useState(exh.description);
+    const [name, setName] = useState(exh.title);
+    const [description, setDescription] = useState(exh.desc);
     const [image, setImage] = useState(exh.image);
 
     const addExhibit = () => {
-        const newExhibit = new Exhibit(name, description, image);
-        let newData;
-        if (location.pathname.includes("edit")) {
-            newData = data
-            newData[props.index] = newExhibit;
+        //const newExhibit = new Exhibit(name, description, image);
+        //let newData;
+        if (location.pathname.includes("edit")) { //if youre editing
+            //newData = data
+            //newData[props.index] = newExhibit;
 
-        } else {
-            newData = [...data, newExhibit]
+            if (props.title === "Playstyles"){ //if editing a playstyle
+            axios({ //make request
+                url:'http://localhost:5000/admin/editlearningstyle', //edit exhibit
+                method: 'POST',
+                data: {id:exh.id,title: name, desc: description, image:image},
+                headers: {
+                  authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+                },
+                catch(error) {console.error('error:', error);
+                alert('An error occured.')}
+              }).then((res) => {
+                //setExhibits(res.data)
+                console.log("done.");
+            })}else{
+
+
+                axios({ //make request
+                    url:'http://localhost:5000/admin/editexhibit', //edit exhibit
+                    method: 'POST',
+                    data: {id:exh.id,title: name, desc: description, image:image},
+                    headers: {
+                      authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+                    },
+                    catch(error) {console.error('error:', error);
+                    alert('An error occured.')}
+                  }).then((res) => {
+                    //setExhibits(res.data)
+                    console.log("done.");
+                });
+
+
+
+
+            };
+
+
+
+        } else {//if adding new
+            if (props.title === "Exhibits") {
+                
+
+                axios({ //make request
+                    url:'http://localhost:5000/admin/addexhibit', //edit exhibit
+                    method: 'POST',
+                    data: {title: name, desc: description, image:image,status:true},
+                    headers: {
+                      authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+                    },
+                    catch(error) {console.error('error:', error);
+                    alert('An error occured.')}
+                  }).then((res) => {
+                    //setExhibits(res.data)
+                    console.log("done.");
+                });
+
+                
+            } else {
+                
+            };
         }
 
         if (props.title === "Playstyles") {
-            setPlaystyles(newData);
+            //setPlaystyles(newData);
+            
+            navigate(`/admin/playstyles`);
         } else {
-            setExhibits(newData);
-        }
-        navigate(`/admin/exhibits/${name}`)
+            //setExhibits(newData);
+            navigate(`/admin/exhibits`);
+        };
     };
 
     return (

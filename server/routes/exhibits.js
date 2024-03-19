@@ -144,6 +144,7 @@ router.post('/admin/editmap', async (req,res) => {
   }
 });
 
+
 router.post('/admin/editlearningstyle', async (req,res) => {
 
       //put new update in database
@@ -155,11 +156,12 @@ router.post('/admin/editlearningstyle', async (req,res) => {
       //   desc: req.body.description,
       //   date: currentDate
       // });
-    let options = {title: req.body.name,
-              desc: req.body.description,
-              image: req.body.image
+    let options = {title: req.body.title,
+              desc: req.body.desc,
+              //image: req.body.image
               }
-      let data = await PlayStyles.findOneAndUpdate({id: req.body.style_id}, options, {new:true});
+      console.log(req.body);
+      let data = await PlayStyles.findOneAndUpdate({id: req.body._id}, options, {new:true});
       res.json(data);
 
 });
@@ -175,11 +177,11 @@ router.post('/admin/editexhibit', async (req,res) => {
   //   date: currentDate
   // }
   //);
-  let options = {title: req.body.name,
-    desc: req.body.description,
+  let options = {title: req.body.title,
+    desc: req.body.desc,
     image: req.body.image
     }
-let data = await Exhibits.findOneAndUpdate({id: req.body.style_id}, options, {new:true});
+let data = await Exhibit.findOneAndUpdate({id: req.body._id}, options, {new:true});
 res.json(data);
 });
 
@@ -190,10 +192,10 @@ router.post("/admin/addexhibit", async (req, res) => {
    console.log("ma");
    await Exhibit.create({ //create new exhibit w/ the model
      'exhibit_id': id,
-     'title': req.body.name,
+     'title': req.body.title,
      'desc': req.body.desc,
      'photo':req.body.image,
-     'status':req.body.checked
+     'status':true
    }
    );
    console.log("bawls");
