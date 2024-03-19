@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const HomeText = require("../models/HomeText");
 const PlayStyle = require("../models/PlayStyles")
 const Map = require("../models/Map");
+const PlayStyles = require("../models/PlayStyles");
 const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you create a new exhibit.
@@ -90,7 +91,15 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
     console.log(err);
   }
  });
-
+router.get('/exhibitsandplaystyles'), async (req, res)=>{ //must load in all the learning style data
+  try{
+    let exdata = await Exhibit.find({});
+    let playdata = await PlayStyle.find({});
+    res.json(exdata, playdata);
+  }catch(err){
+    console.log(err);
+  }
+ };
 
 
 //ADMIN OPTIONS
@@ -107,7 +116,7 @@ router.post('/admin/editmap', async (req,res) => {
   try{
     var pinId = new mongoose.Types.ObjectId(); //make a unique objID
     if (req.body.type == "newPin"){
-      await Exhibit.create({
+      await Map.create({
         id: pinId,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
@@ -138,15 +147,40 @@ router.post('/admin/editmap', async (req,res) => {
 router.post('/admin/editlearningstyle', async (req,res) => {
 
       //put new update in database
-      var id = new mongoose.Types.ObjectId(); //make a unique objID
-      const currentDate = new Date();
-      await Updates.create({ //create new exhibit w/ the model
-        ID: id,
-        admin_id: req.body.adminid,
-        desc: req.body.description,
-        date: currentDate
-      }
-      );
+      // var id = new mongoose.Types.ObjectId(); //make a unique objID
+      // const currentDate = new Date();
+      // await Updates.create({ //track edit + who made it
+      //   ID: id,
+      //   admin_id: req.body.adminid,
+      //   desc: req.body.description,
+      //   date: currentDate
+      // });
+    let options = {title: req.body.name,
+              desc: req.body.description,
+              image: req.body.image
+              }
+      let data = await PlayStyles.findOneAndUpdate({id: req.body.style_id}, options, {new:true});
+      res.json(data);
+
+});
+router.post('/admin/editexhibit', async (req,res) => {
+
+  //put new update in database
+  // var id = new mongoose.Types.ObjectId(); //make a unique objID
+  // const currentDate = new Date();
+  // await Updates.create({ //create new exhibit w/ the model
+  //   ID: id,
+  //   admin_id: req.body.adminid,
+  //   desc: req.body.description,
+  //   date: currentDate
+  // }
+  //);
+  let options = {title: req.body.name,
+    desc: req.body.description,
+    image: req.body.image
+    }
+let data = await Exhibits.findOneAndUpdate({id: req.body.style_id}, options, {new:true});
+res.json(data);
 });
 
 router.post("/admin/addexhibit", async (req, res) => {
@@ -165,6 +199,15 @@ router.post("/admin/addexhibit", async (req, res) => {
    console.log("bawls");
   }catch(err){
    console.log(err); // we will know if error
+  }
+ });
+
+ router.get("/admin/admininfo", async (req, res) => {
+  try{
+    let data = await Admin.find({});
+    res.json(data);
+  }catch(err){
+    console.log(err);
   }
  });
 module.exports = router; //export so you can use this file in other files
