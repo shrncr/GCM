@@ -27,8 +27,8 @@ export default function AdminRoutes(props) {
                 {/* Exhibits Routes */}
                 {exhibits.map((e, index) => (
                     <React.Fragment key={index}>
-                        <Route key={index} path={`exhibits/${e.name}`} element={<Preview title={"Exhibits"} index={index} />} />
-                        <Route path={`exhibits/${e.name}/edit`} element={<Edit title={"Exhibits"} index={index} />} />
+                        <Route key={index} path={`exhibits/${e.id}`} element={<Preview title={"Exhibits"} index={index} />} />
+                        <Route path={`exhibits/${e.id}/edit`} element={<Edit title={"Exhibits"} index={index} />} />
                         <Route path={`exhibits/add`} element={<Edit title={"Exhibits"} index={null} />} />
                     </React.Fragment>
                 ))}
@@ -36,8 +36,8 @@ export default function AdminRoutes(props) {
                 {/* Playstyles Routes */}
                 {playstyles.map((e, index) => (
                     <React.Fragment key={index}>
-                        <Route path={`playstyles/${e.name}`} element={<Preview title={"Playstyles"} index={index} />} />
-                        <Route path={`playstyles/${e.name}/edit`} element={<Edit title={"Playstyles"} index={index} />} />
+                        <Route path={`playstyles/${e.id}`} element={<Preview title={"Playstyles"} index={index} />} />
+                        <Route path={`playstyles/${e.id}/edit`} element={<Edit title={"Playstyles"} index={index} />} />
                         <Route path={`playstyles/add`} element={<Edit title={"Playstyles"} index={null} />} />
                     </React.Fragment>
                 ))}
