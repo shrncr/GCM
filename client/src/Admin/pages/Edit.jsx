@@ -1,7 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ExhibitContext } from "../SetData.jsx";
 import Exhibit from "../classes/exhibit";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
+import PlaystyleCheckbox from "../components/Checkbox.js";
+import axios from "axios";
 
 export default function EditZillow(props) {
     const navigate = useNavigate();
@@ -32,10 +34,55 @@ export default function EditZillow(props) {
 
     }
 
+
+    
     const [name, setName] = useState(exh.name);
     const [description, setDescription] = useState(exh.description);
     const [image, setImage] = useState(exh.image);
+    const [visible, setVisible] = useState(false)
 
+    const handleCheckboxChange = (event) => {
+        setVisible(event.target.checked);
+    };
+    
+
+
+    const [checkboxArr, setCheckboxArr] = useState([]);
+    const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+    const [selectedPlaystyles, setSelectedPlaystyles] = useState([]);
+    const togglePlaystyle = (playstyle) => {
+        setSelectedPlaystyles((prevSelected) => {
+          if (prevSelected.includes(playstyle)) {
+            return prevSelected.filter(ps => ps !== playstyle);
+          } else {
+            return [...prevSelected, playstyle];
+          }
+        });
+      };
+      
+    
+  useEffect(() => {
+    axios({
+      url: 'http://localhost:5000/playstyles',
+      method: 'GET',
+      headers: {
+        authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+      }
+    }).then((res) => {
+      const availableStyles = res.data.map(style => style.title);
+      const checkboxes = availableStyles.map((style, index) => (
+        <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={togglePlaystyle} />
+      ));
+      setCheckboxArr(checkboxes);
+    }).catch(error => {
+      console.error('error:', error);
+      alert('An error occurred.');
+    });
+  }, []);
+    useEffect(() => {
+    console.log("Selected Playstyles:", selectedPlaystyles);
+  }, [selectedPlaystyles]);
+  
     const addExhibit = () => {
         const newExhibit = new Exhibit(name, description, image);
         let newData;
@@ -80,7 +127,12 @@ export default function EditZillow(props) {
                     onChange={(e) => setImage(e.target.value)}
                 />
             </div>
-
+            <div className = "checkbox-row">
+            {checkboxArr}
+            </div>
+            <div>
+            <PlaystyleCheckbox label="Make visible?" color = "green" onChange = {handleCheckboxChange}/>
+            </div>
             <div className="button"  >
 
                 <button type="button" onClick={addExhibit}>
@@ -94,5 +146,3 @@ export default function EditZillow(props) {
         </form>
     );
 }
-
-
