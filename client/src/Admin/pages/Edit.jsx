@@ -39,13 +39,12 @@ export default function EditZillow(props) {
     const [name, setName] = useState(exh.name);
     const [description, setDescription] = useState(exh.description);
     const [image, setImage] = useState(exh.image);
-    const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState(true)
 
-    const handleCheckboxChange = (event) => {
-        setVisible(event.target.checked);
+    const toggleVisibility = (event) => {
+        setVisible(!visible);
     };
     
-
 
     const [checkboxArr, setCheckboxArr] = useState([]);
     const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
@@ -79,9 +78,6 @@ export default function EditZillow(props) {
       alert('An error occurred.');
     });
   }, []);
-    useEffect(() => {
-    console.log("Selected Playstyles:", selectedPlaystyles);
-  }, [selectedPlaystyles]);
   
     const addExhibit = () => {
         const newExhibit = new Exhibit(name, description, image);
@@ -131,7 +127,7 @@ export default function EditZillow(props) {
             {checkboxArr}
             </div>
             <div>
-            <PlaystyleCheckbox label="Make visible?" color = "green" onChange = {handleCheckboxChange}/>
+            <PlaystyleCheckbox label="Make visible?" color = "green" onSelect = {toggleVisibility}/>
             </div>
             <div className="button"  >
 
