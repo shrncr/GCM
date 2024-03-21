@@ -179,8 +179,9 @@ router.post('/admin/editexhibit', async (req,res) => {
   //);
   let options = {title: req.body.title,
     desc: req.body.desc,
-    image: req.body.image
-    }
+    image: req.body.image,
+    status: req.body.status
+    };
 let data = await Exhibit.findOneAndUpdate({id: req.body._id}, options, {new:true});
 res.json(data);
 });
@@ -195,7 +196,7 @@ router.post("/admin/addexhibit", async (req, res) => {
      'title': req.body.title,
      'desc': req.body.desc,
      'photo':req.body.image,
-     'status':true
+     'status':req.body.status
    }
    );
    console.log("bawls");
