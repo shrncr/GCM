@@ -4,6 +4,8 @@ import Exhibit from "../classes/exhibit";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import PlaystyleCheckbox from "../components/Checkbox.js";
 import axios from "axios";
+import PlaystyleNameLoader from "../components/PlaystyleNameLoader.js"
+import ExhibitNameLoader from "../components/ExhibitNameLoader.js"
 
 export default function Edit(props) {
     const navigate = useNavigate();
@@ -57,13 +59,12 @@ export default function Edit(props) {
     const toggleVisibility = (event) => {
         setVisible(!visible);
     };
-    
 
     const [checkboxArr, setCheckboxArr] = useState([]);
     const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
-    const [selectedPlaystyles, setSelectedPlaystyles] = useState([]);
-    const togglePlaystyle = (playstyle) => {
-        setSelectedPlaystyles((prevSelected) => {
+    const [selectedOptions, setSelectedOptions] = useState([]);
+    const toggleOption = (playstyle) => {
+        setSelectedOptions((prevSelected) => {
           if (prevSelected.includes(playstyle)) {
             return prevSelected.filter(ps => ps !== playstyle);
           } else {
@@ -71,26 +72,28 @@ export default function Edit(props) {
           }
         });
       };
+    let checkboxesTitle = ""
+    if (location.pathname.includes("exhibits")){
+        checkboxesTitle = "Playstyles:"
+        const playstyleHandler = (res) => {
+            const availableStyles = res.data.map(style => style.title);
+            const checkboxes = availableStyles.map((style, index) => (
+            <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
+            ));
+            setCheckboxArr(checkboxes);}
+        PlaystyleNameLoader(playstyleHandler)
+    }
+    else{
+        checkboxesTitle = "Exhibits:"
+        const exhibitHandler = (res) => {
+            const availableStyles = res.data.map(style => style.title);
+            const checkboxes = availableStyles.map((style, index) => (
+              <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
+            ));
+            setCheckboxArr(checkboxes);}
+        ExhibitNameLoader(exhibitHandler)
+    };
       
-    
-  useEffect(() => {
-    axios({
-      url: 'http://localhost:5000/playstyles',
-      method: 'GET',
-      headers: {
-        authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
-      }
-    }).then((res) => {
-      const availableStyles = res.data.map(style => style.title);
-      const checkboxes = availableStyles.map((style, index) => (
-        <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={togglePlaystyle} />
-      ));
-      setCheckboxArr(checkboxes);
-    }).catch(error => {
-      console.error('error:', error);
-      alert('An error occurred.');
-    });
-  }, []);
   
     const addExhibit = () => {
         //const newExhibit = new Exhibit(name, description, image);
@@ -198,25 +201,37 @@ export default function Edit(props) {
                 />
             </div>
             <div>
+                <label></label>
                 <label>Description:</label>
-                <input
+                <textarea
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
             </div>
             <div>
+                <label></label>
                 <label>Image:</label>
                 <input
                     type="file"
                     onChange={(e) => setImage(e.target.value)}
                 />
             </div>
+            <div>
+                <label></label>
+            </div>
+            <div>
+                <label>{checkboxesTitle}</label>
+            </div>
             <div className = "checkbox-row">
             {checkboxArr}
             </div>
             <div>
-            <PlaystyleCheckbox label="Make visible?" color = "green" onSelect = {toggleVisibility} start={visible}/>
+                <label></label>
+                <label>Visibility:</label>
+            </div>
+            <div>
+            <PlaystyleCheckbox label="Make visible?" color = "green" onSelect = {toggleVisibility}/>
             </div>
             <div className="button"  >
 
