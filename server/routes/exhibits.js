@@ -153,7 +153,7 @@ router.post('/admin/editmap', async (req,res) => {
 });
 
 
-router.post('/admin/editlearningstyle', async (req,res) => {
+router.put('/admin/editlearningstyle', async (req,res) => {
 
       //put new update in database
       // var id = new mongoose.Types.ObjectId(); //make a unique objID
@@ -191,7 +191,7 @@ Exhibit.findOneAndUpdate({exhibit_id: req.body.id}, options).then(
 //res.json(data);
 });
 
-router.put("/admin/addexhibit", async (req, res) => {
+router.post("/admin/addexhibit", async (req, res) => {
   try{
    console.log("lig");
    let id = new mongoose.Types.ObjectId(); //make a unique objID
@@ -202,6 +202,27 @@ router.put("/admin/addexhibit", async (req, res) => {
      'desc': req.body.desc,
      'photo':req.body.image,
      'status':req.body.status
+   }
+   );
+   console.log("bawls");
+  }catch(err){
+   console.log(err); // we will know if error
+  }
+ });
+
+
+
+ 
+router.post("/admin/addlearningstyle", async (req, res) => {
+  try{
+   console.log("lig");
+   let id = new mongoose.Types.ObjectId(); //make a unique objID
+   console.log("ma");
+   await PlayStyle.create({ //create new exhibit w/ the model
+     'style_id': id,
+     'title': req.body.title,
+     'desc': req.body.desc,
+     'photos':req.body.image
    }
    );
    console.log("bawls");

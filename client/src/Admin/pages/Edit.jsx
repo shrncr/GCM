@@ -162,7 +162,7 @@ export default function Edit(props) {
             } else {
               console.log("specifically, a playstyle");
               axios({ //make request
-                url:'http://localhost:5000/admin/editlearningstyle', //edit exhibit
+                url:'http://localhost:5000/admin/addlearningstyle', //edit exhibit
                 method: 'POST',
                 data: {title: name, desc: description, image:image},
                 headers: {
