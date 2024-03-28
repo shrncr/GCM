@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-function PlaystyleCheckbox({ label, color, onSelect }) {
-  const [isChecked, setIsChecked] = useState(false);
+function PlaystyleCheckbox({ label, color, onSelect, start }) {
+  const [isChecked, setIsChecked] = useState(start);
 
   const toggleCheckbox = () => {
     setIsChecked(!isChecked);
