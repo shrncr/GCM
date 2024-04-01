@@ -3,7 +3,7 @@ const { ObjectId } = require('mongodb');
 const ImpressionsSchema = new mongoose.Schema({
     exhibit_id:{
         type: mongoose.Schema.Types.ObjectId,
-        required:true,
+        required:false,
         ref: 'Exhibit' // "foreign key" to link to exhibit schema
     },
     rating:{
@@ -20,7 +20,7 @@ const ImpressionsSchema = new mongoose.Schema({
     },
     time_spent:{
         type:Number,
-        required:true,
+        required:false,
     },
     time_of_day:{
         type:Date,

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useInsertionEffect } from 'react';
 import Banner from './banner';
 import Footer from './footer';
 import GridBoxes from './gridBoxes';
+import axios from 'axios';
 
 
 function Home() {
@@ -15,6 +16,16 @@ function Home() {
 const updateBoxesData = (newData) => {
   setBoxesData(newData);
 };
+useEffect(() => { // useEffect hook for tracking the visit
+  const time_of_day = new Date(); // capture the visit time
+  axios.post('/api/impressions/create', { time_of_day }) // make sure the endpoint matches your server's
+    .then(response => {
+      console.log('Visit time recorded:', response.data); // success :P
+    })
+    .catch(error => {
+      console.error('Error recording visit time:', error); // error :<
+    });
+}, []); // empty dependency array ensures this runs once on mount
   return (
     
     <div>

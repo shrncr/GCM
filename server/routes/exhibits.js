@@ -10,7 +10,7 @@ const PlayStyle = require("../models/PlayStyles")
 const Map = require("../models/Map");
 const PlayStyles = require("../models/PlayStyles");
 const ObjectId = require("mongodb").ObjectId;
-
+const Impressions = require('../models/Impressions');
 // This section will help you create a new exhibit.
 
 
@@ -239,4 +239,21 @@ router.post("/admin/addlearningstyle", async (req, res) => {
     console.log(err);
   }
  });
+
+
+router.post('/create', (req, res) => {
+  const impressionData = {
+      ...req.body,
+      time_of_day: new Date(req.body.time_of_day) // ensure time_of_day is a Date object
+  };
+
+  // create a new impression instance with the provided data
+  const impression = new Impressions(impressionData);
+
+  // save the impression to the database
+  impression.save()
+      .then(doc => res.status(200).json(doc))
+      .catch(err => res.status(500).json({ error: err }));
+});
+
 module.exports = router; //export so you can use this file in other files
