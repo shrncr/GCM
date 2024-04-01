@@ -7598,3 +7598,4 @@ client/node_modules/.cache/default-development/index.pack
 client/node_modules/.cache/default-development/index.pack.old
 package-lock.json
 package.json
+node_modules
