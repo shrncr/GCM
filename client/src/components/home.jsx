@@ -1,4 +1,4 @@
-import React, { useState, useInsertionEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Banner from './banner';
 import Footer from './footer';
 import GridBoxes from './gridBoxes';
