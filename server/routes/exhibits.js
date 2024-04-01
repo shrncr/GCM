@@ -82,6 +82,14 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
     console.log(err);
   }
  });
+ router.get('/allexhibits', async (req, res)=>{ //find all exhibit
+  try{
+    let data = await Exhibit.find({});
+    res.json(data);
+  }catch(err){
+    console.log(err);
+  }
+ });
 
  router.get('/playplace', async (req, res)=>{ //must load in all the learning style data
   try{
@@ -145,7 +153,7 @@ router.post('/admin/editmap', async (req,res) => {
 });
 
 
-router.post('/admin/editlearningstyle', async (req,res) => {
+router.put('/admin/editlearningstyle', async (req,res) => {
 
       //put new update in database
       // var id = new mongoose.Types.ObjectId(); //make a unique objID
@@ -161,29 +169,26 @@ router.post('/admin/editlearningstyle', async (req,res) => {
               //image: req.body.image
               }
       console.log(req.body);
-      let data = await PlayStyles.findOneAndUpdate({id: req.body._id}, options, {new:true});
-      res.json(data);
+      PlayStyle.findOneAndUpdate({exhibit_id: req.body.id}, options).then(
+        console.log(req.body.exhibit_id)
+      );
+      //res.json(data);
+      
 
 });
-router.post('/admin/editexhibit', async (req,res) => {
+router.put('/admin/editexhibit', async (req,res) => {
 
-  //put new update in database
-  // var id = new mongoose.Types.ObjectId(); //make a unique objID
-  // const currentDate = new Date();
-  // await Updates.create({ //create new exhibit w/ the model
-  //   ID: id,
-  //   admin_id: req.body.adminid,
-  //   desc: req.body.description,
-  //   date: currentDate
-  // }
+  console.log("here")
   //);
   let options = {title: req.body.title,
     desc: req.body.desc,
     image: req.body.image,
     status: req.body.status
     };
-let data = await Exhibit.findOneAndUpdate({id: req.body._id}, options, {new:true});
-res.json(data);
+Exhibit.findOneAndUpdate({exhibit_id: req.body.id}, options).then(
+  console.log(req.body.exhibit_id)
+);
+//res.json(data);
 });
 
 router.post("/admin/addexhibit", async (req, res) => {
@@ -197,6 +202,27 @@ router.post("/admin/addexhibit", async (req, res) => {
      'desc': req.body.desc,
      'photo':req.body.image,
      'status':req.body.status
+   }
+   );
+   console.log("bawls");
+  }catch(err){
+   console.log(err); // we will know if error
+  }
+ });
+
+
+
+ 
+router.post("/admin/addlearningstyle", async (req, res) => {
+  try{
+   console.log("lig");
+   let id = new mongoose.Types.ObjectId(); //make a unique objID
+   console.log("ma");
+   await PlayStyle.create({ //create new exhibit w/ the model
+     'style_id': id,
+     'title': req.body.title,
+     'desc': req.body.desc,
+     'photos':req.body.image
    }
    );
    console.log("bawls");

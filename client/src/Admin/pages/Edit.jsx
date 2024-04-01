@@ -4,6 +4,8 @@ import Exhibit from "../classes/exhibit";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import PlaystyleCheckbox from "../components/Checkbox.js";
 import axios from "axios";
+import PlaystyleNameLoader from "../components/PlaystyleNameLoader.js"
+import ExhibitNameLoader from "../components/ExhibitNameLoader.js"
 
 export default function Edit(props) {
     const navigate = useNavigate();
@@ -13,26 +15,31 @@ export default function Edit(props) {
     let done = "Add Exhibit";
     let data = [];
     let exh = {};
+    //console.log(location.pathname)
     if (location.pathname.includes("edit")) {
+      //console.log("currently editing");
         done = "Done"
+        //console.log(props.title);
         if (props.title === "Playstyles") {
-        
             //data = playstyles;
-            exh = playstyles[props.index]; //the current playstyle
+            exh = playstyles[props.index];
+            //console.log(exh.title); //the current playstyle
         } else {
             //data = exhibits;
             exh = exhibits[props.index]; //the current exhibit
             
         }
-        console.log(exh);
-        console.log(exh._id)
+        //console.log(exh);
+        //console.log(exh._id)
 
     } else {
-        exh = new Exhibit("New Exhibit", "")
+        //exh = new Exhibit("New Exhibit", "")
         if (props.title === "Playstyles") {
+          //console.log("adding a  playstyle");
             data = playstyles;
         } else {
             data = exhibits;
+            //console.log("adding an exhibit");
 
         }
 
@@ -41,18 +48,23 @@ export default function Edit(props) {
     const [name, setName] = useState(exh.title);
     const [description, setDescription] = useState(exh.desc);
     const [image, setImage] = useState(exh.image);
-    const [visible, setVisible] = useState(true)
-
+    var v;
+    if (exh.status !== undefined){
+      v = exh.status;
+    }else{
+      v=true;
+    };
+    const [visible, setVisible] = useState(v);
+    
     const toggleVisibility = (event) => {
         setVisible(!visible);
     };
-    
 
     const [checkboxArr, setCheckboxArr] = useState([]);
     const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
-    const [selectedPlaystyles, setSelectedPlaystyles] = useState([]);
-    const togglePlaystyle = (playstyle) => {
-        setSelectedPlaystyles((prevSelected) => {
+    const [selectedOptions, setSelectedOptions] = useState([]);
+    const toggleOption = (playstyle) => {
+        setSelectedOptions((prevSelected) => {
           if (prevSelected.includes(playstyle)) {
             return prevSelected.filter(ps => ps !== playstyle);
           } else {
@@ -60,26 +72,28 @@ export default function Edit(props) {
           }
         });
       };
+    let checkboxesTitle = ""
+    if (location.pathname.includes("exhibits")){
+        checkboxesTitle = "Playstyles:"
+        const playstyleHandler = (res) => {
+            const availableStyles = res.data.map(style => style.title);
+            const checkboxes = availableStyles.map((style, index) => (
+            <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
+            ));
+            setCheckboxArr(checkboxes);}
+        PlaystyleNameLoader(playstyleHandler)
+    }
+    else{
+        checkboxesTitle = "Exhibits:"
+        const exhibitHandler = (res) => {
+            const availableStyles = res.data.map(style => style.title);
+            const checkboxes = availableStyles.map((style, index) => (
+              <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
+            ));
+            setCheckboxArr(checkboxes);}
+        ExhibitNameLoader(exhibitHandler)
+    };
       
-    
-  useEffect(() => {
-    axios({
-      url: 'http://localhost:5000/playstyles',
-      method: 'GET',
-      headers: {
-        authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
-      }
-    }).then((res) => {
-      const availableStyles = res.data.map(style => style.title);
-      const checkboxes = availableStyles.map((style, index) => (
-        <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={togglePlaystyle} />
-      ));
-      setCheckboxArr(checkboxes);
-    }).catch(error => {
-      console.error('error:', error);
-      alert('An error occurred.');
-    });
-  }, []);
   
     const addExhibit = () => {
         //const newExhibit = new Exhibit(name, description, image);
@@ -87,12 +101,13 @@ export default function Edit(props) {
         if (location.pathname.includes("edit")) { //if youre editing
             //newData = data
             //newData[props.index] = newExhibit;
-
+            console.log("editing...");
             if (props.title === "Playstyles"){ //if editing a playstyle
+              console.log("specifically, a playstyle");
             axios({ //make request
                 url:'http://localhost:5000/admin/editlearningstyle', //edit exhibit
-                method: 'POST',
-                data: {id:exh.id,title: name, desc: description, image:image},
+                method: 'PUT',
+                data: {id:exh.style_id,title: name, desc: description, image:image},
                 headers: {
                   authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
                 },
@@ -100,14 +115,15 @@ export default function Edit(props) {
                 alert('An error occured.')}
               }).then((res) => {
                 //setExhibits(res.data)
-                console.log("done.");
+                //console.log("done.");
             })}else{
 
-
+              console.log("specifically, an exhibit");
+              console.log(exh);
                 axios({ //make request
                     url:'http://localhost:5000/admin/editexhibit', //edit exhibit
-                    method: 'POST',
-                    data: {id:exh.id,title: name, desc: description, image:image},
+                    method: 'PUT',
+                    data: {id:exh.exhibit_id,title: name, desc: description, image:image, status:visible},
                     headers: {
                       authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
                     },
@@ -115,7 +131,7 @@ export default function Edit(props) {
                     alert('An error occured.')}
                   }).then((res) => {
                     //setExhibits(res.data)
-                    console.log("done.");
+                    //console.log("done.");
                 });
 
 
@@ -125,14 +141,16 @@ export default function Edit(props) {
 
 
 
-        } else {//if adding new
+        } else {//if adding newc
+          console.log("addinng new");
+
             if (props.title === "Exhibits") {
-                
+              console.log("specifically, anexhibit");
 
                 axios({ //make request
                     url:'http://localhost:5000/admin/addexhibit', //edit exhibit
                     method: 'POST',
-                    data: {title: name, desc: description, image:image,status:true},
+                    data: {title: name, desc: description, image:image,status:visible},
                     headers: {
                       authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
                     },
@@ -140,12 +158,25 @@ export default function Edit(props) {
                     alert('An error occured.')}
                   }).then((res) => {
                     //setExhibits(res.data)
-                    console.log("done.");
+                    //console.log("done.");
                 });
 
                 
             } else {
-                
+              console.log("specifically, a playstyle");
+              axios({ //make request
+                url:'http://localhost:5000/admin/addlearningstyle', //edit exhibit
+                method: 'POST',
+                data: {title: name, desc: description, image:image},
+                headers: {
+                  authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+                },
+                catch(error) {console.error('error:', error);
+                alert('An error occured.')}
+              }).then((res) => {
+                //setExhibits(res.data)
+                //console.log("done.");
+            });
             };
         }
 
@@ -170,22 +201,34 @@ export default function Edit(props) {
                 />
             </div>
             <div>
+                <label></label>
                 <label>Description:</label>
-                <input
+                <textarea
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
             </div>
             <div>
+                <label></label>
                 <label>Image:</label>
                 <input
                     type="file"
                     onChange={(e) => setImage(e.target.value)}
                 />
             </div>
+            <div>
+                <label></label>
+            </div>
+            <div>
+                <label>{checkboxesTitle}</label>
+            </div>
             <div className = "checkbox-row">
             {checkboxArr}
+            </div>
+            <div>
+                <label></label>
+                <label>Visibility:</label>
             </div>
             <div>
             <PlaystyleCheckbox label="Make visible?" color = "green" onSelect = {toggleVisibility}/>
@@ -196,7 +239,7 @@ export default function Edit(props) {
                     {done}
                 </button>
 
-                <button type="button" onClick={() => navigate('/admin/exhibits')}>
+                <button type="button" onClick={() => props.title === "Playstyles" ? navigate('/admin/exhibits') : navigate('/admin/playstyles')}>
                     Cancel
                 </button>
             </div>
