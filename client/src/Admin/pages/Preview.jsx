@@ -27,7 +27,7 @@ export default function Preview(props) {
         <img src={image} alt={data.image}></img>
       </div>
       <div className="header">
-        <h1 >{data.name} </h1>
+        <h1 >{data.title} </h1>
       </div>
       <p className="description">{data.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturi itaque repellendus a dolores iste quia maxime nesciunt dolore amet recusandae, voluptate ipsa ad earum perspiciatis voluptates doloremque eius? Aut.
         Molestias excepturi voluptas voluptatum voluptate incidunt sint, eius quibusdam ducimus sequi inventore accusantium nisi temporibus ratione perferendis tenetur odit! </p>
