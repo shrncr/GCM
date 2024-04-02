@@ -15,34 +15,20 @@ export default function Edit(props) {
     let done = "Add Exhibit";
     let data = [];
     let exh = {};
-    //console.log(location.pathname)
     if (location.pathname.includes("edit")) {
-      //console.log("currently editing");
         done = "Done"
-        //console.log(props.title);
         if (props.title === "Playstyles") {
-            //data = playstyles;
             exh = playstyles[props.index];
-            //console.log(exh.title); //the current playstyle
         } else {
-            //data = exhibits;
             exh = exhibits[props.index]; //the current exhibit
-            
         }
-        //console.log(exh);
-        //console.log(exh._id)
 
     } else {
-        //exh = new Exhibit("New Exhibit", "")
         if (props.title === "Playstyles") {
-          //console.log("adding a  playstyle");
             data = playstyles;
         } else {
             data = exhibits;
-            //console.log("adding an exhibit");
-
         }
-
     }
 
     const [name, setName] = useState(exh.title);
@@ -96,11 +82,7 @@ export default function Edit(props) {
       
   
     const addExhibit = () => {
-        //const newExhibit = new Exhibit(name, description, image);
-        //let newData;
         if (location.pathname.includes("edit")) { //if youre editing
-            //newData = data
-            //newData[props.index] = newExhibit;
             console.log("editing...");
             if (props.title === "Playstyles"){ //if editing a playstyle
               console.log("specifically, a playstyle");
@@ -114,8 +96,6 @@ export default function Edit(props) {
                 catch(error) {console.error('error:', error);
                 alert('An error occured.')}
               }).then((res) => {
-                //setExhibits(res.data)
-                //console.log("done.");
             })}else{
 
               console.log("specifically, an exhibit");
@@ -130,23 +110,11 @@ export default function Edit(props) {
                     catch(error) {console.error('error:', error);
                     alert('An error occured.')}
                   }).then((res) => {
-                    //setExhibits(res.data)
-                    //console.log("done.");
                 });
-
-
-
-
             };
-
-
-
         } else {//if adding newc
-          console.log("addinng new");
-
             if (props.title === "Exhibits") {
               console.log("specifically, anexhibit");
-
                 axios({ //make request
                     url:'http://localhost:5000/admin/addexhibit', //edit exhibit
                     method: 'POST',
@@ -157,8 +125,6 @@ export default function Edit(props) {
                     catch(error) {console.error('error:', error);
                     alert('An error occured.')}
                   }).then((res) => {
-                    //setExhibits(res.data)
-                    //console.log("done.");
                 });
 
                 
@@ -174,19 +140,17 @@ export default function Edit(props) {
                 catch(error) {console.error('error:', error);
                 alert('An error occured.')}
               }).then((res) => {
-                //setExhibits(res.data)
-                //console.log("done.");
             });
             };
         }
 
         if (props.title === "Playstyles") {
-            //setPlaystyles(newData);
-            
             navigate(`/admin/playstyles`);
-        } else {
-            //setExhibits(newData);
+        } else if (props.title === "Exhibits") {
             navigate(`/admin/exhibits`);
+        }
+        else{
+          navigate(`/admin/map`)
         };
     };
 
