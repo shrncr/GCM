@@ -1,3 +1,4 @@
+/*
 const mongoose = require("mongoose");
 const { ObjectId } = require('mongodb');
 const ImpressionsSchema = new mongoose.Schema({
@@ -33,3 +34,4 @@ const ImpressionsSchema = new mongoose.Schema({
 })
 
 module.exports = Impressions = mongoose.model('impressions', ImpressionsSchema);
+*/
