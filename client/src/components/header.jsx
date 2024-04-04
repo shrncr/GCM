@@ -32,7 +32,7 @@ function Navbar() {
             <nav ref={navRef}>
                 <a href="/playPlaces">Places to Play</a>
                 <a href="/playstyles">Learn to Play</a>
-                <a href="#">Resources</a>
+                <a href="/Resources">Resources</a>
 
                 <button className="nav-btn nav-close-btn" onClick={showNavbar}>
                     <FaTimes />

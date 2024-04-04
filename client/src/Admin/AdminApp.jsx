@@ -17,7 +17,9 @@ function AdminApp() {
             <div>
                 <Navbar />
                 <AdminRoutes />
+                
             </div>
+
         </SetData>
 
     );
