@@ -6,18 +6,18 @@ const ExhibitFeedback = ({ exhibitId }) => {
     const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
 
     const submitFeedback = (isPositive) => {
-        axios.post('http://localhost:5000/feedback', {
+        axios.post('http://localhost:8082/feedback', {
             exhibitId: exhibitId,
             isPositive: isPositive,
             childAge: childAge
         })
-        .then((response) => {
-            console.log(response);
-            setFeedbackSubmitted(true);
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+            .then((response) => {
+                console.log(response);
+                setFeedbackSubmitted(true);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     };
 
     return (

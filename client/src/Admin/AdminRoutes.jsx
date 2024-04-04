@@ -3,7 +3,8 @@ import { ExhibitContext } from "./SetData.jsx";
 import { Routes, Route } from 'react-router-dom';
 import Exhibits from "./pages/Exhibits.jsx";
 import Home from "./pages/Home.jsx";
-import Map from "./pages/Map.jsx";
+import MapEdit from "./pages/MapEdit.jsx"
+<pa></pa>
 import Preview from './pages/Preview.jsx';
 import Edit from './pages/Edit.jsx';
 import AdminApp from "./AdminApp.jsx";
@@ -11,6 +12,7 @@ import Navbar from "./components/Navbar.jsx";
 //import MapEdit from "./pages/MapEdit.jsx";
 import './components/components.css';
 import './pages/pages.css';
+
 
 export default function AdminRoutes(props) {
     const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
@@ -23,6 +25,7 @@ export default function AdminRoutes(props) {
                 <Route path="/*" element={<Home />} />
                 <Route path="/exhibits/*" element={<Exhibits title={"Exhibits"} />} />
                 <Route path="/playstyles/*" element={<Exhibits title={"Playstyles"} />} />
+                <Route path="/map/*" element={<MapEdit />} />
                 {/*<Route path="/map" element={<MapEdit />} />
 
                 {/* Exhibits Routes */}

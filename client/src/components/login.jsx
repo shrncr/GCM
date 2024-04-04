@@ -21,17 +21,20 @@ const Login = () => {
     // Submit the form using AJAX or other methods
     // Example using Fetch API
     axios({
-      url:'http://localhost:5000/admin',
+      url: 'http://localhost:8082/admin',
       method: 'POST',
       headers: {
-        authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+        authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
       },
-      data: {"username": formData.username, "password": formData.password},
+      data: { "username": formData.username, "password": formData.password },
 
-      catch(error) {console.error('error:', error);
-      alert('An error occured.')}
+      catch(error) {
+        console.error('error:', error);
+        alert('An error occured.')
+      }
     }).then((res) => {
-      console.log(res)});
+      console.log(res)
+    });
   };
 
   return (

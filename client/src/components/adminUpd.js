@@ -1,32 +1,32 @@
 import React, { useState } from 'react';
-import axios from 'axios'; 
+import axios from 'axios';
 //change the ui
 function ExhibitAdd() {
   //name and descriptions are variables which start as emty strings. upone calling setname/setdesc, they will change to whatever is defined
-  const [name, setName] = useState(''); 
+  const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000', { name, description }); //post name and description as json obj to base route of the server
+      await axios.post('http://localhost:8082', { name, description }); //post name and description as json obj to base route of the server
       // Clear form after successful submission
       setName('');
       console.log("gibrd");
       setDescription('');
-      alert('exhibit added'); 
+      alert('exhibit added');
     } catch (error) { //error handling
       console.error('error:', error);
       alert('An error occured.');
     }
-    const handleImageChange = (e) =>{
+    const handleImageChange = (e) => {
       setImage(e.target.files[0]);
     }
   };
   //the html returned
   return (
-    <div> 
+    <div>
       <h2>Add Exhibit</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -41,7 +41,7 @@ function ExhibitAdd() {
           <label>Description:</label>
           <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
-        
+
         <button type="submit">Submit</button>
       </form>
     </div>

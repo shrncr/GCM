@@ -22,23 +22,25 @@ function Editor() {
     const isConfirmed = window.confirm('Are you sure you want to submit these changes? Click OK to confirm.');
     if (isConfirmed) {
       alert('Changes Submitted.');
-      
+
       axios({
-        url:'http://localhost:5000/admin/addexhibit',
+        url: 'http://localhost:8082/admin/addexhibit',
         method: 'POST',
         headers: {
-          authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+          authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
         },
-        data: { "name": title, "desc": about, "checked": isChecked, "image":image},
-        
-        catch(error) {console.error('error:', error);
-        alert('An error occured.')}
+        data: { "name": title, "desc": about, "checked": isChecked, "image": image },
+
+        catch(error) {
+          console.error('error:', error);
+          alert('An error occured.')
+        }
       });
       /*
       IF THE ABOVE AXIOS IS NOT WORKING, TEST THIS:
       useEffect( async (e) =>{
         try {
-          await axios.post('http://localhost:5000', { setTitle, setAbout, setImage, setIsChecked }); //post title, about, image, and visibility as json obj to base route of the server
+          await axios.post('http://localhost:8082', { setTitle, setAbout, setImage, setIsChecked }); //post title, about, image, and visibility as json obj to base route of the server
         } catch(error){
           console.error('error:', error);
           alert('An error occured.');
@@ -50,7 +52,7 @@ function Editor() {
       setAbout('');
       setImage(null);
       setIsChecked(false);
-  };
+    };
   };
 
   return (
@@ -87,6 +89,7 @@ function Editor() {
 
       <button onClick={handleSubmit}>Submit</button>
     </div>
-)};
+  )
+};
 
 export default Editor;

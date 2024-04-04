@@ -43,29 +43,32 @@ import GridBoxes from './gridBoxes';
 import axios from 'axios'
 
 function Playplaces() {
-    const [exdata, setExhibitData] = useState([]);
-    useEffect(()=>{
-        axios({
-            url:'http://localhost:5000/map',
-            method: 'GET',
-            headers: {
-              authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
-            },
-            catch(error) {console.error('error:', error);
-            alert('An error occured.')}
-          }).then((res) => {
-            setExhibitData(res.data)});
+  const [exdata, setExhibitData] = useState([]);
+  useEffect(() => {
+    axios({
+      url: 'http://localhost:8082/map',
+      method: 'GET',
+      headers: {
+        authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+      },
+      catch(error) {
+        console.error('error:', error);
+        alert('An error occured.')
+      }
+    }).then((res) => {
+      setExhibitData(res.data)
     });
-    
-    return (
-        <>
-        <Banner className="playstyles-background" text="Places to Play" />
-        <h1>I want to play at...</h1>
-        <GridBoxes  data = {exdata}/>
-        <Footer />
-        </>
-      
-    );
-  }
-  
-  export default Playplaces;
+  });
+
+  return (
+    <>
+      <Banner className="playstyles-background" text="Places to Play" />
+      <h1>I want to play at...</h1>
+      <GridBoxes data={exdata} />
+      <Footer />
+    </>
+
+  );
+}
+
+export default Playplaces;

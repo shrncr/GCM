@@ -14,62 +14,62 @@ import { useNavigate, useParams } from 'react-router-dom';
 function SingleInfo() {
     const [desc, setdesc] = useState('');
 
-    const {id} = useParams();
-    const {dest} = useParams();
-    console.log({id});
-    console.log({dest});
+    const { id } = useParams();
+    const { dest } = useParams();
+    console.log({ id });
+    console.log({ dest });
     const navigate = useNavigate();
     useEffect(() => {
         axios
-          .get(`http://localhost:5000/${dest}/${id}`)
-          .then((res) => {
-            setdesc(res.data.desc);
-          })
-          .catch((err) => {
-            console.log('Error ');
-          });
-      }, [id,dest]);
+            .get(`http://localhost:8082/${dest}/${id}`)
+            .then((res) => {
+                setdesc(res.data.desc);
+            })
+            .catch((err) => {
+                console.log('Error ');
+            });
+    }, [id, dest]);
 
     const data = [
-        { 
+        {
             id: 0,
             label: "About ",
             renderContent: () => (
-                
-            <p>
-                {desc}
-            </p>
+
+                <p>
+                    {desc}
+                </p>
             ),
         },
         {
             id: 1,
             label: "Skills Taught",
             renderContent: () => (
-            <p>
-                wjnosrv
-            </p>
+                <p>
+                    wjnosrv
+                </p>
             ),
         },
         {
             id: 2,
             label: "Ways to Play",
             renderContent: () => (
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, harum natus! Voluptatibus libero ratione vitae repellat, quasi vero tempora recusandae beatae deserunt sint voluptate doloremque maxime eveniet soluta similique dignissimos.
-            </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, harum natus! Voluptatibus libero ratione vitae repellat, quasi vero tempora recusandae beatae deserunt sint voluptate doloremque maxime eveniet soluta similique dignissimos.
+                </p>
             ),
         },
         {
             id: 3,
             label: "More Resources",
             renderContent: () => (
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, harum natus! Voluptatibus libero ratione vitae repellat, quasi vero tempora recusandae beatae deserunt sint voluptate doloremque maxime eveniet soluta similique dignissimos.
-            </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, harum natus! Voluptatibus libero ratione vitae repellat, quasi vero tempora recusandae beatae deserunt sint voluptate doloremque maxime eveniet soluta similique dignissimos.
+                </p>
             ),
         }
     ];
-    
+
 
     return (
         <div>
@@ -78,10 +78,10 @@ function SingleInfo() {
             <hr />
             <div className="container">
                 <img src={playExample} alt="Logo" className='PlayInfo-img' />
-                <Accordion items={data} keepOthersOpen={true}/>
-            
+                <Accordion items={data} keepOthersOpen={true} />
+
             </div>
-        <Footer />
+            <Footer />
         </div>
     );
 }

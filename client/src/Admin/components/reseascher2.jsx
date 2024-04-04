@@ -7,7 +7,7 @@ const FeedbackViewer = () => {
 
   useEffect(() => {
     // Fetch feedback data from the server
-    axios.get('http://localhost:5000/feedback')
+    axios.get('http://localhost:8082/feedback')
       .then(response => {
         setFeedbackData(response.data);
       })
@@ -31,7 +31,7 @@ const FeedbackViewer = () => {
         <h3>Select Exhibit:</h3>
         <select value={selectedExhibit} onChange={(e) => handleExhibitSelect(e.target.value)}>
           <option value="">Select Exhibit</option>
-          
+
           <option value="Big John">Big John</option>
           <option value="Farm">Farm</option>
           <option value="Central Bank">Central Bank</option>

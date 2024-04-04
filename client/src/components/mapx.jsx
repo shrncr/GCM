@@ -19,25 +19,28 @@ const center = { //where center of map is (tampa)
   lng: -82.4672,
 };
 
-function Map(props) { 
+function Map(props) {
   const markerContent = props.markerContent;
   const [locations, setLocations] = useState([]);
 
-    useEffect(()=>{ //get pins based on learning styles defined (whether it be all or specific one)
-        axios({
-            url:'http://localhost:5000/map',
-            method: 'GET',
-            params:{
-              filter: markerContent 
-            },
-            headers: {
-              authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
-            },
-            catch(error) {console.error('error:', error);
-            alert('An error occured.')}
-          }).then((res) => {
-            setLocations(res.data)});
-    }, [locations]);
+  useEffect(() => { //get pins based on learning styles defined (whether it be all or specific one)
+    axios({
+      url: 'http://localhost:8082/map',
+      method: 'GET',
+      params: {
+        filter: markerContent
+      },
+      headers: {
+        authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+      },
+      catch(error) {
+        console.error('error:', error);
+        alert('An error occured.')
+      }
+    }).then((res) => {
+      setLocations(res.data)
+    });
+  }, [locations]);
 
 
 
@@ -46,7 +49,7 @@ function Map(props) {
     libraries,
   });
 
-  if (loadError) { 
+  if (loadError) {
     return <div>Error loading maps</div>;
   }
 
@@ -63,8 +66,10 @@ function Map(props) {
       >
         {locations.map(curpin => ( //put pins on the map
           <Marker position={
-          {lat:curpin.latitude,
-          lng:curpin.longitude}}
+            {
+              lat: curpin.latitude,
+              lng: curpin.longitude
+            }}
           />
         ))}
       </GoogleMap>
