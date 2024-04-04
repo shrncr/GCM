@@ -244,6 +244,7 @@ router.post("/admin/addlearningstyle", async (req, res) => {
 router.post('/create', (req, res) => {
   const impressionData = {
       ...req.body,
+      impression_id: new mongoose.Types.ObjectId(),
       time_of_day: new Date(req.body.time_of_day) // ensure time_of_day is a Date object
   };
 
