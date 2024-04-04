@@ -5,7 +5,8 @@ import Home from './home';
 import PlayStylesPage from './playstyles';
 import PlayInfo from './playInfo';
 import PlayPlaces from './playPlaces';
-import Map from '../Admin/pages/Map'
+//import Map from '../Admin/pages/Map'
+import Map from './mapx';
 import Editor from './Editor'
 import Exhbits from "./exhibits"
 import Login from "./login"
@@ -35,6 +36,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/admin/*" element={<AdminApp />} />
                     <Route path="/resources/*" element={<Resources />} />
+                    <Route path="/map" element={<Map/>} />
 
 
 

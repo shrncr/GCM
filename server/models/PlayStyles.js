@@ -27,6 +27,10 @@ const PlayStyleSchema = new mongoose.Schema({ //schema for the exhibits. more to
         required:false,
         ref: 'Exhibit'
     },
+    skills:{
+        type:Array,
+        required:false,
+    }
 })
 
 module.exports = PlayStyles = mongoose.model('playstyles', PlayStyleSchema);
