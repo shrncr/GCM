@@ -1,9 +1,8 @@
-/*
 const mongoose = require("mongoose");
-const { ObjectId } = require('mongodb');
+type: mongoose.Schema.Types.ObjectId;
 const ImpressionsSchema = new mongoose.Schema({
     impression_id:{
-        type:ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required:true,
     },
     exhibit_id:{
@@ -34,4 +33,3 @@ const ImpressionsSchema = new mongoose.Schema({
 })
 
 module.exports = Impressions = mongoose.model('impressions', ImpressionsSchema);
-*/
