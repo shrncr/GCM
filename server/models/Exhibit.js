@@ -23,6 +23,10 @@ const ExhibitSchema = new mongoose.Schema({
         type:Boolean,
         required:true,
     },
+    activities:{
+        type:Array,
+        required:false, // string will be the URL pointing to the image stored externally
+    },
 })
 
 module.exports = Exhibit = mongoose.model('exhibit', ExhibitSchema);
