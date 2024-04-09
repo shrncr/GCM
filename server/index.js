@@ -13,7 +13,6 @@ require('core-js');
 
 const connectDB = require("./db/conn");
 
-
 connectDB(); //connect to db
 
 

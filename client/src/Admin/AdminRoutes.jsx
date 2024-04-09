@@ -4,7 +4,6 @@ import { Routes, Route } from 'react-router-dom';
 import Exhibits from "./pages/Exhibits.jsx";
 import Home from "./pages/Home.jsx";
 import MapEdit from "./pages/MapEdit.jsx"
-<pa></pa>
 import Preview from './pages/Preview.jsx';
 import Edit from './pages/Edit.jsx';
 import AdminApp from "./AdminApp.jsx";
