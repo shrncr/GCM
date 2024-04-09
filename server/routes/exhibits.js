@@ -7,6 +7,7 @@ const express = require("express");
 const router = express.Router(); //to define routes aligning with the exhibits 
 const Exhibit = require("../models/Exhibit") //exhibit schema
 const Admin = require("../models/Admin"); //admin schema
+const Skills = require("../models/Skills")
 const Updates = require("../models/Updates")
 const dbo = require("../db/conn");
 const mongoose = require('mongoose');
