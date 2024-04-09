@@ -1,3 +1,10 @@
+//Edit page
+/* This page is used to construct the editor. It adapts based
+on whether the user is editing or adding a playstyle or an exhibit.
+Within this page there are functions that connect to the database
+in order to upload/change the desired item.*/
+
+// Required imports
 import React, { useContext, useState, useEffect } from "react";
 import { ExhibitContext } from "../SetData.jsx";
 import Exhibit from "../classes/exhibit";
@@ -5,11 +12,16 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import PlaystyleCheckbox from "../components/Checkbox.js";
 import axios from "axios";
 import NameLoader from "../components/NameLoader.js";
+
+/* Main edit function, this will be exported and used as needed
+throughout the admin page.*/
 export default function Edit(props) {
+// Required constants
   const navigate = useNavigate();
   const { exhibits, setExhibits, playstyles, setPlaystyles } = useContext(ExhibitContext);
   const location = useLocation();
 
+  // Variables for extracting and customizing what the buttons say
   let done = "Add Exhibit";
   let data = [];
   let exh = {};
@@ -32,6 +44,8 @@ export default function Edit(props) {
     }
   }
 
+  /*name, description, and image variables used to track what
+  the user is entering*/
   const [name, setName] = useState(exh.title);
   const [description, setDescription] = useState(exh.desc);
   const [image, setImage] = useState(exh.image);
@@ -41,12 +55,16 @@ export default function Edit(props) {
   } else {
     v = true;
   };
+  /* Visibility variable and function used to track if the 
+  exhibit/playstyle will populate on the client side */
   const [visible, setVisible] = useState(v);
-
   const toggleVisibility = (event) => {
     setVisible(!visible);
   };
 
+  /* This section of code is for the buttons on the editing page.
+  It gives each button a color to look nice and tracks which
+  items have been selected. */
   const [checkboxArr, setCheckboxArr] = useState([]);
   const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -59,7 +77,14 @@ export default function Edit(props) {
       }
     });
   };
+  
+  /* This chunk of code is used for importing the names of the playstyles
+  and exhibits in the database in order to title each button
+  and track what is being added to each new object. */
   let checkboxesTitle = ""
+  /* handler function is used to add all the buttons needed to an
+  array that is later used in the return section to put the buttons
+  on the page. */
   let handler = (res) => {
     const availableStyles = res.data.map(style => style.title);
     const checkboxes = availableStyles.map((style, index) => (
@@ -81,7 +106,10 @@ export default function Edit(props) {
     NameLoader('activities', handler)
   };
 
-
+/* Here is where we actually add an exhibit. This function takes
+the information entered and sends it to the database, which then
+creates the object of whatever is being sent. It is also used to 
+make edits to any existing playstyles/exhibits. */
   const addExhibit = () => {
     if (location.pathname.includes("edit")) { //if youre editing
       console.log("editing...");
@@ -120,7 +148,7 @@ export default function Edit(props) {
       };
     } else {//if adding newc
       if (props.title === "Exhibits") {
-        console.log("specifically, anexhibit");
+        console.log("specifically, an exhibit");
         axios({ //make request
           url: 'http://localhost:8082/admin/addexhibit', //edit exhibit
           method: 'POST',
@@ -163,7 +191,8 @@ export default function Edit(props) {
       navigate(`/admin/map`)
     };
   };
-
+/* Here is our return section. This is the HTML portion that actually
+builds the webpage utilizing the functions created above. */
   return (
     <form>
       <div>
