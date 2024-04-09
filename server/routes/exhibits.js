@@ -5,14 +5,15 @@ const Admin = require("../models/Admin"); //admin schema
 const Updates = require("../models/Updates")
 const dbo = require("../db/conn");
 const mongoose = require('mongoose');
+const Impressions = require('../models/Impressions');
+const Activities = require("../models/Activities");
+const Feedback = require("../models/Feedback");
 const HomeText = require("../models/HomeText");
 const PlayStyle = require("../models/PlayStyles")
 const Map = require("../models/Map");
 const PlayStyles = require("../models/PlayStyles");
 const ObjectId = require("mongodb").ObjectId;
-const Impressions = require('../models/Impressions');
 // This section will help you create a new exhibit.
-
 
 
 //hometxt data get
@@ -65,11 +66,21 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
     console.log(err);
   }
  });
- router.get('/exhibit/:id', async (req, res)=>{ //must load in all the learning style data
+ router.get('/exhibit/:id', async (req, res)=>{ //must load in exhibit, associated activities, and names of skills
   try{
     console.log(req.params.id);
-    let data = await Exhibit.findById(req.params.id);
-    res.json(data);
+    let exhibit = await Exhibit.findById(req.params.id);
+    let exhibitActivities = await Activities.find({name:exhibit.title});
+
+    res.json({exhibitData: exhibit, exhibitActivities: exhibitActivities});
+  }catch(err){
+    console.log(err);
+  }
+ });
+ router.get('/feedback', async (req,res) => {
+  try{
+  let feedback = await Feedback({});
+  res.json(feedback);
   }catch(err){
     console.log(err);
   }
@@ -82,6 +93,7 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
     console.log(err);
   }
  });
+
  router.get('/allexhibits', async (req, res)=>{ //find all exhibit
   try{
     let data = await Exhibit.find({});
@@ -110,6 +122,7 @@ router.get('/exhibitsandplaystyles'), async (req, res)=>{ //must load in all the
  };
 
 
+
 //ADMIN OPTIONS
 router.post('/admin', async (req,res) =>{ //post request from admin route is to login
   try{
@@ -122,6 +135,7 @@ router.post('/admin', async (req,res) =>{ //post request from admin route is to 
 
 router.post('/admin/editmap', async (req,res) => {
   try{
+  
     var pinId = new mongoose.Types.ObjectId(); //make a unique objID
     if (req.body.type == "newPin"){
       await Map.create({
