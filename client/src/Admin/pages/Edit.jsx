@@ -4,9 +4,7 @@ import Exhibit from "../classes/exhibit";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import PlaystyleCheckbox from "../components/Checkbox.js";
 import axios from "axios";
-import PlaystyleNameLoader from "../components/PlaystyleNameLoader.js"
-import ExhibitNameLoader from "../components/ExhibitNameLoader.js"
-
+import NameLoader from "../components/NameLoader.js";
 export default function Edit(props) {
   const navigate = useNavigate();
   const { exhibits, setExhibits, playstyles, setPlaystyles } = useContext(ExhibitContext);
@@ -23,13 +21,16 @@ export default function Edit(props) {
       exh = exhibits[props.index]; //the current exhibit
     }
 
-  } else {
-    if (props.title === "Playstyles") {
-      data = playstyles;
     } else {
-      data = exhibits;
+      if (location.pathname.includes("playstyles")){
+        done = "Add Playstyle"
+      }
+        if (props.title === "Playstyles") {
+            data = playstyles;
+        } else {
+            data = exhibits;
+        }
     }
-  }
 
   const [name, setName] = useState(exh.title);
   const [description, setDescription] = useState(exh.desc);
@@ -46,62 +47,75 @@ export default function Edit(props) {
     setVisible(!visible);
   };
 
-  const [checkboxArr, setCheckboxArr] = useState([]);
-  const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const toggleOption = (playstyle) => {
-    setSelectedOptions((prevSelected) => {
-      if (prevSelected.includes(playstyle)) {
-        return prevSelected.filter(ps => ps !== playstyle);
-      } else {
-        return [...prevSelected, playstyle];
-      }
-    });
-  };
-  let checkboxesTitle = ""
-  if (location.pathname.includes("exhibits")) {
-    checkboxesTitle = "Playstyles:"
-    const playstyleHandler = (res) => {
-      const availableStyles = res.data.map(style => style.title);
-      const checkboxes = availableStyles.map((style, index) => (
-        <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
-      ));
-      setCheckboxArr(checkboxes);
-    }
-    PlaystyleNameLoader(playstyleHandler)
-  }
-  else {
-    checkboxesTitle = "Exhibits:"
-    const exhibitHandler = (res) => {
-      const availableStyles = res.data.map(style => style.title);
-      const checkboxes = availableStyles.map((style, index) => (
-        <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
-      ));
-      setCheckboxArr(checkboxes);
-    }
-    ExhibitNameLoader(exhibitHandler)
-  };
-
-
-  const addExhibit = () => {
-    if (location.pathname.includes("edit")) { //if youre editing
-      console.log("editing...");
-      if (props.title === "Playstyles") { //if editing a playstyle
-        console.log("specifically, a playstyle");
-        axios({ //make request
-          url: 'http://localhost:8082/admin/editlearningstyle', //edit exhibit
-          method: 'PUT',
-          data: { id: exh.style_id, title: name, desc: description, image: image },
-          headers: {
-            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
-          },
-          catch(error) {
-            console.error('error:', error);
-            alert('An error occured.')
+    const [checkboxArr, setCheckboxArr] = useState([]);
+    const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+    const [selectedOptions, setSelectedOptions] = useState([]);
+    const toggleOption = (playstyle) => {
+        setSelectedOptions((prevSelected) => {
+          if (prevSelected.includes(playstyle)) {
+            return prevSelected.filter(ps => ps !== playstyle);
+          } else {
+            return [...prevSelected, playstyle];
           }
-        }).then((res) => {
-        })
-      } else {
+        });
+      };
+    let checkboxesTitle = ""
+    if (location.pathname.includes("exhibits")){
+        checkboxesTitle = "Playstyles:"
+        const playstyleHandler = (res) => {
+            const availableStyles = res.data.map(style => style.title);
+            const checkboxes = availableStyles.map((style, index) => (
+            <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
+            ));
+            setCheckboxArr(checkboxes);}
+        NameLoader('playstyles', playstyleHandler)
+    }
+    else if (location.pathname.includes("playstyles")){
+        checkboxesTitle = "Exhibits:"
+        const exhibitHandler = (res) => {
+            const availableStyles = res.data.map(style => style.title);
+            const checkboxes = availableStyles.map((style, index) => (
+              <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
+            ));
+            setCheckboxArr(checkboxes);}
+        NameLoader('exhibits',exhibitHandler)
+    }else if (location.pathname.includes("activities")){
+        checkboxesTitle = "Skills:"
+        const skillHandler = (res) => {
+            const availableStyles = res.data.map(style => style.title);
+            const checkboxes = availableStyles.map((style, index) => (
+              <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
+            ));
+            setCheckboxArr(checkboxes);}
+        NameLoader('skills',skillHandler)
+      }else if (location.pathname.includes("skills")){
+        checkboxesTitle = "Activities:"
+        const activityHandler = (res) => {
+            const availableStyles = res.data.map(style => style.title);
+            const checkboxes = availableStyles.map((style, index) => (
+              <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
+            ));
+            setCheckboxArr(checkboxes);}
+        NameLoader('activities',activityHandler)
+            };
+      
+  
+    const addExhibit = () => {
+        if (location.pathname.includes("edit")) { //if youre editing
+            console.log("editing...");
+            if (props.title === "Playstyles"){ //if editing a playstyle
+              console.log("specifically, a playstyle");
+            axios({ //make request
+                url:'http://localhost:8082/admin/editlearningstyle', //edit exhibit
+                method: 'PUT',
+                data: {id:exh.style_id,title: name, desc: description, image:image},
+                headers: {
+                  authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+                },
+                catch(error) {console.error('error:', error);
+                alert('An error occured.')}
+              }).then((res) => {
+            })}else{
 
         console.log("specifically, an exhibit");
         console.log(exh);
