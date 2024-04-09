@@ -60,43 +60,24 @@ export default function Edit(props) {
         });
       };
     let checkboxesTitle = ""
+    let handler = (res) => {
+      const availableStyles = res.data.map(style => style.title);
+      const checkboxes = availableStyles.map((style, index) => (
+      <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
+      ));
+      setCheckboxArr(checkboxes);}
     if (location.pathname.includes("exhibits")){
         checkboxesTitle = "Playstyles:"
-        const playstyleHandler = (res) => {
-            const availableStyles = res.data.map(style => style.title);
-            const checkboxes = availableStyles.map((style, index) => (
-            <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
-            ));
-            setCheckboxArr(checkboxes);}
-        NameLoader('playstyles', playstyleHandler)
-    }
-    else if (location.pathname.includes("playstyles")){
+        NameLoader('playstyles', handler)
+    }else if (location.pathname.includes("playstyles")){
         checkboxesTitle = "Exhibits:"
-        const exhibitHandler = (res) => {
-            const availableStyles = res.data.map(style => style.title);
-            const checkboxes = availableStyles.map((style, index) => (
-              <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
-            ));
-            setCheckboxArr(checkboxes);}
-        NameLoader('exhibits',exhibitHandler)
+        NameLoader('exhibits',handler)
     }else if (location.pathname.includes("activities")){
         checkboxesTitle = "Skills:"
-        const skillHandler = (res) => {
-            const availableStyles = res.data.map(style => style.title);
-            const checkboxes = availableStyles.map((style, index) => (
-              <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
-            ));
-            setCheckboxArr(checkboxes);}
-        NameLoader('skills',skillHandler)
-      }else if (location.pathname.includes("skills")){
+        NameLoader('skills',handler)
+    }else if (location.pathname.includes("skills")){
         checkboxesTitle = "Activities:"
-        const activityHandler = (res) => {
-            const availableStyles = res.data.map(style => style.title);
-            const checkboxes = availableStyles.map((style, index) => (
-              <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
-            ));
-            setCheckboxArr(checkboxes);}
-        NameLoader('activities',activityHandler)
+        NameLoader('activities',handler)
             };
       
   
