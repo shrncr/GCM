@@ -12,10 +12,10 @@ app.use("/", router); //at the main page, "/", we will refer to the exhibit rout
 require('core-js');
 
 const connectDB = require("./db/conn");
-
 connectDB(); //connect to db
 
 
 app.listen(port, '0.0.0.0', () => { //start server on defined port
   console.log(`Server is running on port: ${port}`);
 });
+module.exports = app;
