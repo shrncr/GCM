@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from 'axios'
+/*
+Login page for admin
+*/
 
 // Login component for user authentication
 const Login = () => {
@@ -38,7 +41,8 @@ const Login = () => {
         alert('An error occurred.'); // Show alert for error
       }
     }).then((res) => {
-      console.log(res); // Log response
+
+      console.log(res)
     });
   };
 

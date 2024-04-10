@@ -1,3 +1,5 @@
+// playstyles schema - stores info about play styles 
+
 const mongoose = require("mongoose");
 const { ObjectId } = require('mongodb');
 const PlayStyleSchema = new mongoose.Schema({ //schema for the exhibits. more to be added soon

@@ -1,3 +1,10 @@
+//Edit page
+/* This page is used to construct the editor. It adapts based
+on whether the user is editing or adding a playstyle or an exhibit.
+Within this page there are functions that connect to the database
+in order to upload/change the desired item.*/
+
+// Required imports
 import React, { useContext, useState, useEffect } from "react";
 import { ExhibitContext } from "../SetData.jsx";
 import Exhibit from "../classes/exhibit";
@@ -5,11 +12,16 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import PlaystyleCheckbox from "../components/Checkbox.js";
 import axios from "axios";
 import NameLoader from "../components/NameLoader.js";
+
+/* Main edit function, this will be exported and used as needed
+throughout the admin page.*/
 export default function Edit(props) {
+// Required constants
   const navigate = useNavigate();
   const { exhibits, setExhibits, playstyles, setPlaystyles } = useContext(ExhibitContext);
   const location = useLocation();
 
+  // Variables for extracting and customizing what the buttons say
   let done = "Add Exhibit";
   let data = [];
   let exh = {};
@@ -21,17 +33,19 @@ export default function Edit(props) {
       exh = exhibits[props.index]; //the current exhibit
     }
 
-    } else {
-      if (location.pathname.includes("playstyles")){
-        done = "Add Playstyle"
-      }
-        if (props.title === "Playstyles") {
-            data = playstyles;
-        } else {
-            data = exhibits;
-        }
+  } else {
+    if (location.pathname.includes("playstyles")) {
+      done = "Add Playstyle"
     }
+    if (props.title === "Playstyles") {
+      data = playstyles;
+    } else {
+      data = exhibits;
+    }
+  }
 
+  /*name, description, and image variables used to track what
+  the user is entering*/
   const [name, setName] = useState(exh.title);
   const [description, setDescription] = useState(exh.desc);
   const [image, setImage] = useState(exh.image);
@@ -41,62 +55,80 @@ export default function Edit(props) {
   } else {
     v = true;
   };
+  /* Visibility variable and function used to track if the 
+  exhibit/playstyle will populate on the client side */
   const [visible, setVisible] = useState(v);
-
   const toggleVisibility = (event) => {
     setVisible(!visible);
   };
 
-    const [checkboxArr, setCheckboxArr] = useState([]);
-    const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
-    const [selectedOptions, setSelectedOptions] = useState([]);
-    const toggleOption = (playstyle) => {
-        setSelectedOptions((prevSelected) => {
-          if (prevSelected.includes(playstyle)) {
-            return prevSelected.filter(ps => ps !== playstyle);
-          } else {
-            return [...prevSelected, playstyle];
-          }
-        });
-      };
-    let checkboxesTitle = ""
-    let handler = (res) => {
-      const availableStyles = res.data.map(style => style.title);
-      const checkboxes = availableStyles.map((style, index) => (
-      <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
-      ));
-      setCheckboxArr(checkboxes);}
-    if (location.pathname.includes("exhibits")){
-        checkboxesTitle = "Playstyles:"
-        NameLoader('playstyles', handler)
-    }else if (location.pathname.includes("playstyles")){
-        checkboxesTitle = "Exhibits:"
-        NameLoader('exhibits',handler)
-    }else if (location.pathname.includes("activities")){
-        checkboxesTitle = "Skills:"
-        NameLoader('skills',handler)
-    }else if (location.pathname.includes("skills")){
-        checkboxesTitle = "Activities:"
-        NameLoader('activities',handler)
-            };
-      
+  /* This section of code is for the buttons on the editing page.
+  It gives each button a color to look nice and tracks which
+  items have been selected. */
+  const [checkboxArr, setCheckboxArr] = useState([]);
+  const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const toggleOption = (playstyle) => {
+    setSelectedOptions((prevSelected) => {
+      if (prevSelected.includes(playstyle)) {
+        return prevSelected.filter(ps => ps !== playstyle);
+      } else {
+        return [...prevSelected, playstyle];
+      }
+    });
+  };
   
-    const addExhibit = () => {
-        if (location.pathname.includes("edit")) { //if youre editing
-            console.log("editing...");
-            if (props.title === "Playstyles"){ //if editing a playstyle
-              console.log("specifically, a playstyle");
-            axios({ //make request
-                url:'http://localhost:8082/admin/editlearningstyle', //edit exhibit
-                method: 'PUT',
-                data: {id:exh.style_id,title: name, desc: description, image:image},
-                headers: {
-                  authorization:'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
-                },
-                catch(error) {console.error('error:', error);
-                alert('An error occured.')}
-              }).then((res) => {
-            })}else{
+  /* This chunk of code is used for importing the names of the playstyles
+  and exhibits in the database in order to title each button
+  and track what is being added to each new object. */
+  let checkboxesTitle = ""
+  /* handler function is used to add all the buttons needed to an
+  array that is later used in the return section to put the buttons
+  on the page. */
+  let handler = (res) => {
+    const availableStyles = res.data.map(style => style.title);
+    const checkboxes = availableStyles.map((style, index) => (
+      <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
+    ));
+    setCheckboxArr(checkboxes);
+  }
+  if (location.pathname.includes("exhibits")) {
+    checkboxesTitle = "Playstyles:"
+    NameLoader('playstyles', handler)
+  } else if (location.pathname.includes("playstyles")) {
+    checkboxesTitle = "Exhibits:"
+    NameLoader('exhibits', handler)
+  } else if (location.pathname.includes("activities")) {
+    checkboxesTitle = "Skills:"
+    NameLoader('skills', handler)
+  } else if (location.pathname.includes("skills")) {
+    checkboxesTitle = "Activities:"
+    NameLoader('activities', handler)
+  };
+
+/* Here is where we actually add an exhibit. This function takes
+the information entered and sends it to the database, which then
+creates the object of whatever is being sent. It is also used to 
+make edits to any existing playstyles/exhibits. */
+  const addExhibit = () => {
+    if (location.pathname.includes("edit")) { //if youre editing
+      console.log("editing...");
+      if (props.title === "Playstyles") { //if editing a playstyle
+        console.log("specifically, a playstyle");
+        axios({ //make request
+          url: 'http://localhost:8082/admin/editlearningstyle', //edit exhibit
+          method: 'PUT',
+          data: { id: exh.style_id, title: name, desc: description, image: image },
+          headers: {
+            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+          },
+          catch(error) {
+            console.error('error:', error);
+            alert('An error occured.')
+          }
+        }).then((res) => {
+        })
+      } else {
 
         console.log("specifically, an exhibit");
         console.log(exh);
@@ -116,7 +148,7 @@ export default function Edit(props) {
       };
     } else {//if adding newc
       if (props.title === "Exhibits") {
-        console.log("specifically, anexhibit");
+        console.log("specifically, an exhibit");
         axios({ //make request
           url: 'http://localhost:8082/admin/addexhibit', //edit exhibit
           method: 'POST',
@@ -159,7 +191,8 @@ export default function Edit(props) {
       navigate(`/admin/map`)
     };
   };
-
+/* Here is our return section. This is the HTML portion that actually
+builds the webpage utilizing the functions created above. */
   return (
     <form>
       <div>
@@ -209,10 +242,12 @@ export default function Edit(props) {
           {done}
         </button>
 
-        <button type="button" onClick={() => props.title === "Playstyles" ? navigate('/admin/exhibits') : navigate('/admin/playstyles')}>
+        <button type="button" onClick={() => navigate(-1)}>
           Cancel
         </button>
       </div>
     </form>
   );
 }
+
+{/*() => props.title === "Playstyles" ? navigate('/admin/playstyles') : navigate('/admin/exhibits')*/ }

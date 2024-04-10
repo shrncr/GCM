@@ -1,3 +1,5 @@
+// exhibit schema - stores exhibit info
+
 const mongoose = require("mongoose");
 const { ObjectId } = require('mongodb');
 const ExhibitSchema = new mongoose.Schema({ 
@@ -22,6 +24,10 @@ const ExhibitSchema = new mongoose.Schema({
     status:{
         type:Boolean,
         required:true,
+    },
+    activities:{
+        type:Array,
+        required:false, // string will be the URL pointing to the image stored externally
     },
 })
 

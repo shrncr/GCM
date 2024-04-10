@@ -1,36 +1,38 @@
+/* API endpoints associated with the GCM webapp
+* Includes get requests to obtain the edit, and post/update requests for admin to edit data
+*from admin side
+*/
+
 const express = require("express");
 const router = express.Router(); //to define routes aligning with the exhibits 
 const Exhibit = require("../models/Exhibit") //exhibit schema
 const Admin = require("../models/Admin"); //admin schema
+const Skills = require("../models/Skills")
 const Updates = require("../models/Updates")
 const dbo = require("../db/conn");
 const mongoose = require('mongoose');
+const Impressions = require('../models/Impressions');
+const Activities = require("../models/Activities");
+const Feedback = require("../models/Feedback");
 const HomeText = require("../models/HomeText");
 const PlayStyle = require("../models/PlayStyles")
 const Map = require("../models/Map");
 const PlayStyles = require("../models/PlayStyles");
 const ObjectId = require("mongodb").ObjectId;
-const Impressions = require('../models/Impressions');
-// This section will help you create a new exhibit.
 
-
-
-//hometxt data get
-//playstyles data get
-//places to play around tampa get 
-//playstyle id
-
-router.get('/', async (req, res) =>  { //load in homepage info ??
+//returns text associated with homepage
+router.get('/', async (req, res) =>  { 
   try{
     let data = await HomeText.find({}); //find all
     res.json(data);
   }catch(err){
     res.error;
     console.log("err");
-
   }
  });
 
+
+ //returns map locations
  router.get('/map', async (req, res)=>{ //must load in all the pins
   try{
     let data = await Map.find({}); //find all
@@ -40,7 +42,8 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
   }
  });
 
- router.get('/playstyles', async (req, res)=>{ //must load in all the learning style data
+ //returns playstyle data
+ router.get('/playstyles', async (req, res)=>{
   try{
     let data = await PlayStyle.find({});
     res.json(data);
@@ -49,15 +52,19 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
   }
  });
 
- router.get('/playstyles/:id', async (req, res)=>{ //must load in all the learning style data
+ //returns a playstyle's data and data of associated skills
+ router.get('/playstyles/:id', async (req, res)=>{ 
   try{
-    let data = await PlayStyle.findById(req.params.id)
-    res.json(data);
+    let playstyle = await PlayStyle.findById(req.params.id);
+    let playstyleSkills = await Skills.find({name:playstyle.skills});
+    res.json({playstyle: playstyle, skills:playstyleSkills});
   }catch(err){
     console.log(err);
   }
  });
- router.get('/playPlaces/:id', async (req, res)=>{ //must load in all the learning style data
+
+ //returns data for a specific map location
+ router.get('/playPlaces/:id', async (req, res)=>{ 
   try{
     let data = await Map.findById(req.params.id)
     res.json(data);
@@ -65,16 +72,43 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
     console.log(err);
   }
  });
- router.get('/exhibit/:id', async (req, res)=>{ //must load in all the learning style data
+
+ //returns data for an exhibit, associated activities, and names of skills
+ router.get('/exhibit/:id', async (req, res)=>{ 
   try{
     console.log(req.params.id);
-    let data = await Exhibit.findById(req.params.id);
-    res.json(data);
+    let exhibit = await Exhibit.findById(req.params.id);
+    let exhibitActivities = await Activities.find({name:exhibit.activities});
+
+    res.json({exhibitData: exhibit, exhibitActivities: exhibitActivities});
   }catch(err){
     console.log(err);
   }
  });
- router.get('/exhibits', async (req, res)=>{ //find all exhibit
+
+ //returns all currently existing feedback
+ router.get('/feedback', async (req,res) => {
+  try{
+  let feedback = await Feedback({});
+  res.json(feedback);
+  }catch(err){
+    console.log(err);
+  }
+ });
+
+ //will eventually work to post feedback
+ router.post('/feedback', async (req,res) => {
+  try{
+  let feedId = new mongoose.Types.ObjectId();
+  let feedback = await Feedback({feedback_id:feedId,exh:req.body.exhibit, rating:req.body.rating}); //a get request until data format is completes
+  res.json(feedback);
+  }catch(err){
+    console.log(err);
+  }
+ });
+
+ //returns all exhibits whose status is set to true, (visible)
+ router.get('/exhibits', async (req, res)=>{ 
   try{
     let data = await Exhibit.find({status:true});
     res.json(data);
@@ -82,6 +116,8 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
     console.log(err);
   }
  });
+
+//returns all exhibits regardless of visible or not
  router.get('/allexhibits', async (req, res)=>{ //find all exhibit
   try{
     let data = await Exhibit.find({});
@@ -91,7 +127,9 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
   }
  });
 
- router.get('/playplace', async (req, res)=>{ //must load in all the learning style data
+
+ //idk if we use this...
+ router.get('/playplace', async (req, res)=>{ 
   try{
     let data = await Exhibit.find({status:true});
     res.json(data);
@@ -99,7 +137,9 @@ router.get('/', async (req, res) =>  { //load in homepage info ??
     console.log(err);
   }
  });
-router.get('/exhibitsandplaystyles'), async (req, res)=>{ //must load in all the learning style data
+
+//must load in all the learning style data. also not sure if used
+router.get('/exhibitsandplaystyles'), async (req, res)=>{ 
   try{
     let exdata = await Exhibit.find({});
     let playdata = await PlayStyle.find({});
@@ -111,7 +151,9 @@ router.get('/exhibitsandplaystyles'), async (req, res)=>{ //must load in all the
 
 
 //ADMIN OPTIONS
-router.post('/admin', async (req,res) =>{ //post request from admin route is to login
+
+//used when attempting to login
+router.post('/admin', async (req,res) =>{ 
   try{
     let data = await Admin.findOne({username:req.username,password:req.password})
     res.json(data);
@@ -120,6 +162,7 @@ router.post('/admin', async (req,res) =>{ //post request from admin route is to 
   }
 });
 
+//when adding or editing map pins. incomplete
 router.post('/admin/editmap', async (req,res) => {
   try{
     var pinId = new mongoose.Types.ObjectId(); //make a unique objID
@@ -155,15 +198,6 @@ router.post('/admin/editmap', async (req,res) => {
 
 router.put('/admin/editlearningstyle', async (req,res) => {
 
-      //put new update in database
-      // var id = new mongoose.Types.ObjectId(); //make a unique objID
-      // const currentDate = new Date();
-      // await Updates.create({ //track edit + who made it
-      //   ID: id,
-      //   admin_id: req.body.adminid,
-      //   desc: req.body.description,
-      //   date: currentDate
-      // });
     let options = {title: req.body.title,
               desc: req.body.desc,
               //image: req.body.image
@@ -176,8 +210,9 @@ router.put('/admin/editlearningstyle', async (req,res) => {
       
 
 });
-router.put('/admin/editexhibit', async (req,res) => {
 
+//edit already existing exhibit
+router.put('/admin/editexhibit', async (req,res) => {
   console.log("here")
   //);
   let options = {title: req.body.title,
@@ -191,6 +226,7 @@ Exhibit.findOneAndUpdate({exhibit_id: req.body.id}, options).then(
 //res.json(data);
 });
 
+//add a new exhibit to exhibits page
 router.post("/admin/addexhibit", async (req, res) => {
   try{
    console.log("lig");
@@ -210,9 +246,7 @@ router.post("/admin/addexhibit", async (req, res) => {
   }
  });
 
-
-
- 
+ //edit an already existing exhibit
 router.post("/admin/addlearningstyle", async (req, res) => {
   try{
    console.log("lig");
@@ -231,6 +265,7 @@ router.post("/admin/addlearningstyle", async (req, res) => {
   }
  });
 
+ //find all admin who have accounts
  router.get("/admin/admininfo", async (req, res) => {
   try{
     let data = await Admin.find({});
@@ -240,7 +275,7 @@ router.post("/admin/addlearningstyle", async (req, res) => {
   }
  });
 
-
+//making a new impression
 router.post('/create', (req, res) => {
   const impressionData = {
       ...req.body,
