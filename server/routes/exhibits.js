@@ -155,7 +155,8 @@ router.get('/exhibitsandplaystyles'), async (req, res)=>{
 //used when attempting to login
 router.post('/admin', async (req,res) =>{ 
   try{
-    let data = await Admin.findOne({username:req.username,password:req.password})
+    console.log(req.body);
+    let data = await Admin.findOne({username:req.body.username,password:req.body.password})
     res.json(data);
   }catch(err){
     console.log("err")

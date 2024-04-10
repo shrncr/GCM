@@ -41,8 +41,15 @@ const Login = () => {
         alert('An error occurred.'); // Show alert for error
       }
     }).then((res) => {
+      if (res.data){
+        console.log(res.data)
+         //MAKE ROUTES HERE
+        console.log("inside");
+      }
+     
+      
 
-      console.log(res)
+
     });
   };
 

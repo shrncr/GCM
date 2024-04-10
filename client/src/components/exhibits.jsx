@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import GridBoxes from './gridBoxes';
 import axios from 'axios'
+/*
+Uses gridboxes component to display exhibits 
+*/
 
 function Exhibits() {
   const [exdata, setExhibitData] = useState([]);
