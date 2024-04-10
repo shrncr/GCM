@@ -1,3 +1,5 @@
+// updates schema - audit log of changes made to the website by admin
+
 const mongoose = require("mongoose");
 const { ObjectId } = require('mongodb');
 const UpdatesSchema = new mongoose.Schema({

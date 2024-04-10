@@ -1,3 +1,5 @@
+// hometext schema - stores text for home screen 
+
 const mongoose = require("mongoose");
 const { ObjectId } = require('mongodb');
 const HomeTextSchema = new mongoose.Schema({ 

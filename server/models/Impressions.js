@@ -1,3 +1,5 @@
+// impressions schema - stores Dr. Blessing data
+
 const mongoose = require("mongoose");
 type: mongoose.Schema.Types.ObjectId;
 const ImpressionsSchema = new mongoose.Schema({

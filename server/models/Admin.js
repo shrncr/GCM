@@ -1,3 +1,5 @@
+// admin schema - stores login info for admins
+
 const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
 const saltRounds = 10; // the # of times the pw is hashed. higher num is more secure but more time

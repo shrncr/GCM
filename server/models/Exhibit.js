@@ -1,3 +1,5 @@
+// exhibit schema - stores exhibit info
+
 const mongoose = require("mongoose");
 const { ObjectId } = require('mongodb');
 const ExhibitSchema = new mongoose.Schema({ 

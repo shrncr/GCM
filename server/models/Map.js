@@ -1,3 +1,5 @@
+// map schema - stores locations of activities
+
 const mongoose = require("mongoose");
 const { ObjectId } = require('mongodb');
 
