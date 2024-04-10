@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// FeedbackViewer component for displaying feedback data
 const FeedbackViewer = () => {
-  const [feedbackData, setFeedbackData] = useState([]);
-  const [selectedExhibit, setSelectedExhibit] = useState(null);
+  // State variables for storing feedback data and selected exhibit
+  const [feedbackData, setFeedbackData] = useState([]); // Feedback data from server
+  const [selectedExhibit, setSelectedExhibit] = useState(null); // Selected exhibit ID
 
+  // useEffect hook to fetch feedback data when component mounts
   useEffect(() => {
     // Fetch feedback data from the server
     axios.get('http://localhost:8082/feedback')
       .then(response => {
-        setFeedbackData(response.data);
+        setFeedbackData(response.data); // Update feedbackData state with fetched data
       })
       .catch(error => {
-        console.error('Error fetching feedback data:', error);
+        console.error('Error fetching feedback data:', error); // Log error if fetching fails
       });
-  }, []);
+  }, []); // Empty dependency array ensures this effect runs only once after initial render
 
   // Function to handle exhibit selection
   const handleExhibitSelect = (exhibitId) => {
-    setSelectedExhibit(exhibitId);
+    setSelectedExhibit(exhibitId); // Update selectedExhibit state with the selected exhibit ID
   };
 
   // Filter feedback data based on selected exhibit
@@ -26,12 +29,15 @@ const FeedbackViewer = () => {
 
   return (
     <div>
+      {/* Title */}
       <h2>Feedback Viewer</h2>
+      {/* Dropdown to select exhibit */}
       <div>
         <h3>Select Exhibit:</h3>
         <select value={selectedExhibit} onChange={(e) => handleExhibitSelect(e.target.value)}>
+          {/* Default option */}
           <option value="">Select Exhibit</option>
-
+          {/* Options for each exhibit */}
           <option value="Big John">Big John</option>
           <option value="Farm">Farm</option>
           <option value="Central Bank">Central Bank</option>
@@ -50,13 +56,16 @@ const FeedbackViewer = () => {
           <option value="St. Joseph's Children's Hospital">St. Joseph's Children's Hospital</option>
           <option value="Pizza Place">Pizza Place</option>
           <option value="Publix">Publix</option>
+          {/* Add more exhibit options */}
         </select>
       </div>
+      {/* Display feedback for selected exhibit */}
       <div>
         <h3>Feedback for Selected Exhibit:</h3>
         <ul>
+          {/* Render each feedback item */}
           {filteredFeedbackData.map((feedback, index) => (
-            <li key={index}>{feedback.text}</li>
+            <li key={index}>{feedback.text}</li> // Display feedback text
           ))}
         </ul>
       </div>
