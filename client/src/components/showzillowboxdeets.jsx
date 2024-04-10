@@ -13,6 +13,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 function SingleInfo() {
     const [desc, setdesc] = useState('');
+    const [title, setTitle] = useState('');
+    const [skills, setSkills] = useState('');
 
     const { id } = useParams();
     const { dest } = useParams();
@@ -23,7 +25,10 @@ function SingleInfo() {
         axios
             .get(`http://localhost:8082/${dest}/${id}`)
             .then((res) => {
-                setdesc(res.data.desc);
+                setdesc(res.data.baseData.description);
+                setTitle(res.data.baseData.title);
+                setSkills(res.data.dropdown);
+                console.log(res.data)
             })
             .catch((err) => {
                 console.log('Error ');
@@ -37,7 +42,7 @@ function SingleInfo() {
             renderContent: () => (
 
                 <p>
-                    {desc}
+                    {title}
                 </p>
             ),
         },
@@ -46,7 +51,7 @@ function SingleInfo() {
             label: "Skills Taught",
             renderContent: () => (
                 <p>
-                    wjnosrv
+                    {desc}
                 </p>
             ),
         },
@@ -74,7 +79,7 @@ function SingleInfo() {
     return (
         <div>
             <Banner className="home-background" text="Welcome" />
-            <h2>About Play Style {desc}</h2>
+            <h2>About {title}</h2>
             <hr />
             <div className="container">
                 <img src={playExample} alt="Logo" className='PlayInfo-img' />
