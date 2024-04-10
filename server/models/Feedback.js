@@ -1,3 +1,6 @@
+/*
+Feedback schema on a particular exhibit
+*/
 const mongoose = require("mongoose");
 const { ObjectId } = require('mongodb');
 const FeedbackSchema = new mongoose.Schema({ 

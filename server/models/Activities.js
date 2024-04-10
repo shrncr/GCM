@@ -1,3 +1,6 @@
+/*
+* Activities schema -- lays out the data associated with activities
+*/
 const mongoose = require("mongoose");
 const { ObjectId } = require('mongodb');
 const ActivitiesSchema = new mongoose.Schema({ 

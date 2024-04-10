@@ -1,3 +1,7 @@
+/*
+Root file for backend. Brings together api endpoints, defined port number, and connects to database
+*/
+
 const express = require("express");
 const app = express();
 const cors = require("cors");

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios'
+/*
+Login page for admin
+*/
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -33,6 +36,7 @@ const Login = () => {
         alert('An error occured.')
       }
     }).then((res) => {
+
       console.log(res)
     });
   };
