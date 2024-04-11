@@ -87,8 +87,7 @@ body {
 
 }
 .zillow-box:hover{
-    background-color: #6dcff6;
-    color: black;
+    background-color: #d124d1;
     -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	        animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }

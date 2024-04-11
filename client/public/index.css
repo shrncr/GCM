@@ -115,7 +115,7 @@ p {
   color: white;
   font-size: 30px;
   
-  background-color: purple;
+  background-color: #800080;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,8 +125,7 @@ p {
 
 /* hover animation effect*/
 .box:hover {
-  color: black;
-  background-color: #6dcff6;
+  background-color: #d124d1;
 	-webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	        animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
