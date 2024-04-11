@@ -10,6 +10,7 @@ const SetData = ({ children }) => {
   const [exhibits, setExhibits] = useState([]);
   const [playstyles, setPlaystyles] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [data, setData] = useState([]);
 
   // Use useEffect to set exhibits after the initial render
   useEffect(() => {
@@ -58,8 +59,31 @@ const SetData = ({ children }) => {
     });
   }, []);
 
+  //THIS USE EFFECT IS TO SET DATA PAGE
+  useEffect(() => {
+    const d = [];
+    const d1 = [];
+    const d2 = [];
+    const d3 = [];
+
+    d1.push(["Name", "County", "Region"])
+    d2.push(["Color", "Paint", "Canvas", "Orange"])
+    d3.push(["Apples", "Bananas"])
+    for (let i = 0; i < 100; i++) {
+      d1.push([`this ${i}`, `is ${i}`, `data ${i}`])
+      d2.push([`bruh ${i}`, `what ${i}`, `the ${i}`, `fuck ${i}`])
+      d3.push([`is ${i}`, `this ${i}`])
+    }
+    d.push(d1);
+    d.push(d2);
+    d.push(d3);
+
+    // Set the exhibits with any array of exhibits class
+    setData(d)
+  }, []);
+
   return (
-    <ExhibitContext.Provider value={{ exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations }}>
+    <ExhibitContext.Provider value={{ exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations, data, setData }}>
       {children}
     </ExhibitContext.Provider>
   )

@@ -16,6 +16,7 @@ import SetData from '../Admin/SetData';
 import AdminRoutes from '../Admin/AdminRoutes';
 import Resources from './Resources';
 
+
 // <Route path="/exhibits/:id" element={<SingleInfo />}/>
 // <Route path="/playstyles/:id" element={<SingleInfo />}/>
 // <Route path="/playPlaces/:id" element={<SingleInfo />}/>
@@ -23,7 +24,7 @@ function App() {
     return (
         <Router>
             <div>
-                <Navbar />
+
 
                 <Routes> {/* Wrap your routes with Routes */}
                     <Route exact path="/" element={<Home />} /> {/* Define route for Home component */}
@@ -36,7 +37,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/admin/*" element={<AdminApp />} />
                     <Route path="/resources/*" element={<Resources />} />
-                    <Route path="/map" element={<Map/>} />
+                    <Route path="/map" element={<Map />} />
 
 
 

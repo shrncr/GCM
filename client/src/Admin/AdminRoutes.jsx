@@ -8,6 +8,7 @@ import Preview from './pages/Preview.jsx';
 import Edit from './pages/Edit.jsx';
 import AdminApp from "./AdminApp.jsx";
 import Navbar from "./components/Navbar.jsx";
+import Data from "./pages/Data.jsx"
 //import MapEdit from "./pages/MapEdit.jsx";
 import './components/components.css';
 import './pages/pages.css';
@@ -24,7 +25,9 @@ export default function AdminRoutes(props) {
                 <Route path="/*" element={<Home />} />
                 <Route path="/exhibits/*" element={<Exhibits title={"Exhibits"} />} />
                 <Route path="/playstyles/*" element={<Exhibits title={"Playstyles"} />} />
+
                 <Route path="/map/*" element={<MapEdit />} />
+                <Route path='data' element={<Data index={0} />} />
                 {/*<Route path="/map" element={<MapEdit />} />
 
                 {/* Exhibits Routes */}
