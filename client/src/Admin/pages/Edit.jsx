@@ -18,7 +18,7 @@ throughout the admin page.*/
 export default function Edit(props) {
 // Required constants
   const navigate = useNavigate();
-  const { exhibits, setExhibits, playstyles, setPlaystyles } = useContext(ExhibitContext);
+  const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
   const location = useLocation();
 
   // Variables for extracting and customizing what the buttons say
@@ -29,8 +29,10 @@ export default function Edit(props) {
     done = "Done"
     if (props.title === "Playstyles") {
       exh = playstyles[props.index];
-    } else {
+    } else if (props.title === "Exhibits"){
       exh = exhibits[props.index]; //the current exhibit
+    } else{
+      exh = locations[props.index]
     }
 
   } else {
@@ -39,8 +41,10 @@ export default function Edit(props) {
     }
     if (props.title === "Playstyles") {
       data = playstyles;
-    } else {
+    } else if (props.title === "Exhibits"){
       data = exhibits;
+    }else{
+      data = locations
     }
   }
 
@@ -118,7 +122,7 @@ make edits to any existing playstyles/exhibits. */
         axios({ //make request
           url: 'http://localhost:8082/admin/editlearningstyle', //edit exhibit
           method: 'PUT',
-          data: { id: exh.style_id, title: name, desc: description, image: image },
+          data: { id: exh._id, title: name, desc: description, image: image },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -135,7 +139,7 @@ make edits to any existing playstyles/exhibits. */
         axios({ //make request
           url: 'http://localhost:8082/admin/editexhibit', //edit exhibit
           method: 'PUT',
-          data: { id: exh.exhibit_id, title: name, desc: description, image: image, status: visible },
+          data: { id: exh._id, title: name, desc: description, image: image, status: visible },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },

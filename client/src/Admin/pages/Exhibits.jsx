@@ -3,7 +3,7 @@ import Zillow_Box from "../components/Zillow_Box";
 import { ExhibitContext } from "../SetData.jsx";
 
 export default function Exhibits(props) {
-    const { exhibits, setExhibit, playstyles, setPlaystyles } = useContext(ExhibitContext);
+    const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
 
     let data;
 
@@ -14,6 +14,10 @@ export default function Exhibits(props) {
         case "Exhibits":
             data = exhibits;
             break;
+        case "Map":
+            console.log("mao")
+            data = locations;
+            console.log(data)
         default:
             data = [];
             break;
