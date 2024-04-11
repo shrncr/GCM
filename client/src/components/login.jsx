@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios'
+import { Routes, Route, Link, useNavigate, useRoutes } from 'react-router-dom';
+import AdminApp from '../Admin/AdminApp'
+
 /*
 Login page for admin
 */
 
 // Login component for user authentication
 const Login = () => {
+  const navigate = useNavigate();
   // State for form data (username, password, role)
   const [formData, setFormData] = useState({
     username: '',
@@ -41,13 +45,15 @@ const Login = () => {
         alert('An error occurred.'); // Show alert for error
       }
     }).then((res) => {
-      if (res.data){
+      if (res.data) {
+
         console.log(res.data)
-         //MAKE ROUTES HERE
-        console.log("inside");
+        console.log("inside")
+        navigate("/admin")
+
       }
-     
-      
+
+
 
 
     });
@@ -94,9 +100,11 @@ const Login = () => {
         </select>
 
         {/* Submit button */}
+
         <button type="button" onClick={submitForm}>
           Login
         </button>
+
       </form>
 
       {/* Forgot username/password link */}
