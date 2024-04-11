@@ -66,10 +66,13 @@ router.get('/', async (req, res) =>  {
  //returns data for a specific map location
  router.get('/playPlaces/:id', async (req, res)=>{ 
   try{
-    let data = await Map.findById(req.params.id)
+    let data = await Exhibit.findById(req.params.id)
     res.json(data);
   }catch(err){
     console.log(err);
+
+
+
   }
  });
 
@@ -199,13 +202,14 @@ router.post('/admin/editmap', async (req,res) => {
 
 router.put('/admin/editlearningstyle', async (req,res) => {
 
-    let options = {title: req.body.title,
-              desc: req.body.desc,
+    let options = {
+              title: req.body.title,
+              desc: req.body.description,
               //image: req.body.image
               }
       console.log(req.body);
-      PlayStyle.findOneAndUpdate({exhibit_id: req.body.id}, options).then(
-        console.log(req.body.exhibit_id)
+      PlayStyle.findOneAndUpdate({_id: req.body.id}, options).then(
+        console.log(req.body.id)
       );
       //res.json(data);
       
@@ -216,13 +220,14 @@ router.put('/admin/editlearningstyle', async (req,res) => {
 router.put('/admin/editexhibit', async (req,res) => {
   console.log("here")
   //);
-  let options = {title: req.body.title,
+  let options = {
+    title: req.body.title,
     desc: req.body.desc,
     image: req.body.image,
     status: req.body.status
     };
-Exhibit.findOneAndUpdate({exhibit_id: req.body.id}, options).then(
-  console.log(req.body.exhibit_id)
+Exhibit.findOneAndUpdate({_id: req.body.id}, options).then(
+  console.log(req.body.id)
 );
 //res.json(data);
 });
@@ -277,8 +282,7 @@ router.post("/admin/addlearningstyle", async (req, res) => {
  });
 
 //making a new impression
-router.post('/api/impressions/create', (req, res) => {
-  console.log('Received time_of_day:', req.body.time_of_day);
+router.post('/create', (req, res) => {
   const impressionData = {
       ...req.body,
       impression_id: new mongoose.Types.ObjectId(),
