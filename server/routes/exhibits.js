@@ -19,6 +19,7 @@ const PlayStyle = require("../models/PlayStyles")
 const Map = require("../models/Map");
 const PlayStyles = require("../models/PlayStyles");
 const ObjectId = require("mongodb").ObjectId;
+const { Parser } = require('json2csv');
 
 //returns text associated with homepage
 router.get('/', async (req, res) =>  { 
@@ -296,6 +297,22 @@ router.post('/create', (req, res) => {
   impression.save()
       .then(doc => res.status(200).json(doc))
       .catch(err => res.status(500).json({ error: err }));
+});
+
+// route to download Impressions data as CSV
+router.get('/download-impressions-csv', async (req, res) => {
+  try {
+      const data = await Impressions.find().populate('exhibit_id');
+      const fields = ['impression_id', 'exhibit_id', 'rating', 'comments', 'photo', 'time_spent', 'time_of_day'];
+      const json2csvParser = new Parser({ fields });
+      const csv = json2csvParser.parse(data);
+
+      res.header('Content-Type', 'text/csv');
+      res.attachment('impressions.csv');
+      res.send(csv);
+  } catch (error) {
+      res.status(500).send('Error occurred: ' + error.message);
+  }
 });
 
 module.exports = router; //export so you can use this file in other files

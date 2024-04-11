@@ -11,7 +11,7 @@ const SetData = ({ children }) => {
   const [playstyles, setPlaystyles] = useState([]);
   const [locations, setLocations] = useState([]);
   const [data, setData] = useState([]);
-
+ 
   // Use useEffect to set exhibits after the initial render
   useEffect(() => {
     const exh = [];
