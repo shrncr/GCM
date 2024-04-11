@@ -57,7 +57,7 @@ router.get('/', async (req, res) =>  {
   try{
     let playstyle = await PlayStyle.findById(req.params.id);
     let playstyleSkills = await Skills.find({name:playstyle.skills});
-    res.json({playstyle: playstyle, skills:playstyleSkills});
+    res.json({baseData: playstyle, dropdown:playstyleSkills});
   }catch(err){
     console.log(err);
   }
@@ -80,7 +80,7 @@ router.get('/', async (req, res) =>  {
     let exhibit = await Exhibit.findById(req.params.id);
     let exhibitActivities = await Activities.find({name:exhibit.activities});
 
-    res.json({exhibitData: exhibit, exhibitActivities: exhibitActivities});
+    res.json({baseData: exhibit, dropdown: exhibitActivities});
   }catch(err){
     console.log(err);
   }
@@ -277,7 +277,8 @@ router.post("/admin/addlearningstyle", async (req, res) => {
  });
 
 //making a new impression
-router.post('/create', (req, res) => {
+router.post('/api/impressions/create', (req, res) => {
+  console.log('Received time_of_day:', req.body.time_of_day);
   const impressionData = {
       ...req.body,
       impression_id: new mongoose.Types.ObjectId(),
