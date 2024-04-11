@@ -262,14 +262,16 @@ a:-webkit-any-link {
 /*footer stuff*/
 .footer {
   background-color: #2383c6;
-  height: 18vh;
+  min-height: 50px; /* A reasonable minimum height, adjust based on content */
+  padding: 1rem 0; /* Provides padding top and bottom */
 }
 
 .footer-content {
   color: #ffffff;
   font-size: 1.2rem;
   text-align: center;
-  padding-top: 4vh;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 
 }
 
@@ -278,6 +280,17 @@ a:-webkit-any-link {
   text-decoration: none;    /* removes underline from links */
 }
 
+
+@media (max-width: 600px) {
+  .footer {
+    min-height: 100px; /* Increased minimum height for mobile, adjust as needed */
+    padding: 1rem 0; /* Adjust padding to ensure nothing is hidden by mobile browsers' interface elements */
+  }
+  .footer-content {
+    font-size: 0.9rem; /* Smaller font size on mobile */
+    padding: 3vh 0; /* Reduced padding */
+  }
+}
 
 
 
