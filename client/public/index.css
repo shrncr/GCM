@@ -123,6 +123,7 @@ p {
 
 } 
 
+/* hover animation effect*/
 .box:hover {
   color: black;
   background-color: #6dcff6;
@@ -157,10 +158,6 @@ p {
     -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
             box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
   }
-}
-
-.box:hover {
-  color: rgb(141, 136, 136);
 }
 
 
