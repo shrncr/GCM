@@ -25,6 +25,16 @@ const Login = () => {
       [e.target.name]: e.target.value,
     });
   };
+  
+  // function that allows enter key to confirm login
+  const handleKeyDown = (e) => {
+    // Check if the Enter key was pressed
+    if (e.key === 'Enter') {
+      e.preventDefault(); // Prevent the default Enter key behavior
+      submitForm(); // Call the submit function
+    }
+  };
+
 
   // Function to submit the login form
   const submitForm = () => {
@@ -65,7 +75,7 @@ const Login = () => {
     <div className="login-container">
       {/* Login form */}
       <h2>Login</h2>
-      <form>
+      <form onKeyDown={handleKeyDown}>
         {/* Username input */}
         <label htmlFor="username">Username:</label>
         <input
