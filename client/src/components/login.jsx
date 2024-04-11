@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios'
 import { Routes, Route, Link, useNavigate, useRoutes } from 'react-router-dom';
 import AdminApp from '../Admin/AdminApp'
-
+import { LoginContext } from './app';
 /*
 Login page for admin
 */
 
 // Login component for user authentication
 const Login = () => {
+  const { login, setLogin } = useContext(LoginContext)
   const navigate = useNavigate();
   // State for form data (username, password, role)
   const [formData, setFormData] = useState({
@@ -49,6 +50,7 @@ const Login = () => {
 
         console.log(res.data)
         console.log("inside")
+        setLogin(true)
         navigate("/admin")
 
       }
