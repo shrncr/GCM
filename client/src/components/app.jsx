@@ -21,8 +21,10 @@ const LoginContext = createContext();
 // <Route path="/playstyles/:id" element={<SingleInfo />}/>
 // <Route path="/playPlaces/:id" element={<SingleInfo />}/>
 function App() {
+    //Creates login context to know if a user has logged in or not
     const [login, setLogin] = useState(false)
     return (
+        //context applies to every route
         <LoginContext.Provider value={{ login, setLogin }}>
             <Router>
                 <div>

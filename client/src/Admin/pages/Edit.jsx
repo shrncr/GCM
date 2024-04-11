@@ -16,7 +16,7 @@ import NameLoader from "../components/NameLoader.js";
 /* Main edit function, this will be exported and used as needed
 throughout the admin page.*/
 export default function Edit(props) {
-// Required constants
+  // Required constants
   const navigate = useNavigate();
   const { exhibits, setExhibits, playstyles, setPlaystyles } = useContext(ExhibitContext);
   const location = useLocation();
@@ -77,7 +77,7 @@ export default function Edit(props) {
       }
     });
   };
-  
+
   /* This chunk of code is used for importing the names of the playstyles
   and exhibits in the database in order to title each button
   and track what is being added to each new object. */
@@ -106,10 +106,10 @@ export default function Edit(props) {
     NameLoader('activities', handler)
   };
 
-/* Here is where we actually add an exhibit. This function takes
-the information entered and sends it to the database, which then
-creates the object of whatever is being sent. It is also used to 
-make edits to any existing playstyles/exhibits. */
+  /* Here is where we actually add an exhibit. This function takes
+  the information entered and sends it to the database, which then
+  creates the object of whatever is being sent. It is also used to 
+  make edits to any existing playstyles/exhibits. */
   const addExhibit = () => {
     if (location.pathname.includes("edit")) { //if youre editing
       console.log("editing...");
@@ -191,8 +191,14 @@ make edits to any existing playstyles/exhibits. */
       navigate(`/admin/map`)
     };
   };
-/* Here is our return section. This is the HTML portion that actually
-builds the webpage utilizing the functions created above. */
+  //DELETE EXHIBIT
+  const deleteExhibit = () => {
+    //THIS WILL DELETE AN EXHIBIT
+    return
+  };
+
+  /* Here is our return section. This is the HTML portion that actually
+  builds the webpage utilizing the functions created above. */
   return (
     <form>
       <div>
@@ -240,6 +246,10 @@ builds the webpage utilizing the functions created above. */
 
         <button type="button" onClick={addExhibit}>
           {done}
+        </button>
+
+        <button type="delete-button" onClick={deleteExhibit}>
+          Delete
         </button>
 
         <button type="button" onClick={() => navigate(-1)}>
