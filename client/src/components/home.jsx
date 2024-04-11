@@ -16,9 +16,10 @@ function Home() {
 const updateBoxesData = (newData) => {
   setBoxesData(newData);
 };
+// time_of_day impression
 useEffect(() => { // useEffect hook for tracking the visit
   const time_of_day = new Date(); // capture the visit time
-  axios.post('/api/impressions/create', { time_of_day }) // make sure the endpoint matches your server's
+  axios.post('http://localhost:8082/api/impressions/create', { time_of_day })
     .then(response => {
       console.log('Visit time recorded:', response.data); // success :P
     })

@@ -277,7 +277,8 @@ router.post("/admin/addlearningstyle", async (req, res) => {
  });
 
 //making a new impression
-router.post('/create', (req, res) => {
+router.post('/api/impressions/create', (req, res) => {
+  console.log('Received time_of_day:', req.body.time_of_day);
   const impressionData = {
       ...req.body,
       impression_id: new mongoose.Types.ObjectId(),
