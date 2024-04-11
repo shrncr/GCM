@@ -25,7 +25,7 @@ function SingleInfo() {
         axios
             .get(`http://localhost:8082/${dest}/${id}`)
             .then((res) => {
-                setdesc(res.data.baseData.description);
+                setdesc(res.data.baseData.desc);
                 setTitle(res.data.baseData.title);
                 setSkills(res.data.dropdown);
                 console.log(res.data)
@@ -78,8 +78,8 @@ function SingleInfo() {
 
     return (
         <div>
-            <Banner className="home-background" text="Welcome" />
             <h2>About {title}</h2>
+            <h3>{desc}</h3>
             <hr />
             <div className="container">
                 <img src={playExample} alt="Logo" className='PlayInfo-img' />
