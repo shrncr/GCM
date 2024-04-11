@@ -261,33 +261,26 @@ a:-webkit-any-link {
 /*///////////////////////////////*/
 /*footer stuff*/
 .footer {
-  background-color: #222;
-  color: #c9c4c4;
-  padding: 20px;
-  margin-top: 50px;
-  height: 200px;
-  text-align: center;
-  position: relative;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  background-color: #2383c6;
+  height: 18vh;
 }
-
 
 .footer-content {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row; /* Stack items vertically */
-}
-
-.footer-content p {
-  margin: 0; /* Remove default margin */
-  padding: 10px;
+  color: #ffffff;
+  font-size: 1.2rem;
+  text-align: center;
+  padding-top: 4vh;
 
 }
+
+.footer a, .footer a:visited {
+  color: white;             /* Keeps the link color white even after being clicked */
+  text-decoration: none;    /* removes underline from links */
+}
+
+
+
+
 
 
 /*///////////////////////////////*/
