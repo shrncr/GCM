@@ -1,6 +1,14 @@
 import React, { useContext } from "react";
 import Zillow_Box from "../components/Zillow_Box";
 import { ExhibitContext } from "../SetData.jsx";
+import styled from 'styled-components';
+
+// the add box has different styling 
+const ADDZillowBox = styled(Zillow_Box)`
+  && {
+    background-color: rgb(152, 149, 152);
+  }
+`;
 
 export default function Exhibits(props) {
     const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
@@ -32,7 +40,7 @@ export default function Exhibits(props) {
                 {data.map((e, index) => (
                     <Zillow_Box key={e.title} name={e.title} id={e.title} image={e.image} status={e.status} />
                 ))}
-                <Zillow_Box key={"add"} name={`Add ${props.title}`} id={"add"} image={null} />
+                <ADDZillowBox key={"add"} name={`Add ${props.title.slice(0, -1)}`} id={"add"} image={null}   />
             </div>
         </div>
     );
