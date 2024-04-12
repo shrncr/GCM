@@ -29,9 +29,9 @@ export default function Edit(props) {
     done = "Done"
     if (props.title === "Playstyles") {
       exh = playstyles[props.index];
-    } else if (props.title === "Exhibits"){
+    } else if (props.title === "Exhibits") {
       exh = exhibits[props.index]; //the current exhibit
-    } else{
+    } else {
       exh = locations[props.index]
     }
 
@@ -41,9 +41,9 @@ export default function Edit(props) {
     }
     if (props.title === "Playstyles") {
       data = playstyles;
-    } else if (props.title === "Exhibits"){
+    } else if (props.title === "Exhibits") {
       data = exhibits;
-    }else{
+    } else {
       data = locations
     }
   }
@@ -204,7 +204,9 @@ export default function Edit(props) {
   /* Here is our return section. This is the HTML portion that actually
   builds the webpage utilizing the functions created above. */
   return (
+
     <form>
+      {/*Form for Creating Exhibit*/}
       <div>
         <label>Name:</label>
         <input

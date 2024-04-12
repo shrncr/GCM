@@ -11,13 +11,13 @@ import AdminRoutes from './AdminRoutes.jsx';
 
 
 function AdminApp() {
-
+    ///Seperates the Sdmin Side so the components dont conflict
     return (
         <SetData>
             <div>
                 <Navbar />
                 <AdminRoutes />
-                
+
             </div>
 
         </SetData>

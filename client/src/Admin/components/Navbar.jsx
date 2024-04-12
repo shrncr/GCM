@@ -5,10 +5,12 @@ import Logo from '../images/glazerLogo.png';
 
 export default function Navbar() {
     return (
+        //create the navbar
         <nav className='navbar'>
             <Link to='/admin'  > <img src={Logo} alt="Logo" /> <h1 className="company">Admin</h1> </Link>
             <ul>
                 <li>
+                    {/*link each page*/}
                     <Link to="exhibits">Exhibits</Link>
                 </li>
                 <li>

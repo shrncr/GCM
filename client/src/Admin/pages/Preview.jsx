@@ -2,14 +2,14 @@ import { React, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { ExhibitContext } from "../SetData.jsx";
 import image from "../images/playExample.webp"
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 export default function Preview(props) {
   const { exhibits, setExhibit, playstyles, setPlaystyles } = useContext(ExhibitContext)
   const navigate = useNavigate()
   const location = useLocation()
 
   let data;
-
+  //find if playstyle or exhibit
   switch (props.title) {
     case "Playstyles":
       data = playstyles[props.index];
@@ -25,9 +25,10 @@ export default function Preview(props) {
   if (location.pathname.includes("exhibit")) {
     editType = "Exhibit"
 
-} else {
+  } else {
     editType = "Playstyle"
-}
+  }
+  //LOAD IN A SPECIFIC EXHIBIT/PLAYSTYLE/AT HOME ACTIVITY
   return (
     <div>
       <div className="banner">

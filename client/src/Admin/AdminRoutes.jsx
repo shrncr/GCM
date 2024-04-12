@@ -16,6 +16,7 @@ import './pages/pages.css';
 
 export default function AdminRoutes(props) {
     const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
+    //Creates all the routes for the admin side
     return (
         <div>
 

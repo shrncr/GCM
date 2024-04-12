@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import Exhibit from './classes/exhibit.js';
 import axios from 'axios';
-
+//Creates all the data for the admin side
 // Create context
 const ExhibitContext = createContext();
 
@@ -11,7 +11,7 @@ const SetData = ({ children }) => {
   const [playstyles, setPlaystyles] = useState([]);
   const [locations, setLocations] = useState([]);
   const [data, setData] = useState([]);
- 
+
   // Use useEffect to set exhibits after the initial render
   useEffect(() => {
     const exh = [];
