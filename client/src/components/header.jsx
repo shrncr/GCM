@@ -1,3 +1,4 @@
+// creates navbar based on that changes dynamically based on screen size
 import React, { useState, useRef, useEffect } from 'react';
 import glazerLogo from '../components/images/glazerLogo.webp'; // Corrected import path
 import { FaBars, FaTimes } from 'react-icons/fa';

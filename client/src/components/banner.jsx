@@ -1,5 +1,6 @@
+// creates backround banner
 import React from 'react';
-
+// function to create bannder that takes text and classname as parameters
 function Banner({text, className}) {
     return (
         

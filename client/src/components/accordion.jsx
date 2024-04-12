@@ -1,15 +1,17 @@
+//Function to create an accordian component to display an collapse info
+
 import React, { useState } from 'react';
 
 const Accordion = ({ items, keepOthersOpen }) => {
     const [accordionItems, setAccordionItems] = useState(items.map(item => ({ ...item, toggled: false })));
-
+// expands and contracts when clicked
     function handleAccordionToggle(clickedItem) {
         setAccordionItems(accordionItems.map(item => ({
             ...item,
             toggled: item.id === clickedItem.id ? !item.toggled : (keepOthersOpen ? item.toggled : false)
         })));
     }
-
+//returns accordian
     return (
         <div className='accordion-parent'>
             {accordionItems.map((listItem, key) => (

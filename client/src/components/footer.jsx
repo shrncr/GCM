@@ -1,6 +1,7 @@
+// creates footer
 import React from 'react';
 
-
+//functio to create footer
 function Footer() {
     return (
       <footer className="footer">
@@ -18,7 +19,7 @@ function Footer() {
                     {" | "}
                     <a href="https://glazermuseum.org/visit/#hours" style={{fontWeight: 'bold' }}>Hours of Operation</a>
                 </div>
-
+                
                 <div style={{fontWeight: '100' }}>
                     Glazer Children’s Museum | 110 W Gasparilla Plaza, Tampa FL 33602 
                     <a href="tel:+18134433861"> | 813-443-3861</a>

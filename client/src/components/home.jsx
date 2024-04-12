@@ -1,3 +1,4 @@
+//creates homepage with home screen info
 import React, { useState, useEffect } from 'react';
 import Banner from './banner';
 import Footer from './footer';
