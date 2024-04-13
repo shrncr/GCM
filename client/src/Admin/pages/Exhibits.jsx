@@ -36,11 +36,14 @@ export default function Exhibits(props) {
     return (
         <div>
             <h1 className="header">{props.title}</h1>
+            <div className="underline" >
+                <div />
+            </div>
             <div className="zillow-container">
                 {data.map((e, index) => (
                     <Zillow_Box key={e.title} name={e.title} id={e.title} image={e.image} status={e.status} />
                 ))}
-                <ADDZillowBox key={"add"} name={`Add ${props.title.slice(0, -1)}`} id={"add"} image={null}   />
+                <ADDZillowBox key={"add"} name={`Add ${props.title.slice(0, -1)}`} id={"add"} image={null} />
             </div>
         </div>
     );
