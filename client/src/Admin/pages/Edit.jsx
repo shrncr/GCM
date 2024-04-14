@@ -8,6 +8,7 @@ in order to upload/change the desired item.*/
 import React, { useContext, useState, useEffect } from "react";
 import { ExhibitContext } from "../SetData.jsx";
 import Exhibit from "../classes/exhibit";
+import PlaceSearch from "../components/PlaceSearch.jsx";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import PlaystyleCheckbox from "../components/Checkbox.js";
 import axios from "axios";
@@ -44,24 +45,33 @@ export default function Edit(props) {
     } else if (props.title === "Exhibits") {
       data = exhibits;
     } else {
-      data = locations
+      data = locations;
     }
   }
 
-  /*name, description, and image variables used to track what
+  /*name, description, latitude, longitude, and image variables used to track what
   the user is entering*/
   const [name, setName] = useState(exh.title);
   const [description, setDescription] = useState(exh.desc);
   const [image, setImage] = useState(exh.image);
-  var v;
+  let v;
   if (exh.status !== undefined) {
     v = exh.status;
   } else {
     v = true;
   };
+
+
+  
+
   /* Visibility variable and function used to track if the 
   exhibit/playstyle will populate on the client side */
   const [visible, setVisible] = useState(v);
+
+  const [long, setLong] = useState(props.title === "Map" ? exh.longitude : "");
+  const [lat, setLat] = useState(props.title === "Map" ? exh.latitude : "");
+  const [addy, setAdd] = useState("");
+  
   const toggleVisibility = (event) => {
     setVisible(!visible);
   };
@@ -96,7 +106,7 @@ export default function Edit(props) {
     ));
     setCheckboxArr(checkboxes);
   }
-  if (location.pathname.includes("exhibits")) {
+  if (location.pathname.includes("exhibits") || location.pathname.includes("map")) {
     checkboxesTitle = "Playstyles:"
     NameLoader('playstyles', handler)
   } else if (location.pathname.includes("playstyles")) {
@@ -132,7 +142,7 @@ export default function Edit(props) {
           }
         }).then((res) => {
         })
-      } else {
+      } else if (props.title === "Exhibits") {
 
         console.log("specifically, an exhibit");
         console.log(exh);
@@ -149,6 +159,23 @@ export default function Edit(props) {
           }
         }).then((res) => {
         });
+      } else if (props.title === "Map"){ // if editing a map location
+        axios({ //make request
+          url: 'http://localhost:8082/admin/editmap', //edit exhibit
+          method: 'POST',
+          data: { id: exh._id, title: name, desc: description, latitude: lat, longitude: long, address: addy, playstyle: selectedOptions[0] },
+          headers: {
+            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+          },
+          catch(error) {
+            console.error('error:', error);
+            alert('An error occured.')
+          }
+        }).then((res) => {
+        });
+
+      } else{
+
       };
     } else {//if adding newc
       if (props.title === "Exhibits") {
@@ -224,6 +251,11 @@ export default function Edit(props) {
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
+
+      {props.title === "Map" ?
+      <PlaceSearch addy={"401 E Kennedy"} longSet={setLong} latSet={setLat} addSet = {setAdd}/>
+      : ""}
+
       <div>
         <label></label>
         <label>Image:</label>

@@ -73,8 +73,8 @@ export default function AdminRoutes(props) {
 
                 {locations.map((e, index) => (
                     <React.Fragment key={index}>
-                        <Route path={`map/${e.title}`} element={<Preview title={"Map"} index={index} />} />
-                        <Route path={`map/${e.title}/edit`} element={<Edit title={"Map"} index={index} />} />
+                        <Route path={`map/${e._id}`} element={<Preview title={"Map"} index={index} />} />
+                        <Route path={`map/${e._id}/edit`} element={<Edit title={"Map"} index={index} />} />
                         <Route path={`map/add`} element={<Edit title={"Map"} index={null} />} />
                     </React.Fragment>
                 ))}

@@ -10,13 +10,15 @@ const MapData = [
         map_id: new mongoose.Types.ObjectId(),
         longitude: -82.50261707677507,
         latitude: 27.901313674533228,
-        desc: "The YMCA is a place for kids to be active."
+        desc: "The YMCA is a place for kids to be active.",
+        title:"YMCA"
     },
     {
         map_id: new mongoose.Types.ObjectId(),
         longitude: -82.48147005267664,
         latitude: 27.88930362717901,
-        desc: "Ballast point park."
+        desc: "Ballast point park.",
+        title:"Park"
     }
 ];
 

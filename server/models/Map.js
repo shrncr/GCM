@@ -20,6 +20,18 @@ const MapSchema = new mongoose.Schema({
         type:String,
         required:false, 
     },
+    title:{
+        type:String,
+        required:false, 
+    },
+    address:{
+        type:String,
+        required:false, 
+    },
+    playstyle:{
+        type:String,
+        required:false, 
+    }
 })
 
 module.exports = Map = mongoose.model('map', MapSchema);

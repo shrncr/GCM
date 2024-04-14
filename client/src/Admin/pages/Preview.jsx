@@ -4,7 +4,7 @@ import { ExhibitContext } from "../SetData.jsx";
 import image from "../images/playExample.webp"
 import { useLocation } from 'react-router-dom';
 export default function Preview(props) {
-  const { exhibits, setExhibit, playstyles, setPlaystyles } = useContext(ExhibitContext)
+  const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext)
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -16,6 +16,9 @@ export default function Preview(props) {
       break;
     case "Exhibits":
       data = exhibits[props.index];
+      break;
+    case "Map":
+      data = locations[props.index];
       break;
     default:
       data = [];

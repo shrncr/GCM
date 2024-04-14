@@ -170,31 +170,19 @@ router.post('/admin', async (req,res) =>{
 //when adding or editing map pins. incomplete
 router.post('/admin/editmap', async (req,res) => {
   try{
-    var pinId = new mongoose.Types.ObjectId(); //make a unique objID
-    if (req.body.type == "newPin"){
-      await Map.create({
-        id: pinId,
-        latitude: req.body.latitude,
-        longitude: req.body.longitude,
-        playtype: req.body.play
-      });
-    }else{
-      let data = await Exhibit.findOneAndUpdate({id: req.body.ID}).then(
-        //
-      )
-    }
+    let options = {
+      title: req.body.title,
+      desc: req.body.desc,
+      address:req.body.address,
+      playstyle:req.body.playstyle,
+      longitude:req.body.longitude,
+      latitude:req.body.latitude
+      }
+console.log(req.body);
+Map.findOneAndUpdate({_id: req.body.id}, options).then(
+console.log(req.body.id)
+);
 
-    //put new update in database
-    var id = new mongoose.Types.ObjectId(); //make a unique objID
-    const currentDate = new Date();
-    await Updates.create({ //create new exhibit w/ the model
-      ID: id,
-      admin_id: req.body.adminid,
-      desc: req.body.description,
-      date: currentDate
-    }
-    );
-    res.json(data);
   }catch(err){
     console.log("err")
   }
