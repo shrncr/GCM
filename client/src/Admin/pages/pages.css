@@ -1,5 +1,6 @@
 .zillow-container {
     display: grid;
+    margin-left: 2vw;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 
@@ -28,16 +29,6 @@
     font-size: 8vh;
 }
 
-.header h1 {
-    background-color: purple;
-    border-color: black;
-    border-style: groove;
-    color: white;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 50vw;
-    margin: 20px
-}
 
 .underline {
     width: 100%;
@@ -234,4 +225,22 @@
 
 .delete-button {
     background-color: red;
+}
+
+.preview-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.preview-header h1 {
+    background-color: purple;
+    border-color: black;
+    border-style: groove;
+    text-align: center;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 50vw;
+    margin: 10px
 }

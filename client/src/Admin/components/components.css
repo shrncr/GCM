@@ -125,3 +125,19 @@ body {
         box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
     }
 }
+
+.add_box {
+    text-decoration: none;
+    width: 200px;
+    height: 200px;
+    color: purple;
+    margin: 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 5vh;
+
+}

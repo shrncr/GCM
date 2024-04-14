@@ -8,6 +8,7 @@ const ExhibitContext = createContext();
 // Context provider component
 const SetData = ({ children }) => {
   const [exhibits, setExhibits] = useState([]);
+  const [homeAct, setHomeAct] = useState([]);
   const [playstyles, setPlaystyles] = useState([]);
   const [locations, setLocations] = useState([]);
   const [data, setData] = useState([]);
@@ -58,7 +59,10 @@ const SetData = ({ children }) => {
       setLocations(res.data)
     });
   }, []);
-
+  //SET THE AT HOME ACTIVITIES
+  useEffect(() => {
+    setHomeAct(exhibits)
+  })
   //THIS USE EFFECT IS TO SET DATA PAGE
   useEffect(() => {
     const d = [];
@@ -83,7 +87,7 @@ const SetData = ({ children }) => {
   }, []);
 
   return (
-    <ExhibitContext.Provider value={{ exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations, data, setData }}>
+    <ExhibitContext.Provider value={{ exhibits, setExhibits, playstyles, setPlaystyles, homeAct, setHomeAct, locations, setLocations, data, setData, }}>
       {children}
     </ExhibitContext.Provider>
   )

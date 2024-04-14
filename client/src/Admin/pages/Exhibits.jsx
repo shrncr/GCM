@@ -26,6 +26,8 @@ export default function Exhibits(props) {
             console.log("mao")
             data = locations;
             console.log(data)
+        case "Activities":
+            data = exhibits
         default:
             data = [];
             break;
@@ -41,9 +43,9 @@ export default function Exhibits(props) {
             </div>
             <div className="zillow-container">
                 {data.map((e, index) => (
-                    <Zillow_Box key={e.title} name={e.title} id={e.title} image={e.image} status={e.status} />
+                    <Zillow_Box className="zillow-box" key={e.title} name={e.title} id={e.title} image={e.image} status={e.status} />
                 ))}
-                <ADDZillowBox key={"add"} name={`Add ${props.title.slice(0, -1)}`} id={"add"} image={null} />
+                <Zillow_Box className="add_box" key={"add"} name={"+"} id={"add"} image={null} />
             </div>
         </div>
     );

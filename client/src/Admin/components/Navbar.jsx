@@ -16,6 +16,10 @@ export default function Navbar() {
                 <li>
                     <Link to="playstyles">Playstyles</Link>
                 </li>
+
+                <li>
+                    <Link to="activities">Activities</Link>
+                </li>
                 <li>
                     <Link to="map">Map</Link>
                 </li>

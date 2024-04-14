@@ -15,7 +15,7 @@ import './pages/pages.css';
 
 
 export default function AdminRoutes(props) {
-    const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
+    const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct } = useContext(ExhibitContext);
     //Creates all the routes for the admin side
     return (
         <div>
@@ -26,7 +26,7 @@ export default function AdminRoutes(props) {
                 <Route path="/*" element={<Home />} />
                 <Route path="/exhibits/*" element={<Exhibits title={"Exhibits"} />} />
                 <Route path="/playstyles/*" element={<Exhibits title={"Playstyles"} />} />
-
+                <Route path="/activities/*" element={<Exhibits title={"Activities"} />} />
                 <Route path="/map/*" element={<MapEdit />} />
                 <Route path='data' element={<Data index={0} />} />
                 {/*<Route path="/map" element={<MapEdit />} />
@@ -56,6 +56,18 @@ export default function AdminRoutes(props) {
                             <Route path="/playstyles/add" element={<Edit title={"Playstyles"} index={null} />} />
                         </React.Fragment>
                     );
+                })}
+
+                {/* Home Activity Routes */}
+                {homeAct.map((e, index) => {
+                    const name = e.title.replace(/\s+/g, '_');
+                    return (
+                        <React.Fragment key={index}>
+                            <Route key={index} path={`activities/${name}`} element={<Preview title={"Activities"} index={index} />} />
+                            <Route path={`activities/${name}/edit`} element={<Edit title={"Activities"} index={index} />} />
+                            <Route path={`activities/add`} element={<Edit title={"Activities"} index={null} />} />
+                        </React.Fragment>
+                    )
                 })}
 
 

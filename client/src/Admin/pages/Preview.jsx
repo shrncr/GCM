@@ -34,7 +34,7 @@ export default function Preview(props) {
       <div className="banner">
         <img src={image} alt={data.image}></img>
       </div>
-      <div className="header">
+      <div className="preview-header">
         <h1 >{data.title} </h1>
       </div>
       <p className="description">{data.desc}</p>
