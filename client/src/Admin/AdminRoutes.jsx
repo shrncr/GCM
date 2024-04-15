@@ -59,6 +59,18 @@ export default function AdminRoutes(props) {
                 })}
 
                 {/* Home Activity Routes */}
+                {locations.map((e, index) => {
+                    const name = e.title.replace(/\s+/g, '_');
+                    return (
+                        <React.Fragment key={index}>
+                            <Route key={index} path={`map/${name}`} element={<Preview title={"Map"} index={index} />} />
+                            <Route path={`map/${name}/edit`} element={<Edit title={"Map"} index={index} />} />
+                            <Route path={`map/add`} element={<Edit title={"Map"} index={null} />} />
+                        </React.Fragment>
+                    )
+                })}
+
+                {/* Home Activity Routes */}
                 {homeAct.map((e, index) => {
                     const name = e.title.replace(/\s+/g, '_');
                     return (
@@ -69,15 +81,7 @@ export default function AdminRoutes(props) {
                         </React.Fragment>
                     )
                 })}
-
-
-                {locations.map((e, index) => (
-                    <React.Fragment key={index}>
-                        <Route path={`map/${e._id}`} element={<Preview title={"Map"} index={index} />} />
-                        <Route path={`map/${e._id}/edit`} element={<Edit title={"Map"} index={index} />} />
-                        <Route path={`map/add`} element={<Edit title={"Map"} index={null} />} />
-                    </React.Fragment>
-                ))}
+                
 
             </Routes>
         </div>

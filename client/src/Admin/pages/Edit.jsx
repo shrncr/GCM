@@ -195,7 +195,22 @@ export default function Edit(props) {
         });
 
 
-      } else {
+      }else if (props.title === "Map"){
+        axios({ //make request
+          url: 'http://localhost:8082/admin/addmap', //edit exhibit
+          method: 'POST',
+          data: { long: long, lat: lat, address: addy, title: name,desc: description,playstyle: selectedOptions[0] },
+          headers: {
+            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+          },
+          catch(error) {
+            console.error('error:', error);
+            alert('An error occured.')
+          }
+        }).then((res) => {
+        });
+      }
+       else {
         console.log("specifically, a playstyle");
         axios({ //make request
           url: 'http://localhost:8082/admin/addlearningstyle', //edit exhibit
