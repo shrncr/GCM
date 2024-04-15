@@ -133,6 +133,7 @@ body {
     color: purple;
     margin: 10px;
     border-radius: 20px;
+    border-color: purple;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,4 +141,10 @@ body {
     border-radius: 8px;
     font-size: 5vh;
 
+}
+
+.add_box:hover {
+    background-color: #f3f3f3;
+    -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
