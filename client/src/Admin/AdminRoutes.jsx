@@ -8,6 +8,7 @@ import Preview from './pages/Preview.jsx';
 import Edit from './pages/Edit.jsx';
 import AdminApp from "./AdminApp.jsx";
 import Navbar from "./components/Navbar.jsx";
+import Login from "../../src/components/login.jsx"
 import Data from "./pages/Data.jsx"
 //import MapEdit from "./pages/MapEdit.jsx";
 import './components/components.css';
@@ -24,6 +25,7 @@ export default function AdminRoutes(props) {
 
                 {/* The NavBar Routes */}
                 <Route path="/*" element={<Home />} />
+
                 <Route path="/exhibits/*" element={<Exhibits title={"Exhibits"} />} />
                 <Route path="/playstyles/*" element={<Exhibits title={"Playstyles"} />} />
                 <Route path="/activities/*" element={<Exhibits title={"Activities"} />} />
@@ -81,7 +83,7 @@ export default function AdminRoutes(props) {
                         </React.Fragment>
                     )
                 })}
-                
+
 
             </Routes>
         </div>

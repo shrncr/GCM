@@ -32,6 +32,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -47,6 +48,7 @@
   animation-duration: 1s;
   z-index: 1;
 }
+
 #map {
   height: 60vh;
   width: max(60vw, 350px);
@@ -56,6 +58,7 @@
   animation-duration: 1s;
   z-index: 1;
 }
-.filler{
+
+.filler {
   color: white
 }
