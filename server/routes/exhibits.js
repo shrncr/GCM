@@ -20,6 +20,7 @@ const Map = require("../models/Map");
 const PlayStyles = require("../models/PlayStyles");
 const ObjectId = require("mongodb").ObjectId;
 const { Parser } = require('json2csv');
+const jwt = require('jsonwebtoken');
 
 //returns text associated with homepage
 router.get('/', async (req, res) =>  { 
@@ -47,6 +48,24 @@ router.get('/', async (req, res) =>  {
  router.get('/playstyles', async (req, res)=>{
   try{
     let data = await PlayStyle.find({});
+    res.json(data);
+  }catch(err){
+    console.log(err);
+  }
+ });
+
+ router.get('/activities', async (req, res)=>{
+  try{
+    let data = await Activities.find({});
+    res.json(data);
+  }catch(err){
+    console.log(err);
+  }
+ });
+
+ router.get('/skills', async (req, res)=>{
+  try{
+    let data = await Skills.find({});
     res.json(data);
   }catch(err){
     console.log(err);
@@ -160,7 +179,12 @@ router.get('/exhibitsandplaystyles'), async (req, res)=>{
 router.post('/admin', async (req,res) =>{ 
   try{
     console.log(req.body);
-    let data = await Admin.findOne({username:req.body.username,password:req.body.password})
+    let data = await Admin.findOne({username:req.body.username,password:req.body.password});
+    if (!data){
+      return res.status(401).json({ error: 'Authentication failed' });
+    }
+    const token = jwt.sign({userID:req.body.username}, 'your-secret-key', {expiresIn:'1h'});
+    res.status(200).json({token});
     res.json(data);
   }catch(err){
     console.log("err")
