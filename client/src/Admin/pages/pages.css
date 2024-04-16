@@ -71,13 +71,13 @@
     margin: 30px;
 }
 
-.button {
+.edit_button {
     width: 100%;
     height: auto;
     grid-column: span;
 }
 
-.button button {
+.normal {
     background-color: gray;
     color: black;
     border-radius: 10px;
@@ -223,9 +223,6 @@
 
 }
 
-.delete-button {
-    background-color: red;
-}
 
 .preview-header {
     width: 100%;

@@ -221,6 +221,29 @@ Exhibit.findOneAndUpdate({_id: req.body.id}, options).then(
 //res.json(data);
 });
 
+//add a new pin to pin page
+router.post("/admin/addmap", async (req, res) => {
+  try{
+   console.log("lig");
+   let id = new mongoose.Types.ObjectId(); //make a unique objID
+   console.log("ma");
+   await Map.create({ //create new exhibit w/ the model
+     'map_id': id,
+     'longitude': req.body.long,
+     'latitude': req.body.lat,
+     'address': req.body.address,
+     'title': req.body.title,
+     'desc': req.body.desc,
+     'playstyle':req.body.playstyle,
+
+   }
+   );
+   console.log("bawls");
+  }catch(err){
+   console.log(err); // we will know if error
+  }
+ });
+
 //add a new exhibit to exhibits page
 router.post("/admin/addexhibit", async (req, res) => {
   try{

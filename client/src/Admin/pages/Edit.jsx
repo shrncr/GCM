@@ -13,7 +13,8 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import PlaystyleCheckbox from "../components/Checkbox.js";
 import axios from "axios";
 import NameLoader from "../components/NameLoader.js";
-
+import Delete_Button from "../components/Delete_Button.jsx";
+import NestedEditor from "../components/nestedEditor.js";
 /* Main edit function, this will be exported and used as needed
 throughout the admin page.*/
 export default function Edit(props) {
@@ -195,7 +196,22 @@ export default function Edit(props) {
         });
 
 
-      } else {
+      }else if (props.title === "Map"){
+        axios({ //make request
+          url: 'http://localhost:8082/admin/addmap', //edit exhibit
+          method: 'POST',
+          data: { long: long, lat: lat, address: addy, title: name,desc: description,playstyle: selectedOptions[0] },
+          headers: {
+            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+          },
+          catch(error) {
+            console.error('error:', error);
+            alert('An error occured.')
+          }
+        }).then((res) => {
+        });
+      }
+       else {
         console.log("specifically, a playstyle");
         axios({ //make request
           url: 'http://localhost:8082/admin/addlearningstyle', //edit exhibit
@@ -274,26 +290,29 @@ export default function Edit(props) {
         {checkboxArr}
       </div>
       <div>
+        <NestedEditor/>
+      </div>
+      <div>
         <label></label>
         <label>Visibility:</label>
       </div>
       <div>
         <PlaystyleCheckbox label="Make visible?" color="green" onSelect={toggleVisibility} />
       </div>
-      <div className="button"  >
+      <div className="edit_button"  >
 
-        <button type="button" onClick={addExhibit}>
+        <button className="normal" type="button" onClick={addExhibit}>
           {done}
         </button>
 
-        <button type="delete-button" onClick={deleteExhibit}>
-          Delete
-        </button>
+        <Delete_Button done={done} />
 
-        <button type="button" onClick={() => navigate(-1)}>
+        <button className="normal" type="button" onClick={() => navigate(-1)}>
           Cancel
         </button>
+
       </div>
+
     </form>
   );
 }
