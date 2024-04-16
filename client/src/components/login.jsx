@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios'
 import { Routes, Route, Link, useNavigate, useRoutes } from 'react-router-dom';
-import AdminApp from '../Admin/AdminApp'
 import { LoginContext } from './app';
 /*
 Login page for admin
@@ -25,7 +24,7 @@ const Login = () => {
       [e.target.name]: e.target.value,
     });
   };
-  
+
   // function that allows enter key to confirm login
   const handleKeyDown = (e) => {
     // Check if the Enter key was pressed

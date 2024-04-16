@@ -1,14 +1,9 @@
 import React, { useContext } from "react";
 import Zillow_Box from "../components/Zillow_Box";
 import { ExhibitContext } from "../SetData.jsx";
-import styled from 'styled-components';
 
 // the add box has different styling 
-const ADDZillowBox = styled(Zillow_Box)`
-  && {
-    background-color: rgb(152, 149, 152);
-  }
-`;
+
 
 export default function Exhibits(props) {
     const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
@@ -46,7 +41,7 @@ export default function Exhibits(props) {
             </div>
             <div className="zillow-container">
                 {data.map((e, index) => (
-                    
+
                     <Zillow_Box className="zillow-box" key={e.title} name={e.title} id={e.title} image={e.image} status={e.status} />
                 ))}
                 <Zillow_Box className="add_box" key={"add"} name={"+"} id={"add"} image={null} />

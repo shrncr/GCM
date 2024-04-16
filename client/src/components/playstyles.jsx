@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Banner from './banner';
 import GridBoxes from './gridBoxes';
-import Footer from './footer';
-import playExample from '../components/images/playExample.webp'; // Corrected import path
+import Footer from './footer'; // Corrected import path
 
 import axios from 'axios'
 
@@ -28,7 +27,7 @@ function PlayStylesPage() {
   return (
     <>
       <Banner className="playstyles-background" text="Learn to Play" />
-      <h1>I want to participate in...</h1>
+      <h1 className="user">I want to participate in...</h1>
       <GridBoxes data={exdata} />
       <Footer />
     </>

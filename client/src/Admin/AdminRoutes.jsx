@@ -6,11 +6,7 @@ import Home from "./pages/Home.jsx";
 import MapEdit from "./pages/MapEdit.jsx"
 import Preview from './pages/Preview.jsx';
 import Edit from './pages/Edit.jsx';
-import AdminApp from "./AdminApp.jsx";
-import Navbar from "./components/Navbar.jsx";
-import Login from "../../src/components/login.jsx"
 import Data from "./pages/Data.jsx"
-//import MapEdit from "./pages/MapEdit.jsx";
 import './components/components.css';
 import './pages/pages.css';
 

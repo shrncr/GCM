@@ -63,7 +63,7 @@ function Playplaces() {
   return (
     <>
       <Banner className="playstyles-background" text="Places to Play" />
-      <h1>I want to play at...</h1>
+      <h1 className="user">I want to play at...</h1>
       <GridBoxes data={exdata} />
       <Footer />
     </>

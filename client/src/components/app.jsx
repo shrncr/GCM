@@ -1,8 +1,6 @@
 import React, { createContext, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import Routes and Route from react-router-dom
 
-//import Map from '../Admin/pages/Map'
-
 import AdminApp from '../Admin/AdminApp';
 import Login from './login'
 import PrivateRoute from '../Admin/PrivateRoute/PrivateRoute';
