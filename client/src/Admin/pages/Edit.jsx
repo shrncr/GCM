@@ -13,6 +13,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import PlaystyleCheckbox from "../components/Checkbox.js";
 import axios from "axios";
 import NameLoader from "../components/NameLoader.js";
+import Delete_Button from "../components/Delete_Button.jsx";
 
 /* Main edit function, this will be exported and used as needed
 throughout the admin page.*/
@@ -295,20 +296,20 @@ export default function Edit(props) {
       <div>
         <PlaystyleCheckbox label="Make visible?" color="green" onSelect={toggleVisibility} />
       </div>
-      <div className="button"  >
+      <div className="edit_button"  >
 
-        <button type="button" onClick={addExhibit}>
+        <button className="normal" type="button" onClick={addExhibit}>
           {done}
         </button>
 
-        <button type="delete-button" onClick={deleteExhibit}>
-          Delete
-        </button>
+        <Delete_Button done={done} />
 
-        <button type="button" onClick={() => navigate(-1)}>
+        <button className="normal" type="button" onClick={() => navigate(-1)}>
           Cancel
         </button>
+
       </div>
+
     </form>
   );
 }

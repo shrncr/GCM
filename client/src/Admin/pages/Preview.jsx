@@ -42,13 +42,13 @@ export default function Preview(props) {
       </div>
       <p className="description">{data.desc}</p>
       <p className="description"></p>
-      <div className="button">
+      <div className="edit_button">
         <Link to="edit">
-          <button type="button">
+          <button className="normal" type="button">
             Edit {editType}
           </button>
         </Link>
-        <button type="button" onClick={(e) => navigate('/admin/exhibits')}>
+        <button className="normal" type="button" onClick={(e) => navigate('/admin/exhibits')}>
           Back
         </button>
       </div>
