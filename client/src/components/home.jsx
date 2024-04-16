@@ -4,6 +4,7 @@ import Banner from './banner';
 import Footer from './footer';
 import GridBoxes from './gridBoxes';
 import axios from 'axios';
+import Navbar from "./header";
 
 
 function Home() {
@@ -31,6 +32,7 @@ useEffect(() => { // useEffect hook for tracking the visit
   return (
     
     <div>
+      <Navbar/>
       <Banner className="home-background" text="Welcome" />
       <h2>Welcome to My Website</h2>
       <hr></hr>
