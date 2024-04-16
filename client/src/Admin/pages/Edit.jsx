@@ -14,7 +14,7 @@ import PlaystyleCheckbox from "../components/Checkbox.js";
 import axios from "axios";
 import NameLoader from "../components/NameLoader.js";
 import Delete_Button from "../components/Delete_Button.jsx";
-
+import NestedEditor from "../components/nestedEditor.js";
 /* Main edit function, this will be exported and used as needed
 throughout the admin page.*/
 export default function Edit(props) {
@@ -288,6 +288,9 @@ export default function Edit(props) {
       </div>
       <div className="checkbox-row">
         {checkboxArr}
+      </div>
+      <div>
+        <NestedEditor/>
       </div>
       <div>
         <label></label>

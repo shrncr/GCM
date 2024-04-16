@@ -27,7 +27,7 @@ function PlayStylesPage() {
 
   return (
     <>
-      <Banner className="playstyles-background" text="Places to Play" />
+      <Banner className="playstyles-background" text="Learn to Play" />
       <h1>I want to participate in...</h1>
       <GridBoxes data={exdata} />
       <Footer />
