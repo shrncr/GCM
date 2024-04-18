@@ -6,8 +6,37 @@ import GridBoxes from './gridBoxes';
 import axios from 'axios';
 import Navbar from "./header";
 
+function getDeviceType() { // for impressions
+  const ua = navigator.userAgent;
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+      return "tablet";
+    }
+    if (/Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|MQQBrowser|Opera Mini|Windows Phone|webOS|Kindle|Silk-Accelerated|(hpw|web)OS/i.test(ua)) {
+      return "mobile";
+    }
+    return "desktop";
+}
+
+function trackVisit() { // for impressions - track visit information in db
+  const deviceType = getDeviceType();
+  const page = 'home';
+  const time_of_day = new Date();
+
+  // Store the visit time, page, and device type in the database
+  axios.post('http://localhost:8082/create', { time_of_day, page, deviceType })
+    .then(response => {
+      console.log('Visit time recorded:', response.data);
+    })
+    .catch(error => {
+      console.error('Error recording visit time:', error);
+    });
+}
+
 
 function Home() {
+  useEffect(() => {
+    trackVisit();
+  }, []); // empty dependency array ensures this runs once on mount
   const [boxesData, setBoxesData] = useState([
     { id: 1, title: 'Learn to Play', link: '/playstyles'},
     { id: 2, title: 'Places to Play', link: '/playPlaces' },
@@ -18,17 +47,6 @@ function Home() {
 const updateBoxesData = (newData) => {
   setBoxesData(newData);
 };
-// time_of_day impression
-useEffect(() => { // useEffect hook for tracking the visit
-  const time_of_day = new Date(); // capture the visit time
-  axios.post('http://localhost:8082/api/impressions/create', { time_of_day })
-    .then(response => {
-      console.log('Visit time recorded:', response.data); // success :P
-    })
-    .catch(error => {
-      console.error('Error recording visit time:', error); // error :<
-    });
-}, []); // empty dependency array ensures this runs once on mount
   return (
     
     <div>

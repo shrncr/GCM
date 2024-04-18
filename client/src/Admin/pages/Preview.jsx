@@ -7,6 +7,8 @@ export default function Preview(props) {
   const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext)
   const navigate = useNavigate()
   const location = useLocation()
+  const activity = ["Run", "Jump", "Sprint", "Eat"];
+
 
   let data;
   //find if playstyle or exhibit
@@ -37,11 +39,31 @@ export default function Preview(props) {
       <div className="banner">
         <img src={image} alt={data.image}></img>
       </div>
-      <div className="preview-header">
-        <h1 >{data.title} </h1>
+      <div>
+        <h1 className="admin-header">{data.title} </h1>
       </div>
+      <hr />
+
       <p className="description">{data.desc}</p>
-      <p className="description"></p>
+
+      <div className="preview-accordian">
+        {activity.map((name, index) => {
+
+          return (
+            <div className="accordian-item">
+              <h1 className="accordian-header">
+                <button className="accordian-button">
+                  {name}
+                </button>
+
+              </h1>
+              <div className="accordian-body">
+                This is where the description and buttons to link further learning will go
+              </div>
+            </div>
+          )
+        })}
+      </div>
       <div className="edit_button">
         <Link to="edit">
           <button className="normal" type="button">

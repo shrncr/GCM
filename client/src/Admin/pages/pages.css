@@ -6,8 +6,12 @@
 
 .welcome {
     width: 100%;
-    height: 70vh;
+    height: 30vh;
     display: flex;
+    align-items: center;
+}
+
+.homepage-editor {
     align-items: center;
 }
 
@@ -18,9 +22,9 @@
 
 
 
-.header {
+.admin-header {
     justify-content: center;
-    margin-bottom: 0;
+    margin-bottom: 5px;
     margin-top: 2vw;
     align-items: center;
     display: flex;
@@ -79,10 +83,8 @@
 
 .normal {
     background-color: gray;
-    color: black;
-    border-radius: 10px;
-    margin: 10px
 }
+
 
 .checkbox-container {
     display: inline-block;
@@ -117,6 +119,7 @@
 .dropdown-button {
     width: 10vw;
     height: 100%;
+    margin: 1px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,8 +138,8 @@
     /* Position the dropdown menu relative to the button */
     /* Align the right edge of the dropdown menu with the right edge of the button */
     text-align: left;
-    z-index: 2;
-    margin-top: 4vh;
+    z-index: 5;
+    margin-top: 0;
 
 }
 
@@ -192,6 +195,7 @@
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    z-index: 1;
 }
 
 .data-container th {
@@ -217,7 +221,6 @@
     color: white;
     margin: 10px;
     text-align: center;
-    border: 1px solid black;
     border-radius: 5px;
 
 
@@ -240,4 +243,34 @@
     padding-bottom: 5px;
     width: 50vw;
     margin: 10px
+}
+
+.preview-accordian {
+    width: 100;
+    height: 100;
+}
+
+
+
+.accordian-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accordian-button {
+    background-color: purple;
+    color: white;
+    width: 60vw;
+}
+
+.accordian-collapse {
+    background-color: purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accordian-body {
+    display: block;
 }

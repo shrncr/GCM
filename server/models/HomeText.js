@@ -7,6 +7,10 @@ const HomeTextSchema = new mongoose.Schema({
         type:ObjectId,
         required:true,
     },
+    num:{
+        type:String,
+        required:true
+    },
     desc:{
         type:String,
         required:true,
@@ -14,7 +18,7 @@ const HomeTextSchema = new mongoose.Schema({
     },
     photo:{
         type:String,
-        required:true, // string will be the URL pointing to the image stored externally
+        required:false, // string will be the URL pointing to the image stored externally
     },
 })
 

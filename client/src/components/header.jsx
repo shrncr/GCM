@@ -31,9 +31,9 @@ function Navbar() {
                 <img src={glazerLogo} alt="Logo" className='header-img' />
             </Link>
             <nav ref={navRef}>
-                <a href="/playstyles">Learn to Play</a>
-                <a href="/playPlaces">Places to Play</a>
-                <a href="/Resources">Resources</a>
+                <Link to="/playstyles">Learn to Play</Link>
+                <Link to="/playPlaces">Places to Play</Link>
+                <Link to="/Resources">Resources</Link>
 
                 <button className="nav-btn nav-close-btn" onClick={showNavbar}>
                     <FaTimes />

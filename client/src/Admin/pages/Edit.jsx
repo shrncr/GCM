@@ -15,6 +15,7 @@ import axios from "axios";
 import NameLoader from "../components/NameLoader.js";
 import Delete_Button from "../components/Delete_Button.jsx";
 import NestedEditor from "../components/nestedEditor.js";
+import TextEditor from "../components/TextEditor.js";
 /* Main edit function, this will be exported and used as needed
 throughout the admin page.*/
 export default function Edit(props) {
@@ -31,6 +32,7 @@ export default function Edit(props) {
     done = "Done"
     if (props.title === "Playstyles") {
       exh = playstyles[props.index];
+
     } else if (props.title === "Exhibits") {
       exh = exhibits[props.index]; //the current exhibit
     } else {
@@ -69,6 +71,8 @@ export default function Edit(props) {
   exhibit/playstyle will populate on the client side */
   const [visible, setVisible] = useState(v);
 
+  /* This section of declared useState constants is for the map component
+  and each one tracks a separate piece of the address */
   const [long, setLong] = useState(props.title === "Map" ? exh.longitude : "");
   const [lat, setLat] = useState(props.title === "Map" ? exh.latitude : "");
   const [addy, setAdd] = useState("");
@@ -97,29 +101,27 @@ export default function Edit(props) {
   and exhibits in the database in order to title each button
   and track what is being added to each new object. */
   let checkboxesTitle = ""
+  let startVal = false
   /* handler function is used to add all the buttons needed to an
   array that is later used in the return section to put the buttons
   on the page. */
   let handler = (res) => {
     const availableStyles = res.data.map(style => style.title);
     const checkboxes = availableStyles.map((style, index) => (
-      <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} />
+      <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} start = {startVal} />
     ));
     setCheckboxArr(checkboxes);
   }
-  if (location.pathname.includes("exhibits") || location.pathname.includes("map")) {
-    checkboxesTitle = "Playstyles:"
-    NameLoader('playstyles', handler)
-  } else if (location.pathname.includes("playstyles")) {
-    checkboxesTitle = "Exhibits:"
-    NameLoader('exhibits', handler)
-  } else if (location.pathname.includes("activities")) {
+  if (location.pathname.includes("playstyles") || location.pathname.includes("activities")) {
     checkboxesTitle = "Skills:"
-    NameLoader('skills', handler)
-  } else if (location.pathname.includes("skills")) {
+    NameLoader("skills", handler)
+  } else if (location.pathname.includes("exhibits") || location.pathname.includes("skills")) {
     checkboxesTitle = "Activities:"
-    NameLoader('activities', handler)
-  };
+    NameLoader("activities", handler)
+  } else if (location.pathname.includes("map")) {
+    checkboxesTitle = "Playstyles:"
+    NameLoader("playstyles", handler)
+  }
 
   /* Here is where we actually add an exhibit. This function takes
   the information entered and sends it to the database, which then
@@ -280,9 +282,7 @@ export default function Edit(props) {
           onChange={(e) => setImage(e.target.value)}
         />
       </div>
-      <div>
-        <label></label>
-      </div>
+      <br/>
       <div>
         <label>{checkboxesTitle}</label>
       </div>
@@ -293,11 +293,11 @@ export default function Edit(props) {
         <NestedEditor/>
       </div>
       <div>
-        <label></label>
+      <br/>
         <label>Visibility:</label>
       </div>
       <div>
-        <PlaystyleCheckbox label="Make visible?" color="green" onSelect={toggleVisibility} />
+        <PlaystyleCheckbox label="Visible" color="green" onSelect={toggleVisibility} start={visible} />
       </div>
       <div className="edit_button"  >
 

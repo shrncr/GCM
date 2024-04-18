@@ -2,9 +2,9 @@
 * Includes get requests to obtain the edit, and post/update requests for admin to edit data
 *from admin side
 */
-
 const express = require("express");
 const router = express.Router(); //to define routes aligning with the exhibits 
+const Sessions = require('../models/Sessions'); 
 const Exhibit = require("../models/Exhibit") //exhibit schema
 const Admin = require("../models/Admin"); //admin schema
 const Skills = require("../models/Skills")
@@ -20,17 +20,63 @@ const Map = require("../models/Map");
 const PlayStyles = require("../models/PlayStyles");
 const ObjectId = require("mongodb").ObjectId;
 const { Parser } = require('json2csv');
-const jwt = require('jsonwebtoken');
+//const jwt = require('jsonwebtoken');
+
+
+ const parseError = err => {
+  if (err.isJoi) return err.details[0];
+  return JSON.stringify(err, Object.getOwnPropertyNames(err));
+};
+
+ const sessionizeUser = user => {
+  return { userId: user.id, username: user.username };
+}
+
 
 //returns text associated with homepage
-router.get('/', async (req, res) =>  { 
+router.get('/home', async (req, res) =>  { 
   try{
-    let data = await HomeText.find({}); //find all
+    let data = await HomeText.findOne({num:"Main"}); //find all
     res.json(data);
   }catch(err){
     res.error;
     console.log("err");
   }
+ });
+
+ //returns text associated with homepage
+router.post('/home', async (req, res) =>  { 
+  console.log("here")
+  //);
+  let options = {
+    desc: req.body.homeText
+    };
+HomeText.findOneAndUpdate({num: "Main" }, options).then(
+  console.log("success")
+);
+ });
+
+ //returns text associated with homepage
+router.get('/resources', async (req, res) =>  { 
+  try{
+    let data = await HomeText.findOne({num:"Resource"}); //find all
+    res.json(data);
+  }catch(err){
+    res.error;
+    console.log("err");
+  }
+ });
+
+ //returns text associated with homepage
+router.post('/resources', async (req, res) =>  { 
+  console.log("here")
+  //);
+  let options = {
+    desc: req.body.resourcesText
+    };
+HomeText.findOneAndUpdate({num: "Resources" }, options).then(
+  console.log("success")
+);
  });
 
 
@@ -130,6 +176,8 @@ router.get('/', async (req, res) =>  {
   }
  });
 
+ 
+
  //returns all exhibits whose status is set to true, (visible)
  router.get('/exhibits', async (req, res)=>{ 
   try{
@@ -180,16 +228,23 @@ router.post('/admin', async (req,res) =>{
   try{
     console.log(req.body);
     let data = await Admin.findOne({username:req.body.username,password:req.body.password});
-    if (!data){
-      return res.status(401).json({ error: 'Authentication failed' });
+    console.log(data)
+    if (data){
+      const sessionUser = sessionizeUser(data);
+      console.log("1");
+      req.session.user = sessionUser
+      console.log("2");
+      res.send(sessionUser);
     }
-    const token = jwt.sign({userID:req.body.username}, 'your-secret-key', {expiresIn:'1h'});
-    res.status(200).json({token});
-    res.json(data);
+    
   }catch(err){
     console.log("err")
   }
 });
+router.get("/admin/auth", ({ session: { user }}, res) => {
+  res.json({ user });
+});
+
 
 //when adding or editing map pins. incomplete
 router.post('/admin/editmap', async (req,res) => {
@@ -212,6 +267,22 @@ console.log(req.body.id)
   }
 });
 
+router.delete("", ({ session }, res) => {
+  try {
+    const user = session.user;
+    if (user) {
+      session.destroy(err => {
+        if (err) throw (err);
+        res.clearCookie(SESS_NAME);
+        res.send(user);
+      });
+    } else {
+      throw new Error('Something went wrong');
+    }
+  } catch (err) {
+    res.status(422).send(parseError(err));
+  }
+});
 
 router.put('/admin/editlearningstyle', async (req,res) => {
 
@@ -322,7 +393,7 @@ router.post('/create', (req, res) => {
   const impressionData = {
       ...req.body,
       impression_id: new mongoose.Types.ObjectId(),
-      time_of_day: new Date(req.body.time_of_day) // ensure time_of_day is a Date object
+      time_of_day: new Date(req.body.time_of_day), // ensure time_of_day is a Date object
   };
 
   // create a new impression instance with the provided data
@@ -337,8 +408,8 @@ router.post('/create', (req, res) => {
 // route to download Impressions data as CSV
 router.get('/download-impressions-csv', async (req, res) => {
   try {
-      const data = await Impressions.find().populate('exhibit_id');
-      const fields = ['impression_id', 'exhibit_id', 'rating', 'comments', 'photo', 'time_spent', 'time_of_day'];
+      const data = await Impressions.find();
+      const fields = ['impression_id', 'page', 'time_of_day', 'deviceType'];
       const json2csvParser = new Parser({ fields });
       const csv = json2csvParser.parse(data);
 
@@ -349,5 +420,44 @@ router.get('/download-impressions-csv', async (req, res) => {
       res.status(500).send('Error occurred: ' + error.message);
   }
 });
+
+// create a new session instance in db
+router.post('/sessions/end', async (req, res) => {
+  try {
+    const { deviceType, sessionDuration, bounce, page } = req.body;
+    const newSession = new Sessions({
+      sessionEnd: new Date(),
+      session_id: new mongoose.Types.ObjectId(),
+      sessionDuration,
+      bounce,
+      deviceType,
+      page
+    });
+
+    await newSession.save();
+    res.status(200).json({ message: 'Session ended successfully', data: newSession });
+  } catch (error) {
+    console.error('Failed to end session:', error);
+    res.status(500).send({ error: 'Error ending session', details: error.message });
+  }
+});
+
+// route to download sessions data as CSV
+router.get('/download-sessions-csv', async (req, res) => {
+  try {
+      const data = await Sessions.find();
+      const fields = ['session_id', 'sessionStart', 'sessionEnd', 'sessionDuration', 'bounce', 'deviceType', 'page'];
+      const json2csvParser = new Parser({ fields });
+      const csv = json2csvParser.parse(data);
+
+      res.header('Content-Type', 'text/csv');
+      res.attachment('sessions.csv');
+      res.send(csv);
+  } catch (error) {
+      res.status(500).send('Error occurred: ' + error.message);
+  }
+});
+
+
 
 module.exports = router; //export so you can use this file in other files

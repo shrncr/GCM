@@ -2,17 +2,44 @@
 Root file for backend. Brings together api endpoints, defined port number, and connects to database
 */
 
+
+
 const express = require("express");
+
+const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const app = express();
+//const MongoStore = connectStore(session);
 const cors = require("cors");
+
+
 require("dotenv").config({ path: "./config.env" });
+
 ///const port = process.env.PORT || 8082; //port 5000 or whats defined in ENV (used after deployment)
 const port = 8082
 app.use(cors({ origin: true, credentials: true }));
-app.use(express.json()); //we use json
 
+app.use(express.json()); //we use json
+const mongoose = require('mongoose');
 const connectDB = require("./db/conn");
 connectDB(); //connect to db
+app.use(session({
+  name: process.env.SESS_NAME,
+  secret: process.env.SESS_SECRET,
+  saveUninitialized: false,
+  resave: false,
+  store: new MongoStore({
+    mongoUrl: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+    collection: 'session',
+    ttl: parseInt(process.env.SESS_LIFETIME) / 1000
+  }),
+  cookie: {
+    sameSite: true,
+    secure: true,//NODE_ENV === 'production',
+    maxAge: parseInt(process.env.SESS_LIFETIME)
+  }
+}));
+
 
 
 const router = require("./routes/exhibits"); //use exhibits file to access routes
