@@ -35,52 +35,37 @@ function SingleInfo() {
             });
     }, [id, dest]);
 
-    const data = [
-        {
-            id: 0,
-            label: "About ",
-            renderContent: () => (
+    const data = []
 
-                <p>
-                    {title}
-                </p>
-            ),
-        },
-        {
-            id: 1,
-            label: "Skills Taught",
+    const length = 5; // Specify the desired length
+    for (let i = 0; i < length; i++) {
+        data.push({
+            id: i,
+            label: `Skill ${i + 1}`,
             renderContent: () => (
-                <p>
-                    {desc}
-                </p>
-            ),
-        },
-        {
-            id: 2,
-            label: "Ways to Play",
-            renderContent: () => (
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, harum natus! Voluptatibus libero ratione vitae repellat, quasi vero tempora recusandae beatae deserunt sint voluptate doloremque maxime eveniet soluta similique dignissimos.
-                </p>
-            ),
-        },
-        {
-            id: 3,
-            label: "More Resources",
-            renderContent: () => (
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, harum natus! Voluptatibus libero ratione vitae repellat, quasi vero tempora recusandae beatae deserunt sint voluptate doloremque maxime eveniet soluta similique dignissimos.
-                </p>
-            ),
-        }
-    ];
+                <div>
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam consectetur alias voluptatibus magni praesentium, expedita rerum consequuntur ut possimus cumque blanditiis corporis fugiat ipsam iste voluptatem quis aut! Dolore, harum.
+                    </p>
+                    <div className="link-container-accordion">
+                        {/* Small boxes as links */}
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div>
+            )
+        });
+    }
+
 
 
     return (
         <div>
-            <label className = "filler">Hello</label>
+            <Banner className="home-background" text={title}   />
+
             <h2>About {title}</h2>
-            <h3>{desc}</h3>
+            <p>{desc}</p>
             <hr />
             <div className="container">
                 <img src={playExample} alt="Logo" className='PlayInfo-img' />
