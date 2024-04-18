@@ -22,7 +22,7 @@ export default function Data(props) {
                 break;
             case "Impressions":
                 try {
-                    const response = await axios.get(DOWNLOAD_URL, {
+                    const response = await axios.get('http://localhost:8082/download-impressions-csv', {
                         responseType: 'blob',
                     });
                     const url = window.URL.createObjectURL(new Blob([response.data]));
