@@ -322,7 +322,7 @@ router.post('/create', (req, res) => {
   const impressionData = {
       ...req.body,
       impression_id: new mongoose.Types.ObjectId(),
-      time_of_day: new Date(req.body.time_of_day) // ensure time_of_day is a Date object
+      time_of_day: new Date(req.body.time_of_day), // ensure time_of_day is a Date object
   };
 
   // create a new impression instance with the provided data
@@ -337,8 +337,8 @@ router.post('/create', (req, res) => {
 // route to download Impressions data as CSV
 router.get('/download-impressions-csv', async (req, res) => {
   try {
-      const data = await Impressions.find().populate('exhibit_id');
-      const fields = ['impression_id', 'exhibit_id', 'rating', 'comments', 'photo', 'time_spent', 'time_of_day'];
+      const data = await Impressions.find();
+      const fields = ['impression_id', 'page', 'time_of_day'];
       const json2csvParser = new Parser({ fields });
       const csv = json2csvParser.parse(data);
 
