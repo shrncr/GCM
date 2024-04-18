@@ -33,14 +33,26 @@ const { Parser } = require('json2csv');
 
 
 //returns text associated with homepage
-router.get('/', async (req, res) =>  { 
+router.get('/home', async (req, res) =>  { 
   try{
-    let data = await HomeText.find({}); //find all
+    let data = await HomeText.find({num:"Main"}); //find all
     res.json(data);
   }catch(err){
     res.error;
     console.log("err");
   }
+ });
+
+ //returns text associated with homepage
+router.post('/home', async (req, res) =>  { 
+  console.log("here")
+  //);
+  let options = {
+    desc: req.body.homeText
+    };
+HomeText.findOneAndUpdate({num: "Main" }, options).then(
+  console.log("success")
+);
  });
 
 
