@@ -39,12 +39,11 @@ export default function Preview(props) {
       <div className="banner">
         <img src={image} alt={data.image}></img>
       </div>
-      <div className="preview-header">
-        <h1 >{data.title} </h1>
+      <div>
+        <h1 className="admin-header">{data.title} </h1>
       </div>
-      <div className="underline" >
-        <div />
-      </div>
+      <hr />
+
       <p className="description">{data.desc}</p>
 
       <div className="preview-accordian">
@@ -61,7 +60,6 @@ export default function Preview(props) {
               <div className="accordian-body">
                 This is where the description and buttons to link further learning will go
               </div>
-
             </div>
           )
         })}
