@@ -4,6 +4,7 @@
 */
 const express = require("express");
 const router = express.Router(); //to define routes aligning with the exhibits 
+const Sessions = require('../models/Sessions'); 
 const Exhibit = require("../models/Exhibit") //exhibit schema
 const Admin = require("../models/Admin"); //admin schema
 const Skills = require("../models/Skills")
@@ -419,5 +420,44 @@ router.get('/download-impressions-csv', async (req, res) => {
       res.status(500).send('Error occurred: ' + error.message);
   }
 });
+
+// create a new session instance in db
+router.post('/sessions/end', async (req, res) => {
+  try {
+    const { deviceType, sessionDuration, bounce, page } = req.body;
+    const newSession = new Sessions({
+      sessionEnd: new Date(),
+      session_id: new mongoose.Types.ObjectId(),
+      sessionDuration,
+      bounce,
+      deviceType,
+      page
+    });
+
+    await newSession.save();
+    res.status(200).json({ message: 'Session ended successfully', data: newSession });
+  } catch (error) {
+    console.error('Failed to end session:', error);
+    res.status(500).send({ error: 'Error ending session', details: error.message });
+  }
+});
+
+// route to download sessions data as CSV
+router.get('/download-sessions-csv', async (req, res) => {
+  try {
+      const data = await Sessions.find();
+      const fields = ['session_id', 'sessionStart', 'sessionEnd', 'sessionDuration', 'bounce', 'deviceType', 'page'];
+      const json2csvParser = new Parser({ fields });
+      const csv = json2csvParser.parse(data);
+
+      res.header('Content-Type', 'text/csv');
+      res.attachment('sessions.csv');
+      res.send(csv);
+  } catch (error) {
+      res.status(500).send('Error occurred: ' + error.message);
+  }
+});
+
+
 
 module.exports = router; //export so you can use this file in other files
