@@ -2,7 +2,6 @@
 * Includes get requests to obtain the edit, and post/update requests for admin to edit data
 *from admin side
 */
-
 const express = require("express");
 const router = express.Router(); //to define routes aligning with the exhibits 
 const Exhibit = require("../models/Exhibit") //exhibit schema
@@ -20,7 +19,18 @@ const Map = require("../models/Map");
 const PlayStyles = require("../models/PlayStyles");
 const ObjectId = require("mongodb").ObjectId;
 const { Parser } = require('json2csv');
-const jwt = require('jsonwebtoken');
+//const jwt = require('jsonwebtoken');
+
+
+ const parseError = err => {
+  if (err.isJoi) return err.details[0];
+  return JSON.stringify(err, Object.getOwnPropertyNames(err));
+};
+
+ const sessionizeUser = user => {
+  return { userId: user.id, username: user.username };
+}
+
 
 //returns text associated with homepage
 router.get('/', async (req, res) =>  { 
@@ -180,16 +190,23 @@ router.post('/admin', async (req,res) =>{
   try{
     console.log(req.body);
     let data = await Admin.findOne({username:req.body.username,password:req.body.password});
-    if (!data){
-      return res.status(401).json({ error: 'Authentication failed' });
+    console.log(data)
+    if (data){
+      const sessionUser = sessionizeUser(data);
+      console.log("1");
+      req.session.user = sessionUser
+      console.log("2");
+      res.send(sessionUser);
     }
-    const token = jwt.sign({userID:req.body.username}, 'your-secret-key', {expiresIn:'1h'});
-    res.status(200).json({token});
-    res.json(data);
+    
   }catch(err){
     console.log("err")
   }
 });
+router.get("/admin/auth", ({ session: { user }}, res) => {
+  res.json({ user });
+});
+
 
 //when adding or editing map pins. incomplete
 router.post('/admin/editmap', async (req,res) => {
@@ -212,6 +229,22 @@ console.log(req.body.id)
   }
 });
 
+router.delete("", ({ session }, res) => {
+  try {
+    const user = session.user;
+    if (user) {
+      session.destroy(err => {
+        if (err) throw (err);
+        res.clearCookie(SESS_NAME);
+        res.send(user);
+      });
+    } else {
+      throw new Error('Something went wrong');
+    }
+  } catch (err) {
+    res.status(422).send(parseError(err));
+  }
+});
 
 router.put('/admin/editlearningstyle', async (req,res) => {
 
