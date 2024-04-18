@@ -9,9 +9,11 @@ function Resources() {
   
 
 
+// store the visit time and page in the database
 useEffect(() => { // useEffect hook for tracking the visit
   const time_of_day = new Date(); // capture the visit time
-  axios.post('/api/impressions/create', { time_of_day }) // make sure the endpoint matches your server's
+  const page = 'resources'
+  axios.post('http://localhost:8082/create', { time_of_day, page })
     .then(response => {
       console.log('Visit time recorded:', response.data); // success :P
     })
