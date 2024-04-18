@@ -2,6 +2,8 @@
 
 
 import React, { useState, useEffect } from 'react';
+import {useLocation} from 'react-router-dom'
+
 
 function NestedEditor() {
   const [showForm, setShowForm] = useState(false);
@@ -9,6 +11,15 @@ function NestedEditor() {
     name: '',
     description: ''
   });
+  const location = useLocation()
+  let type = ''
+  if (location.pathname.includes("playstyles") || location.pathname.includes("activities")) {
+    type = "Skill:"
+  } else if (location.pathname.includes("exhibits") || location.pathname.includes("skills")) {
+    type = "Activity:"
+  } else if (location.pathname.includes("map")) {
+    type = "Playstyle:"
+  }
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData(prevState => ({
@@ -26,7 +37,7 @@ function NestedEditor() {
 
   return (
     <div>
-      <button onClick={() => setShowForm(true)}>Add Skill:</button>
+      <button onClick={() => setShowForm(true)}>Add {type}</button>
       {showForm && (
         <form onSubmit={handleSubmit}>
           <label>
