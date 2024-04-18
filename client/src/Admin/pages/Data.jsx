@@ -1,28 +1,28 @@
-import React, { useContext, useState } from "react"
-import { ExhibitContext } from "../SetData"
-import { Link } from "react-router-dom";
-import { CSVLink } from "react-csv"
+import React, { useContext, useState } from "react";
+import { ExhibitContext } from "../SetData";
+import { CSVLink } from "react-csv";
 import axios from 'axios';
+
+const DOWNLOAD_URL = 'http://localhost:8082/download-impressions-csv';
 
 export default function Data(props) {
     const { data } = useContext(ExhibitContext);
     const [spread, setSpread] = useState(data[0]);
-    let loc = "Feedback"
-    let index = props.index
+    const [loc, setLoc] = useState("Feedback");
+
     const handleSpreadChange = (newindex, l) => {
-        loc = l
-        index = newindex
+        setLoc(l);
         setSpread(data[newindex]);
     };
 
-    // button to download impression data
     const handleDownload = async () => {
+        console.log(loc);
         switch (loc) {
             case "Feedback":
                 break;
             case "Impressions":
                 try {
-                    const response = await axios.get('http://localhost:8082/download-impressions-csv', {
+                    const response = await axios.get(DOWNLOAD_URL, {
                         responseType: 'blob',
                     });
                     const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -31,18 +31,14 @@ export default function Data(props) {
                     link.setAttribute('download', 'impressions.csv');
                     document.body.appendChild(link);
                     link.click();
-                    link.parentNode.removeChild(link);
                 } catch (error) {
                     console.error('Error downloading the CSV:', error);
                 }
                 break;
-
             case "Session":
                 break;
         }
     };
-
-
 
     return (
         <>
@@ -50,7 +46,6 @@ export default function Data(props) {
                 <h1 className='header'>Data</h1>
             </div>
             <div className="dropdown">
-
                 <div className='dropdown-button'>
                     Select Data
                 </div>
@@ -60,8 +55,6 @@ export default function Data(props) {
                     <button onClick={() => handleSpreadChange(2, "Session")}>Session</button>
                 </div>
             </div>
-
-
             <div className='data-container'>
                 <table>
                     <thead>
@@ -81,13 +74,11 @@ export default function Data(props) {
                         ))}
                     </tbody>
                 </table>
-
             </div>
-
             <div className="download">
                 <button onClick={handleDownload}>Download</button>
             </div>
         </>
-    )
-};
+    );
+}
 
