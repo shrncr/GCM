@@ -1,19 +1,21 @@
-const mongoose = require('mongoose');
-const Impressions = require('./path/to/your/ImpressionsModel'); // Update the path to where your model is defined
+// script to delete records from a schema
 
-// Connect to MongoDB - replace the URI with your connection string
-mongoose.connect('mongodb://localhost:27017/yourDatabaseName', {
+const mongoose = require('mongoose');
+const Impressions = require('./models/Impressions.js'); 
+
+
+mongoose.connect('mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 
-// Run the update query to remove the exhibit_id field
-Impressions.updateMany({}, { $unset: { exhibit_id: "" } })
+// run the delete query to remove all documents from  Impressions 
+Impressions.deleteMany({})
     .then(result => {
-        console.log('Update successful:', result);
+        console.log('Delete successful:', result);
         mongoose.disconnect(); // Disconnect after the operation is complete
     })
     .catch(err => {
-        console.error('Error updating documents:', err);
+        console.error('Error deleting documents:', err);
         mongoose.disconnect(); // Disconnect in case of error
     });

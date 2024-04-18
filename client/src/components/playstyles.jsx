@@ -27,7 +27,7 @@ function PlayStylesPage() {
 // store the visit time and page in the database
 useEffect(() => { // useEffect hook for tracking the visit
   const time_of_day = new Date(); // capture the visit time
-  const page = 'playPlaces'
+  const page = 'playStyles'
   axios.post('http://localhost:8082/create', { time_of_day, page })
     .then(response => {
       console.log('Visit time recorded:', response.data); // success :P
