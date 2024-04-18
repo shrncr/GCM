@@ -7,6 +7,12 @@ we made a component that can be easily called with two parameters
 to specify where you are getting the information from and what
 you want to do with it. */
 
+
+/*
+*   Loading an exhibit/playstyle: baseData/dropdown KEYS
+*                               BaseData contains data associated with exhibit itself  
+*                               dropdown contains the associated skills/activites/whatever intended to go in the dropdown
+*/
 import React, { useEffect } from "react";
 import axios from "axios";
 
