@@ -35,10 +35,8 @@ export default function Exhibits(props) {
 
     return (
         <div>
-            <h1 className="header">{props.title}</h1>
-            <div className="underline" >
-                <div />
-            </div>
+            <h1 className="admin-header">{props.title}</h1>
+            <hr />
             <div className="zillow-container">
                 {data.map((e, index) => (
 
