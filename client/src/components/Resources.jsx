@@ -18,28 +18,56 @@ function getDeviceType() { // for impressions
     return "desktop";
 }
 
-function trackVisit() { // for impressions - track visit information in db
-  const deviceType = getDeviceType();
-  const page = 'resources';
-  const time_of_day = new Date();
-
-  // Store the visit time, page, and device type in the database
-  axios.post('http://localhost:8082/create', { time_of_day, page, deviceType })
-    .then(response => {
-      console.log('Visit time recorded:', response.data);
-    })
-    .catch(error => {
-      console.error('Error recording visit time:', error);
-    });
-}
-
-
-
 
 function Resources() {
+  const [interactions, setInteractions] = useState(0);
+  const deviceType = getDeviceType(); // Device type is determined once on component mount.
+
   useEffect(() => {
-    trackVisit();
-  }, []); // empty dependency array ensures this runs once on mount
+    const page = 'resources';
+    const time_of_day = new Date();
+
+    // Create impression and start session tracking
+    axios.post('http://localhost:8082/api/impressions/create', { time_of_day, page, deviceType })
+      .then(response => {
+        console.log('Visit and session start recorded:', response.data);
+      })
+      .catch(error => {
+        console.error('Error recording visit and session start:', error);
+      });
+
+    function handleUnload() {
+      const sessionEnd = new Date();
+      const sessionDuration = sessionEnd - time_of_day; // Duration in milliseconds
+
+      axios.post('http://localhost:8082/sessions/end', {
+        deviceType,
+        sessionDuration,
+        page,
+        bounce: interactions === 0 // Consider it a bounce if no interactions
+      }).then(response => console.log('Session end data saved:', response.data))
+        .catch(error => console.error('Error saving session end data:', error));
+    }
+
+    window.addEventListener('beforeunload', handleUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleUnload);
+    };
+  }, [interactions]);
+
+  useEffect(() => {
+    function registerInteraction() {
+      setInteractions(current => current + 1);
+    }
+
+    window.addEventListener('click', registerInteraction);
+    window.addEventListener('scroll', registerInteraction);
+
+    return () => {
+      window.removeEventListener('click', registerInteraction);
+      window.removeEventListener('scroll', registerInteraction);
+    };
+  }, []);
   return (
     
     <div>

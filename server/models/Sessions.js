@@ -1,7 +1,12 @@
 // dr blessing / marketing data - shows the sessions of website visits
 
 const mongoose = require("mongoose");
+type: mongoose.Schema.Types.ObjectId;
 const SessionsSchema = new mongoose.Schema({
+    session_id:{
+        type: mongoose.Schema.Types.ObjectId,
+        required:true,
+    },
     sessionStart: {
         type: Date,
         required: true,
@@ -21,6 +26,9 @@ const SessionsSchema = new mongoose.Schema({
     deviceType: {
         type: String,
         required: true
+    },
+    page: {
+        type: String,
     }
 });
 

@@ -3,7 +3,6 @@ import { ExhibitContext } from "../SetData";
 import { CSVLink } from "react-csv";
 import axios from 'axios';
 
-const DOWNLOAD_URL = 'http://localhost:8082/download-impressions-csv';
 
 export default function Data(props) {
     const { data } = useContext(ExhibitContext);
@@ -36,6 +35,19 @@ export default function Data(props) {
                 }
                 break;
             case "Session":
+                try {
+                    const response = await axios.get('http://localhost:8082/download-sessions-csv', {
+                        responseType: 'blob',
+                    });
+                    const url = window.URL.createObjectURL(new Blob([response.data]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', 'sessions.csv');
+                    document.body.appendChild(link);
+                    link.click();
+                } catch (error) {
+                    console.error('Error downloading the CSV:', error);
+                }
                 break;
         }
     };
