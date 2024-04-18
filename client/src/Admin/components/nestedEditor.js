@@ -2,7 +2,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import {useLocation} from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 
 function NestedEditor() {
@@ -37,7 +37,7 @@ function NestedEditor() {
 
   return (
     <div>
-      <button onClick={() => setShowForm(true)}>Add {type}</button>
+      <button className='addskill' onClick={() => setShowForm(true)}>Add Skill:</button>
       {showForm && (
         <form onSubmit={handleSubmit}>
           <label>
