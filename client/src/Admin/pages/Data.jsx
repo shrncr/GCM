@@ -15,21 +15,22 @@ export default function Data(props) {
 
     // button to download impression data
     const handleDownload = async () => {
-        try {
-            const response = await axios.get('http://localhost:8082/download-impressions-csv', {
-                responseType: 'blob',
-            });
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'impressions.csv');
-            document.body.appendChild(link);
-            link.click();
-            link.parentNode.removeChild(link);
-        } catch (error) {
-            console.error('Error downloading the CSV:', error);
-        }
-    };
+        case1 = 'impressions';
+            try {
+                const response = await axios.get('http://localhost:8082/download-impressions-csv', {
+                    responseType: 'blob',
+                });
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'impressions.csv');
+                document.body.appendChild(link);
+                link.click();
+                link.parentNode.removeChild(link);
+            } catch (error) {
+                console.error('Error downloading the CSV:', error);
+            }
+        };
 
 
 
