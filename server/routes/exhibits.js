@@ -35,7 +35,7 @@ const { Parser } = require('json2csv');
 //returns text associated with homepage
 router.get('/home', async (req, res) =>  { 
   try{
-    let data = await HomeText.find({num:"Main"}); //find all
+    let data = await HomeText.findOne({num:"Main"}); //find all
     res.json(data);
   }catch(err){
     res.error;
@@ -51,6 +51,29 @@ router.post('/home', async (req, res) =>  {
     desc: req.body.homeText
     };
 HomeText.findOneAndUpdate({num: "Main" }, options).then(
+  console.log("success")
+);
+ });
+
+ //returns text associated with homepage
+router.get('/resources', async (req, res) =>  { 
+  try{
+    let data = await HomeText.findOne({num:"Resource"}); //find all
+    res.json(data);
+  }catch(err){
+    res.error;
+    console.log("err");
+  }
+ });
+
+ //returns text associated with homepage
+router.post('/resources', async (req, res) =>  { 
+  console.log("here")
+  //);
+  let options = {
+    desc: req.body.resourcesText
+    };
+HomeText.findOneAndUpdate({num: "Resources" }, options).then(
   console.log("success")
 );
  });
@@ -151,6 +174,8 @@ HomeText.findOneAndUpdate({num: "Main" }, options).then(
     console.log(err);
   }
  });
+
+ 
 
  //returns all exhibits whose status is set to true, (visible)
  router.get('/exhibits', async (req, res)=>{ 
