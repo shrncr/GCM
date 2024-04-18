@@ -107,19 +107,16 @@ export default function Edit(props) {
     ));
     setCheckboxArr(checkboxes);
   }
-  if (location.pathname.includes("exhibits") || location.pathname.includes("map")) {
-    checkboxesTitle = "Playstyles:"
-    NameLoader('playstyles', handler)
-  } else if (location.pathname.includes("playstyles")) {
-    checkboxesTitle = "Exhibits:"
-    NameLoader('exhibits', handler)
-  } else if (location.pathname.includes("activities")) {
+  if (location.pathname.includes("playstyles") || location.pathname.includes("activities")) {
     checkboxesTitle = "Skills:"
-    NameLoader('skills', handler)
-  } else if (location.pathname.includes("skills")) {
+    NameLoader("skills", handler)
+  } else if (location.pathname.includes("exhibits") || location.pathname.includes("skills")) {
     checkboxesTitle = "Activities:"
-    NameLoader('activities', handler)
-  };
+    NameLoader("activities", handler)
+  } else if (location.pathname.includes("map")) {
+    checkboxesTitle = "Playstyles:"
+    NameLoader("playstyles", handler)
+  }
 
   /* Here is where we actually add an exhibit. This function takes
   the information entered and sends it to the database, which then
@@ -280,9 +277,7 @@ export default function Edit(props) {
           onChange={(e) => setImage(e.target.value)}
         />
       </div>
-      <div>
-        <label></label>
-      </div>
+      <br/>
       <div>
         <label>{checkboxesTitle}</label>
       </div>
@@ -293,7 +288,7 @@ export default function Edit(props) {
         <NestedEditor/>
       </div>
       <div>
-        <label></label>
+      <br/>
         <label>Visibility:</label>
       </div>
       <div>

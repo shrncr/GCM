@@ -10,6 +10,9 @@
     display: flex;
     align-items: center;
 }
+.homepage-editor{
+    align-items: center;
+}
 
 .welcome h1 {
     margin-left: 5vw;
@@ -79,10 +82,8 @@
 
 .normal {
     background-color: gray;
-    color: black;
-    border-radius: 10px;
-    margin: 10px
 }
+
 
 .checkbox-container {
     display: inline-block;
@@ -192,6 +193,7 @@
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    z-index: 1;
 }
 
 .data-container th {
@@ -217,7 +219,6 @@
     color: white;
     margin: 10px;
     text-align: center;
-    border: 1px solid black;
     border-radius: 5px;
 
 
@@ -240,4 +241,34 @@
     padding-bottom: 5px;
     width: 50vw;
     margin: 10px
+}
+
+.preview-accordian {
+    width: 100;
+    height: 100;
+}
+
+
+
+.accordian-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accordian-button {
+    background-color: purple;
+    color: white;
+    width: 60vw;
+}
+
+.accordian-collapse {
+    background-color: purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accordian-body {
+    display: block;
 }
