@@ -15,6 +15,10 @@ const ImpressionsSchema = new mongoose.Schema({
         type:Date,
         required:true,
     },
+    deviceType: {
+        type: String,
+        required: true,
+    }
 })
 
 module.exports = Impressions = mongoose.model('impressions', ImpressionsSchema);

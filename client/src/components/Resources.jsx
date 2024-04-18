@@ -5,22 +5,41 @@ import Footer from './footer';
 import axios from 'axios';
 
 
-function Resources() {
+
   
+function getDeviceType() {
+  const ua = navigator.userAgent;
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+      return "tablet";
+    }
+    if (/Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|MQQBrowser|Opera Mini|Windows Phone|webOS|Kindle|Silk-Accelerated|(hpw|web)OS/i.test(ua)) {
+      return "mobile";
+    }
+    return "desktop";
+}
 
+function trackVisit() {
+  const deviceType = getDeviceType();
+  const page = 'resources';
+  const time_of_day = new Date();
 
-// store the visit time and page in the database
-useEffect(() => { // useEffect hook for tracking the visit
-  const time_of_day = new Date(); // capture the visit time
-  const page = 'resources'
-  axios.post('http://localhost:8082/create', { time_of_day, page })
+  // Store the visit time, page, and device type in the database
+  axios.post('http://localhost:8082/create', { time_of_day, page, deviceType })
     .then(response => {
-      console.log('Visit time recorded:', response.data); // success :P
+      console.log('Visit time recorded:', response.data);
     })
     .catch(error => {
-      console.error('Error recording visit time:', error); // error :<
+      console.error('Error recording visit time:', error);
     });
-}, []); // empty dependency array ensures this runs once on mount
+}
+
+
+
+
+function Resources() {
+  useEffect(() => {
+    trackVisit();
+  }, []); // empty dependency array ensures this runs once on mount
   return (
     
     <div>

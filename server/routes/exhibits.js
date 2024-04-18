@@ -383,7 +383,7 @@ router.post('/create', (req, res) => {
 router.get('/download-impressions-csv', async (req, res) => {
   try {
       const data = await Impressions.find();
-      const fields = ['impression_id', 'page', 'time_of_day'];
+      const fields = ['impression_id', 'page', 'time_of_day', 'deviceType'];
       const json2csvParser = new Parser({ fields });
       const csv = json2csvParser.parse(data);
 
