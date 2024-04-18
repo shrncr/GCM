@@ -6,7 +6,7 @@ import GridBoxes from './gridBoxes';
 import axios from 'axios';
 import Navbar from "./header";
 
-function getDeviceType() {
+function getDeviceType() { // for impressions
   const ua = navigator.userAgent;
     if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
       return "tablet";
@@ -17,7 +17,7 @@ function getDeviceType() {
     return "desktop";
 }
 
-function trackVisit() {
+function trackVisit() { // for impressions - track visit information in db
   const deviceType = getDeviceType();
   const page = 'home';
   const time_of_day = new Date();

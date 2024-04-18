@@ -42,7 +42,7 @@ import React, { useState, useEffect } from 'react';
 import GridBoxes from './gridBoxes';
 import axios from 'axios'
 
-function getDeviceType() {
+function getDeviceType() { // for impressions
   const ua = navigator.userAgent;
     if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
       return "tablet";
@@ -53,7 +53,7 @@ function getDeviceType() {
     return "desktop";
 }
 
-function trackVisit() {
+function trackVisit() { // for impressions - track visit information in db
   const deviceType = getDeviceType();
   const page = 'playPlaces';
   const time_of_day = new Date();
@@ -88,7 +88,7 @@ function Playplaces() {
   useEffect(() => {
     trackVisit();
   }, []); // empty dependency array ensures this runs once on mount
-  
+
   return (
     <>
       <Banner className="playstyles-background" text="Places to Play" />
