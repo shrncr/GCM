@@ -74,17 +74,21 @@ function Resources() {
       <Banner className="home-background" text="Resources" />
       <h2>More Info</h2>
       <hr></hr>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam sit rem nisi maiores molestiae, ad asperiores illum earum facere recusandae explicabo praesentium minima eos sed, voluptates porro, dicta nihil eveniet.</p>
+      <p>The Glazer Children's Museum offers many additional resources.</p>
       <h3>Things to Checkout</h3>
       <ul>
-      <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit quod aliquid delectus esse, minima id nam dolorum voluptatem provident repellendus et iusto dolorem consectetur reiciendis nulla voluptatibus. Reiciendis, itaque magnam.</li>
-      <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit quod aliquid delectus esse, minima id nam dolorum voluptatem provident repellendus et iusto dolorem consectetur reiciendis nulla voluptatibus. Reiciendis, itaque magnam.</li>
-      <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit quod aliquid delectus esse, minima id nam dolorum voluptatem provident repellendus et iusto dolorem consectetur reiciendis nulla voluptatibus. Reiciendis, itaque magnam.</li>
-
-        <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit quod aliquid delectus esse, minima id nam dolorum voluptatem provident repellendus et iusto dolorem consectetur reiciendis nulla voluptatibus. Reiciendis, itaque magnam.</li>
+      <li>Podcast</li>
+      <li><a href="https://www.instagram.com/glazerchildrensmuseum/?hl=en">Instagram</a></li>
+      <li><a href="https://www.facebook.com/GlazerChildrensMuseum/">Facebook</a></li>
       </ul>
-      <h3>Aditional Info</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit aspernatur vero distinctio unde, minima, doloremque et, sunt iusto quia obcaecati quidem ut aperiam. Est nostrum dolorum eaque praesentium nihil dicta!</p>
+      <h3>Why was this website created?</h3>
+      <p>
+  The goal of this website is to educate parents on the
+  <a href="/playstyles"> types of learning</a>. 
+  You can find numerous examples of how to implement these learning styles at the 
+  <a href="/playstyles"> museum</a>, at home, and around Tampa.
+</p>
+<p>Website Created by: Zac Swisher, Sara Hrnciar, Eboni Huggins, Carter Murawski, Luke Talham, and Nathan Frait </p>
       <Footer/>
     </div>
   );
