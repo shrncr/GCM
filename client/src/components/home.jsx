@@ -38,8 +38,8 @@ function Home() {
     trackVisit();
   }, []); // empty dependency array ensures this runs once on mount
   const [boxesData, setBoxesData] = useState([
-    { id: 1, title: 'Learn to Play', link: '/playstyles'},
-    { id: 2, title: 'Places to Play', link: '/playPlaces' },
+    { id: 1, title: 'Learn About Playstyles', link: '/playstyles'},
+    { id: 2, title: 'Learn About Exhibits', link: '/playPlaces' },
     
 ]);
 
@@ -52,19 +52,21 @@ const updateBoxesData = (newData) => {
     <div>
       <Navbar/>
       <Banner className="home-background" text="Welcome" />
-      <h2>Welcome to My Website</h2>
+      <h2>Glazer Children's Museum</h2>
       <hr></hr>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam sit rem nisi maiores molestiae, ad asperiores illum earum facere recusandae explicabo praesentium minima eos sed, voluptates porro, dicta nihil eveniet.</p>
-      <h3>What are Play Styles?</h3>
+      <p>A learning laboratory where kids play, discover, and connect with the world around them to develop as lifelong learners and leaders.</p>
+      <h3>What do we learn from play?</h3>
       <ul>
-      <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit quod aliquid delectus esse, minima id nam dolorum voluptatem provident repellendus et iusto dolorem consectetur reiciendis nulla voluptatibus. Reiciendis, itaque magnam.</li>
-      <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit quod aliquid delectus esse, minima id nam dolorum voluptatem provident repellendus et iusto dolorem consectetur reiciendis nulla voluptatibus. Reiciendis, itaque magnam.</li>
-      <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit quod aliquid delectus esse, minima id nam dolorum voluptatem provident repellendus et iusto dolorem consectetur reiciendis nulla voluptatibus. Reiciendis, itaque magnam.</li>
-
-        <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit quod aliquid delectus esse, minima id nam dolorum voluptatem provident repellendus et iusto dolorem consectetur reiciendis nulla voluptatibus. Reiciendis, itaque magnam.</li>
+      <li>Function Skills (focus, adaptation, moderation, emotions)</li>
+      <li>Social skills (communication)</li>
+      <li>Problem solving (conflict resolution)</li>
+      <li>Critical thinking (open mindedness, collaboration, questioning)</li>
+      <li>Growth mindset (failing forward)</li>
+      <li>Resilience (confidence, sticking to it)</li>
+      <li>Self regulation (managing emotions)</li>
       </ul>
       <h3>How to Learn</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit aspernatur vero distinctio unde, minima, doloremque et, sunt iusto quia obcaecati quidem ut aperiam. Est nostrum dolorum eaque praesentium nihil dicta!</p>
+      <p>Learn about the different playstyles or learn about what the museum's exhibits teach.</p>
       <GridBoxes data={boxesData} updateData={updateBoxesData} />      
       <Footer/>
     </div>
