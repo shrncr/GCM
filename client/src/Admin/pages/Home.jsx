@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import TextEditor from "../components/TextEditor"
 import GridBoxes from "../../components/gridBoxes"
+import ExhibitFeedback from "../components/Feedback.jsx";
 
 export default function Home(props) {
 
@@ -21,6 +22,7 @@ export default function Home(props) {
             <div className="homepage-editor">
                 <TextEditor />
             </div>
+            <ExhibitFeedback exhibitId={"Hello"}/>
         </form>
     )
 };

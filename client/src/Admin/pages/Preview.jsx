@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ExhibitContext } from "../SetData.jsx";
 import image from "../images/playExample.webp"
 import { useLocation } from 'react-router-dom';
+import ExhibitFeedback from "../components/Feedback.jsx";
 export default function Preview(props) {
   const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext)
   const navigate = useNavigate()
@@ -64,6 +65,7 @@ export default function Preview(props) {
           )
         })}
       </div>
+      <ExhibitFeedback exhibitId={data.title}/>
       <div className="edit_button">
         <Link to="edit">
           <button className="normal" type="button">
