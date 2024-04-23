@@ -4,6 +4,20 @@ import { ExhibitContext } from "../SetData.jsx";
 import image from "../images/playExample.webp"
 import { useLocation } from 'react-router-dom';
 import ExhibitFeedback from "../components/Feedback.jsx";
+import DOMPurify from 'dompurify';
+
+/*
+npm install dompurify
+
+import DOMPurify from 'dompurify';
+const sanitizedDescription = DOMPurify.sanitize(data.desc);
+
+
+in return section: 
+ <p className="description" dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></p>
+      
+*/
+
 export default function Preview(props) {
   const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext)
   const navigate = useNavigate()
@@ -27,13 +41,10 @@ export default function Preview(props) {
       data = [];
       break;
   }
-  let editType = ""
-  if (location.pathname.includes("exhibit")) {
-    editType = "Exhibit"
+  let editType = location.pathname.includes("exhibit") ? "Exhibit" : "Playstyle";
 
-  } else {
-    editType = "Playstyle"
-  }
+  const sanitizedDescription = DOMPurify.sanitize(data.desc);
+
   //LOAD IN A SPECIFIC EXHIBIT/PLAYSTYLE/AT HOME ACTIVITY
   return (
     <div>
@@ -45,7 +56,8 @@ export default function Preview(props) {
       </div>
       <hr />
 
-      <p className="description">{data.desc}</p>
+      <p className="description" dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></p>
+      
 
       <div className="preview-accordian">
         {activity.map((name, index) => {

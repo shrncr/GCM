@@ -8,14 +8,10 @@ const ActivitiesSchema = new mongoose.Schema({
         type:ObjectId,
         required:true,
     },
-    name:{
+    title:{
         type:String,
         required:true,
         
-    },
-    photo:{
-        type:String,
-        required:true, // string will be the URL pointing to the image stored externally
     },
     description:{
         type:String,

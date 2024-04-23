@@ -14,8 +14,8 @@ import PlaystyleCheckbox from "../components/Checkbox.js";
 import axios from "axios";
 import NameLoader from "../components/NameLoader.js";
 import Delete_Button from "../components/Delete_Button.jsx";
-import NestedEditor from "../components/nestedEditor.js";
 import TextEditor from "../components/TextEditor.js";
+import DropdownForm from "../components/DropdownForm.js";
 /* Main edit function, this will be exported and used as needed
 throughout the admin page.*/
 export default function Edit(props) {
@@ -64,9 +64,6 @@ export default function Edit(props) {
     v = true;
   };
 
-
-  
-
   /* Visibility variable and function used to track if the 
   exhibit/playstyle will populate on the client side */
   const [visible, setVisible] = useState(v);
@@ -97,6 +94,11 @@ export default function Edit(props) {
     });
   };
 
+  const handleDescriptionChange = (content) => {
+    setDescription(content);
+  };
+
+  
   /* This chunk of code is used for importing the names of the playstyles
   and exhibits in the database in order to title each button
   and track what is being added to each new object. */
@@ -128,6 +130,32 @@ export default function Edit(props) {
   creates the object of whatever is being sent. It is also used to 
   make edits to any existing playstyles/exhibits. */
   const addExhibit = () => {
+    const url = 'http://localhost:8082/admin/addexhibit'; // Example URL, adjust as needed
+    const data = {
+        title: name,
+        desc: description,
+        image: image,
+        status: visible
+    };
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority' // Update with actual token if needed
+    };
+
+    axios.post(url, data, { headers })
+        .then(response => {
+            console.log('Success:', response);
+            // Navigate or perform other actions on success
+        })
+        .catch(error => {
+            console.error('Error posting data:', error);
+            alert('An error occurred while saving to the database.');
+        });
+};
+
+  
+  /*
+  const addExhibit = () => {
     if (location.pathname.includes("edit")) { //if youre editing
       console.log("editing...");
       if (props.title === "Playstyles") { //if editing a playstyle
@@ -143,7 +171,7 @@ export default function Edit(props) {
             console.error('error:', error);
             alert('An error occured.')
           }
-        }).then((res) => {
+        }).then((res) => {console.log("success")
         })
       } else if (props.title === "Exhibits") {
 
@@ -214,7 +242,7 @@ export default function Edit(props) {
         });
       }
        else {
-        console.log("specifically, a playstyle");
+        console.log("specifically, a playstyle added");
         axios({ //make request
           url: 'http://localhost:8082/admin/addlearningstyle', //edit exhibit
           method: 'POST',
@@ -240,6 +268,7 @@ export default function Edit(props) {
       navigate(`/admin/map`)
     };
   };
+  */
   //DELETE EXHIBIT
   const deleteExhibit = () => {
     //THIS WILL DELETE AN EXHIBIT
@@ -263,11 +292,7 @@ export default function Edit(props) {
       <div>
         <label></label>
         <label>Description:</label>
-        <textarea
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <TextEditor value={description} onChange={handleDescriptionChange} />
       </div>
 
       {props.title === "Map" ?
@@ -290,7 +315,7 @@ export default function Edit(props) {
         {checkboxArr}
       </div>
       <div>
-        <NestedEditor/>
+        <DropdownForm/>
       </div>
       <div>
       <br/>
