@@ -39,6 +39,7 @@ function DropdownForm() {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
+        console.log(formData)
         axios({ //make request
             url: 'http://localhost:8082/admin/addactivity',
             method: 'POST',
@@ -51,6 +52,11 @@ function DropdownForm() {
               alert('An error occured.')
             }
           }).then((res) => {
+            setFormData({
+              name: '',
+              description: '',
+              connections: []
+            });
           });
         setIsOpen(false);
     };
@@ -91,26 +97,27 @@ function DropdownForm() {
 
 
     return (
-        <div className="dropdown-form">
-            <button type="button" onClick={toggleDropdown} className="toggle-button">
-                {isOpen ? 'Cancel New '+type : 'Add '+type}
-            </button>
-            {isOpen && (
-                <div className="newform">
-                    <label>
-                        Name:
-                        <input type="text" name="name" value={formData.name} onChange={handleInputChange} />
-                    </label>
-                    <label>
-                        Description:
-                        <textarea name="description" value={formData.description} onChange={handleInputChange} />
-                    </label>
-                    <label>Skills:</label>
-                    <button type="button" onClick={handleFormSubmit}>Submit</button>
-                </div>
-            )}
-        </div>
-    );
-    }
+      <div className="dropdown-form">
+          <button type="button" onClick={toggleDropdown} className="toggle-button">
+              {isOpen ? `Cancel New ${type}` : `Add ${type}`}
+          </button>
+          {isOpen && (
+              <div className="newform">
+                  <label>
+                      Name:
+                      <input type="text" name="name" value={formData.name} onChange={handleInputChange} />
+                  </label>
+                  <label>
+                      Description:
+                      <textarea name="description" value={formData.description} onChange={handleInputChange} />
+                  </label>
+                  <label>{nestedCheckboxesTitle}</label>
+                  {nestedCheckboxArr}
+                  <button type="button" onClick={handleFormSubmit}>Submit</button>
+              </div>
+          )}
+      </div>
+  );
+}  
 
 export default DropdownForm;
