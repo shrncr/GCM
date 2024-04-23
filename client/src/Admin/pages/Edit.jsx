@@ -130,7 +130,32 @@ export default function Edit(props) {
   creates the object of whatever is being sent. It is also used to 
   make edits to any existing playstyles/exhibits. */
   const addExhibit = () => {
-    console.log("here is the description", description)
+    const url = 'http://localhost:8082/admin/addexhibit'; // Example URL, adjust as needed
+    const data = {
+        title: name,
+        desc: description,
+        image: image,
+        status: visible
+    };
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority' // Update with actual token if needed
+    };
+
+    axios.post(url, data, { headers })
+        .then(response => {
+            console.log('Success:', response);
+            // Navigate or perform other actions on success
+        })
+        .catch(error => {
+            console.error('Error posting data:', error);
+            alert('An error occurred while saving to the database.');
+        });
+};
+
+  
+  /*
+  const addExhibit = () => {
     if (location.pathname.includes("edit")) { //if youre editing
       console.log("editing...");
       if (props.title === "Playstyles") { //if editing a playstyle
@@ -243,6 +268,7 @@ export default function Edit(props) {
       navigate(`/admin/map`)
     };
   };
+  */
   //DELETE EXHIBIT
   const deleteExhibit = () => {
     //THIS WILL DELETE AN EXHIBIT
@@ -267,7 +293,6 @@ export default function Edit(props) {
         <label></label>
         <label>Description:</label>
         <TextEditor value={description} onChange={handleDescriptionChange} />
-
       </div>
 
       {props.title === "Map" ?
