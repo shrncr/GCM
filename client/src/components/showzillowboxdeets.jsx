@@ -10,9 +10,10 @@ import { useEffect, useState } from 'react';
 import playExample from '../components/images/playExample.webp'; // Corrected import path
 import Footer from './footer';
 import { useNavigate, useParams } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 
 function SingleInfo() {
-    const [desc, setdesc] = useState('');
+    const [desc, setDesc] = useState('');
     const [title, setTitle] = useState('');
     const [skills, setSkills] = useState('');
 
@@ -25,7 +26,7 @@ function SingleInfo() {
         axios
             .get(`http://localhost:8082/${dest}/${id}`)
             .then((res) => {
-                setdesc(res.data.baseData.desc);
+                setDesc(DOMPurify.sanitize(res.data.baseData.desc));
                 setTitle(res.data.baseData.title);
                 setSkills(res.data.dropdown);
                 console.log(res.data)
@@ -65,7 +66,7 @@ function SingleInfo() {
             <Banner className="home-background" text={title}   />
 
             <h2>About {title}</h2>
-            <p>{desc}</p>
+            <p dangerouslySetInnerHTML={{ __html: desc }}></p>
             <hr />
             <div className="container">
                 <img src={playExample} alt="Logo" className='PlayInfo-img' />
