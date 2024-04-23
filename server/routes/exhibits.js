@@ -458,6 +458,20 @@ router.get('/download-sessions-csv', async (req, res) => {
   }
 });
 
+// route to download feedback data as CSV
+router.get('/download-feedback-csv', async (req, res) => {
+  try {
+      const data = await Feedback.find();
+      const fields = ['feedback_id', 'exhibit', 'rating', 'childAge'];
+      const json2csvParser = new Parser({ fields });
+      const csv = json2csvParser.parse(data);
 
+      res.header('Content-Type', 'text/csv');
+      res.attachment('feedback.csv');
+      res.send(csv);
+  } catch (error) {
+      res.status(500).send('Error occurred: ' + error.message);
+  }
+});
 
 module.exports = router; //export so you can use this file in other files
