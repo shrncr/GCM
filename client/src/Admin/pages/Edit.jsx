@@ -129,32 +129,8 @@ export default function Edit(props) {
   the information entered and sends it to the database, which then
   creates the object of whatever is being sent. It is also used to 
   make edits to any existing playstyles/exhibits. */
-  const addExhibit = () => {
-    const url = 'http://localhost:8082/admin/addexhibit'; // Example URL, adjust as needed
-    const data = {
-        title: name,
-        desc: description,
-        image: image,
-        status: visible
-    };
-    const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority' // Update with actual token if needed
-    };
-
-    axios.post(url, data, { headers })
-        .then(response => {
-            console.log('Success:', response);
-            // Navigate or perform other actions on success
-        })
-        .catch(error => {
-            console.error('Error posting data:', error);
-            alert('An error occurred while saving to the database.');
-        });
-};
-
   
-  /*
+
   const addExhibit = () => {
     if (location.pathname.includes("edit")) { //if youre editing
       console.log("editing...");
@@ -268,7 +244,7 @@ export default function Edit(props) {
       navigate(`/admin/map`)
     };
   };
-  */
+
   //DELETE EXHIBIT
   const deleteExhibit = () => {
     //THIS WILL DELETE AN EXHIBIT
