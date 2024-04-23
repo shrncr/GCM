@@ -69,10 +69,10 @@ const SetData = ({ children }) => {
     const getCSV = async () => {
       try {
         const c = [];
-
+        const feedback = await axios.get('http://localhost:8082/download-feedback-csv');
         const impressions = await axios.get('http://localhost:8082/download-impressions-csv');
         const session = await axios.get('http://localhost:8082/download-sessions-csv');
-        const arr = [impressions, session];
+        const arr = [feedback, impressions, session];
 
         arr.forEach(csv => {
           const rows = csv.data.split("\n");
