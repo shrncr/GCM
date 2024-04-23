@@ -7,28 +7,35 @@
     position: sticky;
     top: 0;
     padding: 0 1rem;
-    z-index: 2;
+    z-index: 5;
     width: 100%;
-    height: 70px;
+    height: 80px;
     transition: top 0.3s, height 0.3s;
 }
 
 .navbar ul {
+
+    max-width: 100%;
+    /* Ensure ul doesn't exceed parent width */
     padding: 0;
     margin: 0;
     list-style: none;
     display: flex;
     text-decoration: none;
     transition: 0.4s;
-    margin-right: 20px;
-    /* Add margin to the right side of the navbar */
+    overflow-x: auto;
+    /* Add horizontal scroll for overflow */
 }
 
 .navbar li {
-    margin-left: 10px;
-    /* Add margin between list items */
+
+    margin: 0;
 }
 
+.navbar-buttons {
+    font-size: 20px;
+
+}
 
 .navbar a {
     color: inherit;
@@ -40,7 +47,7 @@
     font-size: 2vw;
 }
 
-.navbar li:hover {
+.navbar-button {
     color: gray;
 }
 
@@ -49,11 +56,6 @@
     height: 60px;
     width: auto;
     margin-right: 10px;
-
-}
-
-.navbar-buttons {
-    font-size: 1.5rem;
 }
 
 /* Hamburger menu styles */
@@ -84,32 +86,31 @@
 }
 
 /* Media query for smaller screens */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
     .navbar ul {
         display: none;
         flex-direction: column;
         position: absolute;
         top: 70px;
-        /* Adjust this value as needed */
         left: 0;
         background-color: purple;
         width: 100%;
         height: auto;
         padding: 20px;
         z-index: 5;
-
+        overflow-x: hidden;
+        /* Hide horizontal scroll for small screens */
     }
 
     .navbar li {
-
+        font-size: 10px;
         display: flex;
         justify-content: center;
-        width: 100%;
-        height: auto;
     }
 
     .navbar ul.active {
         display: flex;
+        justify-content: center;
     }
 
     .hamburger-menu {

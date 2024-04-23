@@ -271,22 +271,22 @@ a:-webkit-any-link {
 
 }
 
-/*///////////////////////////////*/
+/*///////////////////#2383c6////////////*/
 /*footer stuff*/
 .footer {
-    background-color: #2383c6;
+    background-color: black;
     min-height: 50px;
     /* A reasonable minimum height, adjust based on content */
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     /* Provides padding top and bottom */
 }
 
 .footer-content {
     color: #ffffff;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-align: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 
 }
 
@@ -429,58 +429,66 @@ header .nav-btn {
     }
 
 }
+
 .map-container {
     display: flex;
-    height: 100vh; /* Adjusted height for full viewport height */
-  }
-  
-  .map {
-    flex: 1; /* Adjusted map width to take up remaining space */
-  }
-  
-  .list-container {
-    width: 30%; /* Adjusted width for the list container */
-    height: 100vh; /* Adjusted height to fill the container */
-    overflow-y: auto; /* Enable vertical scrolling */
+    height: 100vh;
+    /* Adjusted height for full viewport height */
+}
+
+.map {
+    flex: 1;
+    /* Adjusted map width to take up remaining space */
+}
+
+.list-container {
+    width: 30%;
+    /* Adjusted width for the list container */
+    height: 100vh;
+    /* Adjusted height to fill the container */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
     padding: 20px;
     background-color: #f1f1f1;
     margin-top: 100px;
-  }
-  
-  .list-container ul {
+}
+
+.list-container ul {
     list-style-type: none;
     padding: 0;
-  }
+}
 
-  .list-container h2 {
+.list-container h2 {
     margin-top: 0;
-    font-size: 24px; /* Adjust the font size as needed */
-  }
-  
-  .list-container li {
+    font-size: 24px;
+    /* Adjust the font size as needed */
+}
+
+.list-container li {
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
-  }
-  
-  .list-container h2 {
+}
+
+.list-container h2 {
     margin-top: 0;
-  }
-  
-  /* Adjustments for responsiveness */
-  @media (max-width: 768px) {
+}
+
+/* Adjustments for responsiveness */
+@media (max-width: 768px) {
     .map-container {
-      flex-direction: column;
+        flex-direction: column;
     }
-    
+
     .list-container {
-      width: 100%;
-      height: 50vh; /* Adjusted height for smaller screens */
+        width: 100%;
+        height: 50vh;
+        /* Adjusted height for smaller screens */
     }
-  }
-  
-  .link-container-accordion {
+}
+
+.link-container-accordion {
     margin-top: 10px;
-    margin-left:20%;
+    margin-left: 20%;
     margin-right: 20%;
     display: flex;
     justify-content: space-between;
