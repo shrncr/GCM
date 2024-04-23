@@ -6,25 +6,29 @@
     align-items: center;
     position: sticky;
     top: 0;
-    gap: 2rem;
     padding: 0 1rem;
     z-index: 2;
     width: 100%;
-    height: 13vh;
+    height: 70px;
     transition: top 0.3s, height 0.3s;
-
 }
-
 
 .navbar ul {
     padding: 0;
     margin: 0;
     list-style: none;
     display: flex;
-    gap: 1rem;
     text-decoration: none;
-
+    transition: 0.4s;
+    margin-right: 20px;
+    /* Add margin to the right side of the navbar */
 }
+
+.navbar li {
+    margin-left: 10px;
+    /* Add margin between list items */
+}
+
 
 .navbar a {
     color: inherit;
@@ -41,12 +45,77 @@
 }
 
 .navbar img {
-    border-radius: 1vw;
-    height: 5vw;
+    border-radius: 10px;
+    height: 60px;
     width: auto;
-    margin: 10px;
+    margin-right: 10px;
+
 }
 
+.navbar-buttons {
+    font-size: 1.5rem;
+}
+
+/* Hamburger menu styles */
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+/* Active state for hamburger menu */
+.bar.active:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.bar.active:nth-child(2) {
+    opacity: 0;
+}
+
+.bar.active:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        /* Adjust this value as needed */
+        left: 0;
+        background-color: purple;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        z-index: 5;
+
+    }
+
+    .navbar li {
+
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+    }
+
+    .navbar ul.active {
+        display: flex;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+}
 
 
 .zillow-box {

@@ -55,7 +55,8 @@ export default function Data(props) {
     return (
         <>
             <div>
-                <h1 className='header'>Data</h1>
+                <h1 className='admin-header'>Data</h1>
+
             </div>
             <div className="dropdown">
                 <div className='dropdown-button'>
