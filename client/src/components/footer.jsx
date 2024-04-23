@@ -7,6 +7,8 @@ function Footer() {
     <footer className="footer">
       <div className="footer-content">
         <div>
+          <a href="/" style={{ fontWeight: 'bold' }}>Home</a>
+          {" | "}
           <a href="/about" style={{ fontWeight: 'bold' }}>About</a>
           {" | "}
           <a href="https://glazermuseum.org/visit" style={{ fontWeight: 'bold' }}>Plan Your Visit</a>
