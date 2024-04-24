@@ -32,14 +32,12 @@ export default function Exhibits(props) {
     }
 
 
-
     return (
         <div>
             <h1 className="admin-header">{props.title}</h1>
             <hr />
             <div className="zillow-container">
                 {data.map((e, index) => (
-
                     <Zillow_Box className="zillow-box" key={e.id} name={e.title} id={e.title} image={e.image} status={e.status} />
                 ))}
                 <Zillow_Box className="add_box" key={"add"} name={"+"} id={"add"} image={null} />

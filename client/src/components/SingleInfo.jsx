@@ -1,77 +1,41 @@
-/**
- * DISPLAYS INFORMATION REGARDING A PLAYSTYLE, EXHIBIT, OR PLAYPLACE WHICH WAS JUST CLICKED
- */
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Banner from './banner';
-import axios from 'axios'
+import axios from 'axios';
 import Accordion from './accordion';
-import { useEffect, useState } from 'react';
-import playExample from '../components/images/playExample.webp'; // Corrected import path
-import Footer from './footer';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import DOMPurify from 'dompurify';
-
+import Footer from "./footer.jsx"
 function SingleInfo() {
     const [desc, setDesc] = useState('');
     const [title, setTitle] = useState('');
-    const [skills, setSkills] = useState('');
+    const [skills, setSkills] = useState([]);
 
-    const { id } = useParams();
-    const { dest } = useParams();
-    console.log({ id });
-    console.log({ dest });
-    const navigate = useNavigate();
+    const { id, dest } = useParams();
+
     useEffect(() => {
-        axios
-            .get(`http://localhost:8082/${dest}/${id}`)
+        axios.get(`http://localhost:8082/${dest}/${id}`)
             .then((res) => {
-                setDesc(DOMPurify.sanitize(res.data.baseData.desc));
-                setTitle(res.data.baseData.title);
-                setSkills(res.data.dropdown);
-                console.log(res.data)
+                const { baseData, dropdown } = res.data;
+                setDesc(DOMPurify.sanitize(baseData.desc));
+                setTitle(baseData.title);
+                setSkills(dropdown);
             })
             .catch((err) => {
-                console.log('Error ');
+                console.log('Error:', err);
             });
     }, [id, dest]);
 
-    const data = []
-
-    const length = 5; // Specify the desired length
-    for (let i = 0; i < length; i++) {
-        data.push({
-            id: i,
-            label: `Skill ${i + 1}`,
-            renderContent: () => (
-                <div>
-                    <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam consectetur alias voluptatibus magni praesentium, expedita rerum consequuntur ut possimus cumque blanditiis corporis fugiat ipsam iste voluptatem quis aut! Dolore, harum.
-                    </p>
-                    <div className="link-container-accordion">
-                        {/* Small boxes as links */}
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                </div>
-            )
-        });
-    }
 
 
 
     return (
         <div>
             <Banner className="home-background" text={title} />
-
-            <h2>About {title}</h2>
-            <p dangerouslySetInnerHTML={{ __html: desc }}></p>
+            <h2>{title}</h2>
             <hr />
+            <p dangerouslySetInnerHTML={{ __html: desc }}></p>
             <div className="container">
-                <img src={playExample} alt="Logo" className='PlayInfo-img' />
-                <Accordion items={data} keepOthersOpen={true} />
-
+                <Accordion items={skills} keepOthersOpen={true} />
             </div>
             <Footer />
         </div>
@@ -79,3 +43,4 @@ function SingleInfo() {
 }
 
 export default SingleInfo;
+

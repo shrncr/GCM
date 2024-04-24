@@ -57,27 +57,10 @@ export default function Preview(props) {
       <hr />
 
       <p className="description" dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></p>
-      
 
-      <div className="preview-accordian">
-        {activity.map((name, index) => {
 
-          return (
-            <div className="accordian-item">
-              <h1 className="accordian-header">
-                <button className="accordian-button">
-                  {name}
-                </button>
 
-              </h1>
-              <div className="accordian-body">
-                This is where the description and buttons to link further learning will go
-              </div>
-            </div>
-          )
-        })}
-      </div>
-      <ExhibitFeedback exhibitId={data.title}/>
+      <ExhibitFeedback exhibitId={data.title} />
       <div className="edit_button">
         <Link to="edit">
           <button className="normal" type="button">
