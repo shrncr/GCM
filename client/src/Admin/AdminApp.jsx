@@ -12,7 +12,9 @@ function AdminApp() {
         <SetData>
             <div>
                 <Navbar />
+                <div class="content-wrapper">
                 <AdminRoutes />
+                </div>
             </div>
 
         </SetData>
