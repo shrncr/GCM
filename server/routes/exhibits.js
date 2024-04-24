@@ -38,14 +38,14 @@ var s3 = new AWS.S3();
 
 
 
- const parseError = err => {
-  if (err.isJoi) return err.details[0];
-  return JSON.stringify(err, Object.getOwnPropertyNames(err));
-};
+//  const parseError = err => {
+//   if (err.isJoi) return err.details[0];
+//   return JSON.stringify(err, Object.getOwnPropertyNames(err));
+// };
 
- const sessionizeUser = user => {
-  return { userId: user.id, username: user.username };
-}
+//  const sessionizeUser = user => {
+//   return { userId: user.id, username: user.username };
+// }
 
 
 //returns text associated with homepage
@@ -142,6 +142,46 @@ HomeText.findOneAndUpdate({num: "Resources" }, options).then(
     console.log(err);
   }
  });
+ router.delete('/Exhibits/delete', async (req, res)=>{ 
+  try{
+    let data = await Exhibit.deleteOne({_id:req.body.id})
+    res.json(data);
+  }catch(err){
+    console.log(err);
+  }
+ });
+ router.delete('/Playstyles/delete', async (req, res)=>{ 
+  try{
+    let data = await PlayStyle.deleteOne({_id:req.body.id})
+    res.json(data);
+  }catch(err){
+    console.log(err);
+  }
+ });
+ router.delete('/Map/delete', async (req, res)=>{ 
+  try{
+    let data = await Map.deleteOne({_id:req.body.id})
+    res.json(data);
+  }catch(err){
+    console.log(err);
+  }
+ });
+ router.delete('/activity/delete', async (req, res)=>{ 
+  try{
+    let data = await Activities.deleteOne({_id:req.body.id})
+    res.json(data);
+  }catch(err){
+    console.log(err);
+  }
+ });
+ router.delete('/skill/delete', async (req, res)=>{ 
+  try{
+    let data = await Skills.deleteOne({_id:req.body.id})
+    res.json(data);
+  }catch(err){
+    console.log(err);
+  }
+ });
 
  //returns data for a specific map location
  router.get('/playPlaces/:id', async (req, res)=>{ 
@@ -150,19 +190,47 @@ HomeText.findOneAndUpdate({num: "Resources" }, options).then(
     res.json(data);
   }catch(err){
     console.log(err);
-
-
-
   }
  });
-
+router.get("/getImg", async (req,res)=>{
+  var params = { Bucket: 'gcmchildrensmuseum', Key: 'test.jpg' };
+    
+    s3.getObject(params, function(err, data) {
+      if (err){
+        console.log("eeeee\n\n")
+        console.log(err);
+      }else{
+        console.log(data)
+        let image = new Buffer(data.Body).toString('base64');
+        image = "data:"+data.ContentType+";base64,"+image;
+        
+        let response = {
+          "statusCode": 200,
+          "headers": {
+              "Access-Control-Allow-Origin": "*",
+              'Content-Type': data.ContentType
+          },
+          "body":image,
+          "isBase64Encoded": true
+      };    
+      console.log(response);
+            //res.send(response);
+            res.json(response);
+      // res.writeHead(200, {'Content-Type': 'image/jpg'});
+      // res.write(data.Body, 'binary');
+      // res.end(null, 'binary');
+      }
+      
+      
+    });
+})
  //returns data for an exhibit, associated activities, and names of skills
- router.get('/exhibit/:id', async (req, res)=>{ 
+ router.get('/exhibits/:id', async (req, res)=>{ 
   try{
     console.log(req.params.id);
     let exhibit = await Exhibit.findById(req.params.id);
     let exhibitActivities = await Activities.find({name:exhibit.activities});
-
+    
     res.json({baseData: exhibit, dropdown: exhibitActivities});
   }catch(err){
     console.log(err);
@@ -325,17 +393,19 @@ router.put('/admin/editexhibit', async (req,res) => {
     status: req.body.status
     };
 Exhibit.findOneAndUpdate({_id: req.body.id}, options).then(()=>{
-  
 
-
-  const fileContent  = Buffer.from(req.body.image, 'binary');
+console.log(req.body)
+console.log(req.body.image)
+  const fileContent  = Buffer(req.body.image, 'binary');
 
   // Setting up S3 upload parameters
   const params = {
       Bucket: 'gcmchildrensmuseum',
-      Key: "test.jpg", // File name you want to save as in S3
+      Key: req.body.image, // File name you want to save as in S3
       Body: fileContent 
   };
+
+
 
   // Uploading files to the bucket
   s3.upload(params, function(err, data) {
@@ -350,6 +420,7 @@ Exhibit.findOneAndUpdate({_id: req.body.id}, options).then(()=>{
   });
 
 }
+
 
 );
 //res.json(data);
@@ -397,6 +468,7 @@ router.post("/admin/addexhibit", async (req, res) => {
    console.log(err); // we will know if error
   }
  });
+
 
  //edit an already existing exhibit
 router.post("/admin/addlearningstyle", async (req, res) => {
@@ -459,7 +531,6 @@ router.get('/download-impressions-csv', async (req, res) => {
       res.status(500).send('Error occurred: ' + error.message);
   }
 });
-
 // create a new session instance in db
 router.post('/sessions/end', async (req, res) => {
   try {
