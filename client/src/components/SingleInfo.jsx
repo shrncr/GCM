@@ -63,7 +63,7 @@ function SingleInfo() {
 
     return (
         <div>
-            <Banner className="home-background" text={title}   />
+            <Banner className="home-background" text={title} />
 
             <h2>About {title}</h2>
             <p dangerouslySetInnerHTML={{ __html: desc }}></p>
