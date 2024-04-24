@@ -13,7 +13,6 @@ function AdminApp() {
             <div>
                 <Navbar />
                 <AdminRoutes />
-                <Footer />
             </div>
 
         </SetData>
