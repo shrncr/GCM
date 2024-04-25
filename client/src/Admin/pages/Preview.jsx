@@ -51,7 +51,7 @@ export default function Preview(props) {
         <h1 className="admin-header">{data.title}</h1>
       </div>
       <hr />
-
+      <div className="content-wrapper">
       <p className="description" dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
 
       {/* Conditionally render the Accordion component */}
@@ -72,6 +72,7 @@ export default function Preview(props) {
           Back
         </button>
       </div>
+    </div>
     </div>
   );
 };

@@ -312,55 +312,54 @@ export default function Edit(props) {
   /* Here is our return section. This is the HTML portion that actually
   builds the webpage utilizing the functions created above. */
   return (
-
-    <div className="margin">
-      <form encType="multipart/form-data">
-        {/*Form for Creating Exhibit*/}
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label></label>
-          <label>Description:</label>
-          <TextEditor value={description} onChange={handleDescriptionChange} />
-        </div>
+<div className="content-wrapper">
+    <form encType="multipart/form-data">
+      {/*Form for Creating Exhibit*/}
+      <div>
+        <label>Name:</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
+      <div>
+        <label></label>
+        <label>Description:</label>
+        <TextEditor value={description} onChange={handleDescriptionChange} />
+      </div>
 
         {props.title === "Map" ?
           <PlaceSearch addy={"401 E Kennedy"} longSet={setLong} latSet={setLat} addSet={setAdd} />
           : ""}
 
-        <div>
-          <label></label>
-          <label>Image:</label>
-          <input
-            type={"File"} accept={"image/*"} name={"image"} id={"imageInput"} multiple={false}
-            onChange={(e) => handleImageChange(e)}
-          />
-
-        </div>
-        <br />
-        <div>
-          <label>{checkboxesTitle}</label>
-        </div>
-        <div className="checkbox-row">
-          {checkboxArr}
-        </div>
-        <div>
-          <DropdownForm />
-        </div>
-        <div>
-          <br />
-          <label>Visibility:</label>
-        </div>
-        <div>
-          <PlaystyleCheckbox label="Visible" color="green" onSelect={toggleVisibility} start={visible} />
-        </div>
-        <div className="edit_button"  >
+      <div className="no-padding">
+        <label></label>
+        <label>Image:</label>
+        <input
+          type={"File"} accept={"image/*"} name={"image"} id={"imageInput"} multiple={false}
+          onChange={(e) => handleImageChange(e)}
+        />
+      
+      </div>
+      <br/>
+      <div>
+        <label>{checkboxesTitle}</label>
+      </div>
+      <div className="checkbox-row">
+        {checkboxArr}
+      </div>
+      <div>
+        <DropdownForm/>
+      </div>
+      <div>
+      <br/>
+        <label>Visibility:</label>
+      </div>
+      <div>
+        <PlaystyleCheckbox label="Visible" color="green" onSelect={toggleVisibility} start={visible} />
+      </div>
+      <div className="edit_button"  >
 
           <button className="normal" type="button" onClick={addExhibit}>
             {done}
