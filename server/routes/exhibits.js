@@ -20,31 +20,6 @@ const Map = require("../models/Map");
 const PlayStyles = require("../models/PlayStyles");
 const ObjectId = require("mongodb").ObjectId;
 const { Parser } = require('json2csv');
-//const jwt = require('jsonwebtoken');
-
-// var fs = require('fs');
-// var AWS = require('aws-sdk');
-// var accessKeyId =  "AKIAS32MO6Q2EUKU7X74";
-// var secretAccessKey = "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";
-
-
-// AWS.config.update({
-//   accessKeyId: accessKeyId,
-//   secretAccessKey: secretAccessKey,
-//   region: "us-east-2" //Region
-// });
-
-// var s3 = new AWS.S3();
-
-
-//  const parseError = err => {
-//   if (err.isJoi) return err.details[0];
-//   return JSON.stringify(err, Object.getOwnPropertyNames(err));
-// };
-
-//  const sessionizeUser = user => {
-//   return { userId: user.id, username: user.username };
-// }
 
 
 //returns text associated with homepage
