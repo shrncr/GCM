@@ -26,9 +26,10 @@ export default function Preview(props) {
       break;
     case "Exhibits":
       data = exhibits[props.index];
-      image = exhibits[props.index].image;
-      ext1 = exhibits[props.index].activities;
-      ext2 = exhibits[props.index].activities.skills;
+      console.log(data)
+      image = data.image;
+      ext1 = data.activities;
+      ext2 = data.activities.skills;
       break;
     case "Map":
       data = locations[props.index];
