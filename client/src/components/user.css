@@ -527,6 +527,7 @@ header .nav-btn {
     position: relative;
     top: 0;
     z-index: 1;
+    min-height: 200px;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 10px;
 }
@@ -540,7 +541,6 @@ header .nav-btn {
     min-width: 250px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .box {
@@ -548,6 +548,16 @@ header .nav-btn {
     padding: 10px;
     margin-bottom: 10px;
     background-color: purple;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.new-box {
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 10px;
     border-radius: 3px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -573,6 +583,8 @@ header .nav-btn {
 @media (max-width: 768px) {
     .user-map-container {
         flex-direction: column; /* Stack items vertically on smaller screens */
+        height: 150vh;
+
     }
 
     .box-container {
