@@ -26,15 +26,14 @@ function SingleInfo() {
         axios
             .get(`http://localhost:8082/${dest}/${id}`)
             .then((res) => {
-                console.log(res.data)
-                setDesc(DOMPurify.sanitize(res.data.baseData.desc));
+                const cleanHTML = DOMPurify.sanitize(res.data.baseData.desc, {
+                    ALLOWED_TAGS: ['p', 'br', 'ul', 'ol', 'li', 'strong', 'em', 'u', 'span', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote'],
+        ALLOWED_ATTR: ['style', 'class', 'align', 'valign', 'dir', 'lang', 'xml:lang', 'aria-hidden', 'data-*'],
+        });
+                setDesc(cleanHTML);
                 setTitle(res.data.baseData.title);
                 setImg(res.data.baseData.image);
-                setSkills(res.data.dropdown);
-                //setImg(res.data.img)
-                console.log(img);
-                
-                //console.log(res.data)
+                console.log(res.data.baseData.image);
             })
             .catch((err) => {
                 console.log('Error ');
