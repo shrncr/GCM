@@ -3,15 +3,33 @@
 import React, { useState } from 'react';
 
 const Accordion = ({ items, keepOthersOpen }) => {
-    const [accordionItems, setAccordionItems] = useState(items.map(item => ({ ...item, toggled: false })));
-// expands and contracts when clicked
+    //run thrrough and creates all the skills
+    console.log(items)
+    console.log("RIGHT ABOVE")
+    const [data, setData] = useState(items.map(skill => ({
+        id: skill.id,
+        label: skill.title,
+        renderContent: () => (
+            <div>
+                <p>{skill.desc}</p>
+                <div className="link-container-accordion">
+                    {skill.Activities.map((act, index) => (
+                        <button>{act}</button>
+                    ))}
+                </div>
+            </div>
+        )
+    })));
+    //then you make each into an accordian item 
+    const [accordionItems, setAccordionItems] = useState(data.map(item => ({ ...item, toggled: false })));
+    // expands and contracts when clicked
     function handleAccordionToggle(clickedItem) {
         setAccordionItems(accordionItems.map(item => ({
             ...item,
             toggled: item.id === clickedItem.id ? !item.toggled : (keepOthersOpen ? item.toggled : false)
         })));
     }
-//returns accordian
+    //returns accordian
     return (
         <div className='accordion-parent'>
             {accordionItems.map((listItem, key) => (

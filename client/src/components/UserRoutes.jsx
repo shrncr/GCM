@@ -4,7 +4,7 @@ import Resources from './Resources';
 import Map from './mapx';
 import Editor from './Editor'
 import Exhbits from "./exhibits"
-import SingleInfo from './showzillowboxdeets';
+import SingleInfo from './SingleInfo';
 import Home from './home';
 import PlayStylesPage from './playstyles';
 import PlayInfo from './playInfo';

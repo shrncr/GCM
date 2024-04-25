@@ -274,7 +274,7 @@ a:-webkit-any-link {
 /*///////////////////#2383c6////////////*/
 /*footer stuff*/
 .footer {
-    background-color: black;
+    background-color: #2383c6;
     min-height: 50px;
     /* A reasonable minimum height, adjust based on content */
     padding: 0.5rem 0;
