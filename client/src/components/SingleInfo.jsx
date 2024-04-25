@@ -9,6 +9,7 @@ function SingleInfo() {
     const [desc, setDesc] = useState('');
     const [title, setTitle] = useState('');
     const [skills, setSkills] = useState([]);
+    const [img, setImg] = useState("");
 
     const { id, dest } = useParams();
 
@@ -17,6 +18,7 @@ function SingleInfo() {
             .then((res) => {
                 const { baseData, dropdown } = res.data;
                 setDesc(DOMPurify.sanitize(baseData.desc));
+                setImg(baseData.image);
                 setTitle(baseData.title);
                 setSkills(dropdown);
             })
@@ -35,6 +37,7 @@ function SingleInfo() {
             <hr />
             <p dangerouslySetInnerHTML={{ __html: desc }}></p>
             <div className="container">
+                <img src={img} alt="Logo" className='PlayInfo-img' />
                 <Accordion items={skills} keepOthersOpen={true} />
             </div>
             <Footer />

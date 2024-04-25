@@ -310,7 +310,7 @@ export default function Edit(props) {
   /* Here is our return section. This is the HTML portion that actually
   builds the webpage utilizing the functions created above. */
   return (
-
+<div>
     <form encType="multipart/form-data">
       {/*Form for Creating Exhibit*/}
       <div>
@@ -372,7 +372,8 @@ export default function Edit(props) {
         </div>
 
       </form>
-    </div>
+      </div>
+    
   );
 }
 
