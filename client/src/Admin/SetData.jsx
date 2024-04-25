@@ -57,8 +57,11 @@ const SetData = ({ children }) => {
       }
     }).then((res) => {
       setLocations(res.data)
+      setHomeAct(res.data)
     });
   }, []);
+
+  
   //SET THE AT HOME ACTIVITIES
   axios({ //get exhibits
     url: 'http://localhost:8082/activities',

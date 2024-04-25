@@ -40,10 +40,14 @@ function DropdownForm() {
     const handleFormSubmit = (event) => {
         event.preventDefault();
         console.log(formData)
+        const completeFormData = {
+          ...formData,
+          connections: nestedSelectedOptions  // Add the selected options to the formData
+        };
         axios({ //make request
             url: 'http://localhost:8082/admin/addactivity',
             method: 'POST',
-            data: formData,
+            data: completeFormData,
             headers: {
               authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
             },
@@ -57,6 +61,7 @@ function DropdownForm() {
               description: '',
               connections: []
             });
+            setNestedSelectedOptions([]);
           });
         setIsOpen(false);
     };
