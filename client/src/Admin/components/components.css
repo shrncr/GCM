@@ -101,6 +101,7 @@
         padding: 20px;
         z-index: 5;
         overflow-x: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.341);
         /* Hide horizontal scroll for small screens */
     }
 

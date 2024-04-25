@@ -1,7 +1,9 @@
 .content-wrapper {
-    padding-left: 25px; /* This adds padding to all content besides the navbar */
-    padding-top:15px;
+    padding-left: 25px;
+    /* This adds padding to all content besides the navbar */
+    padding-top: 15px;
 }
+
 .zillow-container {
     display: grid;
     margin-left: 2vw;
@@ -290,4 +292,16 @@
 .home-button {
     background-color: purple;
     color: white;
+}
+
+.ql-size-large {
+    font-size: large;
+}
+
+.ql-size-huge {
+    font-size: huge;
+}
+
+.ql-size-small {
+    font-size: small;
 }
