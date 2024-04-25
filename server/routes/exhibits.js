@@ -353,6 +353,25 @@ Exhibit.findOneAndUpdate({_id: req.body.id}, options).then(()=>{
 //res.json(data);
 });
 
+
+//add new activity
+router.post("/admin/addactivity", async (req, res) => {
+  try{
+   console.log("lig");
+   let id = new mongoose.Types.ObjectId(); //make a unique objID
+   console.log("ma");
+   await Activities.create({ //create new exhibit w/ the model
+     'title': req.body.name,
+     'description': req.body.description,
+     'skills':req.body.connections
+   }
+   );
+   console.log("bawls");
+  }catch(err){
+   console.log(err); // we will know if error
+  }
+ });
+
 //add a new pin to pin page
 router.post("/admin/addmap", async (req, res) => {
   try{

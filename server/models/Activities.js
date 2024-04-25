@@ -4,10 +4,7 @@
 const mongoose = require("mongoose");
 const { ObjectId } = require('mongodb');
 const ActivitiesSchema = new mongoose.Schema({ 
-    activity_id:{
-        type:ObjectId,
-        required:true,
-    },
+
     title:{
         type:String,
         required:true,
