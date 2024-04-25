@@ -33,6 +33,7 @@ function Navbar() {
             <nav ref={navRef}>
                 <Link to="/playstyles">Learn to Play</Link>
                 <Link to="/playPlaces">Places to Play</Link>
+                <Link to="/userMap">Map</Link>
                 <Link to="/Resources">Resources</Link>
 
                 <button className="nav-btn nav-close-btn" onClick={showNavbar}>

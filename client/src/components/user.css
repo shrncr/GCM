@@ -508,3 +508,74 @@ header .nav-btn {
 .link-container-accordion a:hover {
     background-color: #ddd;
 }
+
+.user-map-container {
+    padding: 100px 5% 5% 5%;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.user-map {
+    flex: 1;
+    overflow: hidden;
+    position: relative; /* Add this line */
+}
+
+.map-info-div {
+    position: relative;
+    top: 0;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+}
+
+.box-container {
+    margin-top: 0px; /* Adjust this value as needed */
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    max-width: 20vw;
+    min-width: 250px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.box {
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: purple;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.box-text {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.selected-box-location {
+    padding: 10px;
+    background-color: #f0f0f0;
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .user-map-container {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+
+    .box-container {
+        min-width: 100%;
+    }
+}
