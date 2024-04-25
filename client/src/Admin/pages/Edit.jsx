@@ -73,7 +73,7 @@ export default function Edit(props) {
   const [long, setLong] = useState(props.title === "Map" ? exh.longitude : "");
   const [lat, setLat] = useState(props.title === "Map" ? exh.latitude : "");
   const [addy, setAdd] = useState("");
-  
+
   const toggleVisibility = (event) => {
     setVisible(!visible);
   };
@@ -98,7 +98,7 @@ export default function Edit(props) {
     setDescription(content);
   };
 
-  
+
   /* This chunk of code is used for importing the names of the playstyles
   and exhibits in the database in order to title each button
   and track what is being added to each new object. */
@@ -110,7 +110,7 @@ export default function Edit(props) {
   let handler = (res) => {
     const availableStyles = res.data.map(style => style.title);
     const checkboxes = availableStyles.map((style, index) => (
-      <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} start = {startVal} />
+      <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} start={startVal} />
     ));
     setCheckboxArr(checkboxes);
   }
@@ -129,7 +129,7 @@ export default function Edit(props) {
   the information entered and sends it to the database, which then
   creates the object of whatever is being sent. It is also used to 
   make edits to any existing playstyles/exhibits. */
-  
+
 
   const addExhibit = () => {
     if (location.pathname.includes("edit")) { //if youre editing
@@ -147,7 +147,8 @@ export default function Edit(props) {
             console.error('error:', error);
             alert('An error occured.')
           }
-        }).then((res) => {console.log("success")
+        }).then((res) => {
+          console.log("success")
         })
       } else if (props.title === "Exhibits") {
 
@@ -166,7 +167,7 @@ export default function Edit(props) {
           }
         }).then((res) => {
         });
-      } else if (props.title === "Map"){ // if editing a map location
+      } else if (props.title === "Map") { // if editing a map location
         axios({ //make request
           url: 'http://localhost:8082/admin/editmap', //edit exhibit
           method: 'POST',
@@ -181,7 +182,7 @@ export default function Edit(props) {
         }).then((res) => {
         });
 
-      } else{
+      } else {
 
       };
     } else {//if adding newc
@@ -202,11 +203,11 @@ export default function Edit(props) {
         });
 
 
-      }else if (props.title === "Map"){
+      } else if (props.title === "Map") {
         axios({ //make request
           url: 'http://localhost:8082/admin/addmap', //edit exhibit
           method: 'POST',
-          data: { long: long, lat: lat, address: addy, title: name,desc: description,playstyle: selectedOptions[0] },
+          data: { long: long, lat: lat, address: addy, title: name, desc: description, playstyle: selectedOptions[0] },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -217,7 +218,7 @@ export default function Edit(props) {
         }).then((res) => {
         });
       }
-       else {
+      else {
         console.log("specifically, a playstyle added");
         axios({ //make request
           url: 'http://localhost:8082/admin/addlearningstyle', //edit exhibit
@@ -254,67 +255,68 @@ export default function Edit(props) {
   /* Here is our return section. This is the HTML portion that actually
   builds the webpage utilizing the functions created above. */
   return (
+    <div class="content-wrapper">
+      <form>
+        {/*Form for Creating Exhibit*/}
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div>
+          <label></label>
+          <label>Description:</label>
+          <TextEditor value={description} onChange={handleDescriptionChange} />
+        </div>
 
-    <form>
-      {/*Form for Creating Exhibit*/}
-      <div>
-        <label>Name:</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label></label>
-        <label>Description:</label>
-        <TextEditor value={description} onChange={handleDescriptionChange} />
-      </div>
+        {props.title === "Map" ?
+          <PlaceSearch addy={"401 E Kennedy"} longSet={setLong} latSet={setLat} addSet={setAdd} />
+          : ""}
 
-      {props.title === "Map" ?
-      <PlaceSearch addy={"401 E Kennedy"} longSet={setLong} latSet={setLat} addSet = {setAdd}/>
-      : ""}
+        <div>
+          <label></label>
+          <label>Image:</label>
+          <input
+            type="file"
+            onChange={(e) => setImage(e.target.value)}
+          />
+        </div>
+        <br />
+        <div>
+          <label>{checkboxesTitle}</label>
+        </div>
+        <div className="checkbox-row">
+          {checkboxArr}
+        </div>
+        <div>
+          <DropdownForm />
+        </div>
+        <div>
+          <br />
+          <label>Visibility:</label>
+        </div>
+        <div>
+          <PlaystyleCheckbox label="Visible" color="green" onSelect={toggleVisibility} start={visible} />
+        </div>
+        <div className="edit_button"  >
 
-      <div>
-        <label></label>
-        <label>Image:</label>
-        <input
-          type="file"
-          onChange={(e) => setImage(e.target.value)}
-        />
-      </div>
-      <br/>
-      <div>
-        <label>{checkboxesTitle}</label>
-      </div>
-      <div className="checkbox-row">
-        {checkboxArr}
-      </div>
-      <div>
-        <DropdownForm/>
-      </div>
-      <div>
-      <br/>
-        <label>Visibility:</label>
-      </div>
-      <div>
-        <PlaystyleCheckbox label="Visible" color="green" onSelect={toggleVisibility} start={visible} />
-      </div>
-      <div className="edit_button"  >
+          <button className="normal" type="button" onClick={addExhibit}>
+            {done}
+          </button>
 
-        <button className="normal" type="button" onClick={addExhibit}>
-          {done}
-        </button>
+          <Delete_Button done={done} />
 
-        <Delete_Button done={done} />
+          <button className="normal" type="button" onClick={() => navigate(-1)}>
+            Cancel
+          </button>
 
-        <button className="normal" type="button" onClick={() => navigate(-1)}>
-          Cancel
-        </button>
+        </div>
 
-      </div>
-
-    </form>
+      </form>
+    </div>
   );
 }
 

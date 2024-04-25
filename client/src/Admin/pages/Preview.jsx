@@ -55,8 +55,8 @@ export default function Preview(props) {
         <h1 className="admin-header">{data.title} </h1>
       </div>
       <hr />
-
-      <p className="description" dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></p>
+      <ul>{sanitizedDescription}</ul>
+      <ul className="description" dangerouslySetInnerHTML={{ __html: data.desc }} />
 
 
 
