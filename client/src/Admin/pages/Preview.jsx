@@ -1,32 +1,18 @@
-import { React, useContext } from "react"
+import { React, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ExhibitContext } from "../SetData.jsx";
-import image from "../images/playExample.webp"
+import image from "../images/playExample.webp";
 import { useLocation } from 'react-router-dom';
 import ExhibitFeedback from "../components/Feedback.jsx";
 import DOMPurify from 'dompurify';
 
-/*
-npm install dompurify
-
-import DOMPurify from 'dompurify';
-const sanitizedDescription = DOMPurify.sanitize(data.desc);
-
-
-in return section: 
- <p className="description" dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></p>
-      
-*/
-
 export default function Preview(props) {
-  const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext)
-  const navigate = useNavigate()
-  const location = useLocation()
+  const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
+  const navigate = useNavigate();
+  const location = useLocation();
   const activity = ["Run", "Jump", "Sprint", "Eat"];
 
-
   let data;
-  //find if playstyle or exhibit
   switch (props.title) {
     case "Playstyles":
       data = playstyles[props.index];
@@ -41,30 +27,28 @@ export default function Preview(props) {
       data = [];
       break;
   }
-  let editType = location.pathname.includes("exhibit") ? "Exhibit" : "Playstyle";
-
   const sanitizedDescription = DOMPurify.sanitize(data.desc);
 
-  //LOAD IN A SPECIFIC EXHIBIT/PLAYSTYLE/AT HOME ACTIVITY
+
+  // Corrected method name
+
   return (
     <div>
       <div className="banner">
         <img src={image} alt={data.image}></img>
       </div>
       <div>
-        <h1 className="admin-header">{data.title} </h1>
+        <h1 className="admin-header">{data.title}</h1>
       </div>
       <hr />
-      <ul>{sanitizedDescription}</ul>
-      <ul className="description" dangerouslySetInnerHTML={{ __html: data.desc }} />
 
-
+      <div className="description" dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
 
       <ExhibitFeedback exhibitId={data.title} />
       <div className="edit_button">
         <Link to="edit">
           <button className="normal" type="button">
-            Edit {editType}
+            Edit {location.pathname.includes("exhibit") ? "Exhibit" : "Playstyle"}
           </button>
         </Link>
         <button className="normal" type="button" onClick={(e) => navigate('/admin/exhibits')}>
@@ -72,7 +56,7 @@ export default function Preview(props) {
         </button>
       </div>
     </div>
-  )
+  );
 };
 
 
