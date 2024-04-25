@@ -5,7 +5,7 @@ export default function Delete_Button(props) {
     function del(){
         let what = props.title;//console.log(props.title)
         axios({ //make request
-            url: 'http://localhost:8082/' +props.title + '/delete', //edit exhibit
+            url: 'http://localhost:8082/' +props.title + '/delete', //deleting x item
             method: 'DELETE',
             data: { id: props.id },
             headers: {

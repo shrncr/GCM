@@ -15,7 +15,7 @@ const PlayStyleSchema = new mongoose.Schema({ //schema for the exhibits. more to
         type:String,
         required:true,
     },
-    photo:{
+    image:{
         type:String,
         required:false, // string will be the URL pointing to the image stored externally
     },

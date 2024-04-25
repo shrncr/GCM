@@ -16,7 +16,7 @@ function SingleInfo() {
     const [desc, setDesc] = useState('');
     const [title, setTitle] = useState('');
     const [skills, setSkills] = useState('');
-
+    const [img, setImg] = useState("");
     const { id } = useParams();
     const { dest } = useParams();
     console.log({ id });
@@ -26,14 +26,23 @@ function SingleInfo() {
         axios
             .get(`http://localhost:8082/${dest}/${id}`)
             .then((res) => {
+                console.log(res.data)
                 setDesc(DOMPurify.sanitize(res.data.baseData.desc));
                 setTitle(res.data.baseData.title);
+                setImg(res.data.baseData.image);
                 setSkills(res.data.dropdown);
-                console.log(res.data)
+                //setImg(res.data.img)
+                console.log(img);
+                
+                //console.log(res.data)
             })
             .catch((err) => {
                 console.log('Error ');
             });
+
+
+
+            
     }, [id, dest]);
 
     const data = []
@@ -69,7 +78,7 @@ function SingleInfo() {
             <p dangerouslySetInnerHTML={{ __html: desc }}></p>
             <hr />
             <div className="container">
-                <img src={playExample} alt="Logo" className='PlayInfo-img' />
+                <img src={img} alt="Logo" className='PlayInfo-img' />
                 <Accordion items={data} keepOthersOpen={true} />
 
             </div>

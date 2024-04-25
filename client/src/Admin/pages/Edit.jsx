@@ -20,14 +20,74 @@ import DropdownForm from "../components/DropdownForm.js";
 throughout the admin page.*/
 export default function Edit(props) {
   // Required constants
+  
   const navigate = useNavigate();
   const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
   const location = useLocation();
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [image, setImage] = useState('');
+  let selectedFile;
+
+  //awk endpoint to obtain presigned url to upload images
+  const endpt = "https://x57c4wsb6c.execute-api.us-east-2.amazonaws.com/howdoesthiswork/generatePresigned"
+
+  //function to GET the url from AWS API to AWS lambda function
+  const getPresignedUrl = async () => {
+    // GET request: presigned URL
+    const response = await axios({
+      method: "GET",
+      url: endpt, 
+    });
+    const presignedUrl = response.data.presignedUrl;
+    console.log(presignedUrl);
+    return presignedUrl;
+  };
+
+//actually uploads file to your presigned url
+  const uploadToPresignedUrl = async (presignedUrl) => {
+    // Upload file to pre-signed URL
+    const uploadResponse = await axios.put(presignedUrl, selectedFile, {
+      headers: {
+        "Content-Type": "application/jpg",
+      },
+      onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        setUploadProgress(percentCompleted);
+        console.log(`Upload Progress: ${percentCompleted}%`);
+      },
+    });
+
+    //grab url's name to upload to db
+    let url = uploadResponse.config.url;
+    let cutUrl = url.substring(0,url.indexOf(".jpg?")+ 4);
+    setImage(cutUrl);
+  };
 
   // Variables for extracting and customizing what the buttons say
   let done = "Add Exhibit";
   let data = [];
   let exh = {};
+  
+  const handleImageChange = async (event) => { //calls whenever the file to upload changes
+    event.preventDefault();
+    const files = event.target.files;
+    console.log(files);
+    console.log(event.target)
+    if (files && files.length > 0) { 
+      console.log("mepw")
+      // Since we're allowing only one file, let's take the first one
+      selectedFile = files[0];
+    
+      const presignedUrl = await getPresignedUrl();
+      uploadToPresignedUrl(presignedUrl);
+
+    } else {
+      // Reset the image state if no file is selected
+      //setImage(null);
+    }
+  }
   if (location.pathname.includes("edit")) {
     done = "Done"
     if (props.title === "Playstyles") {
@@ -56,7 +116,7 @@ export default function Edit(props) {
   the user is entering*/
   const [name, setName] = useState(exh.title);
   const [description, setDescription] = useState(exh.desc);
-  const [image, setImage] = useState(exh.image);
+  
   let v;
   if (exh.status !== undefined) {
     v = exh.status;
@@ -97,6 +157,7 @@ export default function Edit(props) {
   const handleDescriptionChange = (content) => {
     setDescription(content);
   };
+
 
   
   /* This chunk of code is used for importing the names of the playstyles
@@ -245,17 +306,11 @@ export default function Edit(props) {
     };
   };
 
-  //DELETE EXHIBIT
-  const deleteExhibit = () => {
-    //THIS WILL DELETE AN EXHIBIT
-    return
-  };
-
   /* Here is our return section. This is the HTML portion that actually
   builds the webpage utilizing the functions created above. */
   return (
 
-    <form>
+    <form encType="multipart/form-data">
       {/*Form for Creating Exhibit*/}
       <div>
         <label>Name:</label>
@@ -279,9 +334,10 @@ export default function Edit(props) {
         <label></label>
         <label>Image:</label>
         <input
-          type="file"
-          onChange={(e) => setImage(e.target.value)}
+          type={"File"} accept={"image/*"} name={"image"} id={"imageInput"} multiple={false}
+          onChange={(e) => handleImageChange(e)}
         />
+      
       </div>
       <br/>
       <div>
@@ -306,7 +362,7 @@ export default function Edit(props) {
           {done}
         </button>
 
-        <Delete_Button done={done} />
+        <Delete_Button done={done} title={props.title} id={exh._id} />
 
         <button className="normal" type="button" onClick={() => navigate(-1)}>
           Cancel

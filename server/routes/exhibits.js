@@ -22,20 +22,19 @@ const ObjectId = require("mongodb").ObjectId;
 const { Parser } = require('json2csv');
 //const jwt = require('jsonwebtoken');
 
-var fs = require('fs');
-var AWS = require('aws-sdk');
-var accessKeyId =  "AKIAS32MO6Q2EUKU7X74";
-var secretAccessKey = "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";
+// var fs = require('fs');
+// var AWS = require('aws-sdk');
+// var accessKeyId =  "AKIAS32MO6Q2EUKU7X74";
+// var secretAccessKey = "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";
 
 
-AWS.config.update({
-  accessKeyId: accessKeyId,
-  secretAccessKey: secretAccessKey,
-  region: "us-east-2" //Region
-});
+// AWS.config.update({
+//   accessKeyId: accessKeyId,
+//   secretAccessKey: secretAccessKey,
+//   region: "us-east-2" //Region
+// });
 
-var s3 = new AWS.S3();
-
+// var s3 = new AWS.S3();
 
 
 //  const parseError = err => {
@@ -186,44 +185,16 @@ HomeText.findOneAndUpdate({num: "Resources" }, options).then(
  //returns data for a specific map location
  router.get('/playPlaces/:id', async (req, res)=>{ 
   try{
-    let data = await Exhibit.findById(req.params.id)
-    res.json(data);
+    console.log(req.params.id);
+    let exhibit = await Exhibit.findById(req.params.id);
+    let exhibitActivities = await Activities.find({name:exhibit.activities});
+    
+    res.json({baseData: exhibit, dropdown: exhibitActivities});
   }catch(err){
     console.log(err);
   }
  });
-router.get("/getImg", async (req,res)=>{
-  var params = { Bucket: 'gcmchildrensmuseum', Key: 'test.jpg' };
-    
-    s3.getObject(params, function(err, data) {
-      if (err){
-        console.log("eeeee\n\n")
-        console.log(err);
-      }else{
-        console.log(data)
-        let image = new Buffer(data.Body).toString('base64');
-        image = "data:"+data.ContentType+";base64,"+image;
-        
-        let response = {
-          "statusCode": 200,
-          "headers": {
-              "Access-Control-Allow-Origin": "*",
-              'Content-Type': data.ContentType
-          },
-          "body":image,
-          "isBase64Encoded": true
-      };    
-      console.log(response);
-            //res.send(response);
-            res.json(response);
-      // res.writeHead(200, {'Content-Type': 'image/jpg'});
-      // res.write(data.Body, 'binary');
-      // res.end(null, 'binary');
-      }
-      
-      
-    });
-})
+
  //returns data for an exhibit, associated activities, and names of skills
  router.get('/exhibits/:id', async (req, res)=>{ 
   try{
@@ -239,7 +210,7 @@ router.get("/getImg", async (req,res)=>{
 
  //returns all currently existing feedback
  router.get('/feedback', async (req,res) => {
-  try{
+  try{ 
   let feedback = await Feedback({});
   res.json(feedback);
   }catch(err){
@@ -258,12 +229,12 @@ router.get("/getImg", async (req,res)=>{
   }
  });
 
- 
 
  //returns all exhibits whose status is set to true, (visible)
  router.get('/exhibits', async (req, res)=>{ 
   try{
     let data = await Exhibit.find({status:true});
+    console.log(data);
     res.json(data);
   }catch(err){
     console.log(err);
@@ -364,14 +335,14 @@ router.delete("", ({ session }, res) => {
   } catch (err) {
     res.status(422).send(parseError(err));
   }
-});
+}); 
 
 router.put('/admin/editlearningstyle', async (req,res) => {
 
     let options = {
               title: req.body.title,
               desc: req.body.description,
-              //image: req.body.image
+              image: req.body.image
               }
       console.log(req.body);
       PlayStyle.findOneAndUpdate({_id: req.body.id}, options).then(
@@ -385,6 +356,8 @@ router.put('/admin/editlearningstyle', async (req,res) => {
 //edit already existing exhibit
 router.put('/admin/editexhibit', async (req,res) => {
   console.log("here")
+  console.log(req.body)
+
   //);
   let options = {
     title: req.body.title,
@@ -394,30 +367,9 @@ router.put('/admin/editexhibit', async (req,res) => {
     };
 Exhibit.findOneAndUpdate({_id: req.body.id}, options).then(()=>{
 
-console.log(req.body)
-console.log(req.body.image)
-  const fileContent  = Buffer(req.body.image, 'binary');
-
-  // Setting up S3 upload parameters
-  const params = {
-      Bucket: 'gcmchildrensmuseum',
-      Key: req.body.image, // File name you want to save as in S3
-      Body: fileContent 
-  };
 
 
-
-  // Uploading files to the bucket
-  s3.upload(params, function(err, data) {
-      if (err) {
-          throw err;
-      }
-      res.send({
-          "response_code": 200,
-          "response_message": "Success",
-          "response_data": data
-      });
-  });
+  
 
 }
 
@@ -459,7 +411,7 @@ router.post("/admin/addexhibit", async (req, res) => {
      'exhibit_id': id,
      'title': req.body.title,
      'desc': req.body.desc,
-     'photo':req.body.image,
+     'image':req.body.image,
      'status':req.body.status
    }
    );
@@ -480,7 +432,7 @@ router.post("/admin/addlearningstyle", async (req, res) => {
      'style_id': id,
      'title': req.body.title,
      'desc': req.body.desc,
-     'photos':req.body.image
+     'image':req.body.image
    }
    );
    console.log("bawls");
@@ -567,7 +519,7 @@ router.get('/download-sessions-csv', async (req, res) => {
       res.status(500).send('Error occurred: ' + error.message);
   }
 });
-
+ 
 // route to download feedback data as CSV
 router.get('/download-feedback-csv', async (req, res) => {
   try {
