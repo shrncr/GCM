@@ -27,7 +27,7 @@ export default function UserRoutes(props) {
                 <Route path="/:dest/:id" element={<SingleInfo />} />
                 <Route path="/resources/*" element={<Resources />} />
                 <Route path="/map" element={<Map />} />
-                <Route path="/userMap" element={<UserMap/>}/>
+                <Route path="/userMap" element={<UserMap />} />
             </Routes>
 
         </div>

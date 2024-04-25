@@ -6,7 +6,7 @@ in order to upload/change the desired item.*/
 
 // Required imports
 import React, { useContext, useState, useEffect } from "react";
-import { ExhibitContext } from "../SetData.jsx";
+import SetData, { ExhibitContext } from "../SetData.jsx";
 import Exhibit from "../classes/exhibit";
 import PlaceSearch from "../components/PlaceSearch.jsx";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
@@ -21,7 +21,7 @@ import ContentWrapper from "../components/ContentWrapper.jsx";
 throughout the admin page.*/
 export default function Edit(props) {
   // Required constants
-
+  const [updateData, setUpdateData] = useState(false);
   const navigate = useNavigate();
   const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
   const location = useLocation();
@@ -69,8 +69,10 @@ export default function Edit(props) {
   // Variables for extracting and customizing what the buttons say
   let done = "Add Exhibit";
   let data = [];
-  let exh = {'title': " ",
-              'desc': " "};
+  let exh = {
+    'title': " ",
+    'desc': " "
+  };
 
   const handleImageChange = async (event) => { //calls whenever the file to upload changes
     event.preventDefault();
@@ -118,7 +120,7 @@ export default function Edit(props) {
   the user is entering*/
   const [name, setName] = useState(exh.title);
   const [description, setDescription] = useState(exh.desc);
-  
+
   let v;
   if (exh.status !== undefined) {
     v = exh.status;
@@ -212,6 +214,7 @@ export default function Edit(props) {
           }
         }).then((res) => {
           console.log("success")
+
         })
       } else if (props.title === "Exhibits") {
 
@@ -229,6 +232,7 @@ export default function Edit(props) {
             alert('An error occured.')
           }
         }).then((res) => {
+
         });
       } else if (props.title === "Map") { // if editing a map location
         axios({ //make request
@@ -243,6 +247,7 @@ export default function Edit(props) {
             alert('An error occured.')
           }
         }).then((res) => {
+
         });
 
       } else {
@@ -301,65 +306,70 @@ export default function Edit(props) {
 
     if (props.title === "Playstyles") {
       navigate(`/admin/playstyles`);
+      window.location.reload();
     } else if (props.title === "Exhibits") {
       navigate(`/admin/exhibits`);
+      window.location.reload();
     }
     else {
       navigate(`/admin/map`)
+      window.location.reload();
     };
   };
 
   /* Here is our return section. This is the HTML portion that actually
   builds the webpage utilizing the functions created above. */
   return (
-<div className="content-wrapper">
-    <form encType="multipart/form-data">
-      {/*Form for Creating Exhibit*/}
-      <div>
-        <label>Name:</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label></label>
-        <label>Description:</label>
-        <TextEditor value={description} onChange={handleDescriptionChange} />
-      </div>
+    <div className="content-wrapper">
+      <form encType="multipart/form-data">
 
-        {props.title === "Map" ?
-          <PlaceSearch addy={"401 E Kennedy"} longSet={setLong} latSet={setLat} addSet={setAdd} />
-          : ""}
+        {/*Form for Creating Exhibit*/}
+        <div className="no-padding">
+          <label></label>
+          <label>Image:</label>
+          <input
+            type={"File"} accept={"image/*"} name={"image"} id={"imageInput"} multiple={false}
+            onChange={(e) => handleImageChange(e)}
+          />
+          <div>
+            <label>Name:</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div>
+            <label></label>
+            <label>Description:</label>
+            <TextEditor value={description} onChange={handleDescriptionChange} />
+          </div>
 
-      <div className="no-padding">
-        <label></label>
-        <label>Image:</label>
-        <input
-          type={"File"} accept={"image/*"} name={"image"} id={"imageInput"} multiple={false}
-          onChange={(e) => handleImageChange(e)}
-        />
-      
-      </div>
-      <br/>
-      <div>
-        <label>{checkboxesTitle}</label>
-      </div>
-      <div className="checkbox-row">
-        {checkboxArr}
-      </div>
-      <div>
-        <DropdownForm/>
-      </div>
-      <div>
-      <br/>
-        <label>Visibility:</label>
-      </div>
-      <div>
-        <PlaystyleCheckbox label="Visible" color="green" onSelect={toggleVisibility} start={visible} />
-      </div>
-      <div className="edit_button"  >
+          {props.title === "Map" ?
+            <PlaceSearch addy={"401 E Kennedy"} longSet={setLong} latSet={setLat} addSet={setAdd} />
+            : ""}
+
+
+
+        </div>
+        <br />
+        <div>
+          <label>{checkboxesTitle}</label>
+        </div>
+        <div className="checkbox-row">
+          {checkboxArr}
+        </div>
+        <div>
+          <DropdownForm />
+        </div>
+        <div>
+          <br />
+          <label>Visibility:</label>
+        </div>
+        <div>
+          <PlaystyleCheckbox label="Visible" color="green" onSelect={toggleVisibility} start={visible} />
+        </div>
+        <div className="edit_button"  >
 
           <button className="normal" type="button" onClick={addExhibit}>
             {done}
@@ -374,7 +384,7 @@ export default function Edit(props) {
         </div>
 
       </form>
-
+      <SetData key={updateData ? "update" : "no-update"} />
     </div>
 
   );

@@ -17,10 +17,12 @@ function SingleInfo() {
         axios.get(`http://localhost:8082/${dest}/${id}`)
             .then((res) => {
                 const { baseData, dropdown } = res.data;
+
                 setDesc(DOMPurify.sanitize(baseData.desc));
                 setImg(baseData.image);
                 setTitle(baseData.title);
                 setSkills(dropdown);
+
             })
             .catch((err) => {
                 console.log('Error:', err);

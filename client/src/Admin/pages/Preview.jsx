@@ -21,7 +21,8 @@ export default function Preview(props) {
     case "Playstyles":
       data = playstyles[props.index];
       image = playstyles[props.index].image;
-      ext1 = ["one", "two", "three"];
+      console.log(data)
+      ext1 = data.skills;
       ext2 = ["hello", "little", "bitch"];
       break;
     case "Exhibits":
@@ -29,8 +30,10 @@ export default function Preview(props) {
 
       image = data.image;
       ext1 = data.activities;
-      ext2 = ext1.map((activity) => activity.skills)
-      console.log(ext1[0])
+      ext2 = ext1.map((activity) => activity.skills).flat();
+
+
+
       break;
     case "Activities":
       data = homeAct[props.index];
