@@ -60,9 +60,20 @@ const SetData = ({ children }) => {
     });
   }, []);
   //SET THE AT HOME ACTIVITIES
-  useEffect(() => {
-    setHomeAct(exhibits)
-  })
+  axios({ //get exhibits
+    url: 'http://localhost:8082/activities',
+    method: 'GET',
+    headers: {
+      authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+    },
+    catch(error) {
+      console.error('error:', error);
+      alert('An error occured.')
+    }
+  }).then((res) => {
+    console.log(res.data)
+    setHomeAct(res.data)
+  });
 
   //THIS USE EFFECT IS TO SET DATA PAGE
   useEffect(() => {

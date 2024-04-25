@@ -36,7 +36,7 @@ export default function Edit(props) {
     // GET request: presigned URL
     const response = await axios({
       method: "GET",
-      url: endpt, 
+      url: endpt,  
     });
     const presignedUrl = response.data.presignedUrl;
     console.log(presignedUrl);
