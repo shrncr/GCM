@@ -1,7 +1,7 @@
 import { React, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ExhibitContext } from "../SetData.jsx";
-import image from "../images/playExample.webp";
+
 import { useLocation } from 'react-router-dom';
 import ExhibitFeedback from "../components/Feedback.jsx";
 import DOMPurify from 'dompurify';
@@ -13,16 +13,20 @@ export default function Preview(props) {
   const location = useLocation();
 
   let data;
+  let image;
   let ext1;
   let ext2;
+
   switch (props.title) {
     case "Playstyles":
       data = playstyles[props.index];
+      image = playstyles[props.index].image;
       ext1 = ["one", "two", "three"];
       ext2 = ["hello", "little", "bitch"];
       break;
     case "Exhibits":
       data = exhibits[props.index];
+      image = exhibits[props.index].image;
       ext1 = exhibits[props.index].activities;
       ext2 = exhibits[props.index].activities.skills;
       break;
