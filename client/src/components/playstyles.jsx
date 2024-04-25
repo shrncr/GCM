@@ -48,7 +48,7 @@ function PlayStylesPage() {
     }).then((res) => {
       setExhibitData(res.data)
     });
-  });
+  }, []);
   useEffect(() => {
     trackVisit();
   }, []); // empty dependency array ensures this runs once on mount
