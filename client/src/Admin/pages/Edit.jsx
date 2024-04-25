@@ -320,18 +320,35 @@ export default function Edit(props) {
   /* Here is our return section. This is the HTML portion that actually
   builds the webpage utilizing the functions created above. */
   return (
-    <div className="content-wrapper">
+    <div>
       <form encType="multipart/form-data">
 
         {/*Form for Creating Exhibit*/}
-        <div className="no-padding">
-          <label></label>
-          <label>Image:</label>
-          <input
-            type={"File"} accept={"image/*"} name={"image"} id={"imageInput"} multiple={false}
-            onChange={(e) => handleImageChange(e)}
-          />
+
+
+
+        <label htmlFor="imageInput">
+          <div className="image-edit-container">
+            <span>+</span>
+          </div>
+        </label>
+        <div className="content-wrapper">
+          <div className="uncool-image-box">
+            <label>Image:</label>
+            <input
+              type="file"
+              accept="image/*"
+              name="image"
+              id="imageInput"
+              multiple={false}
+              onChange={(e) => handleImageChange(e)}
+            />
+          </div>
+
+
+
           <div>
+            <label></label>
             <label>Name:</label>
             <input
               type="text"
@@ -351,41 +368,42 @@ export default function Edit(props) {
 
 
 
-        </div>
-        <br />
-        <div>
-          <label>{checkboxesTitle}</label>
-        </div>
-        <div className="checkbox-row">
-          {checkboxArr}
-        </div>
-        <div>
-          <DropdownForm />
-        </div>
-        <div>
+
           <br />
-          <label>Visibility:</label>
+          <div>
+            <label>{checkboxesTitle}</label>
+          </div>
+          <div className="checkbox-row">
+            {checkboxArr}
+          </div>
+          <div>
+            <DropdownForm />
+          </div>
+          <div>
+            <br />
+            <label>Visibility:</label>
+          </div>
+          <div>
+            <PlaystyleCheckbox label="Visible" color="green" onSelect={toggleVisibility} start={visible} />
+          </div>
+          <div className="edit_button"  >
+
+            <button className="normal" type="button" onClick={addExhibit}>
+              {done}
+            </button>
+
+            <Delete_Button done={done} title={props.title} id={exh._id} />
+
+            <button className="normal" type="button" onClick={() => navigate(-1)}>
+              Cancel
+            </button>
+          </div>
         </div>
-        <div>
-          <PlaystyleCheckbox label="Visible" color="green" onSelect={toggleVisibility} start={visible} />
-        </div>
-        <div className="edit_button"  >
 
-          <button className="normal" type="button" onClick={addExhibit}>
-            {done}
-          </button>
 
-          <Delete_Button done={done} title={props.title} id={exh._id} />
+      </form >
 
-          <button className="normal" type="button" onClick={() => navigate(-1)}>
-            Cancel
-          </button>
-
-        </div>
-
-      </form>
-      <SetData key={updateData ? "update" : "no-update"} />
-    </div>
+    </div >
 
   );
 }

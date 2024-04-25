@@ -2,9 +2,12 @@
     margin: 25px;
     /* This adds padding to all content besides the navbar */
 }
-.no-padding{ /* the images dont get padding */
+
+.no-padding {
+    /* the images dont get padding */
     padding: 0 !important;
 }
+
 .zillow-container {
     display: grid;
     margin-left: 2vw;
@@ -305,3 +308,29 @@
 .ql-size-small {
     font-size: small;
 }
+
+.image-edit-container {
+    width: 100vw;
+    height: 30vh;
+    background-color: gray;
+    color: black;
+    font-size: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Example margin */
+}
+
+.image-edit-container:hover {
+    background-color: rgb(154, 154, 154);
+}
+
+.image-edit-container input[type="file"] {
+    /* Hide the default file input button */
+    display: none;
+}
+
+
+
+/* Style the container as needed */
