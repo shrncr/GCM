@@ -7,31 +7,22 @@ import Footer from '../components/footer.jsx';
 // Create Context with Default Values
 
 // all pages besides map gets padding
-const ContentWrapper = ({ children }) => {
-    const location = useLocation();
-    const isMapPage = location.pathname.includes('/map'); 
-    
-    return (
-      <div className={`content-wrapper ${isMapPage ? 'no-padding' : ''}`}>
-        {children}
-      </div>
-    );
-  };
+
 
 function AdminApp() {
-    ///Seperates the Sdmin Side so the components dont conflict
-    return (
-        <SetData>
-            <div>
-                <Navbar />
-                <ContentWrapper>
-                <AdminRoutes />
-                </ContentWrapper>
+  ///Seperates the Sdmin Side so the components dont conflict
+  return (
+    <SetData>
+      <div>
+        <Navbar />
+
+        <AdminRoutes />
+
       </div>
 
-        </SetData>
+    </SetData>
 
-    );
+  );
 }
 
 export default AdminApp;
