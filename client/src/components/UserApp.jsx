@@ -1,14 +1,17 @@
 import React from "react"
 import Navbar from './header';
 import UserRoutes from "./UserRoutes";
+import SetData from "../Admin/SetData";
 
 export default function UserApp(props) {
     return (
-        <div>
-            <Navbar />
-            <UserRoutes />
+        <SetData>
+            <div>
+                <Navbar />
+                <UserRoutes />
 
-        </div>
+            </div>
+        </SetData>
     )
 };
 

@@ -591,3 +591,6 @@ header .nav-btn {
         min-width: 100%;
     }
 }
+strong {
+    font-weight: bold;
+}

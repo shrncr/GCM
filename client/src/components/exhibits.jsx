@@ -21,7 +21,7 @@ function Exhibits() {
     }).then((res) => {
       setExhibitData(res.data)
     });
-  });
+  }, []);
 
   return (
     <GridBoxes data={exdata} />

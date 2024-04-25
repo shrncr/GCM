@@ -3,7 +3,9 @@
     /* This adds padding to all content besides the navbar */
     padding-top: 15px;
 }
-
+.no-padding{ /* the map doesnt get padding */
+    padding: 0 !important;
+}
 .zillow-container {
     display: grid;
     margin-left: 2vw;
