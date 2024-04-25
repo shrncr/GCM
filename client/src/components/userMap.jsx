@@ -3,18 +3,17 @@ import axios from 'axios';
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import Map from './mapx'; // Import your Map component
 import { ExhibitContext } from "../Admin/SetData";
-import Zillow_Box from "../Admin/components/Zillow_Box";
-import gridBoxes from "./gridBoxes";
 import GridBoxes from "./gridBoxes";
 import Footer from "./footer"
+import setData from "../Admin/SetData";
 
 const libraries = ['places'];
 
 const UserMap = (props) => {
     const [exdata, setExhibitData] = useState([]);
+    const markerContent = props.markerContent;
     const [locations, setLocations] = useState([]);
     const [selectedMarker, setSelectedMarker] = useState(null);
-    const [infoWindowOpen, setInfoWindowOpen] = useState(false);
 
     useEffect(() => {
         // Fetch exhibit data
@@ -38,27 +37,38 @@ const UserMap = (props) => {
             url: 'http://localhost:8082/map',
             method: 'GET',
             params: {
-                filter: props.markerContent
+                filter: markerContent
             },
             headers: {
                 authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
-            }
-        })
-            .then((res) => {
-                setLocations(res.data);
-            })
-            .catch(error => {
+            },
+            catch(error) {
                 console.error('error:', error);
-                alert('An error occurred while fetching marker locations.');
-            });
-    }, [props.markerContent]);
+                alert('An error occured.')
+            }
+        }).then((res) => {
+            setLocations(res.data)
+        });
+    }, [locations]);
+
+
+
+    // Format each exhibit data item into a box
+    const renderBoxes = () => {
+        return exdata.map((item, index) => (
+            <div key={index} className="new-box">
+                <h3>{item.name}</h3>
+                <p>{item.description}</p>
+                {/* Add more details as needed */}
+            </div>
+        ));
+    };
 
     return (
         <div>
             <div className="user-map-container">
                 <div className="user-map">
                     <Map pins={locations}/>
-
                 </div>
                 <div className="map-info-div">
                     <h2>New Title</h2>
@@ -66,7 +76,7 @@ const UserMap = (props) => {
                 </div>
                 <div className="box-container">
                     <h2>Play Places</h2>
-                    <GridBoxes data={exdata}/>
+                    {renderBoxes()}
                 </div>
                 {selectedMarker && (
                     <div className="selected-box-location">
@@ -77,7 +87,6 @@ const UserMap = (props) => {
             <Footer/>
         </div>
     );
-
-
 }
+
 export default UserMap;
