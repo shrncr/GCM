@@ -21,10 +21,8 @@ export default function Home(props) {
                 <Link to="data"><button className="home-button">View Data</button></Link>
             </div>
 
-            <div className="homepage-editor">
-                <TextEditor />
-            </div>
-            <ExhibitFeedback exhibitId={"Hello"} />
+
+
         </form>
     )
 };

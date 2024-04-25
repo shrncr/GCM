@@ -1,36 +1,45 @@
 import { React, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ExhibitContext } from "../SetData.jsx";
-import image from "../images/playExample.webp";
+
 import { useLocation } from 'react-router-dom';
 import ExhibitFeedback from "../components/Feedback.jsx";
 import DOMPurify from 'dompurify';
+import Accordion from "../components/Accordion.jsx";
 
 export default function Preview(props) {
   const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const activity = ["Run", "Jump", "Sprint", "Eat"];
 
   let data;
+  let image;
+  let ext1;
+  let ext2;
+
   switch (props.title) {
     case "Playstyles":
       data = playstyles[props.index];
+      image = playstyles[props.index].image;
+      ext1 = ["one", "two", "three"];
+      ext2 = ["hello", "little", "bitch"];
       break;
     case "Exhibits":
       data = exhibits[props.index];
+      image = exhibits[props.index].image;
+      ext1 = exhibits[props.index].activities;
+      ext2 = exhibits[props.index].activities.skills;
       break;
     case "Map":
       data = locations[props.index];
+      ext1 = [];
       break;
     default:
       data = [];
+      ext1 = [];
       break;
   }
   const sanitizedDescription = DOMPurify.sanitize(data.desc);
-
-
-  // Corrected method name
 
   return (
     <div>
@@ -42,7 +51,14 @@ export default function Preview(props) {
       </div>
       <hr />
 
-      <div className="description" dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
+      <p className="description" dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
+
+      {/* Conditionally render the Accordion component */}
+      {ext1.length !== 0 && (
+        <div className="accordion-container">
+          <Accordion ext1={ext1} ext2={ext2} />
+        </div>
+      )}
 
       <ExhibitFeedback exhibitId={data.title} />
       <div className="edit_button">
