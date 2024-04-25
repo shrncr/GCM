@@ -110,7 +110,7 @@ HomeText.findOneAndUpdate({num: "Resources" }, options).then(
  router.get('/playstyles/:id', async (req, res)=>{ 
   try{
     let playstyle = await PlayStyle.findById(req.params.id);
-    let playstyleSkills = await Skills.find({name:playstyle.skills});
+    let playstyleSkills = await Skills.find({title:playstyle.skills});
     res.json({baseData: playstyle, dropdown:playstyleSkills});
   }catch(err){
     console.log(err);
@@ -162,11 +162,11 @@ HomeText.findOneAndUpdate({num: "Resources" }, options).then(
   try{
     console.log(req.params.id);
     let exhibit = await Exhibit.findById(req.params.id);
-    let exhibitActivities = await Activities.find({name:exhibit.activities});
+    let exhibitActivities = await Activities.find({title:exhibit.activities});
     
     res.json({baseData: exhibit, dropdown: exhibitActivities});
   }catch(err){
-    console.log(err);
+    console.log(err); 
   }
  });
 
@@ -175,11 +175,13 @@ HomeText.findOneAndUpdate({num: "Resources" }, options).then(
   try{
     console.log(req.params.id);
     let exhibit = await Exhibit.findById(req.params.id);
-    let exhibitActivities = await Activities.find({name:exhibit.activities});
-    
+    conosle.log(exhibit.activities)
+    let exhibitActivities = await Activities.findOne({title: exhibit.activities[0]});
+    conosle.log(exhibitActivities)
     res.json({baseData: exhibit, dropdown: exhibitActivities});
   }catch(err){
     console.log(err);
+    console.log('ioesngiesnf')
   }
  });
 
