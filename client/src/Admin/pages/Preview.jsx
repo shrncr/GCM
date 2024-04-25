@@ -8,7 +8,7 @@ import DOMPurify from 'dompurify';
 import Accordion from "../components/Accordion.jsx";
 
 export default function Preview(props) {
-  const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
+  const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct } = useContext(ExhibitContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -26,10 +26,16 @@ export default function Preview(props) {
       break;
     case "Exhibits":
       data = exhibits[props.index];
-      console.log(data)
+
       image = data.image;
       ext1 = data.activities;
-      ext2 = data.activities.skills;
+      ext2 = ext1.map((activity) => activity.skills)
+      console.log(ext1[0])
+      break;
+    case "Activities":
+      data = homeAct[props.index];
+      image = data.image;
+      ext1 = [];
       break;
     case "Map":
       data = locations[props.index];
@@ -52,27 +58,27 @@ export default function Preview(props) {
       </div>
       <hr />
       <div className="content-wrapper">
-      <p className="description" dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
+        <p className="description" dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
 
-      {/* Conditionally render the Accordion component */}
-      {ext1.length !== 0 && (
-        <div className="accordion-container">
-          <Accordion ext1={ext1} ext2={ext2} />
-        </div>
-      )}
+        {/* Conditionally render the Accordion component */}
+        {ext1.length !== 0 && (
+          <div className="accordion-container">
+            <Accordion ext1={ext1} ext2={ext2} />
+          </div>
+        )}
 
-      <ExhibitFeedback exhibitId={data.title} />
-      <div className="edit_button">
-        <Link to="edit">
-          <button className="normal" type="button">
-            Edit {location.pathname.includes("exhibit") ? "Exhibit" : "Playstyle"}
+        <ExhibitFeedback exhibitId={data.title} />
+        <div className="edit_button">
+          <Link to="edit">
+            <button className="normal" type="button">
+              Edit {location.pathname.includes("exhibit") ? "Exhibit" : "Playstyle"}
+            </button>
+          </Link>
+          <button className="normal" type="button" onClick={(e) => navigate('/admin/exhibits')}>
+            Back
           </button>
-        </Link>
-        <button className="normal" type="button" onClick={(e) => navigate('/admin/exhibits')}>
-          Back
-        </button>
+        </div>
       </div>
-    </div>
     </div>
   );
 };

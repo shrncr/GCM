@@ -85,6 +85,8 @@ const SetData = ({ children }) => {
         const impressions = await axios.get('http://localhost:8082/download-impressions-csv');
         const session = await axios.get('http://localhost:8082/download-sessions-csv');
         const arr = [feedback, impressions, session];
+        console.log("FEEDBACK")
+        console.log(feedback)
 
         arr.forEach(csv => {
           const rows = csv.data.split("\n");
