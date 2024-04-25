@@ -26,7 +26,7 @@ export default function Edit(props) {
   const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
   const location = useLocation();
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("https://gcmchildrensmuseum.s3.amazonaws.com/f012fe42-d735-4e5a-93b7-556c5ab7702f.jpg");
   let selectedFile;
 
   //awk endpoint to obtain presigned url to upload images
@@ -115,9 +115,9 @@ export default function Edit(props) {
 
   /*name, description, latitude, longitude, and image variables used to track what
   the user is entering*/
-  const [name, setName] = useState(exh.title);
-  const [description, setDescription] = useState(exh.desc);
-
+  const [name, setName] = useState(exh == {} ? exh.title : " ");
+  const [description, setDescription] = useState(exh =={} ? exh.desc : " ");
+  
   let v;
   if (exh.status !== undefined) {
     v = exh.status;
