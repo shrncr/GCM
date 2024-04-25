@@ -69,7 +69,8 @@ export default function Edit(props) {
   // Variables for extracting and customizing what the buttons say
   let done = "Add Exhibit";
   let data = [];
-  let exh = {};
+  let exh = {'title': " ",
+              'desc': " "};
 
   const handleImageChange = async (event) => { //calls whenever the file to upload changes
     event.preventDefault();
@@ -115,8 +116,8 @@ export default function Edit(props) {
 
   /*name, description, latitude, longitude, and image variables used to track what
   the user is entering*/
-  const [name, setName] = useState(exh == {} ? exh.title : " ");
-  const [description, setDescription] = useState(exh =={} ? exh.desc : " ");
+  const [name, setName] = useState(exh.title);
+  const [description, setDescription] = useState(exh.desc);
   
   let v;
   if (exh.status !== undefined) {

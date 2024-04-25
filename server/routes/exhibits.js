@@ -338,7 +338,8 @@ router.put('/admin/editexhibit', async (req,res) => {
     title: req.body.title,
     desc: req.body.desc,
     image: req.body.image,
-    status: req.body.status
+    status: req.body.status,
+    activities: req.body.activities
     };
 Exhibit.findOneAndUpdate({_id: req.body.id}, options).then(()=>{
 
@@ -406,7 +407,8 @@ router.post("/admin/addexhibit", async (req, res) => {
      'title': req.body.title,
      'desc': req.body.desc,
      'image':req.body.image,
-     'status':req.body.status
+     'status':req.body.status,
+     'activities': req.body.activities
    }
    );
    console.log("bawls");
@@ -426,7 +428,8 @@ router.post("/admin/addlearningstyle", async (req, res) => {
      'style_id': id,
      'title': req.body.title,
      'desc': req.body.desc,
-     'image':req.body.image
+     'image':req.body.image,
+     'skills': req.body.skills
    }
    );
    console.log("bawls");
