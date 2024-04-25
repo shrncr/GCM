@@ -18,6 +18,19 @@ export default function Data(props) {
         console.log(loc);
         switch (loc) {
             case "Feedback":
+                try {
+                    const response = await axios.get('http://localhost:8082/download-feedback-csv', {
+                        responseType: 'blob',
+                    });
+                    const url = window.URL.createObjectURL(new Blob([response.data]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', 'feedback.csv');
+                    document.body.appendChild(link);
+                    link.click();
+                } catch (error) {
+                    console.error('Error downloading the CSV:', error);
+                }  
                 break;
             case "Impressions":
                 try {
@@ -55,7 +68,8 @@ export default function Data(props) {
     return (
         <>
             <div>
-                <h1 className='header'>Data</h1>
+                <h1 className='admin-header'>Data</h1>
+
             </div>
             <div className="dropdown">
                 <div className='dropdown-button'>

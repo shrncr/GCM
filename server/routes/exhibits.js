@@ -20,17 +20,6 @@ const Map = require("../models/Map");
 const PlayStyles = require("../models/PlayStyles");
 const ObjectId = require("mongodb").ObjectId;
 const { Parser } = require('json2csv');
-//const jwt = require('jsonwebtoken');
-
-
- const parseError = err => {
-  if (err.isJoi) return err.details[0];
-  return JSON.stringify(err, Object.getOwnPropertyNames(err));
-};
-
- const sessionizeUser = user => {
-  return { userId: user.id, username: user.username };
-}
 
 
 //returns text associated with homepage
@@ -66,7 +55,6 @@ router.get('/resources', async (req, res) =>  {
     console.log("err");
   }
  });
-
  //returns text associated with homepage
 router.post('/resources', async (req, res) =>  { 
   console.log("here")
@@ -128,27 +116,67 @@ HomeText.findOneAndUpdate({num: "Resources" }, options).then(
     console.log(err);
   }
  });
+ router.delete('/Exhibits/delete', async (req, res)=>{ 
+  try{
+    let data = await Exhibit.deleteOne({_id:req.body.id})
+    res.json(data);
+  }catch(err){
+    console.log(err);
+  }
+ });
+ router.delete('/Playstyles/delete', async (req, res)=>{ 
+  try{
+    let data = await PlayStyle.deleteOne({_id:req.body.id})
+    res.json(data);
+  }catch(err){
+    console.log(err);
+  }
+ });
+ router.delete('/Map/delete', async (req, res)=>{ 
+  try{
+    let data = await Map.deleteOne({_id:req.body.id})
+    res.json(data);
+  }catch(err){
+    console.log(err);
+  }
+ });
+ router.delete('/activity/delete', async (req, res)=>{ 
+  try{
+    let data = await Activities.deleteOne({_id:req.body.id})
+    res.json(data);
+  }catch(err){
+    console.log(err);
+  }
+ });
+ router.delete('/skill/delete', async (req, res)=>{ 
+  try{
+    let data = await Skills.deleteOne({_id:req.body.id})
+    res.json(data);
+  }catch(err){
+    console.log(err);
+  }
+ });
 
  //returns data for a specific map location
  router.get('/playPlaces/:id', async (req, res)=>{ 
   try{
-    let data = await Exhibit.findById(req.params.id)
-    res.json(data);
+    console.log(req.params.id);
+    let exhibit = await Exhibit.findById(req.params.id);
+    let exhibitActivities = await Activities.find({name:exhibit.activities});
+    
+    res.json({baseData: exhibit, dropdown: exhibitActivities});
   }catch(err){
     console.log(err);
-
-
-
   }
  });
 
  //returns data for an exhibit, associated activities, and names of skills
- router.get('/exhibit/:id', async (req, res)=>{ 
+ router.get('/exhibits/:id', async (req, res)=>{ 
   try{
     console.log(req.params.id);
     let exhibit = await Exhibit.findById(req.params.id);
     let exhibitActivities = await Activities.find({name:exhibit.activities});
-
+    
     res.json({baseData: exhibit, dropdown: exhibitActivities});
   }catch(err){
     console.log(err);
@@ -157,7 +185,7 @@ HomeText.findOneAndUpdate({num: "Resources" }, options).then(
 
  //returns all currently existing feedback
  router.get('/feedback', async (req,res) => {
-  try{
+  try{ 
   let feedback = await Feedback({});
   res.json(feedback);
   }catch(err){
@@ -176,12 +204,12 @@ HomeText.findOneAndUpdate({num: "Resources" }, options).then(
   }
  });
 
- 
 
  //returns all exhibits whose status is set to true, (visible)
  router.get('/exhibits', async (req, res)=>{ 
   try{
     let data = await Exhibit.find({status:true});
+    console.log(data);
     res.json(data);
   }catch(err){
     console.log(err);
@@ -245,7 +273,7 @@ router.get("/admin/auth", ({ session: { user }}, res) => {
   res.json({ user });
 });
 
-
+ 
 //when adding or editing map pins. incomplete
 router.post('/admin/editmap', async (req,res) => {
   try{
@@ -282,14 +310,14 @@ router.delete("", ({ session }, res) => {
   } catch (err) {
     res.status(422).send(parseError(err));
   }
-});
+}); 
 
 router.put('/admin/editlearningstyle', async (req,res) => {
 
     let options = {
               title: req.body.title,
               desc: req.body.description,
-              //image: req.body.image
+              image: req.body.image
               }
       console.log(req.body);
       PlayStyle.findOneAndUpdate({_id: req.body.id}, options).then(
@@ -303,6 +331,8 @@ router.put('/admin/editlearningstyle', async (req,res) => {
 //edit already existing exhibit
 router.put('/admin/editexhibit', async (req,res) => {
   console.log("here")
+  console.log(req.body)
+
   //);
   let options = {
     title: req.body.title,
@@ -310,11 +340,37 @@ router.put('/admin/editexhibit', async (req,res) => {
     image: req.body.image,
     status: req.body.status
     };
-Exhibit.findOneAndUpdate({_id: req.body.id}, options).then(
-  console.log(req.body.id)
+Exhibit.findOneAndUpdate({_id: req.body.id}, options).then(()=>{
+
+
+
+  
+
+}
+
+
 );
 //res.json(data);
 });
+
+
+//add new activity
+router.post("/admin/addactivity", async (req, res) => {
+  try{
+   console.log("lig");
+   let id = new mongoose.Types.ObjectId(); //make a unique objID
+   console.log("ma");
+   await Activities.create({ //create new exhibit w/ the model
+     'title': req.body.name,
+     'description': req.body.description,
+     'skills':req.body.connections
+   }
+   );
+   console.log("bawls");
+  }catch(err){
+   console.log(err); // we will know if error
+  }
+ });
 
 //add a new pin to pin page
 router.post("/admin/addmap", async (req, res) => {
@@ -349,7 +405,7 @@ router.post("/admin/addexhibit", async (req, res) => {
      'exhibit_id': id,
      'title': req.body.title,
      'desc': req.body.desc,
-     'photo':req.body.image,
+     'image':req.body.image,
      'status':req.body.status
    }
    );
@@ -358,6 +414,7 @@ router.post("/admin/addexhibit", async (req, res) => {
    console.log(err); // we will know if error
   }
  });
+
 
  //edit an already existing exhibit
 router.post("/admin/addlearningstyle", async (req, res) => {
@@ -369,7 +426,7 @@ router.post("/admin/addlearningstyle", async (req, res) => {
      'style_id': id,
      'title': req.body.title,
      'desc': req.body.desc,
-     'photos':req.body.image
+     'image':req.body.image
    }
    );
    console.log("bawls");
@@ -420,7 +477,6 @@ router.get('/download-impressions-csv', async (req, res) => {
       res.status(500).send('Error occurred: ' + error.message);
   }
 });
-
 // create a new session instance in db
 router.post('/sessions/end', async (req, res) => {
   try {
@@ -457,7 +513,21 @@ router.get('/download-sessions-csv', async (req, res) => {
       res.status(500).send('Error occurred: ' + error.message);
   }
 });
+ 
+// route to download feedback data as CSV
+router.get('/download-feedback-csv', async (req, res) => {
+  try {
+      const data = await Feedback.find();
+      const fields = ['feedback_id', 'exhibit', 'rating', 'childAge'];
+      const json2csvParser = new Parser({ fields });
+      const csv = json2csvParser.parse(data);
 
-
+      res.header('Content-Type', 'text/csv');
+      res.attachment('feedback.csv');
+      res.send(csv);
+  } catch (error) {
+      res.status(500).send('Error occurred: ' + error.message);
+  }
+});
 
 module.exports = router; //export so you can use this file in other files

@@ -4,6 +4,7 @@ import axios from 'axios';
 import Accordion from './accordion';
 import playExample from '../components/images/playExample.webp';
 import Footer from './footer';
+import ExhibitFeedback from '../Admin/components/Feedback';
 
 function PlayInfo({ title }) {
     const [desc, setDesc] = useState([]);
@@ -71,6 +72,7 @@ function PlayInfo({ title }) {
                 <img src={playExample} alt="Logo" className='PlayInfo-img' />
                 <Accordion items={data} keepOthersOpen={true} />
             </div>
+            <ExhibitFeedback exhibitId={title}/>
             <Footer />
         </div>
     );

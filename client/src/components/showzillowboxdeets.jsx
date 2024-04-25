@@ -10,12 +10,13 @@ import { useEffect, useState } from 'react';
 import playExample from '../components/images/playExample.webp'; // Corrected import path
 import Footer from './footer';
 import { useNavigate, useParams } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 
 function SingleInfo() {
-    const [desc, setdesc] = useState('');
+    const [desc, setDesc] = useState('');
     const [title, setTitle] = useState('');
     const [skills, setSkills] = useState('');
-
+    const [img, setImg] = useState("");
     const { id } = useParams();
     const { dest } = useParams();
     console.log({ id });
@@ -25,14 +26,23 @@ function SingleInfo() {
         axios
             .get(`http://localhost:8082/${dest}/${id}`)
             .then((res) => {
-                setdesc(res.data.baseData.desc);
-                setTitle(res.data.baseData.title);
-                setSkills(res.data.dropdown);
                 console.log(res.data)
+                setDesc(DOMPurify.sanitize(res.data.baseData.desc));
+                setTitle(res.data.baseData.title);
+                setImg(res.data.baseData.image);
+                setSkills(res.data.dropdown);
+                //setImg(res.data.img)
+                console.log(img);
+                
+                //console.log(res.data)
             })
             .catch((err) => {
                 console.log('Error ');
             });
+
+
+
+            
     }, [id, dest]);
 
     const data = []
@@ -65,10 +75,10 @@ function SingleInfo() {
             <Banner className="home-background" text={title}   />
 
             <h2>About {title}</h2>
-            <p>{desc}</p>
+            <p dangerouslySetInnerHTML={{ __html: desc }}></p>
             <hr />
             <div className="container">
-                <img src={playExample} alt="Logo" className='PlayInfo-img' />
+                <img src={img} alt="Logo" className='PlayInfo-img' />
                 <Accordion items={data} keepOthersOpen={true} />
 
             </div>

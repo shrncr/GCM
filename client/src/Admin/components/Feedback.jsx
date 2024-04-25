@@ -26,7 +26,7 @@ const ExhibitFeedback = ({ exhibitId }) => {
     return (
         <div>
             {/* Exhibit Feedback UI */}
-            <h2>Exhibit Feedback</h2>
+            
             <p>Did you find this exhibit helpful?</p>
             {/* Dropdown to select visitor's age */}
             <label htmlFor="child-age">Visitor's Age:</label>
@@ -52,45 +52,8 @@ const ExhibitFeedback = ({ exhibitId }) => {
     );
 };
 
-// Exhibit component representing a single exhibit
-const Exhibit = ({ exhibitId, exhibitName }) => {
-    return (
-        <div>
-            {/* Exhibit name */}
-            <h3>{exhibitName}</h3>
-            {/* Render ExhibitFeedback component within Exhibit */}
-            <ExhibitFeedback exhibitId={exhibitId} />
-        </div>
-    );
-};
 
-// App component representing the main application
-const App = () => {
-    return (
-        <div>
-            {/* Header */}
-            <h1>Museum Exhibits</h1>
-            {/* Render Exhibit components for various exhibits */}
-            <Exhibit exhibitId={1} exhibitName="Big John" />
-            <Exhibit exhibitId={2} exhibitName="Central Bank" />
-            <Exhibit exhibitId={3} exhibitName="Engineer's Workshop" />
-            <Exhibit exhibitId={4} exhibitName="Firehouse" />
-            <Exhibit exhibitId={5} exhibitName="Global Cafe" />
-            <Exhibit exhibitId={6} exhibitName="Twinkle Stars Theather" />
-            <Exhibit exhibitId={7} exhibitName="Forts" />
-            <Exhibit exhibitId={8} exhibitName="Tugboat Tots" />
-            <Exhibit exhibitId={9} exhibitName="Art Smart" />
-            <Exhibit exhibitId={10} exhibitName="Kidsport" />
-            <Exhibit exhibitId={11} exhibitName="Ice Cream Parlor" />
-            <Exhibit exhibitId={12} exhibitName="Light Cloud" />
-            <Exhibit exhibitId={13} exhibitName="Water's Journey" />
-            <Exhibit exhibitId={14} exhibitName="Vet Clinic" />
-            <Exhibit exhibitId={15} exhibitName="St. Joseph's Children's Hospital " />
-            <Exhibit exhibitId={16} exhibitName="Pizza Place" />
-            <Exhibit exhibitId={17} exhibitName="Publix" />
-            {/* Add more Exhibit components for other exhibits */}
-        </div>
-    );
-};
 
-export default App;
+
+
+export default ExhibitFeedback;

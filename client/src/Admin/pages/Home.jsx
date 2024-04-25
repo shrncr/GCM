@@ -1,25 +1,28 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import TextEditor from "../components/TextEditor"
-import GridBoxes from "../../components/gridBoxes"
 
+import ExhibitFeedback from "../components/Feedback.jsx";
+import { Link } from 'react-router-dom';
 export default function Home(props) {
-    const [boxesData, setBoxesData] = useState([
-        { id: 1, title: 'Edit Exhibits', link: '../exhibits'},
-        { id: 2, title: 'Edit Playstyles', link: '../playstyles' },
-        { id: 3, title: 'Edit Map', link: '../map' },
-        { id: 4, title: 'View Data', link: '../data' },
-        
-    ]);
+
+
     //THIS PAGE WILL BE A WELCOME SCREEN FOR THE USER 
     return (
         <form>
-        <div className="welcome">
-            <h1>Welcome User</h1>        
-        </div>
-        <GridBoxes data={boxesData}/>
-        <div className = "homepage-editor">
-            <TextEditor/>
-        </div>
+            <div className="welcome">
+                <h1>Welcome User</h1>
+
+            </div>
+            <div className="home-button-container">
+                <Link to="exhibits"><button className="home-button">Edit Exhibits</button></Link>
+                <Link to="playstyles"><button className="home-button">Edit Playstyles</button></Link>
+                <Link to="activities"><button className="home-button">Edit Activities</button></Link>
+                <Link to="map"><button className="home-button">Edit Map</button></Link>
+                <Link to="data"><button className="home-button">View Data</button></Link>
+            </div>
+
+
+
         </form>
     )
 };

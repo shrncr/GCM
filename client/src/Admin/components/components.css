@@ -6,23 +6,36 @@
     align-items: center;
     position: sticky;
     top: 0;
-    gap: 2rem;
     padding: 0 1rem;
-    z-index: 2;
+    z-index: 5;
     width: 100%;
-    height: 13vh;
+    height: 80px;
     transition: top 0.3s, height 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.341);
 
 }
 
-
 .navbar ul {
+
+    max-width: 100%;
+    /* Ensure ul doesn't exceed parent width */
     padding: 0;
     margin: 0;
     list-style: none;
     display: flex;
-    gap: 1rem;
     text-decoration: none;
+    transition: 0.4s;
+    overflow-x: auto;
+    /* Add horizontal scroll for overflow */
+}
+
+.navbar li {
+
+    margin: 0;
+}
+
+.navbar-buttons {
+    font-size: 20px;
 
 }
 
@@ -36,17 +49,77 @@
     font-size: 2vw;
 }
 
-.navbar li:hover {
+.navbar-button {
     color: gray;
 }
 
 .navbar img {
-    border-radius: 1vw;
-    height: 5vw;
+    border-radius: 10px;
+    height: 60px;
     width: auto;
-    margin: 10px;
+    margin-right: 10px;
 }
 
+/* Hamburger menu styles */
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+/* Active state for hamburger menu */
+.bar.active:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.bar.active:nth-child(2) {
+    opacity: 0;
+}
+
+.bar.active:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 1000px) {
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background-color: purple;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        z-index: 5;
+        overflow-x: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.341);
+        /* Hide horizontal scroll for small screens */
+    }
+
+    .navbar li {
+        font-size: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .navbar ul.active {
+        display: flex;
+        justify-content: center;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+}
 
 
 .zillow-box {
@@ -227,3 +300,60 @@
     background-color: rgb(255, 75, 75);
 
 }
+
+.dropdown-form {
+    position: relative;
+    display: inline-block;
+}
+
+.newform {
+    position: absolute;
+    top: -100px;
+    left: 100%;
+    width: 300px;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    padding: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.accordion-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100vw;
+    /* Adjust as needed */
+
+    color: black;
+}
+
+.accordion {
+
+    width: 50vw;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    /* Adjust width as needed */
+}
+
+
+
+.accordion-title {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: purple;
+    border: none;
+    border-radius: 0;
+    color: white;
+}
+
+.accordion-content {
+    color: black;
+
+}
+
+/* Add additional styles as needed */

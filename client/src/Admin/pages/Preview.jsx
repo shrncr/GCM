@@ -1,73 +1,70 @@
-import { React, useContext } from "react"
+import { React, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ExhibitContext } from "../SetData.jsx";
-import image from "../images/playExample.webp"
-import { useLocation } from 'react-router-dom';
-export default function Preview(props) {
-  const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext)
-  const navigate = useNavigate()
-  const location = useLocation()
-  const activity = ["Run", "Jump", "Sprint", "Eat"];
 
+import { useLocation } from 'react-router-dom';
+import ExhibitFeedback from "../components/Feedback.jsx";
+import DOMPurify from 'dompurify';
+import Accordion from "../components/Accordion.jsx";
+
+export default function Preview(props) {
+  const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   let data;
-  //find if playstyle or exhibit
+  let image;
+  let ext1;
+  let ext2;
+
   switch (props.title) {
     case "Playstyles":
       data = playstyles[props.index];
+      image = playstyles[props.index].image;
+      ext1 = ["one", "two", "three"];
+      ext2 = ["hello", "little", "bitch"];
       break;
     case "Exhibits":
       data = exhibits[props.index];
+      image = exhibits[props.index].image;
+      ext1 = exhibits[props.index].activities;
+      ext2 = exhibits[props.index].activities.skills;
       break;
     case "Map":
       data = locations[props.index];
+      ext1 = [];
       break;
     default:
       data = [];
+      ext1 = [];
       break;
   }
-  let editType = ""
-  if (location.pathname.includes("exhibit")) {
-    editType = "Exhibit"
+  const sanitizedDescription = DOMPurify.sanitize(data.desc);
 
-  } else {
-    editType = "Playstyle"
-  }
-  //LOAD IN A SPECIFIC EXHIBIT/PLAYSTYLE/AT HOME ACTIVITY
   return (
     <div>
       <div className="banner">
         <img src={image} alt={data.image}></img>
       </div>
       <div>
-        <h1 className="admin-header">{data.title} </h1>
+        <h1 className="admin-header">{data.title}</h1>
       </div>
       <hr />
 
-      <p className="description">{data.desc}</p>
+      <p className="description" dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
 
-      <div className="preview-accordian">
-        {activity.map((name, index) => {
+      {/* Conditionally render the Accordion component */}
+      {ext1.length !== 0 && (
+        <div className="accordion-container">
+          <Accordion ext1={ext1} ext2={ext2} />
+        </div>
+      )}
 
-          return (
-            <div className="accordian-item">
-              <h1 className="accordian-header">
-                <button className="accordian-button">
-                  {name}
-                </button>
-
-              </h1>
-              <div className="accordian-body">
-                This is where the description and buttons to link further learning will go
-              </div>
-            </div>
-          )
-        })}
-      </div>
+      <ExhibitFeedback exhibitId={data.title} />
       <div className="edit_button">
         <Link to="edit">
           <button className="normal" type="button">
-            Edit {editType}
+            Edit {location.pathname.includes("exhibit") ? "Exhibit" : "Playstyle"}
           </button>
         </Link>
         <button className="normal" type="button" onClick={(e) => navigate('/admin/exhibits')}>
@@ -75,7 +72,7 @@ export default function Preview(props) {
         </button>
       </div>
     </div>
-  )
+  );
 };
 
 

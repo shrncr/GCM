@@ -60,31 +60,54 @@ const SetData = ({ children }) => {
     });
   }, []);
   //SET THE AT HOME ACTIVITIES
-  useEffect(() => {
-    setHomeAct(exhibits)
-  })
+  axios({ //get exhibits
+    url: 'http://localhost:8082/activities',
+    method: 'GET',
+    headers: {
+      authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+    },
+    catch(error) {
+      console.error('error:', error);
+      alert('An error occured.')
+    }
+  }).then((res) => {
+    console.log(res.data)
+    setHomeAct(res.data)
+  });
+
   //THIS USE EFFECT IS TO SET DATA PAGE
   useEffect(() => {
-    const d = [];
-    const d1 = [];
-    const d2 = [];
-    const d3 = [];
+    const getCSV = async () => {
+      try {
+        const c = [];
+        const feedback = await axios.get('http://localhost:8082/download-feedback-csv');
+        const impressions = await axios.get('http://localhost:8082/download-impressions-csv');
+        const session = await axios.get('http://localhost:8082/download-sessions-csv');
+        const arr = [feedback, impressions, session];
 
-    d1.push(["Name", "County", "Region"])
-    d2.push(["Color", "Paint", "Canvas", "Orange"])
-    d3.push(["Apples", "Bananas"])
-    for (let i = 0; i < 100; i++) {
-      d1.push([`this ${i}`, `is ${i}`, `data ${i}`])
-      d2.push([`bruh ${i}`, `what ${i}`, `the ${i}`, `fuck ${i}`])
-      d3.push([`is ${i}`, `this ${i}`])
-    }
-    d.push(d1);
-    d.push(d2);
-    d.push(d3);
+        arr.forEach(csv => {
+          const rows = csv.data.split("\n");
+          const d = [];
 
-    // Set the exhibits with any array of exhibits class
-    setData(d)
+          rows.forEach(row => {
+
+            const cols = row.replace(/["']/g, "").split(",");
+
+            d.push(cols);
+          });
+          c.push(d);
+        });
+
+        setData(c);
+      } catch (error) {
+        console.error('Error fetching or processing CSV data:', error);
+      }
+    };
+
+    getCSV();
+
   }, []);
+
 
   return (
     <ExhibitContext.Provider value={{ exhibits, setExhibits, playstyles, setPlaystyles, homeAct, setHomeAct, locations, setLocations, data, setData, }}>

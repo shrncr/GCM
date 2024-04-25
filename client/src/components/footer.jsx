@@ -7,7 +7,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-content">
         <div>
-          <a href="/about" style={{ fontWeight: 'bold' }}>About</a>
+          <a href="/" style={{ fontWeight: 'bold' }}>Home</a>
           {" | "}
           <a href="https://glazermuseum.org/visit" style={{ fontWeight: 'bold' }}>Plan Your Visit</a>
           {" | "}
@@ -17,13 +17,15 @@ function Footer() {
 
           {" | "}
           <a href="https://glazermuseum.org/visit/#hours" style={{ fontWeight: 'bold' }}>Hours of Operation</a>
+          {" | "}
+          <a href="/admin" style={{ fontWeight: 'bold' }}>Admin</a>
         </div>
 
         <div style={{ fontWeight: '100' }}>
           Glazer Children’s Museum | 110 W Gasparilla Plaza, Tampa FL 33602
           <a href="tel:+18134433861"> | 813-443-3861</a>
           <br />
-          Copyright © 2022 | All rights reserved | Tax ID 59-2637851 | Registration #CH20272
+          Copyright © 2024 | All rights reserved | Tax ID 59-2637851 | Registration #CH20272
         </div>
 
       </div>

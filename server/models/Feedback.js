@@ -16,6 +16,10 @@ const FeedbackSchema = new mongoose.Schema({
         type:Number,
         required:true, // string will be the URL pointing to the image stored externally
     },
+    childAge: {
+        type: Number,
+        required: true, // Age of the child providing the feedback
+    }
 
 })
 

@@ -14,20 +14,80 @@ import PlaystyleCheckbox from "../components/Checkbox.js";
 import axios from "axios";
 import NameLoader from "../components/NameLoader.js";
 import Delete_Button from "../components/Delete_Button.jsx";
-import NestedEditor from "../components/nestedEditor.js";
 import TextEditor from "../components/TextEditor.js";
+import DropdownForm from "../components/DropdownForm.js";
 /* Main edit function, this will be exported and used as needed
 throughout the admin page.*/
 export default function Edit(props) {
   // Required constants
+  
   const navigate = useNavigate();
   const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
   const location = useLocation();
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [image, setImage] = useState('');
+  let selectedFile;
+
+  //awk endpoint to obtain presigned url to upload images
+  const endpt = "https://x57c4wsb6c.execute-api.us-east-2.amazonaws.com/howdoesthiswork/generatePresigned"
+
+  //function to GET the url from AWS API to AWS lambda function
+  const getPresignedUrl = async () => {
+    // GET request: presigned URL
+    const response = await axios({
+      method: "GET",
+      url: endpt,  
+    });
+    const presignedUrl = response.data.presignedUrl;
+    console.log(presignedUrl);
+    return presignedUrl;
+  };
+
+//actually uploads file to your presigned url
+  const uploadToPresignedUrl = async (presignedUrl) => {
+    // Upload file to pre-signed URL
+    const uploadResponse = await axios.put(presignedUrl, selectedFile, {
+      headers: {
+        "Content-Type": "application/jpg",
+      },
+      onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        setUploadProgress(percentCompleted);
+        console.log(`Upload Progress: ${percentCompleted}%`);
+      },
+    });
+
+    //grab url's name to upload to db
+    let url = uploadResponse.config.url;
+    let cutUrl = url.substring(0,url.indexOf(".jpg?")+ 4);
+    setImage(cutUrl);
+  };
 
   // Variables for extracting and customizing what the buttons say
   let done = "Add Exhibit";
   let data = [];
   let exh = {};
+  
+  const handleImageChange = async (event) => { //calls whenever the file to upload changes
+    event.preventDefault();
+    const files = event.target.files;
+    console.log(files);
+    console.log(event.target)
+    if (files && files.length > 0) { 
+      console.log("mepw")
+      // Since we're allowing only one file, let's take the first one
+      selectedFile = files[0];
+    
+      const presignedUrl = await getPresignedUrl();
+      uploadToPresignedUrl(presignedUrl);
+
+    } else {
+      // Reset the image state if no file is selected
+      //setImage(null);
+    }
+  }
   if (location.pathname.includes("edit")) {
     done = "Done"
     if (props.title === "Playstyles") {
@@ -56,16 +116,13 @@ export default function Edit(props) {
   the user is entering*/
   const [name, setName] = useState(exh.title);
   const [description, setDescription] = useState(exh.desc);
-  const [image, setImage] = useState(exh.image);
+  
   let v;
   if (exh.status !== undefined) {
     v = exh.status;
   } else {
     v = true;
   };
-
-
-  
 
   /* Visibility variable and function used to track if the 
   exhibit/playstyle will populate on the client side */
@@ -76,7 +133,7 @@ export default function Edit(props) {
   const [long, setLong] = useState(props.title === "Map" ? exh.longitude : "");
   const [lat, setLat] = useState(props.title === "Map" ? exh.latitude : "");
   const [addy, setAdd] = useState("");
-  
+
   const toggleVisibility = (event) => {
     setVisible(!visible);
   };
@@ -97,6 +154,12 @@ export default function Edit(props) {
     });
   };
 
+  const handleDescriptionChange = (content) => {
+    setDescription(content);
+  };
+
+
+  
   /* This chunk of code is used for importing the names of the playstyles
   and exhibits in the database in order to title each button
   and track what is being added to each new object. */
@@ -108,7 +171,7 @@ export default function Edit(props) {
   let handler = (res) => {
     const availableStyles = res.data.map(style => style.title);
     const checkboxes = availableStyles.map((style, index) => (
-      <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} start = {startVal} />
+      <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} start={startVal} />
     ));
     setCheckboxArr(checkboxes);
   }
@@ -127,6 +190,8 @@ export default function Edit(props) {
   the information entered and sends it to the database, which then
   creates the object of whatever is being sent. It is also used to 
   make edits to any existing playstyles/exhibits. */
+
+
   const addExhibit = () => {
     if (location.pathname.includes("edit")) { //if youre editing
       console.log("editing...");
@@ -144,6 +209,7 @@ export default function Edit(props) {
             alert('An error occured.')
           }
         }).then((res) => {
+          console.log("success")
         })
       } else if (props.title === "Exhibits") {
 
@@ -162,7 +228,7 @@ export default function Edit(props) {
           }
         }).then((res) => {
         });
-      } else if (props.title === "Map"){ // if editing a map location
+      } else if (props.title === "Map") { // if editing a map location
         axios({ //make request
           url: 'http://localhost:8082/admin/editmap', //edit exhibit
           method: 'POST',
@@ -177,7 +243,7 @@ export default function Edit(props) {
         }).then((res) => {
         });
 
-      } else{
+      } else {
 
       };
     } else {//if adding newc
@@ -198,11 +264,11 @@ export default function Edit(props) {
         });
 
 
-      }else if (props.title === "Map"){
+      } else if (props.title === "Map") {
         axios({ //make request
           url: 'http://localhost:8082/admin/addmap', //edit exhibit
           method: 'POST',
-          data: { long: long, lat: lat, address: addy, title: name,desc: description,playstyle: selectedOptions[0] },
+          data: { long: long, lat: lat, address: addy, title: name, desc: description, playstyle: selectedOptions[0] },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -213,8 +279,8 @@ export default function Edit(props) {
         }).then((res) => {
         });
       }
-       else {
-        console.log("specifically, a playstyle");
+      else {
+        console.log("specifically, a playstyle added");
         axios({ //make request
           url: 'http://localhost:8082/admin/addlearningstyle', //edit exhibit
           method: 'POST',
@@ -240,17 +306,12 @@ export default function Edit(props) {
       navigate(`/admin/map`)
     };
   };
-  //DELETE EXHIBIT
-  const deleteExhibit = () => {
-    //THIS WILL DELETE AN EXHIBIT
-    return
-  };
 
   /* Here is our return section. This is the HTML portion that actually
   builds the webpage utilizing the functions created above. */
   return (
-
-    <form>
+<div>
+    <form encType="multipart/form-data">
       {/*Form for Creating Exhibit*/}
       <div>
         <label>Name:</label>
@@ -263,24 +324,21 @@ export default function Edit(props) {
       <div>
         <label></label>
         <label>Description:</label>
-        <textarea
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <TextEditor value={description} onChange={handleDescriptionChange} />
       </div>
 
-      {props.title === "Map" ?
-      <PlaceSearch addy={"401 E Kennedy"} longSet={setLong} latSet={setLat} addSet = {setAdd}/>
-      : ""}
+        {props.title === "Map" ?
+          <PlaceSearch addy={"401 E Kennedy"} longSet={setLong} latSet={setLat} addSet={setAdd} />
+          : ""}
 
       <div>
         <label></label>
         <label>Image:</label>
         <input
-          type="file"
-          onChange={(e) => setImage(e.target.value)}
+          type={"File"} accept={"image/*"} name={"image"} id={"imageInput"} multiple={false}
+          onChange={(e) => handleImageChange(e)}
         />
+      
       </div>
       <br/>
       <div>
@@ -290,7 +348,7 @@ export default function Edit(props) {
         {checkboxArr}
       </div>
       <div>
-        <NestedEditor/>
+        <DropdownForm/>
       </div>
       <div>
       <br/>
@@ -301,19 +359,21 @@ export default function Edit(props) {
       </div>
       <div className="edit_button"  >
 
-        <button className="normal" type="button" onClick={addExhibit}>
-          {done}
-        </button>
+          <button className="normal" type="button" onClick={addExhibit}>
+            {done}
+          </button>
 
-        <Delete_Button done={done} />
+        <Delete_Button done={done} title={props.title} id={exh._id} />
 
-        <button className="normal" type="button" onClick={() => navigate(-1)}>
-          Cancel
-        </button>
+          <button className="normal" type="button" onClick={() => navigate(-1)}>
+            Cancel
+          </button>
 
+        </div>
+
+      </form>
       </div>
-
-    </form>
+    
   );
 }
 
