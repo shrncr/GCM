@@ -310,7 +310,7 @@ export default function Edit(props) {
   /* Here is our return section. This is the HTML portion that actually
   builds the webpage utilizing the functions created above. */
   return (
-<div>
+<div className="content-wrapper">
     <form encType="multipart/form-data">
       {/*Form for Creating Exhibit*/}
       <div>
@@ -331,7 +331,7 @@ export default function Edit(props) {
           <PlaceSearch addy={"401 E Kennedy"} longSet={setLong} latSet={setLat} addSet={setAdd} />
           : ""}
 
-      <div>
+      <div className="no-padding">
         <label></label>
         <label>Image:</label>
         <input
