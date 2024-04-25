@@ -11,14 +11,14 @@ function AdminApp() {
     return (
         <SetData>
             <div>
+                <Navbar />
 
                 <AdminRoutes />
-
       </div>
 
-        </SetData>
+    </SetData>
 
-    );
+  );
 }
 
 export default AdminApp;

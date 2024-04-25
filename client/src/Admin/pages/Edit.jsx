@@ -16,11 +16,12 @@ import NameLoader from "../components/NameLoader.js";
 import Delete_Button from "../components/Delete_Button.jsx";
 import TextEditor from "../components/TextEditor.js";
 import DropdownForm from "../components/DropdownForm.js";
+import ContentWrapper from "../components/ContentWrapper.jsx";
 /* Main edit function, this will be exported and used as needed
 throughout the admin page.*/
 export default function Edit(props) {
   // Required constants
-  
+
   const navigate = useNavigate();
   const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
   const location = useLocation();
@@ -36,14 +37,14 @@ export default function Edit(props) {
     // GET request: presigned URL
     const response = await axios({
       method: "GET",
-      url: endpt,  
+      url: endpt,
     });
     const presignedUrl = response.data.presignedUrl;
     console.log(presignedUrl);
     return presignedUrl;
   };
 
-//actually uploads file to your presigned url
+  //actually uploads file to your presigned url
   const uploadToPresignedUrl = async (presignedUrl) => {
     // Upload file to pre-signed URL
     const uploadResponse = await axios.put(presignedUrl, selectedFile, {
@@ -61,7 +62,7 @@ export default function Edit(props) {
 
     //grab url's name to upload to db
     let url = uploadResponse.config.url;
-    let cutUrl = url.substring(0,url.indexOf(".jpg?")+ 4);
+    let cutUrl = url.substring(0, url.indexOf(".jpg?") + 4);
     setImage(cutUrl);
   };
 
@@ -69,17 +70,17 @@ export default function Edit(props) {
   let done = "Add Exhibit";
   let data = [];
   let exh = {};
-  
+
   const handleImageChange = async (event) => { //calls whenever the file to upload changes
     event.preventDefault();
     const files = event.target.files;
     console.log(files);
     console.log(event.target)
-    if (files && files.length > 0) { 
+    if (files && files.length > 0) {
       console.log("mepw")
       // Since we're allowing only one file, let's take the first one
       selectedFile = files[0];
-    
+
       const presignedUrl = await getPresignedUrl();
       uploadToPresignedUrl(presignedUrl);
 
@@ -116,7 +117,7 @@ export default function Edit(props) {
   the user is entering*/
   const [name, setName] = useState(exh.title);
   const [description, setDescription] = useState(exh.desc);
-  
+
   let v;
   if (exh.status !== undefined) {
     v = exh.status;
@@ -159,7 +160,7 @@ export default function Edit(props) {
   };
 
 
-  
+
   /* This chunk of code is used for importing the names of the playstyles
   and exhibits in the database in order to title each button
   and track what is being added to each new object. */
@@ -363,7 +364,7 @@ export default function Edit(props) {
             {done}
           </button>
 
-        <Delete_Button done={done} title={props.title} id={exh._id} />
+          <Delete_Button done={done} title={props.title} id={exh._id} />
 
           <button className="normal" type="button" onClick={() => navigate(-1)}>
             Cancel
@@ -372,8 +373,9 @@ export default function Edit(props) {
         </div>
 
       </form>
-      </div>
-    
+
+    </div>
+
   );
 }
 
