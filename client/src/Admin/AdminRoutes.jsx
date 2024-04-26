@@ -50,8 +50,8 @@ export default function AdminRoutes(props) {
                     return (
                         <React.Fragment key={index}>
                             <Route path={`/playstyles/${name}`} element={<Preview title={"Playstyles"} index={index} />} />
-                            <Route path={`/playstyles/${name}/edit`} element={<Edit title={"Playstyles"} index={index} />} />
-                            <Route path="/playstyles/add" element={<Edit title={"Playstyles"} index={null} />} />
+                            <Route path={`/playstyles/${name}/edit`} element={<Edit exhibit={e} title={"Playstyles"} index={index} />} />
+                            <Route path="/playstyles/add" element={<Edit exhibit={"add"} title={"Playstyles"} index={null} />} />
                         </React.Fragment>
                     );
                 })}
