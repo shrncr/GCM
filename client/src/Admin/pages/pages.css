@@ -85,13 +85,21 @@
 }
 
 .edit_button {
-    width: 100%;
-    height: auto;
+
+    width: auto;
+    height: 50px;
+
     grid-column: span;
 }
 
 .normal {
     background-color: gray;
+}
+
+.edit-button {
+    background-color: gray;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 
@@ -329,6 +337,21 @@
 .image-edit-container input[type="file"] {
     /* Hide the default file input button */
     display: none;
+}
+
+.feedback-containter {
+    width: 100vw;
+    height: auto;
+    display: flex;
+
+    justify-content: center;
+}
+
+.button-container {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    justify-content: center;
 }
 
 

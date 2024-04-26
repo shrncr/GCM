@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DOMPurify from 'dompurify';
 import useSkillsLoader from "../classes/skillsLoader"
-const Accordion = ({ exhibit, location }) => {
+const Accordion = ({ skills }) => {
     const [openIndex, setOpenIndex] = useState(null);
 
     const toggleAccordion = (index) => {
         setOpenIndex(openIndex === index ? null : index);
     };
 
-    const skills = useSkillsLoader({ exhibit, location });
+
 
     return (
         <div>
