@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Banner from './banner';
 import axios from 'axios';
-import Accordion from './accordion';
+import Accordion from '../Admin/components/Accordion.jsx';
 import { useParams } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import Footer from "./footer.jsx"
+import ExhibitFeedback from '../Admin/components/Feedback.jsx';
 function SingleInfo() {
     const [desc, setDesc] = useState('');
     const [title, setTitle] = useState('');
@@ -38,9 +39,12 @@ function SingleInfo() {
             <h2>{title}</h2>
             <hr />
             <p dangerouslySetInnerHTML={{ __html: desc }}></p>
-            <div className="container">
-                <img src={img} alt="Logo" className='PlayInfo-img' />
-                <Accordion items={skills} keepOthersOpen={true} />
+            <div className="accordion-container">
+                <img src={img}></img>
+                <Accordion skills={skills}/>
+            </div>
+            <div className="feedback-containter">
+                <ExhibitFeedback exhibitId={title} />
             </div>
             <Footer />
         </div>

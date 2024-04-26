@@ -1,7 +1,7 @@
 import { React, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ExhibitContext } from "../SetData.jsx";
-
+import useSkillsLoader from "../classes/skillsLoader.js";
 import { useLocation } from 'react-router-dom';
 import ExhibitFeedback from "../components/Feedback.jsx";
 import DOMPurify from 'dompurify';
@@ -12,10 +12,12 @@ export default function Preview(props) {
   const navigate = useNavigate();
   const location = useLocation();
 
+
   let data;
   let image;
   let ext1;
   let ext2;
+
 
   switch (props.title) {
     case "Playstyles":
@@ -50,6 +52,9 @@ export default function Preview(props) {
       break;
   }
   const sanitizedDescription = DOMPurify.sanitize(data.desc);
+  console.log(props.title)
+  const skills = useSkillsLoader({ exhibit: data, location: props.title });
+
 
   return (
     <div>
@@ -62,26 +67,28 @@ export default function Preview(props) {
       <hr />
       <div className="content-wrapper">
         <p className="description" dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
+      </div>
+      {/* Conditionally render the Accordion component */}
+      {ext1.length !== 0 && (
+        <div className="accordion-container">
+          <Accordion skills={skills} />
+        </div>
+      )}
 
-        {/* Conditionally render the Accordion component */}
-        {ext1.length !== 0 && (
-          <div className="accordion-container">
-            <Accordion exhibit={data} location={props.title} />
-          </div>
-        )}
 
-        <ExhibitFeedback exhibitId={data.title} />
+      <div className="button-container">
         <div className="edit_button">
           <Link to="edit">
             <button className="normal" type="button">
               Edit {location.pathname.includes("exhibit") ? "Exhibit" : "Playstyle"}
             </button>
           </Link>
-          <button className="normal" type="button" onClick={(e) => navigate('/admin/exhibits')}>
+          <button className="edit-button " type="button" onClick={(e) => navigate('/admin/exhibits')}>
             Back
           </button>
         </div>
       </div>
+
     </div>
   );
 };

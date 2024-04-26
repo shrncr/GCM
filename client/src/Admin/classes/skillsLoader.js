@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const useSkillsLoader = ({ exhibit, location }) => {
     const [skills, setSkills] = useState([]);
-
+    console.log("under")
+    console.log(location)
     useEffect(() => {
         if (exhibit === "add") {
             return; // Early return if exhibit is "add"
@@ -15,16 +16,18 @@ const useSkillsLoader = ({ exhibit, location }) => {
                 dest = "playstyles";
                 break;
             case "Exhibits":
-                dest = "playplaces";
+                dest = "playPlaces";
                 break;
             default:
                 console.error('Invalid location:', location);
                 return;
         }
-
+        console.log("hruosgno")
         axios.get(`http://localhost:8082/${dest}/${exhibit._id}`)
             .then((res) => {
+                console.log(res)
                 const { dropdown } = res.data;
+                console.log(dropdown)
                 setSkills(dropdown);
             })
             .catch((err) => {

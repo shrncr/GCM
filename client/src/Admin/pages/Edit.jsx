@@ -23,10 +23,10 @@ export default function Edit(props) {
   // Required constants
   const [updateData, setUpdateData] = useState(false);
   const navigate = useNavigate();
-  const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
+  const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations, homeAct, setHomeAct } = useContext(ExhibitContext);
   const location = useLocation();
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [image, setImage] = useState("https://gcmchildrensmuseum.s3.amazonaws.com/f012fe42-d735-4e5a-93b7-556c5ab7702f.jpg");
+  const [image, setImage] = useState("");
   let selectedFile;
 
   //awk endpoint to obtain presigned url to upload images
@@ -67,7 +67,7 @@ export default function Edit(props) {
   };
   const isMapPage = location.pathname.includes("map");
   // Variables for extracting and customizing what the buttons say
-  let done = "Add Exhibit";
+  let done = `Add ${props.title}`;
   let data = [];
   let exh = {
     'title': " ",
@@ -99,8 +99,11 @@ export default function Edit(props) {
 
     } else if (props.title === "Exhibits") {
       exh = exhibits[props.index]; //the current exhibit
-    } else {
+    } else if (props.title === "Map"){
       exh = locations[props.index]
+    } else{
+      exh = homeAct[props.index]
+      console.log(exh)
     }
 
   } else {
@@ -111,8 +114,10 @@ export default function Edit(props) {
       data = playstyles;
     } else if (props.title === "Exhibits") {
       data = exhibits;
-    } else {
+    } else if (props.title === "Map") {
       data = locations;
+    } else{
+      data = homeAct;
     }
   }
 
@@ -179,7 +184,7 @@ export default function Edit(props) {
   let handler = (res) => {
     const availableStyles = res.data.map(style => style.title);
     const checkboxes = res.data.map((style, index) => (
-      <PlaystyleCheckbox key={style} label={style.title} color={colors[index % colors.length]} onSelect={toggleOption} start={startVal} item={style} />
+      <PlaystyleCheckbox key={style.title} label={style.title} color={colors[index % colors.length]} onSelect={toggleOption} start={startVal} item={style.title} />
     ));
     setCheckboxArr(checkboxes);
   }
@@ -255,6 +260,20 @@ export default function Edit(props) {
         });
 
       } else {
+        axios({ //make request
+          url: 'http://localhost:8082/admin/editactivity', //edit exhibit
+          method: 'POST',
+          data: { id: exh._id, title: name, desc: description,  skills: selectedOptions },
+          headers: {
+            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+          },
+          catch(error) {
+            console.error('error:', error);
+            alert('An error occured.')
+          }
+        }).then((res) => {
+
+        });
 
       };
     } else {//if adding newc
@@ -310,7 +329,7 @@ export default function Edit(props) {
         axios({ //make request
           url: 'http://localhost:8082/admin/addactivity', //edit exhibit
           method: 'POST',
-          data: { title: name, desc: description, image: image, skills: selectedOptions },
+          data: { title: name, desc: description, image: image, skills: selectedOptions, atHome: true },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },

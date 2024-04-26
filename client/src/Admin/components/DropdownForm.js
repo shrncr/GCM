@@ -6,9 +6,10 @@ import NameLoader from './NameLoader';
 function DropdownForm() {
     const [isOpen, setIsOpen] = useState(false);
     const [formData, setFormData] = useState({
-        name: '',
-        description: '',
-        connections: []
+        title: '',
+        desc: '',
+        connections: [],
+        atHome: false
     });
 
     const location = useLocation()
@@ -16,10 +17,10 @@ function DropdownForm() {
   let submitType = ''
   if (location.pathname.includes("playstyles") || location.pathname.includes("activities")) {
     type = "Skill"
-    submitType = "skills"
+    submitType = "skill"
   } else if (location.pathname.includes("exhibits") || location.pathname.includes("skills")) {
     type = "Activity"
-    submitType = "activities"
+    submitType = "activity"
   } else if (location.pathname.includes("map")) {
     type = "Playstyle"
     submitType = "playstyles"
@@ -45,7 +46,7 @@ function DropdownForm() {
           connections: nestedSelectedOptions  // Add the selected options to the formData
         };
         axios({ //make request
-            url: 'http://localhost:8082/admin/addactivity',
+            url: 'http://localhost:8082/admin/add' + submitType,
             method: 'POST',
             data: completeFormData,
             headers: {
@@ -57,8 +58,8 @@ function DropdownForm() {
             }
           }).then((res) => {
             setFormData({
-              name: '',
-              description: '',
+              title: '',
+              desc: '',
               connections: []
             });
             setNestedSelectedOptions([]);
@@ -113,11 +114,11 @@ function DropdownForm() {
               <div className="newform">
                   <label>
                       Name:
-                      <input type="text" name="name" value={formData.name} onChange={handleInputChange} />
+                      <input type="text" name="title" value={formData.title} onChange={handleInputChange} />
                   </label>
                   <label>
                       Description:
-                      <textarea name="description" value={formData.description} onChange={handleInputChange} />
+                      <textarea name="desc" value={formData.desc} onChange={handleInputChange} />
                   </label>
                   <label>{nestedCheckboxesTitle}</label>
                   {nestedCheckboxArr}
