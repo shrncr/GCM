@@ -103,6 +103,7 @@ export default function Edit(props) {
       exh = locations[props.index]
     } else{
       exh = homeAct[props.index]
+      console.log(exh)
     }
 
   } else {
@@ -259,6 +260,20 @@ export default function Edit(props) {
         });
 
       } else {
+        axios({ //make request
+          url: 'http://localhost:8082/admin/editactivity', //edit exhibit
+          method: 'POST',
+          data: { id: exh._id, title: name, desc: description,  skills: selectedOptions },
+          headers: {
+            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+          },
+          catch(error) {
+            console.error('error:', error);
+            alert('An error occured.')
+          }
+        }).then((res) => {
+
+        });
 
       };
     } else {//if adding newc

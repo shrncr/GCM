@@ -140,7 +140,7 @@ HomeText.findOneAndUpdate({num: "Resources" }, options).then(
     console.log(err);
   }
  });
- router.delete('/activity/delete', async (req, res)=>{ 
+ router.delete('/Activities/delete', async (req, res)=>{ 
   try{
     let data = await Activities.deleteOne({_id:req.body.id})
     res.json(data);
@@ -148,7 +148,7 @@ HomeText.findOneAndUpdate({num: "Resources" }, options).then(
     console.log(err);
   }
  });
- router.delete('/skill/delete', async (req, res)=>{ 
+ router.delete('/Skill/delete', async (req, res)=>{ 
   try{
     let data = await Skills.deleteOne({_id:req.body.id})
     res.json(data);
@@ -379,6 +379,24 @@ router.post("/admin/addactivity", async (req, res) => {
   }
  });
 
+
+ router.post("/admin/editactivity", async (req, res) => {
+  try{
+    console.log("mewo meow")
+   console.log(req.body);
+   let options = {
+    title: req.body.title,
+    description: req.body.desc,
+    skills: req.body.skills
+    };
+  Activities.findOneAndUpdate({_id: req.body.id}, options).then(
+    console.log("then")
+  )
+   
+ }catch(err){
+  console.log(err);
+ }
+});
 
  router.post("/admin/addskill", async (req, res) => {
   try{
