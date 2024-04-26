@@ -97,7 +97,7 @@ p {
     left: 50%;
     /* Move the left edge to the horizontal center */
     transform: translate(-50%, -50%);
-    font-size: 20px;
+    font-size: 30px;
     color: white;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 1);
     /* Add shadow */
