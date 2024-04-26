@@ -279,6 +279,7 @@ a:-webkit-any-link {
     /* A reasonable minimum height, adjust based on content */
     padding: 0.5rem 0;
     /* Provides padding top and bottom */
+    margin-top: 100px;
 }
 
 .footer-content {
@@ -548,7 +549,7 @@ header .nav-btn {
     padding: 10px;
     margin-bottom: 10px;
     background-color: purple;
-    border-radius: 3px;
+    border-radius: 15px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
