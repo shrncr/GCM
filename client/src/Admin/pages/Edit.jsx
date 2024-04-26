@@ -67,7 +67,7 @@ export default function Edit(props) {
   };
   const isMapPage = location.pathname.includes("map");
   // Variables for extracting and customizing what the buttons say
-  let done = "Add Exhibit";
+  let done = `Add ${props.title}`;
   let data = [];
   let exh = {
     'title': " ",
