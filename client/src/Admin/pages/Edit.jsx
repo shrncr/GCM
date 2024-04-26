@@ -65,7 +65,7 @@ export default function Edit(props) {
     let cutUrl = url.substring(0, url.indexOf(".jpg?") + 4);
     setImage(cutUrl);
   };
-
+  const isMapPage = location.pathname.includes("map");
   // Variables for extracting and customizing what the buttons say
   let done = "Add Exhibit";
   let data = [];
@@ -158,6 +158,10 @@ export default function Edit(props) {
     });
   };
 
+  useEffect(() => {
+    console.log(selectedOptions);
+  }, [selectedOptions]);
+
   const handleDescriptionChange = (content) => {
     setDescription(content);
   };
@@ -174,9 +178,9 @@ export default function Edit(props) {
   on the page. */
   let handler = (res) => {
     const availableStyles = res.data.map(style => style.title);
-    const checkboxes = availableStyles.map((style, index) => (
-      <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleOption} start={startVal} />
-    ));
+      const checkboxes = res.data.map((style, index) => (
+        <PlaystyleCheckbox key={style} label={style.title} color={colors[index % colors.length]} onSelect={toggleOption} start={startVal} item={style} />
+      ));
     setCheckboxArr(checkboxes);
   }
   if (location.pathname.includes("playstyles") || location.pathname.includes("activities")) {
@@ -238,7 +242,7 @@ export default function Edit(props) {
         axios({ //make request
           url: 'http://localhost:8082/admin/editmap', //edit exhibit
           method: 'POST',
-          data: { id: exh._id, title: name, desc: description, latitude: lat, longitude: long, address: addy, playstyle: selectedOptions },
+          data: { id: exh._id, title: name, desc: description, latitude: lat, longitude: long, address: addy, playstyle: selectedOptions[0] },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -275,7 +279,7 @@ export default function Edit(props) {
         axios({ //make request
           url: 'http://localhost:8082/admin/addmap', //edit exhibit
           method: 'POST',
-          data: { long: long, lat: lat, address: addy, title: name, desc: description, playstyle: selectedOptions },
+          data: { long: long, lat: lat, address: addy, title: name, desc: description, playstyle: selectedOptions[0] },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -303,7 +307,7 @@ export default function Edit(props) {
         });
       };
     }
-
+    
     if (props.title === "Playstyles") {
       navigate(`/admin/playstyles`);
       window.location.reload();
@@ -377,7 +381,7 @@ export default function Edit(props) {
             {checkboxArr}
           </div>
           <div>
-            <DropdownForm />
+            {!isMapPage && <DropdownForm />}
           </div>
           <div>
             <br />

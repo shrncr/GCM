@@ -5,7 +5,7 @@ import 'react-quill/dist/quill.snow.css';
 const TextEditor = ({ value, onChange }) => {
     const modules = {
         toolbar: [
-            ['bold', 'italic', 'underline'],
+            ['bold', 'italic', 'underline', { 'header': 1 }, { 'header': 2 }],
             [{ 'font': [] }],
             [{ 'color': [] }, { 'background': [] }],
             [{ 'list': 'ordered'}, { 'list': 'bullet' }],
@@ -15,7 +15,7 @@ const TextEditor = ({ value, onChange }) => {
     };
     
     const formats = [
-        'bold', 'italic', 'underline',
+        'bold', 'italic', 'underline', 'header',
         'font',
         'color', 'background',
         'list', 'bullet', 'indent',

@@ -260,11 +260,12 @@ router.post('/admin', async (req,res) =>{
     let data = await Admin.findOne({username:req.body.username,password:req.body.password});
     console.log(data)
     if (data){
-      const sessionUser = sessionizeUser(data);
-      console.log("1");
-      req.session.user = sessionUser
-      console.log("2");
-      res.send(sessionUser);
+      // const sessionUser = sessionizeUser(data);
+      // console.log("1");
+      // req.session.user = sessionUser
+      // console.log("2");
+      // res.send(sessionUser);
+      res.json(data)
     }
     
   }catch(err){

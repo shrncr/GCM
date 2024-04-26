@@ -78,14 +78,17 @@ function DropdownForm() {
         } else {
           return [...prevSelected, playstyle];
         }
-      });
+      },
+    );
     };
+    
+    
     let nestedHandler = (res) => {
-        const availableStyles = res.data.map(style => style.title);
-        const checkboxes = availableStyles.map((style, index) => (
-          <PlaystyleCheckbox key={style} label={style} color={colors[index % colors.length]} onSelect={toggleNestedOption} start = {nestedStartVal} />
-        ));
-        setNestedCheckboxArr(checkboxes);
+      const availableStyles = res.data.map(style => style.title);
+      const checkboxes = res.data.map((style, index) => (
+        <PlaystyleCheckbox key={style} label={style.title} color={colors[index % colors.length]} onSelect={toggleNestedOption} start={nestedStartVal} item={style} />
+      ));
+      setNestedCheckboxArr(checkboxes);
     }
     if (location.pathname.includes("playstyles") || location.pathname.includes("activities")) {
         nestedCheckboxesTitle = "Activities:"

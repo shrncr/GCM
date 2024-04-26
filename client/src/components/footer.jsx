@@ -18,7 +18,7 @@ function Footer() {
           {" | "}
           <a href="https://glazermuseum.org/visit/#hours" style={{ fontWeight: 'bold' }}>Hours of Operation</a>
           {" | "}
-          <a href="/admin" style={{ fontWeight: 'bold' }}>Admin</a>
+          <a href="/login" style={{ fontWeight: 'bold' }}>Admin</a>
         </div>
 
         <div style={{ fontWeight: '100' }}>

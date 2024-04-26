@@ -28,7 +28,7 @@ function SingleInfo() {
             .then((res) => {
                 const cleanHTML = DOMPurify.sanitize(res.data.baseData.desc, {
                     ALLOWED_TAGS: ['p', 'br', 'ul', 'ol', 'li', 'strong', 'em', 'u', 'span', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote'],
-        ALLOWED_ATTR: ['style', 'class', 'align', 'valign', 'dir', 'lang', 'xml:lang', 'aria-hidden', 'data-*'],
+                    ALLOWED_ATTR: ['style', 'class', 'align', 'valign', 'dir', 'lang', 'xml:lang', 'aria-hidden', 'data-*'],
         });
                 setDesc(cleanHTML);
                 setTitle(res.data.baseData.title);
