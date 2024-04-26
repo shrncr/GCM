@@ -41,7 +41,7 @@ function SingleInfo() {
             <p dangerouslySetInnerHTML={{ __html: desc }}></p>
             <div className="accordion-container">
 
-                <Accordion skills={skills} />
+                <Accordion skills={skills} title={title} />
             </div>
             <div className="feedback-containter">
                 <ExhibitFeedback exhibitId={title} />
