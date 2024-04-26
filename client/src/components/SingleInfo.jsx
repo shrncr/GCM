@@ -40,7 +40,8 @@ function SingleInfo() {
             <hr />
             <p dangerouslySetInnerHTML={{ __html: desc }}></p>
             <div className="accordion-container">
-                <Accordion skills={skills} />
+                <img src={img}></img>
+                <Accordion skills={skills}/>
             </div>
             <div className="feedback-containter">
                 <ExhibitFeedback exhibitId={title} />
