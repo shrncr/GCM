@@ -314,7 +314,7 @@ export default function Edit(props) {
         axios({ //make request
           url: 'http://localhost:8082/admin/addactivity', //edit exhibit
           method: 'POST',
-          data: { title: name, desc: description, image: image, skills: selectedOptions },
+          data: { title: name, desc: description, image: image, skills: selectedOptions, atHome: true },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
