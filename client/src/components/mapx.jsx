@@ -35,7 +35,6 @@ function Map(props) {
   }, [locations]);
 
 
-
   const { isLoaded, loadError } = useLoadScript({ //loading map
     googleMapsApiKey: "AIzaSyBXqEo_870tbuzkTgjEondNHYznmrEnVf8",
     libraries,
@@ -50,22 +49,22 @@ function Map(props) {
   }
 
   return (
-      <div>
-        <GoogleMap //return a map
-            mapContainerStyle={mapContainerStyle}
-            zoom={10}
-            center={center}
-        >
-          {locations.map(curpin => ( //put pins on the map
-              <Marker position={
-                {
-                  lat: curpin.latitude,
-                  lng: curpin.longitude
-                }}
-              />
-          ))}
-        </GoogleMap>
-      </div>
+    <div>
+      <GoogleMap //return a map
+        mapContainerStyle={mapContainerStyle}
+        zoom={10}
+        center={center}
+      >
+        {locations.map(curpin => ( //put pins on the map
+          <Marker position={
+            {
+              lat: curpin.latitude,
+              lng: curpin.longitude
+            }}
+          />
+        ))}
+      </GoogleMap>
+    </div>
   );
 };
 

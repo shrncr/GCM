@@ -55,10 +55,10 @@ const UserMap = (props) => {
 
     // Format each exhibit data item into a box
     const renderBoxes = () => {
-        return exdata.map((item, index) => (
+        return locations.map((item, index) => (
             <div key={index} className="new-box">
-                <h3>{item.name}</h3>
-                <p>{item.description}</p>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
                 {/* Add more details as needed */}
             </div>
         ));
@@ -68,7 +68,7 @@ const UserMap = (props) => {
         <div>
             <div className="user-map-container">
                 <div className="user-map">
-                    <Map pins={locations}/>
+                    <Map pins={locations} />
                 </div>
                 <div className="map-info-div">
                     <h2>New Title</h2>
@@ -84,7 +84,7 @@ const UserMap = (props) => {
                     </div>
                 )}
             </div>
-            <Footer/>
+            <Footer />
         </div>
     );
 }
