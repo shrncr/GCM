@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 const Accordion = ({ items, keepOthersOpen }) => {
     //run thrrough and creates all the skills
     console.log(items)
+    console.log("\n\n\n")
     console.log("RIGHT ABOVE")
     const [data, setData] = useState(items.map(skill => ({
         id: skill.id,

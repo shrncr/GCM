@@ -26,7 +26,7 @@ export default function Edit(props) {
   const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations, homeAct, setHomeAct } = useContext(ExhibitContext);
   const location = useLocation();
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [image, setImage] = useState("https://gcmchildrensmuseum.s3.amazonaws.com/f012fe42-d735-4e5a-93b7-556c5ab7702f.jpg");
+  const [image, setImage] = useState("");
   let selectedFile;
 
   //awk endpoint to obtain presigned url to upload images
@@ -183,7 +183,7 @@ export default function Edit(props) {
   let handler = (res) => {
     const availableStyles = res.data.map(style => style.title);
     const checkboxes = res.data.map((style, index) => (
-      <PlaystyleCheckbox key={style} label={style.title} color={colors[index % colors.length]} onSelect={toggleOption} start={startVal} item={style} />
+      <PlaystyleCheckbox key={style.title} label={style.title} color={colors[index % colors.length]} onSelect={toggleOption} start={startVal} item={style.title} />
     ));
     setCheckboxArr(checkboxes);
   }

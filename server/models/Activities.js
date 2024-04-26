@@ -18,6 +18,10 @@ const ActivitiesSchema = new mongoose.Schema({
         type:Array,
         required:true, // string will be the URL pointing to the image stored externally
     },
+    atHome:{
+        type:Boolean,
+        required: true
+    }
 })
 
 module.exports = Activities = mongoose.model('activities', ActivitiesSchema);
