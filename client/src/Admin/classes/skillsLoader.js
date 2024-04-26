@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const useSkillsLoader = ({ exhibit, location }) => {
     const [skills, setSkills] = useState([]);
-
+    console.log("under")
+    console.log(location)
     useEffect(() => {
         if (exhibit === "add") {
             return; // Early return if exhibit is "add"
