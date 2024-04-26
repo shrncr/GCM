@@ -14,6 +14,7 @@ const UserMap = (props) => {
     const markerContent = props.markerContent;
     const [locations, setLocations] = useState([]);
     const [selectedMarker, setSelectedMarker] = useState(null);
+    const [selectedBox, setSelectedBox] = useState(null);
 
     useEffect(() => {
         // Fetch exhibit data
@@ -42,23 +43,22 @@ const UserMap = (props) => {
             headers: {
                 authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
             },
-            catch(error) {
-                console.error('error:', error);
-                alert('An error occured.')
-            }
         }).then((res) => {
             setLocations(res.data)
         });
-    }, [locations]);
+    }, [markerContent]);
 
-
+    const handleBoxClick = (index) => {
+        setSelectedBox(index);
+        setSelectedMarker(locations[index]);
+    };
 
     // Format each exhibit data item into a box
     const renderBoxes = () => {
         return locations.map((item, index) => (
-            <div key={index} className="new-box">
+            <div key={index} className={`new-box ${selectedBox === index ? 'selected' : ''}`} onClick={() => handleBoxClick(index)}>
                 <h3>{item.title}</h3>
-                <p>{item.desc}</p>
+                <div dangerouslySetInnerHTML={{ __html: item.desc }} />
                 {/* Add more details as needed */}
             </div>
         ));
@@ -71,18 +71,18 @@ const UserMap = (props) => {
                     <Map pins={locations} />
                 </div>
                 <div className="map-info-div">
-                    <h2>New Title</h2>
-                    <p>sample text</p>
+                    {selectedMarker && (
+                        <>
+                            <h2>{selectedMarker.title}</h2>
+                            <div dangerouslySetInnerHTML={{ __html: selectedMarker.desc }} />
+                            {/* Add more details as needed */}
+                        </>
+                    )}
                 </div>
                 <div className="box-container">
                     <h2>Play Places</h2>
                     {renderBoxes()}
                 </div>
-                {selectedMarker && (
-                    <div className="selected-box-location">
-                        Selected Marker: {selectedMarker.name} (Lat: {selectedMarker.lat}, Lng: {selectedMarker.lng})
-                    </div>
-                )}
             </div>
             <Footer />
         </div>

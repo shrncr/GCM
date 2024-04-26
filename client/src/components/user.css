@@ -531,6 +531,7 @@ header .nav-btn {
     min-height: 200px;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 10px;
+    width: 250px;
 }
 
 .box-container {
@@ -561,8 +562,8 @@ header .nav-btn {
     margin-bottom: 10px;
     border-radius: 3px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    display: flex;
     align-items: center;
+    background-color: lightblue;
 }
 
 .box-text {
@@ -586,6 +587,10 @@ header .nav-btn {
         flex-direction: column; /* Stack items vertically on smaller screens */
         height: 150vh;
 
+    }
+
+    .map-info-div {
+        width: 100%;
     }
 
     .box-container {
