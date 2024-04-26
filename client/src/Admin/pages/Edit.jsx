@@ -23,7 +23,7 @@ export default function Edit(props) {
   // Required constants
   const [updateData, setUpdateData] = useState(false);
   const navigate = useNavigate();
-  const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations } = useContext(ExhibitContext);
+  const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations, homeAct, setHomeAct } = useContext(ExhibitContext);
   const location = useLocation();
   const [uploadProgress, setUploadProgress] = useState(0);
   const [image, setImage] = useState("https://gcmchildrensmuseum.s3.amazonaws.com/f012fe42-d735-4e5a-93b7-556c5ab7702f.jpg");
@@ -99,8 +99,10 @@ export default function Edit(props) {
 
     } else if (props.title === "Exhibits") {
       exh = exhibits[props.index]; //the current exhibit
-    } else {
+    } else if (props.title === "Map"){
       exh = locations[props.index]
+    } else{
+      exh = homeAct[props.index]
     }
 
   } else {
@@ -111,8 +113,10 @@ export default function Edit(props) {
       data = playstyles;
     } else if (props.title === "Exhibits") {
       data = exhibits;
-    } else {
+    } else if (props.title === "Map") {
       data = locations;
+    } else{
+      data = homeAct;
     }
   }
 

@@ -365,9 +365,9 @@ router.post("/admin/addactivity", async (req, res) => {
    let id = new mongoose.Types.ObjectId(); //make a unique objID
    console.log("ma");
    await Activities.create({ //create new exhibit w/ the model
-     'title': req.body.name,
-     'description': req.body.description,
-     'skills':req.body.connections
+     'title': req.body.title,
+     'description': req.body.desc,
+     'skills':req.body.skills
    }
    );
    console.log("bawls");
