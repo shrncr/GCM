@@ -178,9 +178,9 @@ export default function Edit(props) {
   on the page. */
   let handler = (res) => {
     const availableStyles = res.data.map(style => style.title);
-      const checkboxes = res.data.map((style, index) => (
-        <PlaystyleCheckbox key={style} label={style.title} color={colors[index % colors.length]} onSelect={toggleOption} start={startVal} item={style} />
-      ));
+    const checkboxes = res.data.map((style, index) => (
+      <PlaystyleCheckbox key={style} label={style.title} color={colors[index % colors.length]} onSelect={toggleOption} start={startVal} item={style} />
+    ));
     setCheckboxArr(checkboxes);
   }
   if (location.pathname.includes("playstyles") || location.pathname.includes("activities")) {
@@ -290,7 +290,7 @@ export default function Edit(props) {
         }).then((res) => {
         });
       }
-      else {
+      else if (props.title === "Playstyles") {
         console.log("specifically, a playstyle added");
         axios({ //make request
           url: 'http://localhost:8082/admin/addlearningstyle', //edit exhibit
@@ -305,9 +305,25 @@ export default function Edit(props) {
           }
         }).then((res) => {
         });
-      };
+      } else {
+        console.log("specifically, a activity added");
+        axios({ //make request
+          url: 'http://localhost:8082/admin/addactivity', //edit exhibit
+          method: 'POST',
+          data: { title: name, desc: description, image: image, skills: selectedOptions },
+          headers: {
+            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+          },
+          catch(error) {
+            console.error('error:', error);
+            alert('An error occured.')
+          }
+        }).then((res) => {
+        });
+
+      }
     }
-    
+
     if (props.title === "Playstyles") {
       navigate(`/admin/playstyles`);
       window.location.reload();
@@ -315,10 +331,14 @@ export default function Edit(props) {
       navigate(`/admin/exhibits`);
       window.location.reload();
     }
-    else {
+    else if (props.title === "Map") {
       navigate(`/admin/map`)
       window.location.reload();
-    };
+    } else {
+      navigate(`/admin/activities`)
+      window.location.reload()
+
+    }
   };
 
   /* Here is our return section. This is the HTML portion that actually
