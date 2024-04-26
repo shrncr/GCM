@@ -71,64 +71,76 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="l-container">
       {/* Login form */}
-      <h2>Login</h2>
-      <form onKeyDown={handleKeyDown}>
-        {/* Username input */}
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
+      <div>
+        <h1>Login</h1>
+      </div>
+      <div className="form-container">
+        <form onKeyDown={handleKeyDown}>
 
-        {/* Password input */}
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
+          {/* Username input */}
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
 
-        {/* Role selection */}
-        <label htmlFor="role">Select Role:</label>
-        <select
-          id="role"
-          name="role"
-          value={formData.role}
-          onChange={handleChange}
-          required
-        >
-          <option value="administrator">Administrator</option>
-          <option value="researcher">Researcher</option>
-        </select>
+          {/* Password input */}
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
 
-        {/* Submit button */}
 
-        <button type="button" onClick={submitForm}>
-          Login
-        </button>
+          {/* Submit button */}
+          <button type="button" onClick={submitForm}>
+            Login
+          </button>
 
-      </form>
+        </form>
+      </div>
 
-      {/* Forgot username/password link */}
-      <a href="#" className="forgot-link">
-        Forgot Username/Password?
-      </a>
 
-      {/* Registration link */}
-      <a href="#" className="registered-link">
-        Not registered? Create an account
-      </a>
+
+
     </div>
   );
 };
 
 export default Login;
+/*
+
+ Role selection 
+<label htmlFor="role">Select Role:</label>
+<select
+  id="role"
+  name="role"
+  value={formData.role}
+  onChange={handleChange}
+  required
+>
+  <option value="administrator">Administrator</option>
+  <option value="researcher">Researcher</option>
+</select>
+
+Forgot username/password link 
+<a href="#" className="forgot-link">
+Forgot Username/Password?
+</a>
+
+ Registration link 
+<a href="#" className="registered-link">
+Not registered? Create an account
+</a>
+
+*/

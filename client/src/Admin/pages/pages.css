@@ -354,6 +354,19 @@
     justify-content: center;
 }
 
+.l-container {
+    background-color: blue;
+    display: inline;
+    justify-content: center;
+}
 
+.form-container {
+    background-color: blue;
+}
+
+.login-header {
+    width: 100vw;
+    background-color: blue;
+}
 
 /* Style the container as needed */
