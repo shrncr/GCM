@@ -23,14 +23,14 @@ export default function Preview(props) {
       image = playstyles[props.index].image;
       console.log(data)
       ext1 = data.skills;
-      ext2 = ["hello", "little", "bitch"];
+
       break;
     case "Exhibits":
       data = exhibits[props.index];
 
       image = data.image;
       ext1 = data.activities;
-      ext2 = ext1.map((activity) => activity.skills).flat();
+
 
 
 
@@ -66,7 +66,7 @@ export default function Preview(props) {
         {/* Conditionally render the Accordion component */}
         {ext1.length !== 0 && (
           <div className="accordion-container">
-            <Accordion ext1={ext1} ext2={ext2} />
+            <Accordion exhibit={data} location={props.title} />
           </div>
         )}
 

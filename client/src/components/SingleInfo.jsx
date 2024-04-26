@@ -29,8 +29,8 @@ function SingleInfo() {
             });
     }, [id, dest]);
 
-
-
+    console.log("right under")
+    console.log(title)
 
     return (
         <div>
