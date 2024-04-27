@@ -1,4 +1,3 @@
-// creates navbar based on that changes dynamically based on screen size
 import React, { useState, useRef, useEffect } from 'react';
 import glazerLogo from '../components/images/glazerLogo.webp'; // Corrected import path
 import { FaBars, FaTimes } from 'react-icons/fa';
@@ -21,26 +20,30 @@ function Navbar() {
         };
     }, []);
 
-    const showNavbar = () => {
+    const closeNavbar = () => {
+        navRef.current.classList.remove("responsive_nav");
+    };
+
+    const toggleNavbar = () => {
         navRef.current.classList.toggle("responsive_nav");
     };
 
     return (
         <header className={scrolled ? 'scrolled' : ''}>
-            <Link to="/">
+            <Link to="/" onClick={closeNavbar}>
                 <img src={glazerLogo} alt="Logo" className='header-img' />
             </Link>
             <nav ref={navRef}>
-                <Link to="/playstyles">Learn to Play</Link>
-                <Link to="/playPlaces">Places to Play</Link>
-                <Link to="/userMap">Map</Link>
-                <Link to="/Resources">Resources</Link>
+                <Link to="/playstyles" onClick={closeNavbar}>Learn to Play</Link>
+                <Link to="/playPlaces" onClick={closeNavbar}>Places to Play</Link>
+                <Link to="/userMap" onClick={closeNavbar}>Map</Link>
+                <Link to="/Resources" onClick={closeNavbar}>Resources</Link>
 
-                <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+                <button className="nav-btn nav-close-btn" onClick={toggleNavbar}>
                     <FaTimes />
                 </button>
             </nav>
-            <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+            <button className="nav-btn nav-close-btn" onClick={toggleNavbar}>
                 <FaBars />
             </button>
         </header>
