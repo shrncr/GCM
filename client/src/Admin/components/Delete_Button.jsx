@@ -4,7 +4,7 @@ import axios from 'axios'
 export default function Delete_Button(props) {
     function del(){
         let what = props.title;//console.log(props.title)
-        const apiUrl = process.env.VERCEL_URL;
+        const apiUrl = process.env.REACT_APP_API_URL;
         axios({ //make request
             url: `${apiUrl}/` +props.title + '/delete', //deleting x item
             method: 'DELETE',

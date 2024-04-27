@@ -9,7 +9,7 @@ import ExhibitFeedback from '../Admin/components/Feedback';
 function PlayInfo({ title }) {
     const [desc, setDesc] = useState([]);
     const [skills, setSkills] = useState([]);
-    const apiUrl = process.env.VERCEL_URL;
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         // Fetch data based on the title

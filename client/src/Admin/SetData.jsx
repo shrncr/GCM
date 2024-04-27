@@ -13,7 +13,7 @@ const SetData = ({ children }) => {
   const [locations, setLocations] = useState([]);
   const [data, setData] = useState([]);
   const [skills, setSkills] = useState([]);
-  const apiUrl = process.env.VERCEL_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   // Use useEffect to set exhibits after the initial render
   useEffect(() => {

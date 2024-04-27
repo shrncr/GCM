@@ -10,7 +10,7 @@ Login page for admin
 const Login = () => {
   const { login, setLogin } = useContext(LoginContext)
   const navigate = useNavigate();
-  const apiUrl = process.env.VERCEL_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
   // State for form data (username, password, role)
   const [formData, setFormData] = useState({
     username: '',

@@ -7,7 +7,7 @@ Uses gridboxes component to display exhibits
 
 function Exhibits() {
   const [exdata, setExhibitData] = useState([]);
-  const apiUrl = process.env.VERCEL_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     axios({
       url: `${apiUrl}/exhibits`,

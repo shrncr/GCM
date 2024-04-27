@@ -13,7 +13,7 @@ function SingleInfo() {
     const [img, setImg] = useState("");
 
     const { id, dest } = useParams();
-    const apiUrl = process.env.VERCEL_URL;
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         axios.get(`${apiUrl}/${dest}/${id}`)

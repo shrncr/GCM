@@ -6,7 +6,7 @@ function ExhibitAdd() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null)
-  const apiUrl = process.env.VERCEL_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

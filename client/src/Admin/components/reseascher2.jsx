@@ -6,7 +6,7 @@ const FeedbackViewer = () => {
   // State variables for storing feedback data and selected exhibit
   const [feedbackData, setFeedbackData] = useState([]); // Feedback data from server
   const [selectedExhibit, setSelectedExhibit] = useState(null); // Selected exhibit ID
-  const apiUrl = process.env.VERCEL_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
   // useEffect hook to fetch feedback data when component mounts
   useEffect(() => {
     // Fetch feedback data from the server

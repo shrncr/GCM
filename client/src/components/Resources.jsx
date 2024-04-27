@@ -22,7 +22,7 @@ function getDeviceType() { // for impressions
 function Resources() {
   const [interactions, setInteractions] = useState(0);
   const deviceType = getDeviceType(); // Device type is determined once on component mount.
-  const apiUrl = process.env.VERCEL_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const page = 'resources';

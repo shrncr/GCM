@@ -27,7 +27,7 @@ export default function Edit(props) {
   const location = useLocation();
   const [uploadProgress, setUploadProgress] = useState(0);
   const [image, setImage] = useState("");
-  const apiUrl = process.env.VERCEL_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
   let selectedFile;
 
   //awk endpoint to obtain presigned url to upload images

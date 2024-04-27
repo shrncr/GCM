@@ -4,7 +4,7 @@ import { LoginContext } from '../../components/app';
 import axios from 'axios';
 export default function PrivateRoute({ children }) {
     const [login, setLogin] = useState();
-    const apiUrl = process.env.VERCEL_URL;
+    const apiUrl = process.env.REACT_APP_API_URL;
     useEffect(() => {
       
         axios({

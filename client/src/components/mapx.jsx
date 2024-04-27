@@ -14,7 +14,7 @@ const center = { //where center of map is (Tampa)
 
 const Map = ({ markerContent, onMarkerClick = () => {} }) => {
   const [locations, setLocations] = useState([]);
-  const apiUrl = process.env.VERCEL_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     // Fetch pins based on marker content

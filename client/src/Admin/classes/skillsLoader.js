@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const useSkillsLoader = ({ exhibit, location }) => {
     const [skills, setSkills] = useState([]);
-    const apiUrl = process.env.VERCEL_URL;
+    const apiUrl = process.env.REACT_APP_API_URL;
     console.log("under")
     console.log(location)
     useEffect(() => {

@@ -8,7 +8,7 @@ function Editor() {
   const [about, setAbout] = useState('');
   const [image, setImage] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
-  const apiUrl = process.env.VERCEL_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
   // Image changer
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {

@@ -8,7 +8,7 @@ export default function Data(props) {
     const { data } = useContext(ExhibitContext);
     const [spread, setSpread] = useState(data[0]);
     const [loc, setLoc] = useState("Feedback");
-    const apiUrl = process.env.VERCEL_URL;
+    const apiUrl = process.env.REACT_APP_API_URL;
     const handleSpreadChange = (newindex, l) => {
         setLoc(l);
         setSpread(data[newindex]);
