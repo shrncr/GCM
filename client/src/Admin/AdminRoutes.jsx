@@ -12,7 +12,7 @@ import './pages/pages.css';
 
 
 export default function AdminRoutes(props) {
-    const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct } = useContext(ExhibitContext);
+    const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct, skills } = useContext(ExhibitContext);
     //Creates all the routes for the admin side
     return (
         <div>
@@ -25,6 +25,7 @@ export default function AdminRoutes(props) {
                 <Route path="/exhibits/*" element={<Exhibits title={"Exhibits"} />} />
                 <Route path="/playstyles/*" element={<Exhibits title={"Playstyles"} />} />
                 <Route path="/activities/*" element={<Exhibits title={"Activities"} />} />
+                <Route path="/skills/*" element={<Exhibits title={"Skills"} />} />
                 <Route path="/map/*" element={<MapEdit />} />
                 <Route path='data' element={<Data index={0} />} />
                 {/*<Route path="/map" element={<MapEdit />} />
@@ -58,6 +59,7 @@ export default function AdminRoutes(props) {
 
                 {/* Home Activity Routes */}
                 {locations.map((e, index) => {
+
                     const name = e.title.replace(/\s+/g, '_');
                     return (
                         <React.Fragment key={index}>
@@ -76,6 +78,17 @@ export default function AdminRoutes(props) {
                             <Route key={index} path={`activities/${name}`} element={<Preview title={"Activities"} index={index} />} />
                             <Route path={`activities/${name}/edit`} element={<Edit title={"Activities"} index={index} />} />
                             <Route path={`activities/add`} element={<Edit title={"Activities"} index={null} />} />
+                        </React.Fragment>
+                    )
+                })}
+                {/* Skills Routes */}
+                {skills.map((e, index) => {
+                    const name = e.title.replace(/\s+/g, '_');
+                    return (
+                        <React.Fragment key={index}>
+                            <Route key={index} path={`skills/${name}`} element={<Preview title={"Skills"} index={index} />} />
+                            <Route path={`skills/${name}/edit`} element={<Edit title={"Skills"} index={index} />} />
+                            <Route path={`skills/add`} element={<Edit title={"Skills"} index={null} />} />
                         </React.Fragment>
                     )
                 })}

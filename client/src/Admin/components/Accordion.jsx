@@ -12,19 +12,29 @@ const Accordion = ({ skills, title }) => {
     let desc = []
     switch (title) {
         case "Exhibits":
-
             skills.forEach((item) => {
-                ext.push(item.skills);
+                ext.push(item.skills)
                 desc.push(item.description)
+                let h = [];
+                item.skills.forEach((act) => {
+                    h.push(act.title)
+
+                });
             });
             break;
         case "Playstyles":
             skills.forEach((item) => {
-                console.log("right under")
-                console.log(item)
-                ext.push(item.Activities);
+                ext.push(item.Activities)
                 desc.push(item.desc)
-                console.log(desc)
+                let h = [];
+                item.Activities.forEach((act) => {
+                    h.push(act.title)
+
+                });
+
+
+
+
             });
             break;
 
@@ -34,7 +44,7 @@ const Accordion = ({ skills, title }) => {
             break;
     }
 
-
+    console.log(ext)
 
     return (
         <div>

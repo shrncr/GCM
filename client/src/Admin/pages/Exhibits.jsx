@@ -6,7 +6,7 @@ import { ExhibitContext } from "../SetData.jsx";
 
 
 export default function Exhibits(props) {
-    const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct, setHomeAct } = useContext(ExhibitContext);
+    const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct, setHomeAct, skills } = useContext(ExhibitContext);
 
     let data;
 
@@ -26,6 +26,10 @@ export default function Exhibits(props) {
             data = homeAct;
             console.log(data);
             break;
+        case "Skills":
+            data = skills;
+            break;
+
         default:
             data = [];
             break;

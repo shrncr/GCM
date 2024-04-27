@@ -8,7 +8,7 @@ import DOMPurify from 'dompurify';
 import Accordion from "../components/Accordion.jsx";
 
 export default function Preview(props) {
-  const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct } = useContext(ExhibitContext);
+  const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct, skills } = useContext(ExhibitContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -36,6 +36,10 @@ export default function Preview(props) {
       data = locations[props.index];
       ext1 = [];
       break;
+    case "Skills":
+      data = skills[props.index];
+      ext1 = [];
+      break;
     default:
       data = [];
       ext1 = [];
@@ -43,7 +47,7 @@ export default function Preview(props) {
   }
 
   const sanitizedDescription = DOMPurify.sanitize(data.desc);
-  const skills = useSkillsLoader({ exhibit: data, location: props.title });
+  const s = useSkillsLoader({ exhibit: data, location: props.title });
 
   return (
     <div>
@@ -60,7 +64,7 @@ export default function Preview(props) {
       {/* Conditionally render the Accordion component */}
       {ext1.length !== 0 && (
         <div className="accordion-container">
-          <Accordion skills={skills} title={props.title} />
+          <Accordion skills={s} title={props.title} />
         </div>
       )}
 
