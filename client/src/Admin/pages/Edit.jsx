@@ -458,15 +458,25 @@ export default function Edit(props) {
 
 
           <br />
-          <div>
-            <label>{checkboxesTitle}</label>
-          </div>
-          <div className="checkbox-row">
-            {checkboxArr}
-          </div>
-          <div>
-            {!isMapPage && <DropdownForm />}
-          </div>
+
+          {props.title !== "Skills" && (
+            <>
+              <div>
+                <label>{checkboxesTitle}</label>
+              </div>
+              <div className="checkbox-row">
+                {checkboxArr}
+              </div>
+            </>
+          )}
+
+
+          {props.title !== "Skills" && !isMapPage && (
+            <div>
+              <DropdownForm />
+            </div>
+          )}
+
           <div>
             <br />
             <label>Visibility:</label>

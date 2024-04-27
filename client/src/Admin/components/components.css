@@ -384,7 +384,12 @@ h5 {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
-    ;
+
+}
+
+.acc-butt-cont button {
+    background-color: #2383c6;
+    color: rgb(235, 235, 235);
 }
 
 /* Add additional styles as needed */
