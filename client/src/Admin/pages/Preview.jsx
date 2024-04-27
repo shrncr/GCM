@@ -8,34 +8,24 @@ import DOMPurify from 'dompurify';
 import Accordion from "../components/Accordion.jsx";
 
 export default function Preview(props) {
-  const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct } = useContext(ExhibitContext);
+  const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct, skills } = useContext(ExhibitContext);
   const navigate = useNavigate();
   const location = useLocation();
-
 
   let data;
   let image;
   let ext1;
-  let ext2;
-
 
   switch (props.title) {
     case "Playstyles":
       data = playstyles[props.index];
       image = playstyles[props.index].image;
-      console.log(data)
       ext1 = data.skills;
-
       break;
     case "Exhibits":
       data = exhibits[props.index];
-
       image = data.image;
       ext1 = data.activities;
-
-
-
-
       break;
     case "Activities":
       data = homeAct[props.index];
@@ -46,20 +36,23 @@ export default function Preview(props) {
       data = locations[props.index];
       ext1 = [];
       break;
+    case "Skills":
+      data = skills[props.index];
+      ext1 = [];
+      break;
     default:
       data = [];
       ext1 = [];
       break;
   }
-  const sanitizedDescription = DOMPurify.sanitize(data.desc);
-  console.log(props.title)
-  const skills = useSkillsLoader({ exhibit: data, location: props.title });
 
+  const sanitizedDescription = DOMPurify.sanitize(data.desc);
+  const s = useSkillsLoader({ exhibit: data, location: props.title });
 
   return (
     <div>
       <div className="banner">
-        <img src={image} alt={data.image}></img>
+        <img src={image} alt={data.image} />
       </div>
       <div>
         <h1 className="admin-header">{data.title}</h1>
@@ -71,10 +64,9 @@ export default function Preview(props) {
       {/* Conditionally render the Accordion component */}
       {ext1.length !== 0 && (
         <div className="accordion-container">
-          <Accordion skills={skills} />
+          <Accordion skills={s} title={props.title} />
         </div>
       )}
-
 
       <div className="button-container">
         <div className="edit_button">
@@ -83,14 +75,13 @@ export default function Preview(props) {
               Edit {location.pathname.includes("exhibit") ? "Exhibit" : "Playstyle"}
             </button>
           </Link>
-          <button className="edit-button " type="button" onClick={(e) => navigate('/admin/exhibits')}>
+          <button className="edit-button" type="button" onClick={(e) => navigate(-1)}>
             Back
           </button>
         </div>
       </div>
-
     </div>
   );
-};
+}
 
 

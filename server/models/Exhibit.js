@@ -18,7 +18,7 @@ const ExhibitSchema = new mongoose.Schema({
     
     image:{
         type:String,
-        required:true, // string will be the URL pointing to the image stored externally
+        required:false, // string will be the URL pointing to the image stored externally
     },
     // is the exhibit active or hidden
     status:{

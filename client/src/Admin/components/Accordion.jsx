@@ -2,14 +2,49 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DOMPurify from 'dompurify';
 import useSkillsLoader from "../classes/skillsLoader"
-const Accordion = ({ skills }) => {
+const Accordion = ({ skills, title }) => {
     const [openIndex, setOpenIndex] = useState(null);
 
     const toggleAccordion = (index) => {
         setOpenIndex(openIndex === index ? null : index);
     };
+    let ext = [];
+    let desc = []
+    switch (title) {
+        case "Exhibits":
+            skills.forEach((item) => {
+                ext.push(item.skills)
+                desc.push(item.description)
+                let h = [];
+                item.skills.forEach((act) => {
+                    h.push(act.title)
+
+                });
+            });
+            break;
+        case "Playstyles":
+            skills.forEach((item) => {
+                ext.push(item.Activities)
+                desc.push(item.desc)
+                let h = [];
+                item.Activities.forEach((act) => {
+                    h.push(act.title)
+
+                });
 
 
+
+
+            });
+            break;
+
+        // Add other cases as needed
+        default:
+            // Default case
+            break;
+    }
+
+    console.log(ext)
 
     return (
         <div>
@@ -23,8 +58,8 @@ const Accordion = ({ skills }) => {
                     </button>
                     {openIndex === index && (
                         <div className="accordion-content">
-                            <p>{item.description}</p>
-                            {item.skills.map((skill, index) => (
+                            <p>{desc[index]}</p>
+                            {ext.map((skill, index) => (
                                 <button key={index}>{skill}</button>
                             ))}
                         </div>

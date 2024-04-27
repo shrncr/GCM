@@ -31,6 +31,10 @@ const MapSchema = new mongoose.Schema({
     playstyle:{
         type:String,
         required:false, 
+    },
+    image:{
+        type:String,
+        required: false
     }
 })
 

@@ -12,6 +12,7 @@ const SetData = ({ children }) => {
   const [playstyles, setPlaystyles] = useState([]);
   const [locations, setLocations] = useState([]);
   const [data, setData] = useState([]);
+  const [skills, setSkills] = useState([]);
 
   // Use useEffect to set exhibits after the initial render
   useEffect(() => {
@@ -72,6 +73,19 @@ const SetData = ({ children }) => {
     }).then((res) => {
       setLocations(res.data)
     });
+    axios({
+      url: 'http://localhost:8082/skills',
+      method: 'GET',
+      headers: {
+        authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+      },
+      catch(error) {
+        console.error('error:', error);
+        alert('An error occured.')
+      }
+    }).then((res) => {
+      setSkills(res.data)
+    });
   }, []);
 
 
@@ -111,9 +125,9 @@ const SetData = ({ children }) => {
 
   }, []);
 
-
+  console.log(exhibits)
   return (
-    <ExhibitContext.Provider value={{ exhibits, setExhibits, playstyles, setPlaystyles, homeAct, setHomeAct, locations, setLocations, data, setData, }}>
+    <ExhibitContext.Provider value={{ exhibits, setExhibits, playstyles, setPlaystyles, homeAct, setHomeAct, locations, setLocations, data, setData, skills, setSkills }}>
       {children}
     </ExhibitContext.Provider>
   )
