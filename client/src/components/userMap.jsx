@@ -43,14 +43,14 @@ const UserMap = (props) => {
     const renderBoxes = () => {
         return locations.map((item, index) => (
             <div key={index} className={`new-box ${selectedBox === index ? 'selected' : ''}`} onClick={() => handleBoxClick(index)}>
-                <h3>{item.title}</h3>
-                <img src={item.image} alt={item.title} />
-                <div dangerouslySetInnerHTML={{ __html: item.desc }} />
+                <h4>{item.title}</h4>
+                <div className="box-image-container">
+                    <img src={item.image} alt={item.title} className="box-image" />
+                </div>
                 {/* Add more details as needed */}
             </div>
         ));
     };
-
     return (
         <div>
             <div className="user-map-container">
@@ -61,8 +61,12 @@ const UserMap = (props) => {
                     {selectedMarker && (
                         <>
                             <h2>{selectedMarker.title}</h2>
-                            <div dangerouslySetInnerHTML={{ __html: selectedMarker.desc }} />
-                            {/* Add more details as needed */}
+                            <div className="box-image-container">
+                                <img src={selectedMarker.image} alt={selectedMarker.title} className="box-image"/>
+                            </div>
+                            <div dangerouslySetInnerHTML={{__html: selectedMarker.desc}}/>
+
+
                         </>
                     )}
                 </div>
