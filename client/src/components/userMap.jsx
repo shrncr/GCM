@@ -9,11 +9,12 @@ const UserMap = (props) => {
     const [locations, setLocations] = useState([]);
     const [selectedMarker, setSelectedMarker] = useState(null);
     const [selectedBox, setSelectedBox] = useState(null);
+    const apiUrl = process.env.VERCEL_URL;
 
     useEffect(() => {
         // Fetch marker locations
         axios({
-            url: 'http://localhost:8082/map',
+            url: '${apiUrl}/map',
             method: 'GET',
             params: {
                 filter: markerContent

@@ -6,10 +6,11 @@ const ExhibitFeedback = ({ exhibitId }) => {
     // State for storing child's age and feedback submission status
     const [childAge, setChildAge] = useState('prefer-not-to-say');
     const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
+    const apiUrl = process.env.VERCEL_URL;
 
     // Function to submit feedback
     const submitFeedback = (isPositive) => {
-        axios.post('http://localhost:8082/feedback', {
+        axios.post('${apiUrl}/feedback', {
             exhibitId: exhibitId,
             isPositive: isPositive,
             childAge: childAge

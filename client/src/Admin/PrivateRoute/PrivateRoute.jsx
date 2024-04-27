@@ -4,10 +4,11 @@ import { LoginContext } from '../../components/app';
 import axios from 'axios';
 export default function PrivateRoute({ children }) {
     const [login, setLogin] = useState();
+    const apiUrl = process.env.VERCEL_URL;
     useEffect(() => {
       
         axios({
-          url: 'http://localhost:8082/admin/auth',
+          url: '${apiUrl}/admin/auth',
           method: 'GET',
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',

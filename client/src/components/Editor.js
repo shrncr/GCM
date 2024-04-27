@@ -8,6 +8,7 @@ function Editor() {
   const [about, setAbout] = useState('');
   const [image, setImage] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
+  const apiUrl = process.env.VERCEL_URL;
   // Image changer
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -24,7 +25,7 @@ function Editor() {
       alert('Changes Submitted.');
 
       axios({
-        url: 'http://localhost:8082/admin/addexhibit',
+        url: '${apiUrl}/admin/addexhibit',
         method: 'POST',
         headers: {
           authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',

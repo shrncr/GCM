@@ -6,11 +6,11 @@ const FeedbackViewer = () => {
   // State variables for storing feedback data and selected exhibit
   const [feedbackData, setFeedbackData] = useState([]); // Feedback data from server
   const [selectedExhibit, setSelectedExhibit] = useState(null); // Selected exhibit ID
-
+  const apiUrl = process.env.VERCEL_URL;
   // useEffect hook to fetch feedback data when component mounts
   useEffect(() => {
     // Fetch feedback data from the server
-    axios.get('http://localhost:8082/feedback')
+    axios.get('${apiUrl}/feedback')
       .then(response => {
         setFeedbackData(response.data); // Update feedbackData state with fetched data
       })

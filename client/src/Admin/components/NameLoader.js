@@ -18,7 +18,8 @@ import axios from "axios";
 
 
 const NameLoader = (typeLoading, thenFunction) => {
-    let reqLink = 'http://localhost:8082/' + typeLoading
+    const apiUrl = process.env.VERCEL_URL;
+    let reqLink = '${apiUrl}/' + typeLoading
     useEffect(() => {
         axios({
         url: reqLink,

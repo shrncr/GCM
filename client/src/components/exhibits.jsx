@@ -7,9 +7,10 @@ Uses gridboxes component to display exhibits
 
 function Exhibits() {
   const [exdata, setExhibitData] = useState([]);
+  const apiUrl = process.env.VERCEL_URL;
   useEffect(() => {
     axios({
-      url: 'http://localhost:8082/exhibits',
+      url: '${apiUrl}/exhibits',
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',

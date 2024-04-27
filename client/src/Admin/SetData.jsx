@@ -13,13 +13,14 @@ const SetData = ({ children }) => {
   const [locations, setLocations] = useState([]);
   const [data, setData] = useState([]);
   const [skills, setSkills] = useState([]);
+  const apiUrl = process.env.VERCEL_URL;
 
   // Use useEffect to set exhibits after the initial render
   useEffect(() => {
     const exh = [];
     const play = [];
     axios({ //get exhibits
-      url: 'http://localhost:8082/allexhibits',
+      url: '${apiUrl}/allexhibits',
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -33,7 +34,7 @@ const SetData = ({ children }) => {
     });
 
     axios({ //and playstyles
-      url: 'http://localhost:8082/playstyles',
+      url: '${apiUrl}/playstyles',
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -47,7 +48,7 @@ const SetData = ({ children }) => {
     });
 
     axios({ //and playstyles
-      url: 'http://localhost:8082/activities',
+      url: '${apiUrl}/activities',
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -63,7 +64,7 @@ const SetData = ({ children }) => {
     });
 
     axios({
-      url: 'http://localhost:8082/map',
+      url: '${apiUrl}/map',
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -76,7 +77,7 @@ const SetData = ({ children }) => {
       setLocations(res.data)
     });
     axios({
-      url: 'http://localhost:8082/skills',
+      url: '${apiUrl}/skills',
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -97,9 +98,9 @@ const SetData = ({ children }) => {
     const getCSV = async () => {
       try {
         const c = [];
-        const feedback = await axios.get('http://localhost:8082/download-feedback-csv');
-        const impressions = await axios.get('http://localhost:8082/download-impressions-csv');
-        const session = await axios.get('http://localhost:8082/download-sessions-csv');
+        const feedback = await axios.get('${apiUrl}/download-feedback-csv');
+        const impressions = await axios.get('${apiUrl}/download-impressions-csv');
+        const session = await axios.get('${apiUrl}/download-sessions-csv');
         const arr = [feedback, impressions, session];
         console.log("FEEDBACK")
         console.log(feedback)

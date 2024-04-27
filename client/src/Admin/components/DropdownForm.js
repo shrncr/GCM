@@ -45,8 +45,9 @@ function DropdownForm() {
           ...formData,
           connections: nestedSelectedOptions  // Add the selected options to the formData
         };
+        const apiUrl = process.env.VERCEL_URL;
         axios({ //make request
-            url: 'http://localhost:8082/admin/add' + submitType,
+            url: '${apiUrl}/admin/add' + submitType,
             method: 'POST',
             data: completeFormData,
             headers: {

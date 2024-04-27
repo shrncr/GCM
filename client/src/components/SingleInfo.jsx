@@ -13,9 +13,10 @@ function SingleInfo() {
     const [img, setImg] = useState("");
 
     const { id, dest } = useParams();
+    const apiUrl = process.env.VERCEL_URL;
 
     useEffect(() => {
-        axios.get(`http://localhost:8082/${dest}/${id}`)
+        axios.get(`${apiUrl}/${dest}/${id}`)
             .then((res) => {
                 const { baseData, dropdown } = res.data;
 

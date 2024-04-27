@@ -22,13 +22,14 @@ function getDeviceType() { // for impressions
 function Resources() {
   const [interactions, setInteractions] = useState(0);
   const deviceType = getDeviceType(); // Device type is determined once on component mount.
-
+  const apiUrl = process.env.VERCEL_URL;
+  
   useEffect(() => {
     const page = 'resources';
     const time_of_day = new Date();
 
     // Create impression and start session tracking
-    axios.post('http://localhost:8082/api/impressions/create', { time_of_day, page, deviceType })
+    axios.post('${apiUrl}/api/impressions/create', { time_of_day, page, deviceType })
       .then(response => {
         console.log('Visit and session start recorded:', response.data);
       })
@@ -40,7 +41,7 @@ function Resources() {
       const sessionEnd = new Date();
       const sessionDuration = sessionEnd - time_of_day; // Duration in milliseconds
 
-      axios.post('http://localhost:8082/sessions/end', {
+      axios.post('${apiUrl}/sessions/end', {
         deviceType,
         sessionDuration,
         page,
