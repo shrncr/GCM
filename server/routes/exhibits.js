@@ -148,7 +148,7 @@ HomeText.findOneAndUpdate({num: "Resources" }, options).then(
     console.log(err);
   }
  });
- router.delete('/Skill/delete', async (req, res)=>{ 
+ router.delete('/Skills/delete', async (req, res)=>{ 
   try{
     let data = await Skills.deleteOne({_id:req.body.id})
     res.json(data);
