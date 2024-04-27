@@ -26,7 +26,7 @@ function trackVisit() { // for impressions - track visit information in db
   const apiUrl = process.env.VERCEL_URL;
 
   // Store the visit time, page, and device type in the database
-  axios.post('${apiUrl}/create', { time_of_day, page, deviceType })
+  axios.post(`${apiUrl}/create`, { time_of_day, page, deviceType })
     .then(response => {
       console.log('Visit time recorded:', response.data);
     })
@@ -40,7 +40,7 @@ function Playplaces() {
   const [exdata, setExhibitData] = useState([]);
   useEffect(() => {
     axios({
-      url: '${apiUrl}/exhibits',
+      url: `${apiUrl}/exhibits`,
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',

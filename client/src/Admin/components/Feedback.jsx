@@ -10,7 +10,7 @@ const ExhibitFeedback = ({ exhibitId }) => {
 
     // Function to submit feedback
     const submitFeedback = (isPositive) => {
-        axios.post('${apiUrl}/feedback', {
+        axios.post(`${apiUrl}/feedback`, {
             exhibitId: exhibitId,
             isPositive: isPositive,
             childAge: childAge

@@ -14,7 +14,7 @@ const UserMap = (props) => {
     useEffect(() => {
         // Fetch marker locations
         axios({
-            url: '${apiUrl}/map',
+            url: `${apiUrl}/map`,
             method: 'GET',
             params: {
                 filter: markerContent

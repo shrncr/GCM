@@ -43,7 +43,7 @@ const Login = () => {
     // Submit the form using AJAX or other methods
     // Example using Axios
     axios({
-      url: '${apiUrl}/admin',
+      url: `${apiUrl}/admin`,
       method: 'POST',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority', // Authorization header

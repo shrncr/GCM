@@ -8,7 +8,7 @@ export default function PrivateRoute({ children }) {
     useEffect(() => {
       
         axios({
-          url: '${apiUrl}/admin/auth',
+          url: `${apiUrl}/admin/auth`,
           method: 'GET',
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',

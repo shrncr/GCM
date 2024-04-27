@@ -25,7 +25,7 @@ function Editor() {
       alert('Changes Submitted.');
 
       axios({
-        url: '${apiUrl}/admin/addexhibit',
+        url: `${apiUrl}/admin/addexhibit`,
         method: 'POST',
         headers: {
           authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',

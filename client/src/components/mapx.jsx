@@ -19,7 +19,7 @@ const Map = ({ markerContent, onMarkerClick = () => {} }) => {
   useEffect(() => {
     // Fetch pins based on marker content
     axios({
-      url: '${apiUrl}/map',
+      url: `${apiUrl}/map`,
       method: 'GET',
       params: {
         filter: markerContent

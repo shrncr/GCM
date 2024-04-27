@@ -19,7 +19,7 @@ export default function Data(props) {
         switch (loc) {
             case "Feedback":
                 try {
-                    const response = await axios.get('${apiUrl}/download-feedback-csv', {
+                    const response = await axios.get(`${apiUrl}/download-feedback-csv`, {
                         responseType: 'blob',
                     });
                     const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -34,7 +34,7 @@ export default function Data(props) {
                 break;
             case "Impressions":
                 try {
-                    const response = await axios.get('${apiUrl}/download-impressions-csv', {
+                    const response = await axios.get(`${apiUrl}/download-impressions-csv`, {
                         responseType: 'blob',
                     });
                     const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -49,7 +49,7 @@ export default function Data(props) {
                 break;
             case "Session":
                 try {
-                    const response = await axios.get('${apiUrl}/download-sessions-csv', {
+                    const response = await axios.get(`${apiUrl}/download-sessions-csv`, {
                         responseType: 'blob',
                     });
                     const url = window.URL.createObjectURL(new Blob([response.data]));

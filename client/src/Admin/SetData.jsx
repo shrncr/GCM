@@ -20,7 +20,7 @@ const SetData = ({ children }) => {
     const exh = [];
     const play = [];
     axios({ //get exhibits
-      url: '${apiUrl}/allexhibits',
+      url: `${apiUrl}/allexhibits`,
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -34,7 +34,7 @@ const SetData = ({ children }) => {
     });
 
     axios({ //and playstyles
-      url: '${apiUrl}/playstyles',
+      url: `${apiUrl}/playstyles`,
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -48,7 +48,7 @@ const SetData = ({ children }) => {
     });
 
     axios({ //and playstyles
-      url: '${apiUrl}/activities',
+      url: `${apiUrl}/activities`,
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -64,7 +64,7 @@ const SetData = ({ children }) => {
     });
 
     axios({
-      url: '${apiUrl}/map',
+      url: `${apiUrl}/map`,
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -77,7 +77,7 @@ const SetData = ({ children }) => {
       setLocations(res.data)
     });
     axios({
-      url: '${apiUrl}/skills',
+      url: `${apiUrl}/skills`,
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -98,9 +98,9 @@ const SetData = ({ children }) => {
     const getCSV = async () => {
       try {
         const c = [];
-        const feedback = await axios.get('${apiUrl}/download-feedback-csv');
-        const impressions = await axios.get('${apiUrl}/download-impressions-csv');
-        const session = await axios.get('${apiUrl}/download-sessions-csv');
+        const feedback = await axios.get(`${apiUrl}/download-feedback-csv`);
+        const impressions = await axios.get(`${apiUrl}/download-impressions-csv`);
+        const session = await axios.get(`${apiUrl}/download-sessions-csv`);
         const arr = [feedback, impressions, session];
         console.log("FEEDBACK")
         console.log(feedback)

@@ -10,7 +10,7 @@ const FeedbackViewer = () => {
   // useEffect hook to fetch feedback data when component mounts
   useEffect(() => {
     // Fetch feedback data from the server
-    axios.get('${apiUrl}/feedback')
+    axios.get(`${apiUrl}/feedback`)
       .then(response => {
         setFeedbackData(response.data); // Update feedbackData state with fetched data
       })
