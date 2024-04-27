@@ -31,6 +31,9 @@ app.use(cors({ // cors configuration
   allowedHeaders: ['Content-Type', 'Authorization'], // required headers
 }));
 
+app.options('*', cors()); // enable pre-flight request for all routes
+
+
 
 //returns text associated with homepage
 router.get('/home', async (req, res) => {
