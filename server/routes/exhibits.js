@@ -186,6 +186,21 @@ HomeText.findOneAndUpdate({num: "Resources" }, options).then(
   }
  });
 
+
+  //returns data for a specific map location
+  router.get('/skills/:id', async (req, res)=>{ 
+    try{
+      console.log(req.params.id);
+      let skill = await Skills.findById(req.params.id);
+      let skillActivities = await Activities.find({title:skill.Activities});
+      //console.log(exhibitActivities)
+      //console.log("paninipanini\n\n");
+      res.json({baseData: exhibit, dropdown: skillActivities});
+    }catch(err){
+      console.log(err); 
+    }
+   });
+
  //returns all currently existing feedback
  router.get('/feedback', async (req,res) => {
   try{ 
@@ -398,6 +413,23 @@ router.post("/admin/addactivity", async (req, res) => {
  }
 });
 
+router.post("/admin/editskill", async (req, res) => {
+  try{
+    console.log("mewo meow")
+   console.log(req.body);
+   let options = {
+    title: req.body.title,
+    desc: req.body.desc,
+    Activities: req.body.activities
+    };
+  Skills.findOneAndUpdate({_id: req.body.id}, options).then(
+    console.log("then")
+  )
+   
+ }catch(err){
+  console.log(err);
+ }
+});
  router.post("/admin/addskill", async (req, res) => {
   try{
    console.log("lig");
