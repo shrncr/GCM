@@ -26,28 +26,33 @@ const ExhibitFeedback = ({ exhibitId }) => {
     return (
         <div>
             {/* Exhibit Feedback UI */}
-            
-            <p>Did you find this exhibit helpful?</p>
+
+            <h5>Did you find this exhibit helpful?</h5>
             {/* Dropdown to select visitor's age */}
-            <label htmlFor="child-age">Visitor's Age:</label>
-            <select
-                id="child-age"
-                value={childAge}
-                onChange={(e) => setChildAge(e.target.value)} // Update childAge state based on selection
-            >
-                {/* Option for prefer not to say */}
-                <option value="prefer-not-to-say">Prefer Not to Say</option>
-                {/* Options for ages 0 to 10 */}
-                {[...Array(11).keys()].map((age) => (
-                    <option key={age} value={age}>{age}</option>
-                ))}
-            </select>
-            <br /><br />
-            {/* Buttons for submitting positive and negative feedback */}
-            <button className="feedback-button" onClick={() => submitFeedback(true)}>👍 Helpful</button>
-            <button className="feedback-button" onClick={() => submitFeedback(false)}>👎 Not Helpful</button>
+            <div className='age-select'>
+                <label htmlFor="child-age">Visitor's Age:</label>
+                <select
+                    id="child-age"
+                    value={childAge}
+                    onChange={(e) => setChildAge(e.target.value)} // Update childAge state based on selection
+                >
+                    {/* Option for prefer not to say */}
+                    <option value="prefer-not-to-say">Prefer Not to Say</option>
+                    {/* Options for ages 0 to 10 */}
+                    {[...Array(11).keys()].map((age) => (
+                        <option key={age} value={age}>{age}</option>
+                    ))}
+                </select>
+            </div>
+
+            <div className='fbut'>
+                {/* Buttons for submitting positive and negative feedback */}
+                <button className="feedback-button" onClick={() => submitFeedback(true)}>👍 Helpful</button>
+                <button className="feedback-button" onClick={() => submitFeedback(false)}>👎 Not Helpful</button>
+            </div>
             {/* Message displayed after feedback submission */}
             {feedbackSubmitted && <p>Thank you for your feedback!</p>}
+
         </div>
     );
 };

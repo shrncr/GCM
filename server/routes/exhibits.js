@@ -212,15 +212,44 @@ router.get('/feedback', async (req, res) => {
 });
 
 //will eventually work to post feedback
+// Route to submit feedback
 router.post('/feedback', async (req, res) => {
   try {
-    let feedId = new mongoose.Types.ObjectId();
-    let feedback = await Feedback({ feedback_id: feedId, exh: req.body.exhibit, rating: req.body.rating }); //a get request until data format is completes
-    res.json(feedback);
+    // Create a new feedback instance with the provided data
+    const newFeedback = new Feedback({
+      exhibit: req.body.exhibit,
+      rating: req.body.rating,
+      childAge: req.body.childAge, // Add child's age
+      // Add any other fields you want to save, like comments, etc.
+    });
+
+    // Save the new feedback to the database
+    const savedFeedback = await newFeedback.save();
+
+    // Respond with success message and saved feedback data
+    res.status(201).json({ message: 'Feedback submitted successfully', feedback: savedFeedback });
   } catch (err) {
-    console.log(err);
+    console.error('Error saving feedback:', err);
+    res.status(500).send('Error occurred: ' + err.message);
   }
 });
+
+// Route to download feedback data as CSV
+router.get('/download-feedback-csv', async (req, res) => {
+  try {
+    const data = await Feedback.find();
+    const fields = ['Feedback_id', 'Exhibit', 'Rating', 'Child Age'];
+    const json2csvParser = new Parser({ fields });
+    const csv = json2csvParser.parse(data);
+
+    res.header('Content-Type', 'text/csv');
+    res.attachment('feedback.csv');
+    res.send(csv);
+  } catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
+  }
+});
+
 
 
 //returns all exhibits whose status is set to true, (visible)

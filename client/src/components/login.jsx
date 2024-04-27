@@ -71,9 +71,9 @@ const Login = () => {
   };
 
   return (
-    <div className="l-container">
+    <div>
       {/* Login form */}
-      <div>
+      <div className='login-header'>
         <h1>Login</h1>
       </div>
       <div className="form-container">

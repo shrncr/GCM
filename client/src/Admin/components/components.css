@@ -351,7 +351,7 @@
 
 .accordion-title {
     width: 100%;
-    height: 100%;
+    height: auto;
     border: 0;
     margin: 0;
     display: flex;
@@ -378,6 +378,13 @@ h5 {
     margin-inline-end: 0px;
     unicode-bidi: isolate;
 
+}
+
+.acc-butt-cont {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    ;
 }
 
 /* Add additional styles as needed */

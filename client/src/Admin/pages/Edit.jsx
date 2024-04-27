@@ -126,7 +126,15 @@ export default function Edit(props) {
   /*name, description, latitude, longitude, and image variables used to track what
   the user is entering*/
   const [name, setName] = useState(exh.title);
-  const [description, setDescription] = useState(exh.desc);
+  let d = exh.desc;
+  if (props.title == "Activities") {
+    console.log("under")
+    console.log(exh.description)
+    d = exh.description
+  }
+  const [description, setDescription] = useState(d);
+  console.log(description)
+
 
   let v;
   if (exh.status !== undefined) {
