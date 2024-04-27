@@ -3,7 +3,7 @@
 *from admin side
 */
 const express = require("express");
-const cors = require("cors");
+
 const router = express.Router(); //to define routes aligning with the exhibits 
 const Sessions = require('../models/Sessions');
 const Exhibit = require("../models/Exhibit") //exhibit schema
@@ -21,17 +21,9 @@ const Map = require("../models/Map");
 const PlayStyles = require("../models/PlayStyles");
 const ObjectId = require("mongodb").ObjectId;
 const { Parser } = require('json2csv');
-const app = express();
 
-app.use(cors({ origin: 'https://gcm-frontend.vercel.app' })); // allow requests from the frontend
 
-app.use(cors({ // cors configuration
-  origin: 'https://gcm-frontend.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], //  allowed methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // required headers
-}));
 
-app.options('*', cors()); // enable pre-flight request for all routes
 
 
 
