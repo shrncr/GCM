@@ -23,7 +23,7 @@ function trackVisit() { // for impressions - track visit information in db
   const deviceType = getDeviceType();
   const page = 'playPlaces';
   const time_of_day = new Date();
-  const apiUrl = process.env.VERCEL_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   // Store the visit time, page, and device type in the database
   axios.post(`${apiUrl}/create`, { time_of_day, page, deviceType })
@@ -36,7 +36,7 @@ function trackVisit() { // for impressions - track visit information in db
 }
 
 function Playplaces() {
-  const apiUrl = process.env.VERCEL_URL;
+  const apiUrl = process.env.REACT_APP_API_URL;
   const [exdata, setExhibitData] = useState([]);
   useEffect(() => {
     axios({
