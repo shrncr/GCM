@@ -461,6 +461,7 @@ router.post("/admin/addmap", async (req, res) => {
      'title': req.body.title,
      'desc': req.body.desc,
      'playstyle':req.body.playstyle,
+     'image': req.body.image
 
    }
    );
