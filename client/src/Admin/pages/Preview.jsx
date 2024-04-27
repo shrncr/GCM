@@ -12,30 +12,20 @@ export default function Preview(props) {
   const navigate = useNavigate();
   const location = useLocation();
 
-
   let data;
   let image;
   let ext1;
-  let ext2;
-
 
   switch (props.title) {
     case "Playstyles":
       data = playstyles[props.index];
       image = playstyles[props.index].image;
-      console.log(data)
       ext1 = data.skills;
-
       break;
     case "Exhibits":
       data = exhibits[props.index];
-
       image = data.image;
       ext1 = data.activities;
-
-
-
-
       break;
     case "Activities":
       data = homeAct[props.index];
@@ -51,15 +41,14 @@ export default function Preview(props) {
       ext1 = [];
       break;
   }
-  const sanitizedDescription = DOMPurify.sanitize(data.desc);
-  console.log(props.title)
-  const skills = useSkillsLoader({ exhibit: data, location: props.title });
 
+  const sanitizedDescription = DOMPurify.sanitize(data.desc);
+  const skills = useSkillsLoader({ exhibit: data, location: props.title });
 
   return (
     <div>
       <div className="banner">
-        <img src={image} alt={data.image}></img>
+        <img src={image} alt={data.image} />
       </div>
       <div>
         <h1 className="admin-header">{data.title}</h1>
@@ -71,10 +60,9 @@ export default function Preview(props) {
       {/* Conditionally render the Accordion component */}
       {ext1.length !== 0 && (
         <div className="accordion-container">
-          <Accordion skills={skills} />
+          <Accordion skills={skills} title={props.title} />
         </div>
       )}
-
 
       <div className="button-container">
         <div className="edit_button">
@@ -83,14 +71,13 @@ export default function Preview(props) {
               Edit {location.pathname.includes("exhibit") ? "Exhibit" : "Playstyle"}
             </button>
           </Link>
-          <button className="edit-button " type="button" onClick={(e) => navigate('/admin/exhibits')}>
+          <button className="edit-button" type="button" onClick={(e) => navigate(-1)}>
             Back
           </button>
         </div>
       </div>
-
     </div>
   );
-};
+}
 
 
