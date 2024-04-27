@@ -324,18 +324,25 @@
     justify-content: center;
     align-items: center;
     height: auto;
-    width: 100vw;
+    width: 50.5vw;
+    border-radius: 10px;
+    margin-left: 24.75vw;
+    margin-right: 24.75vw;
+    background-color: purple;
     /* Adjust as needed */
-    border-radius: 8px;
+
 
     color: black;
 }
 
-.accordion {
 
+
+.accordion {
+    background-color: purple;
     width: 50vw;
     height: auto;
     display: flex;
+    border-radius: 10px;
     justify-content: center;
     /* Adjust width as needed */
 }
@@ -345,15 +352,20 @@
 .accordion-title {
     width: 100%;
     height: 100%;
+    border: 0;
     margin: 0;
-
+    display: flex;
+    justify-content: center;
     background-color: purple;
     border: none;
     color: white;
 }
 
+
+
 .accordion-content {
     color: black;
+    background-color: lightgray;
 
 }
 
@@ -367,4 +379,5 @@ h5 {
     unicode-bidi: isolate;
 
 }
+
 /* Add additional styles as needed */

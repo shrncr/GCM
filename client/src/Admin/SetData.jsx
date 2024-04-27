@@ -89,8 +89,8 @@ const SetData = ({ children }) => {
       setSkills(res.data)
     });
   }, []);
-
-
+  console.log("CARTERRR")
+  console.log(act)
 
   //THIS USE EFFECT IS TO SET DATA PAGE
   useEffect(() => {

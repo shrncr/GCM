@@ -23,7 +23,7 @@ export default function Edit(props) {
   // Required constants
   const [updateData, setUpdateData] = useState(false);
   const navigate = useNavigate();
-  const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations, homeAct, setHomeAct } = useContext(ExhibitContext);
+  const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations, act, setAct, skills } = useContext(ExhibitContext);
   const location = useLocation();
   const [uploadProgress, setUploadProgress] = useState(0);
   const [image, setImage] = useState("");
@@ -101,8 +101,10 @@ export default function Edit(props) {
       exh = exhibits[props.index]; //the current exhibit
     } else if (props.title === "Map") {
       exh = locations[props.index]
+    } else if (props.title === "Skills") {
+      exh = skills[props.index]
     } else {
-      exh = homeAct[props.index]
+      exh = act[props.index]
       console.log(exh)
     }
 
@@ -117,7 +119,7 @@ export default function Edit(props) {
     } else if (props.title === "Map") {
       data = locations;
     } else {
-      data = homeAct;
+      data = act;
     }
   }
 
