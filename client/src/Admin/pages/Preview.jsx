@@ -8,7 +8,7 @@ import DOMPurify from 'dompurify';
 import Accordion from "../components/Accordion.jsx";
 
 export default function Preview(props) {
-  const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct, skills } = useContext(ExhibitContext);
+  const { exhibits, playstyles, locations, act, skills } = useContext(ExhibitContext);
   const navigate = useNavigate();
   const location = useLocation();
   let name;
@@ -30,7 +30,7 @@ export default function Preview(props) {
       name = "Exhibit"
       break;
     case "Activities":
-      data = homeAct[props.index];
+      data = act[props.index];
       image = data.image;
       name = "Activity"
       ext1 = [];

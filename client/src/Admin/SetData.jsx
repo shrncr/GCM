@@ -8,7 +8,7 @@ const ExhibitContext = createContext();
 // Context provider component
 const SetData = ({ children }) => {
   const [exhibits, setExhibits] = useState([]);
-  const [homeAct, setHomeAct] = useState([]);
+  const [act, setAct] = useState([]);
   const [playstyles, setPlaystyles] = useState([]);
   const [locations, setLocations] = useState([]);
   const [data, setData] = useState([]);
@@ -57,7 +57,9 @@ const SetData = ({ children }) => {
         alert('An error occured.')
       }
     }).then((res) => {
-      setHomeAct(res.data)
+
+      setAct(res.data)
+
     });
 
     axios({
@@ -127,7 +129,7 @@ const SetData = ({ children }) => {
 
   console.log(exhibits)
   return (
-    <ExhibitContext.Provider value={{ exhibits, setExhibits, playstyles, setPlaystyles, homeAct, setHomeAct, locations, setLocations, data, setData, skills, setSkills }}>
+    <ExhibitContext.Provider value={{ exhibits, setExhibits, playstyles, setPlaystyles, act, setAct, locations, setLocations, data, setData, skills, setSkills }}>
       {children}
     </ExhibitContext.Provider>
   )

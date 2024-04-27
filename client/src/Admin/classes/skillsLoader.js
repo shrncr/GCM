@@ -19,7 +19,7 @@ const useSkillsLoader = ({ exhibit, location }) => {
                 dest = "playPlaces";
                 break;
             default:
-                console.error('Invalid location:', location);
+                console.error('Invalid location:', location)
                 return;
         }
         console.log("hruosgno")

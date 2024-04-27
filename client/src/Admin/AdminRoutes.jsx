@@ -12,7 +12,7 @@ import './pages/pages.css';
 
 
 export default function AdminRoutes(props) {
-    const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct, skills } = useContext(ExhibitContext);
+    const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, act, skills } = useContext(ExhibitContext);
     //Creates all the routes for the admin side
     return (
         <div>
@@ -71,7 +71,7 @@ export default function AdminRoutes(props) {
                 })}
 
                 {/* Home Activity Routes */}
-                {homeAct.map((e, index) => {
+                {act.map((e, index) => {
                     const name = e.title.replace(/\s+/g, '_');
                     return (
                         <React.Fragment key={index}>

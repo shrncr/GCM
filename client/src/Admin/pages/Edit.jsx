@@ -247,7 +247,7 @@ export default function Edit(props) {
         axios({ //make request
           url: 'http://localhost:8082/admin/editmap', //edit exhibit
           method: 'POST',
-          data: { id: exh._id, title: name, desc: description, latitude: lat, longitude: long, address: addy, playstyle: selectedOptions[0] },
+          data: { id: exh._id, title: name, desc: description, latitude: lat, longitude: long, address: addy, playstyle: selectedOptions[0], image: image },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -314,7 +314,7 @@ export default function Edit(props) {
         axios({ //make request
           url: 'http://localhost:8082/admin/addmap', //edit exhibit
           method: 'POST',
-          data: { long: long, lat: lat, address: addy, title: name, desc: description, playstyle: selectedOptions[0] },
+          data: { long: long, lat: lat, address: addy, title: name, desc: description, playstyle: selectedOptions[0], image: image },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
