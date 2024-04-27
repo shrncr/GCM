@@ -531,7 +531,7 @@ header .nav-btn {
     min-height: 200px;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 10px;
-    width: 250px;
+    width: 200px;
 }
 
 .box-container {
@@ -582,7 +582,7 @@ header .nav-btn {
 }
 
 /* Media query for smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .user-map-container {
         flex-direction: column; /* Stack items vertically on smaller screens */
         height: 150vh;

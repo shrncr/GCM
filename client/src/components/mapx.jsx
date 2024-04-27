@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+
 const libraries = ['places'];
 const mapContainerStyle = {
   width: '100vw',
   height: '100vh',
 };
-const center = { //where center of map is (tampa)
+const center = { //where center of map is (Tampa)
   lat: 27.9469,
   lng: -82.4672,
 };
 
-function Map(props) {
-  const markerContent = props.markerContent;
+const Map = ({ markerContent, onMarkerClick = () => {} }) => {
   const [locations, setLocations] = useState([]);
 
-  useEffect(() => { //get pins based on learning styles defined (whether it be all or specific one)
+  useEffect(() => {
+    // Fetch pins based on marker content
     axios({
       url: 'http://localhost:8082/map',
       method: 'GET',
@@ -25,17 +26,15 @@ function Map(props) {
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
       },
-      catch(error) {
-        console.error('error:', error);
-        alert('An error occured.')
-      }
     }).then((res) => {
       setLocations(res.data)
+    }).catch(error => {
+      console.error('error:', error);
+      alert('An error occurred while fetching map data.');
     });
-  }, [locations]);
+  }, [markerContent]);
 
-
-  const { isLoaded, loadError } = useLoadScript({ //loading map
+  const { isLoaded, loadError } = useLoadScript({ // Loading map
     googleMapsApiKey: "AIzaSyBXqEo_870tbuzkTgjEondNHYznmrEnVf8",
     libraries,
   });
@@ -44,27 +43,24 @@ function Map(props) {
     return <div>Error loading maps</div>;
   }
 
-  if (!isLoaded) { //say loading til loaded
+  if (!isLoaded) { // Show loading until loaded
     return <div>Loading maps</div>;
   }
 
   return (
-    <div>
-      <GoogleMap //return a map
-        mapContainerStyle={mapContainerStyle}
-        zoom={10}
-        center={center}
+      <GoogleMap // Return a map
+          mapContainerStyle={mapContainerStyle}
+          zoom={10}
+          center={center}
       >
-        {locations.map(curpin => ( //put pins on the map
-          <Marker position={
-            {
-              lat: curpin.latitude,
-              lng: curpin.longitude
-            }}
-          />
+        {locations.map((pin, index) => ( // Put pins on the map
+            <Marker
+                key={index}
+                position={{ lat: pin.latitude, lng: pin.longitude }}
+                onClick={() => onMarkerClick(pin, index)} // Call onMarkerClick function with marker and index
+            />
         ))}
       </GoogleMap>
-    </div>
   );
 };
 
