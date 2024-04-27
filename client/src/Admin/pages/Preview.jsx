@@ -11,7 +11,7 @@ export default function Preview(props) {
   const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct, skills } = useContext(ExhibitContext);
   const navigate = useNavigate();
   const location = useLocation();
-
+  let name;
   let data;
   let image;
   let ext1;
@@ -21,24 +21,29 @@ export default function Preview(props) {
       data = playstyles[props.index];
       image = playstyles[props.index].image;
       ext1 = data.skills;
+      name = "Playstyle"
       break;
     case "Exhibits":
       data = exhibits[props.index];
       image = data.image;
       ext1 = data.activities;
+      name = "Exhibit"
       break;
     case "Activities":
       data = homeAct[props.index];
       image = data.image;
+      name = "Activity"
       ext1 = [];
       break;
     case "Map":
       data = locations[props.index];
+      name = "Location"
       ext1 = [];
       break;
     case "Skills":
       data = skills[props.index];
       ext1 = [];
+      name = "Skill"
       break;
     default:
       data = [];
@@ -72,7 +77,7 @@ export default function Preview(props) {
         <div className="edit_button">
           <Link to="edit">
             <button className="normal" type="button">
-              Edit {location.pathname.includes("exhibit") ? "Exhibit" : "Playstyle"}
+              Edit {name}
             </button>
           </Link>
           <button className="edit-button" type="button" onClick={(e) => navigate(-1)}>

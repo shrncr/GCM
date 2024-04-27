@@ -59,7 +59,7 @@ const Accordion = ({ skills, title }) => {
                     {openIndex === index && (
                         <div className="accordion-content">
                             <p>{desc[index]}</p>
-                            {ext.map((skill, index) => (
+                            {ext[index].map((skill, index) => (
                                 <button key={index}>{skill}</button>
                             ))}
                         </div>

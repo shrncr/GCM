@@ -99,9 +99,9 @@ export default function Edit(props) {
 
     } else if (props.title === "Exhibits") {
       exh = exhibits[props.index]; //the current exhibit
-    } else if (props.title === "Map"){
+    } else if (props.title === "Map") {
       exh = locations[props.index]
-    } else{
+    } else {
       exh = homeAct[props.index]
       console.log(exh)
     }
@@ -116,7 +116,7 @@ export default function Edit(props) {
       data = exhibits;
     } else if (props.title === "Map") {
       data = locations;
-    } else{
+    } else {
       data = homeAct;
     }
   }
@@ -259,11 +259,27 @@ export default function Edit(props) {
 
         });
 
+      } else if (props.title === "Skills") { // if editing a map location
+        axios({ //make request
+          url: 'http://localhost:8082/admin/editskill', //edit exhibit
+          method: 'POST',
+          data: { title: name, desc: description, image: image, Activities: selectedOptions },
+          headers: {
+            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+          },
+          catch(error) {
+            console.error('error:', error);
+            alert('An error occured.')
+          }
+        }).then((res) => {
+
+        });
+
       } else {
         axios({ //make request
           url: 'http://localhost:8082/admin/editactivity', //edit exhibit
           method: 'POST',
-          data: { id: exh._id, title: name, desc: description,  skills: selectedOptions },
+          data: { id: exh._id, title: name, desc: description, skills: selectedOptions },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -324,6 +340,22 @@ export default function Edit(props) {
           }
         }).then((res) => {
         });
+      }
+      else if (props.title === "Skills") {
+        console.log("specifically, a playstyle added");
+        axios({ //make request
+          url: 'http://localhost:8082/admin/addskill', //edit exhibit
+          method: 'POST',
+          data: { title: name, desc: description, image: image, Activities: selectedOptions },
+          headers: {
+            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+          },
+          catch(error) {
+            console.error('error:', error);
+            alert('An error occured.')
+          }
+        }).then((res) => {
+        });
       } else {
         console.log("specifically, a activity added");
         axios({ //make request
@@ -352,6 +384,9 @@ export default function Edit(props) {
     }
     else if (props.title === "Map") {
       navigate(`/admin/map`)
+      window.location.reload();
+    } else if (props.title === "Skills") {
+      navigate(`/admin/skills`)
       window.location.reload();
     } else {
       navigate(`/admin/activities`)
