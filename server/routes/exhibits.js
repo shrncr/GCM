@@ -46,7 +46,7 @@ router.post('/home', async (req, res) => {
     desc: req.body.homeText
   };
   HomeText.findOneAndUpdate({ num: "Main" }, options).then(
-    console.log("success")
+    res.status(200)
   );
 });
 
@@ -68,7 +68,7 @@ router.post('/resources', async (req, res) => {
     desc: req.body.resourcesText
   };
   HomeText.findOneAndUpdate({ num: "Resources" }, options).then(
-    console.log("success")
+    res.status(200)
   );
 });
 
@@ -319,7 +319,7 @@ router.post('/admin', async (req, res) => {
     }
 
   } catch (err) {
-    console.log("err")
+    console.log(err)
   }
 });
 router.get("/admin/auth", ({ session: { user } }, res) => {
@@ -341,7 +341,7 @@ router.post('/admin/editmap', async (req, res) => {
     }
     console.log(req.body);
     Map.findOneAndUpdate({ _id: req.body.id }, options).then(
-      console.log(req.body.id)
+      res.status(200)
     );
 
   } catch (err) {
@@ -376,7 +376,8 @@ router.put('/admin/editlearningstyle', async (req, res) => {
   }
   console.log(req.body);
   PlayStyle.findOneAndUpdate({ _id: req.body.id }, options).then(
-    console.log(req.body.id)
+    res.status(200)
+
   );
   //res.json(data);
 
@@ -398,7 +399,7 @@ router.put('/admin/editexhibit', async (req, res) => {
   };
   Exhibit.findOneAndUpdate({ _id: req.body.id }, options).then(() => {
 
-
+    res.status(200)
 
 
 
@@ -423,7 +424,7 @@ router.post("/admin/addactivity", async (req, res) => {
       'atHome': req.body.atHome
     }
     );
-    console.log("bawls");
+    res.status(200)
   } catch (err) {
     console.log(err); // we will know if error
   }
@@ -440,7 +441,7 @@ router.post("/admin/editactivity", async (req, res) => {
       skills: req.body.skills
     };
     Activities.findOneAndUpdate({ _id: req.body.id }, options).then(
-      console.log("then")
+      res.status(200)
     )
 
   } catch (err) {
@@ -458,9 +459,8 @@ router.post("/admin/editskill", async (req, res) => {
       Activities: req.body.activities
     };
     Skills.findOneAndUpdate({ _id: req.body.id }, options).then(
-      console.log("then")
+      res.status(200)
     )
-
   } catch (err) {
     console.log(err);
   }
@@ -477,6 +477,7 @@ router.post("/admin/addskill", async (req, res) => {
     }
     );
     console.log("bawls");
+    res.status(200);
   } catch (err) {
     console.log(err); // we will know if error
   }
@@ -501,6 +502,7 @@ router.post("/admin/addmap", async (req, res) => {
     }
     );
     console.log("bawls");
+    res.status(200);
   } catch (err) {
     console.log(err); // we will know if error
   }
@@ -521,6 +523,7 @@ router.post("/admin/addexhibit", async (req, res) => {
       'activities': req.body.activities
     }
     );
+    res.status(200);
     console.log("bawls");
   } catch (err) {
     console.log(err); // we will know if error
@@ -542,7 +545,7 @@ router.post("/admin/addlearningstyle", async (req, res) => {
       'skills': req.body.skills
     }
     );
-    console.log("bawls");
+    res.status(200);
   } catch (err) {
     console.log(err); // we will know if error
   }
