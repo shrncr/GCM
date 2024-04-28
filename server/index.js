@@ -14,7 +14,7 @@ const app = express();
 
 app.use(cors({
   origin: "*",//'https://gcm-frontend.vercel.app', // allow requests from frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed  methods
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed  methods
   allowedHeaders: ['Content-Type', 'Authorization','User-Agent', 'Accept', 'Referer'], // headers to allow
   credentials: true, // allow setting of cookies or sessions
 }));
