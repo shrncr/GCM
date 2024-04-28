@@ -9,7 +9,7 @@ const cors = require("cors");
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const path = require('path');
-
+const port = process.env.PORT || 8082;
 const app = express();
 
 app.use(cors({
@@ -26,9 +26,7 @@ app.use(cors({
 
 require("dotenv").config({ path: "./config.env" });
 
-///const port = process.env.PORT || 8082; //port 5000 or whats defined in ENV (used after deployment)
 
-const port = 8082//process.env.PORT || 8082;
 
 
 app.use(express.json()); //we use json
