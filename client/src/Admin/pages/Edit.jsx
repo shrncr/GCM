@@ -23,10 +23,11 @@ export default function Edit(props) {
   // Required constants
   const [updateData, setUpdateData] = useState(false);
   const navigate = useNavigate();
-  const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations, homeAct, setHomeAct } = useContext(ExhibitContext);
+  const { exhibits, setExhibits, playstyles, setPlaystyles, locations, setLocations, act, setAct, skills } = useContext(ExhibitContext);
   const location = useLocation();
   const [uploadProgress, setUploadProgress] = useState(0);
   const [image, setImage] = useState("");
+  const apiUrl = process.env.REACT_APP_API_URL;
   let selectedFile;
 
   //awk endpoint to obtain presigned url to upload images
@@ -99,10 +100,12 @@ export default function Edit(props) {
 
     } else if (props.title === "Exhibits") {
       exh = exhibits[props.index]; //the current exhibit
-    } else if (props.title === "Map"){
+    } else if (props.title === "Map") {
       exh = locations[props.index]
-    } else{
-      exh = homeAct[props.index]
+    } else if (props.title === "Skills") {
+      exh = skills[props.index]
+    } else {
+      exh = act[props.index]
       console.log(exh)
     }
 
@@ -116,15 +119,23 @@ export default function Edit(props) {
       data = exhibits;
     } else if (props.title === "Map") {
       data = locations;
-    } else{
-      data = homeAct;
+    } else {
+      data = act;
     }
   }
 
   /*name, description, latitude, longitude, and image variables used to track what
   the user is entering*/
   const [name, setName] = useState(exh.title);
-  const [description, setDescription] = useState(exh.desc);
+  let d = exh.desc;
+  if (props.title == "Activities") {
+    console.log("under")
+    console.log(exh.description)
+    d = exh.description
+  }
+  const [description, setDescription] = useState(d);
+  console.log(description)
+
 
   let v;
   if (exh.status !== undefined) {
@@ -211,7 +222,7 @@ export default function Edit(props) {
       if (props.title === "Playstyles") { //if editing a playstyle
         console.log("specifically, a playstyle");
         axios({ //make request
-          url: 'http://localhost:8082/admin/editlearningstyle', //edit exhibit
+          url: `${apiUrl}/admin/editlearningstyle`, //edit exhibit
           method: 'PUT',
           data: { id: exh._id, title: name, desc: description, image: image, skills: selectedOptions },
           headers: {
@@ -230,7 +241,7 @@ export default function Edit(props) {
         console.log("specifically, an exhibit");
         console.log(exh);
         axios({ //make request
-          url: 'http://localhost:8082/admin/editexhibit', //edit exhibit
+          url: `${apiUrl}/admin/editexhibit`, //edit exhibit
           method: 'PUT',
           data: { id: exh._id, title: name, desc: description, image: image, status: visible, activities: selectedOptions },
           headers: {
@@ -245,9 +256,25 @@ export default function Edit(props) {
         });
       } else if (props.title === "Map") { // if editing a map location
         axios({ //make request
-          url: 'http://localhost:8082/admin/editmap', //edit exhibit
+          url: `${apiUrl}/admin/editmap`, //edit exhibit
           method: 'POST',
-          data: { id: exh._id, title: name, desc: description, latitude: lat, longitude: long, address: addy, playstyle: selectedOptions[0] },
+          data: { id: exh._id, title: name, desc: description, latitude: lat, longitude: long, address: addy, playstyle: selectedOptions[0], image: image },
+          headers: {
+            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+          },
+          catch(error) {
+            console.error('error:', error);
+            alert('An error occured.')
+          }
+        }).then((res) => {
+
+        });
+
+      } else if (props.title === "Skills") { // if editing a map location
+        axios({ //make request
+          url: `${apiUrl}/admin/editskill`, //edit exhibit
+          method: 'POST',
+          data: { title: name, desc: description, image: image, Activities: selectedOptions },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -261,9 +288,9 @@ export default function Edit(props) {
 
       } else {
         axios({ //make request
-          url: 'http://localhost:8082/admin/editactivity', //edit exhibit
+          url: `${apiUrl}/admin/editactivity`, //edit exhibit
           method: 'POST',
-          data: { id: exh._id, title: name, desc: description,  skills: selectedOptions },
+          data: { id: exh._id, title: name, desc: description, skills: selectedOptions },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -280,7 +307,7 @@ export default function Edit(props) {
       if (props.title === "Exhibits") {
         console.log("specifically, an exhibit");
         axios({ //make request
-          url: 'http://localhost:8082/admin/addexhibit', //edit exhibit
+          url: `${apiUrl}/admin/addexhibit`, //edit exhibit
           method: 'POST',
           data: { title: name, desc: description, image: image, status: visible, activities: selectedOptions },
           headers: {
@@ -296,9 +323,9 @@ export default function Edit(props) {
 
       } else if (props.title === "Map") {
         axios({ //make request
-          url: 'http://localhost:8082/admin/addmap', //edit exhibit
+          url: `${apiUrl}/admin/addmap`, //edit exhibit
           method: 'POST',
-          data: { long: long, lat: lat, address: addy, title: name, desc: description, playstyle: selectedOptions[0] },
+          data: { long: long, lat: lat, address: addy, title: name, desc: description, playstyle: selectedOptions[0], image: image },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -312,9 +339,25 @@ export default function Edit(props) {
       else if (props.title === "Playstyles") {
         console.log("specifically, a playstyle added");
         axios({ //make request
-          url: 'http://localhost:8082/admin/addlearningstyle', //edit exhibit
+          url: `${apiUrl}/admin/addlearningstyle`, //edit exhibit
           method: 'POST',
           data: { title: name, desc: description, image: image, skills: selectedOptions },
+          headers: {
+            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+          },
+          catch(error) {
+            console.error('error:', error);
+            alert('An error occured.')
+          }
+        }).then((res) => {
+        });
+      }
+      else if (props.title === "Skills") {
+        console.log("specifically, a playstyle added");
+        axios({ //make request
+          url: `${apiUrl}/admin/addskill`, //edit exhibit
+          method: 'POST',
+          data: { title: name, desc: description, image: image, Activities: selectedOptions },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -327,7 +370,7 @@ export default function Edit(props) {
       } else {
         console.log("specifically, a activity added");
         axios({ //make request
-          url: 'http://localhost:8082/admin/addactivity', //edit exhibit
+          url: `${apiUrl}/admin/addactivity`, //edit exhibit
           method: 'POST',
           data: { title: name, desc: description, image: image, skills: selectedOptions, atHome: true },
           headers: {
@@ -352,6 +395,9 @@ export default function Edit(props) {
     }
     else if (props.title === "Map") {
       navigate(`/admin/map`)
+      window.location.reload();
+    } else if (props.title === "Skills") {
+      navigate(`/admin/skills`)
       window.location.reload();
     } else {
       navigate(`/admin/activities`)
@@ -413,15 +459,25 @@ export default function Edit(props) {
 
 
           <br />
-          <div>
-            <label>{checkboxesTitle}</label>
-          </div>
-          <div className="checkbox-row">
-            {checkboxArr}
-          </div>
-          <div>
-            {!isMapPage && <DropdownForm />}
-          </div>
+
+          {props.title !== "Skills" && (
+            <>
+              <div>
+                <label>{checkboxesTitle}</label>
+              </div>
+              <div className="checkbox-row">
+                {checkboxArr}
+              </div>
+            </>
+          )}
+
+
+          {props.title !== "Skills" && !isMapPage && (
+            <div>
+              <DropdownForm />
+            </div>
+          )}
+
           <div>
             <br />
             <label>Visibility:</label>

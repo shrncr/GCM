@@ -7,13 +7,14 @@ import Footer from '../components/footer.jsx';
 
 
 function AdminApp() {
-    ///Seperates the Sdmin Side so the components dont conflict
-    return (
-        <SetData>
-            <div>
-                <Navbar />
+  ///Seperates the Sdmin Side so the components dont conflict
+  return (
+    <SetData>
+      <div>
+        <Navbar />
 
-                <AdminRoutes />
+        <AdminRoutes />
+        <Footer />
       </div>
 
     </SetData>

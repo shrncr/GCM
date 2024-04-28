@@ -5,19 +5,30 @@ Root file for backend. Brings together api endpoints, defined port number, and c
 
 
 const express = require("express");
-
+const cors = require("cors");
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
+
 const app = express();
-//const MongoStore = connectStore(session);
-const cors = require("cors");
+
+app.use(cors({
+  origin: 'https://gcm-frontend.vercel.app', // allow requests from frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed  methods
+  allowedHeaders: ['Content-Type', 'Authorization','User-Agent', 'Accept', 'Referer'], // headers to allow
+  credentials: true, // allow setting of cookies or sessions
+}));
+
+
+app.options('*', cors()); 
+
 
 
 require("dotenv").config({ path: "./config.env" });
 
 ///const port = process.env.PORT || 8082; //port 5000 or whats defined in ENV (used after deployment)
-const port = 8082
-app.use(cors({ origin: true, credentials: true }));
+
+const port = process.env.PORT || 8082;
+
 
 app.use(express.json()); //we use json
 const mongoose = require('mongoose');

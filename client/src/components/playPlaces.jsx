@@ -23,9 +23,10 @@ function trackVisit() { // for impressions - track visit information in db
   const deviceType = getDeviceType();
   const page = 'playPlaces';
   const time_of_day = new Date();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   // Store the visit time, page, and device type in the database
-  axios.post('http://localhost:8082/create', { time_of_day, page, deviceType })
+  axios.post(`${apiUrl}/create`, { time_of_day, page, deviceType })
     .then(response => {
       console.log('Visit time recorded:', response.data);
     })
@@ -35,10 +36,11 @@ function trackVisit() { // for impressions - track visit information in db
 }
 
 function Playplaces() {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const [exdata, setExhibitData] = useState([]);
   useEffect(() => {
     axios({
-      url: 'http://localhost:8082/exhibits',
+      url: `${apiUrl}/exhibits`,
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',

@@ -324,17 +324,25 @@
     justify-content: center;
     align-items: center;
     height: auto;
-    width: 100vw;
+    width: 50.5vw;
+    border-radius: 10px;
+    margin-left: 24.75vw;
+    margin-right: 24.75vw;
+    background-color: purple;
     /* Adjust as needed */
+
 
     color: black;
 }
 
-.accordion {
 
+
+.accordion {
+    background-color: purple;
     width: 50vw;
     height: auto;
     display: flex;
+    border-radius: 10px;
     justify-content: center;
     /* Adjust width as needed */
 }
@@ -343,17 +351,45 @@
 
 .accordion-title {
     width: 100%;
-    height: 100%;
+    height: auto;
+    border: 0;
     margin: 0;
+    display: flex;
+    justify-content: center;
     background-color: purple;
     border: none;
-    border-radius: 0;
     color: white;
 }
 
+
+
 .accordion-content {
     color: black;
+    background-color: lightgray;
 
+}
+
+h5 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+
+}
+
+.acc-butt-cont {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+
+}
+
+.acc-butt-cont button {
+    background-color: #2383c6;
+    color: rgb(235, 235, 235);
 }
 
 /* Add additional styles as needed */

@@ -9,10 +9,11 @@ import ExhibitFeedback from '../Admin/components/Feedback';
 function PlayInfo({ title }) {
     const [desc, setDesc] = useState([]);
     const [skills, setSkills] = useState([]);
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         // Fetch data based on the title
-        axios.get(`http://localhost:8082/${title}`)
+        axios.get(`${apiUrl}/${title}`)
             .then((res) => {
                 setDesc(res.data.baseData.desc);
                 setSkills(res.data.dropdown);

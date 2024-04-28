@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const useSkillsLoader = ({ exhibit, location }) => {
     const [skills, setSkills] = useState([]);
+    const apiUrl = process.env.REACT_APP_API_URL;
     console.log("under")
     console.log(location)
     useEffect(() => {
@@ -19,11 +20,11 @@ const useSkillsLoader = ({ exhibit, location }) => {
                 dest = "playPlaces";
                 break;
             default:
-                console.error('Invalid location:', location);
+                console.error('Invalid location:', location)
                 return;
         }
         console.log("hruosgno")
-        axios.get(`http://localhost:8082/${dest}/${exhibit._id}`)
+        axios.get(`${apiUrl}/${dest}/${exhibit._id}`)
             .then((res) => {
                 console.log(res)
                 const { dropdown } = res.data;

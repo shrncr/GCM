@@ -13,9 +13,10 @@ function SingleInfo() {
     const [img, setImg] = useState("");
 
     const { id, dest } = useParams();
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
-        axios.get(`http://localhost:8082/${dest}/${id}`)
+        axios.get(`${apiUrl}/${dest}/${id}`)
             .then((res) => {
                 const { baseData, dropdown } = res.data;
 
@@ -30,18 +31,25 @@ function SingleInfo() {
             });
     }, [id, dest]);
 
-    console.log("right under")
-    console.log(title)
+    let t;
+    if (dest == "playPlaces") {
+        t = "Exhibits"
+    } else {
+        t = "Playstyles"
+    }
+
 
     return (
         <div>
             <Banner className="home-background" text={title} />
             <h2>{title}</h2>
             <hr />
-            <p dangerouslySetInnerHTML={{ __html: desc }}></p>
+            <p className="descriptoin" dangerouslySetInnerHTML={{ __html: desc }}></p>
+            <br></br>
+            <br></br>
             <div className="accordion-container">
 
-                <Accordion skills={skills} title={title} />
+                <Accordion skills={skills} title={t} side={""} />
             </div>
             <div className="feedback-containter">
                 <ExhibitFeedback exhibitId={title} />

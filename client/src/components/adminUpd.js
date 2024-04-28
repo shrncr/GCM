@@ -6,11 +6,12 @@ function ExhibitAdd() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null)
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8082', { name, description }); //post name and description as json obj to base route of the server
+      await axios.post(`${apiUrl}`, { name, description }); //post name and description as json obj to base route of the server
       // Clear form after successful submission
       setName('');
       console.log("gibrd");

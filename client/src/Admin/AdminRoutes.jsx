@@ -12,7 +12,7 @@ import './pages/pages.css';
 
 
 export default function AdminRoutes(props) {
-    const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct } = useContext(ExhibitContext);
+    const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, act, skills } = useContext(ExhibitContext);
     //Creates all the routes for the admin side
     return (
         <div>
@@ -25,6 +25,7 @@ export default function AdminRoutes(props) {
                 <Route path="/exhibits/*" element={<Exhibits title={"Exhibits"} />} />
                 <Route path="/playstyles/*" element={<Exhibits title={"Playstyles"} />} />
                 <Route path="/activities/*" element={<Exhibits title={"Activities"} />} />
+                <Route path="/skills/*" element={<Exhibits title={"Skills"} />} />
                 <Route path="/map/*" element={<MapEdit />} />
                 <Route path='data' element={<Data index={0} />} />
                 {/*<Route path="/map" element={<MapEdit />} />
@@ -36,11 +37,11 @@ export default function AdminRoutes(props) {
                         <React.Fragment key={index}>
                             <Route key={index} path={`exhibits/${name}`} element={<Preview title={"Exhibits"} index={index} />} />
                             <Route path={`exhibits/${name}/edit`} element={<Edit title={"Exhibits"} index={index} />} />
-                            <Route path={`exhibits/add`} element={<Edit title={"Exhibits"} index={null} />} />
+
                         </React.Fragment>
                     )
                 })}
-
+                <Route path={`exhibits/add`} element={<Edit title={"Exhibits"} index={null} />} />
                 {/* Playstyles Routes */}
                 {/* Playstyles Routes */}
                 {playstyles.map((e, index) => {
@@ -51,35 +52,50 @@ export default function AdminRoutes(props) {
                         <React.Fragment key={index}>
                             <Route path={`/playstyles/${name}`} element={<Preview title={"Playstyles"} index={index} />} />
                             <Route path={`/playstyles/${name}/edit`} element={<Edit exhibit={e} title={"Playstyles"} index={index} />} />
-                            <Route path="/playstyles/add" element={<Edit exhibit={"add"} title={"Playstyles"} index={null} />} />
+
                         </React.Fragment>
                     );
                 })}
-
+                <Route path="/playstyles/add" element={<Edit exhibit={"add"} title={"Playstyles"} index={null} />} />
                 {/* Home Activity Routes */}
                 {locations.map((e, index) => {
+
                     const name = e.title.replace(/\s+/g, '_');
                     return (
                         <React.Fragment key={index}>
                             <Route key={index} path={`map/${name}`} element={<Preview title={"Map"} index={index} />} />
                             <Route path={`map/${name}/edit`} element={<Edit title={"Map"} index={index} />} />
-                            <Route path={`map/add`} element={<Edit title={"Map"} index={null} />} />
+
+
                         </React.Fragment>
                     )
                 })}
-
+                <Route path={`map/add`} element={<Edit title={"Map"} index={null} />} />
                 {/* Home Activity Routes */}
-                {homeAct.map((e, index) => {
+                {act.map((e, index) => {
+                    const name = e.title.replace(/\s+/g, '_');
+                    console.log(name)
+                    return (
+                        <React.Fragment key={index}>
+                            <Route path={`/activities/${name}`} element={<Preview title={"Activities"} index={index} />} />
+                            <Route path={`/activities/${name}/edit`} element={<Edit exhibit={e} title={"Activities"} index={index} />} />
+
+                        </React.Fragment>
+                    )
+                })}
+                <Route path="/activities/add" element={<Edit exhibit={"add"} title={"Activities"} index={null} />} />
+                {/* Skills Routes */}
+                {skills.map((e, index) => {
                     const name = e.title.replace(/\s+/g, '_');
                     return (
                         <React.Fragment key={index}>
-                            <Route key={index} path={`activities/${name}`} element={<Preview title={"Activities"} index={index} />} />
-                            <Route path={`activities/${name}/edit`} element={<Edit title={"Activities"} index={index} />} />
-                            <Route path={`activities/add`} element={<Edit title={"Activities"} index={null} />} />
+                            <Route key={index} path={`skills/${name}`} element={<Preview title={"Skills"} index={index} />} />
+                            <Route path={`skills/${name}/edit`} element={<Edit title={"Skills"} index={index} />} />
+
                         </React.Fragment>
                     )
                 })}
-
+                <Route path="/skills/add" element={<Edit exhibit={"add"} title={"Skills"} index={null} />} />
 
             </Routes>
         </div>

@@ -8,17 +8,19 @@ const ExhibitContext = createContext();
 // Context provider component
 const SetData = ({ children }) => {
   const [exhibits, setExhibits] = useState([]);
-  const [homeAct, setHomeAct] = useState([]);
+  const [act, setAct] = useState([]);
   const [playstyles, setPlaystyles] = useState([]);
   const [locations, setLocations] = useState([]);
   const [data, setData] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   // Use useEffect to set exhibits after the initial render
   useEffect(() => {
     const exh = [];
     const play = [];
     axios({ //get exhibits
-      url: 'http://localhost:8082/allexhibits',
+      url: `${apiUrl}/allexhibits`,
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -32,7 +34,7 @@ const SetData = ({ children }) => {
     });
 
     axios({ //and playstyles
-      url: 'http://localhost:8082/playstyles',
+      url: `${apiUrl}/playstyles`,
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -46,7 +48,7 @@ const SetData = ({ children }) => {
     });
 
     axios({ //and playstyles
-      url: 'http://localhost:8082/activities',
+      url: `${apiUrl}/activities`,
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -56,11 +58,13 @@ const SetData = ({ children }) => {
         alert('An error occured.')
       }
     }).then((res) => {
-      setHomeAct(res.data)
+
+      setAct(res.data)
+
     });
 
     axios({
-      url: 'http://localhost:8082/map',
+      url: `${apiUrl}/map`,
       method: 'GET',
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -72,18 +76,31 @@ const SetData = ({ children }) => {
     }).then((res) => {
       setLocations(res.data)
     });
+    axios({
+      url: `${apiUrl}/skills`,
+      method: 'GET',
+      headers: {
+        authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+      },
+      catch(error) {
+        console.error('error:', error);
+        alert('An error occured.')
+      }
+    }).then((res) => {
+      setSkills(res.data)
+    });
   }, []);
-
-
+  console.log("CARTERRR")
+  console.log(act)
 
   //THIS USE EFFECT IS TO SET DATA PAGE
   useEffect(() => {
     const getCSV = async () => {
       try {
         const c = [];
-        const feedback = await axios.get('http://localhost:8082/download-feedback-csv');
-        const impressions = await axios.get('http://localhost:8082/download-impressions-csv');
-        const session = await axios.get('http://localhost:8082/download-sessions-csv');
+        const feedback = await axios.get(`${apiUrl}/download-feedback-csv`);
+        const impressions = await axios.get(`${apiUrl}/download-impressions-csv`);
+        const session = await axios.get(`${apiUrl}/download-sessions-csv`);
         const arr = [feedback, impressions, session];
         console.log("FEEDBACK")
         console.log(feedback)
@@ -111,9 +128,9 @@ const SetData = ({ children }) => {
 
   }, []);
 
-
+  console.log(exhibits)
   return (
-    <ExhibitContext.Provider value={{ exhibits, setExhibits, playstyles, setPlaystyles, homeAct, setHomeAct, locations, setLocations, data, setData, }}>
+    <ExhibitContext.Provider value={{ exhibits, setExhibits, playstyles, setPlaystyles, act, setAct, locations, setLocations, data, setData, skills, setSkills }}>
       {children}
     </ExhibitContext.Provider>
   )

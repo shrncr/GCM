@@ -6,44 +6,62 @@ import { useLocation } from 'react-router-dom';
 import ExhibitFeedback from "../components/Feedback.jsx";
 import DOMPurify from 'dompurify';
 import Accordion from "../components/Accordion.jsx";
+import pic from "../images/play_example.jpg"
 
 export default function Preview(props) {
-  const { exhibits, setExhibit, playstyles, setPlaystyles, locations, setLocations, homeAct } = useContext(ExhibitContext);
+  const { exhibits, playstyles, locations, act, skills } = useContext(ExhibitContext);
   const navigate = useNavigate();
   const location = useLocation();
-
+  let name;
   let data;
   let image;
   let ext1;
-
+  let desc;
   switch (props.title) {
     case "Playstyles":
       data = playstyles[props.index];
+      desc = data.desc
       image = playstyles[props.index].image;
       ext1 = data.skills;
+      name = "Playstyle"
       break;
     case "Exhibits":
       data = exhibits[props.index];
+      desc = data.desc
       image = data.image;
       ext1 = data.activities;
+      name = "Exhibit"
       break;
     case "Activities":
-      data = homeAct[props.index];
-      image = data.image;
+      data = act[props.index];
+      desc = data.description
+      image = pic;
+      name = "Activity"
       ext1 = [];
       break;
     case "Map":
       data = locations[props.index];
+      desc = data.desc
+      image = data.image;
+      name = "Location"
       ext1 = [];
+      break;
+    case "Skills":
+      data = skills[props.index];
+      desc = data.desc
+      image = pic;
+      ext1 = [];
+      name = "Skill"
       break;
     default:
       data = [];
       ext1 = [];
+      desc = "None"
       break;
   }
 
-  const sanitizedDescription = DOMPurify.sanitize(data.desc);
-  const skills = useSkillsLoader({ exhibit: data, location: props.title });
+  const sanitizedDescription = DOMPurify.sanitize(desc);
+  const s = useSkillsLoader({ exhibit: data, location: props.title });
 
   return (
     <div>
@@ -60,7 +78,7 @@ export default function Preview(props) {
       {/* Conditionally render the Accordion component */}
       {ext1.length !== 0 && (
         <div className="accordion-container">
-          <Accordion skills={skills} title={props.title} />
+          <Accordion skills={s} title={props.title} side={"/admin"} />
         </div>
       )}
 
@@ -68,7 +86,7 @@ export default function Preview(props) {
         <div className="edit_button">
           <Link to="edit">
             <button className="normal" type="button">
-              Edit {location.pathname.includes("exhibit") ? "Exhibit" : "Playstyle"}
+              Edit {name}
             </button>
           </Link>
           <button className="edit-button" type="button" onClick={(e) => navigate(-1)}>

@@ -9,7 +9,7 @@ export default function Zillow_Box(props) {
         <Link to={`${dest}`} className={className}>
             <div>
 
-                <h1>{name}</h1>
+                <h5>{name}</h5>
 
             </div>
         </Link >
