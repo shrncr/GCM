@@ -8,13 +8,14 @@ const express = require("express");
 const cors = require("cors");
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
+const path = require('path');
 
 const app = express();
 
 app.use(cors({
-  origin: 'https://gcm-frontend.vercel.app', // allow requests from frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed  methods
-  allowedHeaders: ['Content-Type', 'Authorization','User-Agent', 'Accept', 'Referer'], // headers to allow
+  origin: true,//'https://gcm-frontend.vercel.app', // allow requests from frontend
+  //methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed  methods
+  //allowedHeaders: ['Content-Type', 'Authorization','User-Agent', 'Accept', 'Referer'], // headers to allow
   credentials: true, // allow setting of cookies or sessions
 }));
 
@@ -54,6 +55,8 @@ app.use(session({
 
 
 const router = require("./routes/exhibits"); //use exhibits file to access routes
+app.use(express.static(path.join(__dirname, "..", "client", "App.js")))
+
 app.use("/", router); //at the main page, "/", we will refer to the exhibit routes CRUD operations. Just for testing purposes
 require('core-js');
 
