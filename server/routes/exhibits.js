@@ -46,7 +46,7 @@ router.post('/home', async (req, res) => {
     desc: req.body.homeText
   };
   HomeText.findOneAndUpdate({ num: "Main" }, options).then(
-    console.log("success")
+    res.status(200)
   );
 });
 
@@ -68,7 +68,7 @@ router.post('/resources', async (req, res) => {
     desc: req.body.resourcesText
   };
   HomeText.findOneAndUpdate({ num: "Resources" }, options).then(
-    console.log("success")
+    res.status(200)
   );
 });
 
@@ -424,7 +424,7 @@ router.post("/admin/addactivity", async (req, res) => {
       'atHome': req.body.atHome
     }
     );
-    console.log("bawls");
+    res.status(200)
   } catch (err) {
     console.log(err); // we will know if error
   }
