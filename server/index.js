@@ -14,13 +14,13 @@ const app = express();
 
 app.use(cors({
   origin: "*",//'https://gcm-frontend.vercel.app', // allow requests from frontend
-  //methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed  methods
-  //allowedHeaders: ['Content-Type', 'Authorization','User-Agent', 'Accept', 'Referer'], // headers to allow
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed  methods
+  allowedHeaders: ['Content-Type', 'Authorization','User-Agent', 'Accept', 'Referer'], // headers to allow
   credentials: true, // allow setting of cookies or sessions
 }));
 
 
-app.options('*', cors()); 
+//app.options('*', cors()); 
 
 
 
@@ -28,7 +28,7 @@ require("dotenv").config({ path: "./config.env" });
 
 ///const port = process.env.PORT || 8082; //port 5000 or whats defined in ENV (used after deployment)
 
-const port = process.env.PORT || 8082;
+const port = 8082//process.env.PORT || 8082;
 
 
 app.use(express.json()); //we use json
@@ -55,7 +55,7 @@ app.use(session({
 
 
 const router = require("./routes/exhibits"); //use exhibits file to access routes
-app.use(express.static(path.join(__dirname, "..", "client", "App.js")))
+//app.use(express.static(path.join(__dirname, "..", "client", "App.js")))
 
 app.use("/", router); //at the main page, "/", we will refer to the exhibit routes CRUD operations. Just for testing purposes
 require('core-js');
