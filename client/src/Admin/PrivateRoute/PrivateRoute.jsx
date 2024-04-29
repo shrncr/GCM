@@ -5,28 +5,7 @@ import axios from 'axios';
 export default function PrivateRoute({ children }) {
     const [login, setLogin] = useState();
     const apiUrl = process.env.REACT_APP_API_URL;
-    useEffect(() => {
-      
-        axios({
-          url: `${apiUrl}/admin/`,
-          method: 'GET',
-          headers: {
-            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
-          },
-          catch(error) {
-            console.error('error:', error);
-            alert('An error occured.')
-          }
-        }).then((res) => {
-          if (res.data){
-            console.log(res.data);
-            setLogin(true);
-          }else{
-            setLogin(false);
-           // navigate("/login")
-          }
-        });
-      });
+    setLogin(true)
     //function is to see if the user should be allowed into the app with login
     //const { login, setLogin } = useContext(LoginContext)
     switch (login) {
