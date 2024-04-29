@@ -556,22 +556,24 @@ router.get("/admin/admininfo", async (req, res) => {
 });
 
 //making a new impression
-router.post('/create', async (req, res) => {
-  try{
-    console.log("ma");
-    const impressionData = {
-      ...req.body,
-      impression_id: new mongoose.Types.ObjectId(),
-      time_of_day: new Date(req.body.time_of_day), // ensure time_of_day is a Date object
-    };
-    await Impressions.create({ //create new exhibit w/ the model
-      impressionData
-    }
-    );
-  }catch(err){
-    console.log(err);
-  }
+router.post('/create', (req, res) => {
+  
 
+
+
+  const impressionData = {
+    ...req.body,
+    impression_id: new mongoose.Types.ObjectId(),
+    time_of_day: new Date(req.body.time_of_day), // ensure time_of_day is a Date object
+  };
+
+  // create a new impression instance with the provided data
+  const impression = new Impressions(impressionData);
+
+  // save the impression to the database
+  impression.save()
+    .then(doc => res.status(200).json(doc))
+    .catch(err => res.status(500).json({ error: err }));
 });
 
 // route to download Impressions data as CSV
