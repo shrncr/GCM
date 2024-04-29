@@ -18,6 +18,9 @@ app.use(cors({
 app.use(express.json({extended:false}));
 
 app.options('/*', (_, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://gcm-frontend.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.sendStatus(200);
 });
 
