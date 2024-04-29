@@ -12,7 +12,7 @@ const path = require('path');
 const port = process.env.PORT || 8082;
 const app = express();
 
-app.use(cors({origin:'https://gcm-frontend.vercel.app', credentials:true}));
+app.use(cors());
 app.use(express.json({extended:false}));
 
 app.options('/*', (_, res) => {
