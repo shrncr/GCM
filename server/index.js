@@ -12,33 +12,20 @@ const path = require('path');
 const port = process.env.PORT || 8082;
 const app = express();
 
-// Add Access Control Allow Origin headers
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Authorization, Content-Type, Accept"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
-  );
-  next();
-});
+// CORS middleware to handle preflight OPTIONS request
+app.options('*', cors());
+
+app.use(cors({
+  origin: "*", //'https://gcm-frontend.vercel.app', // allow requests from frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization', 'User-Agent', 'Accept', 'Referer'], // Headers to allow
+  credentials: true // Allow setting of cookies or sessions
+}));
 
 app.options('/*', (_, res) => {
   res.sendStatus(200);
 });
 
-app.use(cors({
-  origin: "*",//'https://gcm-frontend.vercel.app', // allow requests from frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed  methods
-  allowedHeaders: ['Content-Type', 'Authorization','User-Agent', 'Accept', 'Referer'], // headers to allow
-  credentials: true, // allow setting of cookies or sessions
-}));
-
-
-//app.options('*', cors()); 
 
 
 
@@ -75,12 +62,6 @@ const router = require("./routes/exhibits"); //use exhibits file to access route
 
 app.use("/", router); //at the main page, "/", we will refer to the exhibit routes CRUD operations. Just for testing purposes
 require('core-js');
-
-app.options('*', (req, res) => {
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, User-Agent, Accept, Referer');
-  res.sendStatus(200);
-});
 
 
 app.listen(port, '0.0.0.0', () => { //start server on defined port
