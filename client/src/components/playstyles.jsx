@@ -19,6 +19,7 @@ function getDeviceType() { // for impressions
 
 function PlayStylesPage() {
   const [exdata, setExhibitData] = useState([]);
+  const [interactions, setInteractions] = useState(0);
   const apiUrl = process.env.REACT_APP_API_URL;
   const deviceType = getDeviceType();
   useEffect(() => {
