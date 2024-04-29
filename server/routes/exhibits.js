@@ -216,27 +216,19 @@ router.get('/feedback', async (req, res) => {
   }
 });
 
-//will eventually work to post feedback
-// Route to submit feedback
-router.post('/feedback', async (req, res) => {
-  try {
-    // Create a new feedback instance with the provided data
-    const newFeedback = new Feedback({
-      exhibit: req.body.exhibit,
-      rating: req.body.rating,
-      childAge: req.body.childAge, // Add child's age
-      // Add any other fields you want to save, like comments, etc.
-    });
+// add a new feedback instance to the database
+router.post('/feedback', (req, res) => {
+    const feedbackData = {
+    ...req.body,
+  };
 
-    // Save the new feedback to the database
-    const savedFeedback = await newFeedback.save();
+  // create a new impression instance with the provided data
+  const feedback = new Feedback(feedbackDataData);
 
-    // Respond with success message and saved feedback data
-    res.status(201).json({ message: 'Feedback submitted successfully', feedback: savedFeedback });
-  } catch (err) {
-    console.error('Error saving feedback:', err);
-    res.status(500).send('Error occurred: ' + err.message);
-  }
+  // save the impression to the database
+  feedback.save()
+    .then(doc => res.status(200).json(doc))
+    .catch(err => res.status(500).json({ error: err }));
 });
 
 // Route to download feedback data as CSV
