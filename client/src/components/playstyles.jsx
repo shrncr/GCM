@@ -38,8 +38,10 @@ function PlayStylesPage() {
     });
   }, []);
   useEffect(() => {
+    const deviceType = getDeviceType();
     const page = 'playstyles';
     const time_of_day = new Date();
+    const apiUrl = process.env.REACT_APP_API_URL;
     // Create impression and start session tracking
     axios.post(`${apiUrl}/create`, { time_of_day, page, deviceType })
       .then(response => {
