@@ -12,15 +12,8 @@ const path = require('path');
 const port = process.env.PORT || 8082;
 const app = express();
 
-// CORS middleware to handle preflight OPTIONS request
-app.options('*', cors());
-
-app.use(cors({
-  origin: "*", //'https://gcm-frontend.vercel.app', // allow requests from frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed methods
-  allowedHeaders: ['Content-Type', 'Authorization', 'User-Agent', 'Accept', 'Referer'], // Headers to allow
-  credentials: true // Allow setting of cookies or sessions
-}));
+app.use(cors({origin:true, credentials:true}));
+app.use(express.json({extended:false}));
 
 app.options('/*', (_, res) => {
   res.sendStatus(200);
@@ -34,7 +27,7 @@ require("dotenv").config({ path: "./config.env" });
 
 
 
-app.use(express.json()); //we use json
+//app.use(express.json()); //we use json
 const mongoose = require('mongoose');
 const connectDB = require("./db/conn");
 connectDB(); //connect to db
