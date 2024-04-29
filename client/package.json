@@ -22,7 +22,8 @@
     "react-router-dom": "^6.15.0",
     "react-scripts": "^5.0.1",
     "styled-components": "^6.1.8",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "connect-mongo": "5.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
