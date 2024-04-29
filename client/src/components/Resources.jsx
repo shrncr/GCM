@@ -18,7 +18,7 @@ function getDeviceType() { // for impressions
     return "desktop";
 }
 
-
+ 
 function Resources() {
   const [interactions, setInteractions] = useState(0);
   const deviceType = getDeviceType(); // Device type is determined once on component mount.
