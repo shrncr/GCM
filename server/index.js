@@ -6,8 +6,8 @@ Root file for backend. Brings together api endpoints, defined port number, and c
 
 const express = require("express");
 const cors = require("cors");
-const session = require("express-session");
-const MongoStore = require('connect-mongo');
+//const session = require("express-session");
+//const MongoStore = require('connect-mongo');
 const path = require('path');
 const port = 8082;
 const app = express();
