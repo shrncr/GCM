@@ -9,7 +9,7 @@ const cors = require("cors");
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const path = require('path');
-const port = process.env.PORT || 8082;
+const port = 8082;
 const app = express();
 
 app.use(cors({ 
@@ -27,7 +27,7 @@ app.options('/*', (_, res) => {
 
 
 
-require("dotenv").config({ path: "./config.env" });
+//require("dotenv").config({ path: "./config.env" });
 
 
 
@@ -36,22 +36,22 @@ require("dotenv").config({ path: "./config.env" });
 const mongoose = require('mongoose');
 const connectDB = require("./db/conn");
 connectDB(); //connect to db
-app.use(session({
-  name: process.env.SESS_NAME,
-  secret: process.env.SESS_SECRET,
-  saveUninitialized: false,
-  resave: false,
-  store: new MongoStore({
-    mongoUrl: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
-    collection: 'session',
-    ttl: parseInt(process.env.SESS_LIFETIME) / 1000
-  }),
-  cookie: {
-    sameSite: true,
-    secure: true,//NODE_ENV === 'production',
-    maxAge: parseInt(process.env.SESS_LIFETIME)
-  }
-}));
+// app.use(session({
+  // name: process.env.SESS_NAME,
+  // secret: process.env.SESS_SECRET,
+//   saveUninitialized: false,
+//   resave: false,
+//   store: new MongoStore({
+//     mongoUrl: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+//     collection: 'session',
+//     ttl: parseInt(process.env.SESS_LIFETIME) / 1000
+//   }),
+//   cookie: {
+//     sameSite: true,
+//     secure: true,//NODE_ENV === 'production',
+//     maxAge: parseInt(process.env.SESS_LIFETIME)
+//   }
+// }));
 
 
 
