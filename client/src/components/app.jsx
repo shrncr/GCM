@@ -20,7 +20,7 @@ function App() {
                     <Routes> {/* Wrap your routes with Routes */}
                         <Route path="/login" element={<Login />} />
                         <Route path="/*" element={<UserApp />} />
-                        <Route path="/admin/*" element={<PrivateRoute><AdminApp /></PrivateRoute>} />
+                        <Route path="/admin/*" element={<AdminApp />} />
                     </Routes>
                 </div>
             </Router>
