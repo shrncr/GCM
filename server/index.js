@@ -76,6 +76,12 @@ const router = require("./routes/exhibits"); //use exhibits file to access route
 app.use("/", router); //at the main page, "/", we will refer to the exhibit routes CRUD operations. Just for testing purposes
 require('core-js');
 
+app.options('*', (req, res) => {
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, User-Agent, Accept, Referer');
+  res.sendStatus(200);
+});
+
 
 app.listen(port, '0.0.0.0', () => { //start server on defined port
   console.log(`Server is running on port: ${port}`);
