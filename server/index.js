@@ -19,7 +19,15 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+  );
   next();
+});
+
+app.options('/*', (_, res) => {
+  res.sendStatus(200);
 });
 
 app.use(cors({
