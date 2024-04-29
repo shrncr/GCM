@@ -29,6 +29,7 @@ const SessionsSchema = new mongoose.Schema({
     },
     page: {
         type: String,
+        required: true
     }
 });
 
