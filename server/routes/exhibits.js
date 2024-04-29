@@ -322,9 +322,6 @@ router.post('/admin', async (req, res) => {
     console.log("err")
   }
 });
-router.get("/admin/auth", ({ session: { user } }, res) => {
-  res.json({ user });
-});
 
 
 //when adding or editing map pins. incomplete
