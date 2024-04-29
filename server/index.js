@@ -12,6 +12,16 @@ const path = require('path');
 const port = process.env.PORT || 8082;
 const app = express();
 
+// Add Access Control Allow Origin headers
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://gcm-frontend.vercel.app");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.use(cors({
   origin: "*",//'https://gcm-frontend.vercel.app', // allow requests from frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed  methods
