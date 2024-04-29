@@ -9,7 +9,7 @@ export default function PrivateRoute({ children }) {
       
         axios({
           url: `${apiUrl}/admin/`,
-          method: 'GET',
+          method: 'POST',
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
