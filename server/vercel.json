@@ -11,5 +11,11 @@
           "src": "/(.*)",
           "dest": "/"
       }
+  ],
+  "headers": [
+    {
+      "src": "/(.*)",
+      "Access-Control-Allow-Origin": "*"
+    }
   ]
 }
