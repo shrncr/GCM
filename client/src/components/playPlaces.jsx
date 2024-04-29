@@ -42,9 +42,9 @@ function Playplaces() {
     axios({
       url: `${apiUrl}/exhibits`,
       method: 'GET',
-      headers: {
-        authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
-      },
+      // headers: {
+      //   authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+      // },
       catch(error) {
         console.error('error:', error);
         alert('An error occured.')
