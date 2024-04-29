@@ -29,7 +29,7 @@ function Resources() {
     const time_of_day = new Date();
 
     // Create impression and start session tracking
-    axios.post(`${apiUrl}/api/impressions/create`, { time_of_day, page, deviceType })
+    axios.post(`${apiUrl}/create`, { time_of_day, page, deviceType })
       .then(response => {
         console.log('Visit and session start recorded:', response.data);
       })
