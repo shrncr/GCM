@@ -223,7 +223,7 @@ router.post('/feedback', (req, res) => {
   };
 
   // create a new impression instance with the provided data
-  const feedback = new Feedback(feedbackDataData);
+  const feedback = new Feedback(feedbackData);
 
   // save the impression to the database
   feedback.save()
