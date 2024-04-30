@@ -572,7 +572,7 @@ header .nav-btn {
     border-radius: 3px;
     box-shadow: 0 1px 3px white;
     align-items: center;
-    background-color: purple;
+    background-color: rgb(215, 215, 215);
 }
 
 .box-text {
