@@ -482,7 +482,7 @@ export default function Edit(props) {
               <br />
               <label>At Home:</label>
               <div>
-                <PlaystyleCheckbox label="Home" color="red" onSelect={toggleVisibility} start={visible} />
+                <PlaystyleCheckbox label="At Home" color="red" onSelect={toggleVisibility} start={!visible} />
               </div>
             </div>
           ) : (

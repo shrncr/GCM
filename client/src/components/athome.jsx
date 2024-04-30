@@ -18,7 +18,7 @@ function getDeviceType() {
 
 
 function filterExhibitData(data) {
-    return data.filter(item => item.atHome === true);
+    return data.filter(item => item.atHome === false);
 }
 
 function AtHome() {
