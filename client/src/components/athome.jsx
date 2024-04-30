@@ -76,7 +76,7 @@ function AtHome() {
         <>
             <Banner className="playstyles-background" text="Places to Play" />
             <h1 className="user">What to do at home...</h1>
-            <GridBoxes data={filterExhibitData(exhibitData)} />
+            <GridBoxes data={filterExhibitData(exData)} />
             <Footer />
         </>
     );
