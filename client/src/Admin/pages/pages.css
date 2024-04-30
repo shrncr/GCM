@@ -295,15 +295,24 @@
     margin-left: 7vw;
     margin-bottom: 10vw;
     height: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    justify-self: center;
+    display: flex;
     justify-content: space-between;
 }
 
 .home-button {
     background-color: purple;
     color: white;
+}
+
+@media screen and (max-width: 600px) {
+    .home-button-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        justify-content: center;
+        gap: 10px;
+        width: auto;
+        margin-left: 0;
+    }
 }
 
 .ql-size-large {
