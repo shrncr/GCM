@@ -27,7 +27,7 @@ function AtHome() {
     const [interactions, setInteractions] = useState(0);
     useEffect(() => {
         axios({
-            url: `${apiUrl}/exhibits`,
+            url: `${apiUrl}/activities`,
             method: 'GET',
             headers: {
                 authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -42,7 +42,7 @@ function AtHome() {
     }, []);
     useEffect(() => {
         const deviceType = getDeviceType();
-        const page = 'playPlaces';
+        const page = 'athome';
         const time_of_day = new Date();
         const apiUrl = process.env.REACT_APP_API_URL;
         axios.post(`${apiUrl}/create`, { time_of_day, page, deviceType })
