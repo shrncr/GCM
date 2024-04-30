@@ -36,6 +36,7 @@ function Navbar() {
             <nav ref={navRef}>
                 <Link to="/playstyles" onClick={closeNavbar}>Learn to Play</Link>
                 <Link to="/playPlaces" onClick={closeNavbar}>Places to Play</Link>
+                <Link to="/athome" onClick={closeNavbar}>At Home</Link>
                 <Link to="/userMap" onClick={closeNavbar}>Map</Link>
                 <Link to="/Resources" onClick={closeNavbar}>Resources</Link>
 

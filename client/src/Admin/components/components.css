@@ -324,10 +324,10 @@
     justify-content: center;
     align-items: center;
     height: auto;
-    width: 50.5vw;
+    width: 70.5vw;
     border-radius: 10px;
-    margin-left: 24.75vw;
-    margin-right: 24.75vw;
+    margin-left: 15.25vw;
+    margin-right: 15.25vw;
     background-color: purple;
     /* Adjust as needed */
 
@@ -339,7 +339,7 @@
 
 .accordion {
     background-color: purple;
-    width: 50vw;
+    width: 70vw;
     height: auto;
     display: flex;
     border-radius: 10px;
@@ -364,6 +364,9 @@
 
 
 .accordion-content {
+    height: 30vh;
+    overflow: hidden;
+    overflow-y: scroll;
     color: black;
     background-color: lightgray;
 

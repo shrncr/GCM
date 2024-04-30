@@ -11,6 +11,7 @@ import PlayInfo from './playInfo';
 import PlayPlaces from './playPlaces';
 import UserMap from './userMap';
 import './user.css';
+import AtHome from "./athome";
 
 
 export default function UserRoutes(props) {
@@ -28,6 +29,7 @@ export default function UserRoutes(props) {
                 <Route path="/resources/*" element={<Resources />} />
                 <Route path="/map" element={<Map />} />
                 <Route path="/userMap" element={<UserMap />} />
+                <Route path="/athome" element={<AtHome />} />
             </Routes>
 
         </div>

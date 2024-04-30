@@ -4,16 +4,12 @@ Feedback schema on a particular exhibit
 const mongoose = require("mongoose");
 const { ObjectId } = require('mongodb');
 const FeedbackSchema = new mongoose.Schema({ 
-    feedback_id:{
-        type:ObjectId,
-        required:true,
-    },
-    exh:{
+    exhibitId:{
         type:String,
         required:true, // string will be the URL pointing to the image stored externally
     },
-    rating:{
-        type:Number,
+    isPositive:{
+        type:Boolean,
         required:true, // string will be the URL pointing to the image stored externally
     },
     childAge: {

@@ -544,7 +544,8 @@ header .nav-btn {
 }
 
 .box-container {
-    margin-top: 0px; /* Adjust this value as needed */
+    margin-top: 0px;
+    /* Adjust this value as needed */
     overflow-y: auto;
     padding: 20px;
     max-width: 20vw;
@@ -569,9 +570,9 @@ header .nav-btn {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 3px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 3px white;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: purple;
 }
 
 .box-text {
@@ -592,7 +593,8 @@ header .nav-btn {
 /* Media query for smaller screens */
 @media (max-width: 900px) {
     .user-map-container {
-        flex-direction: column; /* Stack items vertically on smaller screens */
+        flex-direction: column;
+        /* Stack items vertically on smaller screens */
         min-height: 2000px;
 
     }
@@ -604,12 +606,14 @@ header .nav-btn {
     .box-container {
         min-width: 100%;
     }
+
     .box-image {
         width: 80%;
     }
 
 
 }
+
 strong {
     font-weight: bold;
 }
@@ -618,9 +622,12 @@ strong {
     width: 100%;
     height: auto;
     overflow: hidden;
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Align items horizontally in the center */
-    align-items: center; /* Align items vertically in the center */
+    display: flex;
+    /* Use flexbox */
+    justify-content: center;
+    /* Align items horizontally in the center */
+    align-items: center;
+    /* Align items vertically in the center */
 }
 
 .box-image {
