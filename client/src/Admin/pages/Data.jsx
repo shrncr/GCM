@@ -6,7 +6,7 @@ import axios from 'axios';
 
 export default function Data(props) {
     const [data, setData] = useState();
-    const [spread, setSpread] = useState(data[0]);
+
     const [loc, setLoc] = useState("Feedback");
     const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -43,6 +43,7 @@ export default function Data(props) {
         getCSV();
 
     }, []);
+    const [spread, setSpread] = useState(data[0]);
     const handleSpreadChange = (newindex, l) => {
         setLoc(l);
         setSpread(data[newindex]);
