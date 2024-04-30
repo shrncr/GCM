@@ -295,7 +295,8 @@
     margin-left: 7vw;
     margin-bottom: 10vw;
     height: auto;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     justify-self: center;
     justify-content: space-between;
 }

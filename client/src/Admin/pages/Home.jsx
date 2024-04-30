@@ -17,6 +17,7 @@ export default function Home(props) {
                 <Link to="exhibits"><button className="home-button">Edit Exhibits</button></Link>
                 <Link to="playstyles"><button className="home-button">Edit Playstyles</button></Link>
                 <Link to="activities"><button className="home-button">Edit Activities</button></Link>
+                <Link to="skills"><button className="home-button">Edit Skills</button></Link>
                 <Link to="map"><button className="home-button">Edit Map</button></Link>
                 <Link to="data"><button className="home-button">View Data</button></Link>
             </div>
