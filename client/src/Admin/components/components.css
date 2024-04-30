@@ -339,7 +339,7 @@
 
 .accordion {
     background-color: purple;
-    width: 50vw;
+    width: 70vw;
     height: auto;
     display: flex;
     border-radius: 10px;
@@ -364,6 +364,9 @@
 
 
 .accordion-content {
+    height: 30vh;
+    overflow: hidden;
+    overflow-y: scroll;
     color: black;
     background-color: lightgray;
 
