@@ -17,6 +17,7 @@ import Delete_Button from "../components/Delete_Button.jsx";
 import TextEditor from "../components/TextEditor.js";
 import DropdownForm from "../components/DropdownForm.js";
 import ContentWrapper from "../components/ContentWrapper.jsx";
+import useSkillsLoader from "../classes/skillsLoader"
 /* Main edit function, this will be exported and used as needed
 throughout the admin page.*/
 export default function Edit(props) {
@@ -199,12 +200,26 @@ export default function Edit(props) {
     ));
     setCheckboxArr(checkboxes);
   }
+/*new activities handler*/
+  let ActivitiesForExhibits = (res) =>{
+    let linkedActivities = useSkillsLoader(exh._id, "Exhibit")
+    const checkboxes = []
+    let i = 0
+    for (const activity in linkedActivities){
+      checkboxes.push(<PlaystyleCheckbox key={activity.title} label={activity.title} color={colors[i % colors.length]} onSelect={toggleOption} start={true} item={activity} />)
+      i+=1
+    }
+    setCheckboxArr(checkboxes)
+    setSelectedOptions(checkboxes)
+  }
+
+  
   if (location.pathname.includes("playstyles") || location.pathname.includes("activities")) {
     checkboxesTitle = "Skills:"
     NameLoader("skills", handler)
   } else if (location.pathname.includes("exhibits") || location.pathname.includes("skills")) {
     checkboxesTitle = "Activities:"
-    NameLoader("activities", handler)
+    NameLoader("activities", ActivitiesForExhibits)
   } else if (location.pathname.includes("map")) {
     checkboxesTitle = "Playstyles:"
     NameLoader("playstyles", handler)
