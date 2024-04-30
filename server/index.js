@@ -61,4 +61,4 @@ require('core-js');
 app.listen(port, '0.0.0.0', () => { //start server on defined port
   console.log(`Server is running on port: ${port}`);
 });
-module.exports = app;
+module.exports = app;  
