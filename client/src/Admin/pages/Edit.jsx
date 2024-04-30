@@ -290,7 +290,7 @@ export default function Edit(props) {
         axios({ //make request
           url: `${apiUrl}/admin/editactivity`, //edit exhibit
           method: 'POST',
-          data: { id: exh._id, title: name, desc: description, skills: selectedOptions },
+          data: { id: exh._id, title: name, desc: description, skills: selectedOptions, atHome: visible },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -372,7 +372,7 @@ export default function Edit(props) {
         axios({ //make request
           url: `${apiUrl}/admin/addactivity`, //edit exhibit
           method: 'POST',
-          data: { title: name, desc: description, image: image, skills: selectedOptions, atHome: true },
+          data: { title: name, desc: description, image: image, skills: selectedOptions, atHome: visible },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -477,14 +477,26 @@ export default function Edit(props) {
               <DropdownForm />
             </div>
           )}
+          {props.title === "Activities" ? (
+            <div>
+              <br />
+              <label>At Home:</label>
+              <div>
+                <PlaystyleCheckbox label="Home" color="red" onSelect={toggleVisibility} start={visible} />
+              </div>
+            </div>
+          ) : (
+            <div>
+              <br />
+              <label>Visibility:</label>
+              <div>
+                <PlaystyleCheckbox label="Visible" color="green" onSelect={toggleVisibility} start={visible} />
+              </div>
+            </div>
+          )}
 
-          <div>
-            <br />
-            <label>Visibility:</label>
-          </div>
-          <div>
-            <PlaystyleCheckbox label="Visible" color="green" onSelect={toggleVisibility} start={visible} />
-          </div>
+
+
           <div className="edit_button"  >
 
             <button className="normal" type="button" onClick={addExhibit}>
