@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ExhibitContext } from "../SetData";
 import { CSVLink } from "react-csv";
 import axios from 'axios';
