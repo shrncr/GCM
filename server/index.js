@@ -56,7 +56,7 @@ connectDB(); //connect to db
 const router = require("./routes/exhibits"); //use exhibits file to access routes
 app.use("/", router); //at the main page, "/", we will refer to the exhibit routes CRUD operations. Just for testing purposes
 require('core-js');
-
+  
 
 app.listen(port, '0.0.0.0', () => { //start server on defined port
   console.log(`Server is running on port: ${port}`);
