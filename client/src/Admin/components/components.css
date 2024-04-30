@@ -365,6 +365,8 @@
 
 .accordion-content {
     color: black;
+    height: 20vh;
+    overflow-y: scroll;
     background-color: lightgray;
 
 }
