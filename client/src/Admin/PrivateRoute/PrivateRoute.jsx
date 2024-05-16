@@ -8,6 +8,7 @@ export default function PrivateRoute({ children }) {
     const apiUrl = process.env.REACT_APP_API_URL;
     const getUserCookie = () => {
         if (Cookies.get("user")){
+            console.log(Cookies.get("user"))
             return Cookies.get("user")
         }else{
             return false
