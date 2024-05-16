@@ -55,11 +55,6 @@ export default function Navbar() {
                         <h1 className="navbar-buttons">Map</h1>
                     </Link>
                 </li>
-                <li>
-                    <Link to="data" onClick={handleLinkClick}>
-                        <h1 className="navbar-buttons">Data</h1>
-                    </Link>
-                </li>
             </ul>
         </nav>
     );
