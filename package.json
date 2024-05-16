@@ -20,6 +20,7 @@
     "cors": "^2.8.5",
     "dompurify": "^3.1.0",
     "express-session": "^1.18.0",
+    "js-cookie": "^3.0.5",
     "json2csv": "^6.0.0-alpha.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.1",

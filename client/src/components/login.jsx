@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import axios from 'axios'
 import { Routes, Route, Link, useNavigate, useRoutes } from 'react-router-dom';
 import { LoginContext } from './app';
+import Cookies from "js-cookie";
 /*
 Login page for admin
 */
@@ -56,13 +57,13 @@ const Login = () => {
         alert('An error occurred.'); // Show alert for error
       }
     }).then((res) => {
-      if (res.data) {
+      if (res.data.username) {
 
-        console.log(res.data)
-        console.log("inside")
-        setLogin(true)
+        Cookies.set('user',res.data.username)
         navigate("/admin")
 
+      }else{
+        navigate("/login")
       }
 
 
