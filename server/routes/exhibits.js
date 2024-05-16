@@ -198,9 +198,19 @@ router.get('/skills/:id', async (req, res) => {
     console.log(req.params.id);
     let skill = await Skills.findById(req.params.id);
     let skillActivities = await Activities.find({ title: skill.Activities });
-    //console.log(exhibitActivities)
-    //console.log("paninipanini\n\n");
     res.json({ baseData: exhibit, dropdown: skillActivities });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//returns data for a specific activity
+router.get('/athome/:id', async (req, res) => {
+  try {
+    console.log(req.params.id);
+    let activity = await Skills.findById(req.params.id);
+    let activitySkills = await Skills.find({ title: activity.skills });
+    res.json({ baseData: activity, dropdown: activitySkills });
   } catch (err) {
     console.log(err);
   }
