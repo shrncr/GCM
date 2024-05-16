@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar.jsx";
 import SetData from './SetData.jsx';
 import AdminRoutes from './AdminRoutes.jsx';
 import Footer from '../components/footer.jsx';
+import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
 // Create Context with Default Values
 
 
@@ -12,7 +13,7 @@ function AdminApp() {
     <SetData>
       <div>
         <Navbar />
-
+        <PrivateRoute/>
         <AdminRoutes />
       </div>
 
