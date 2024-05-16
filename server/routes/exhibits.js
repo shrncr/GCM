@@ -208,7 +208,7 @@ router.get('/skills/:id', async (req, res) => {
 router.get('/athome/:id', async (req, res) => {
   try {
     console.log(req.params.id);
-    let activity = await Skills.findById(req.params.id);
+    let activity = await Activities.findById(req.params.id);
     let activitySkills = await Skills.find({ title: activity.skills });
     res.json({ baseData: activity, dropdown: activitySkills });
   } catch (err) {
