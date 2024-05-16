@@ -27,7 +27,6 @@ export default function AdminRoutes(props) {
                 <Route path="/activities/*" element={<Exhibits title={"Activities"} />} />
                 <Route path="/skills/*" element={<Exhibits title={"Skills"} />} />
                 <Route path="/map/*" element={<MapEdit />} />
-                <Route path='data' element={<Data index={0} />} />
                 {/*<Route path="/map" element={<MapEdit />} />
 
                 {/* Exhibits Routes */}
