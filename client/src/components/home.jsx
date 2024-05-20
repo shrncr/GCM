@@ -5,6 +5,7 @@ import Footer from './footer';
 import GridBoxes from './gridBoxes';
 import axios from 'axios';
 import Navbar from "./header";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 function getDeviceType() { // for impressions
   const ua = navigator.userAgent;
@@ -35,6 +36,25 @@ function trackVisit() { // for impressions - track visit information in db
 
 
 function Home() {
+  let [HomeText, setHomeText] = useState('');
+
+  useEffect(()=>{
+      axios({
+          url: `${apiUrl}/home`,
+          method: 'GET',
+          headers: {
+            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+          },
+          catch(error) {
+            console.error('error:', error);
+            alert('An error occured.')
+          }
+        }).then((res) => {
+          setHomeText(res.data.desc)
+        });
+
+  },[])
+
   useEffect(() => {
     trackVisit();
   }, []); // empty dependency array ensures this runs once on mount
@@ -53,21 +73,7 @@ const updateBoxesData = (newData) => {
     <div>
       <Navbar/>
       <Banner className="home-background" text="Welcome" />
-      <h2>Glazer Children's Museum</h2>
-      <hr></hr>
-      <p>A learning laboratory where kids play, discover, and connect with the world around them to develop as lifelong learners and leaders.</p>
-      <h3>What do we learn from play?</h3>
-      <ul>
-      <li>Function Skills (focus, adaptation, moderation, emotions)</li>
-      <li>Social skills (communication)</li>
-      <li>Problem solving (conflict resolution)</li>
-      <li>Critical thinking (open mindedness, collaboration, questioning)</li>
-      <li>Growth mindset (failing forward)</li>
-      <li>Resilience (confidence, sticking to it)</li>
-      <li>Self regulation (managing emotions)</li>
-      </ul>
-      <h3>How to Learn</h3>
-      <p>Learn about the different playstyles or learn about what the museum's exhibits teach.</p>
+      <p dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <GridBoxes data={boxesData} updateData={updateBoxesData} />      
       <Footer/>
     </div>

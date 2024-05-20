@@ -9,6 +9,7 @@ import Edit from './pages/Edit.jsx';
 import Data from "./pages/Data.jsx"
 import './components/components.css';
 import './pages/pages.css';
+import HomeEdit from "./pages/HomeEdit.jsx";
 
 
 export default function AdminRoutes(props) {
@@ -27,6 +28,7 @@ export default function AdminRoutes(props) {
                 <Route path="/activities/*" element={<Exhibits title={"Activities"} />} />
                 <Route path="/skills/*" element={<Exhibits title={"Skills"} />} />
                 <Route path="/map/*" element={<MapEdit />} />
+                <Route path="/homepage" element={<HomeEdit />} />
                 {/*<Route path="/map" element={<MapEdit />} />
 
                 {/* Exhibits Routes */}
