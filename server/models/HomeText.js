@@ -22,4 +22,4 @@ const HomeTextSchema = new mongoose.Schema({
     },
 })
 
-module.exports = HomeText = mongoose.model('exhibits', HomeTextSchema);
+module.exports = HomeText = mongoose.model('hometexts', HomeTextSchema);

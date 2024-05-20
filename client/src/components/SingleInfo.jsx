@@ -41,10 +41,9 @@ function SingleInfo() {
 
     return (
         <div>
-            <Banner className="home-background" text={title} />
-            <h2>{title}</h2>
+            <Banner className={img} text={title} />
+            <h4 className="descriptoin" dangerouslySetInnerHTML={{ __html: desc }}></h4>
             <hr />
-            <p className="descriptoin" dangerouslySetInnerHTML={{ __html: desc }}></p>
             <br></br>
             <br></br>
             <div className="accordion-container">

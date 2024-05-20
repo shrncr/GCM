@@ -36,10 +36,7 @@ h3 {
 
 h4 {
     text-align: left;
-    margin-left: 5%;
-    margin-right: 5%;
-
-    margin-bottom: 20px;
+    margin: auto;
     font-size: 30px;
 }
 
@@ -85,6 +82,10 @@ p {
     background-image: url('../../public/glazer_dinasour.jpg');
 }
 
+.descriptoin{
+    margin: auto;
+    margin-top: 2%;
+}
 .background-image::before {
     content: '';
     position: absolute;
@@ -121,22 +122,21 @@ p {
 }
 
 .box {
+    background-color: purple;
+    text-decoration: none;
+    font-size: xx-large;
     width: 200px;
-    /* Adjust width as needed */
     height: 200px;
-    /* Adjust height as needed */
-    border: 1px solid #000;
-    border-radius: 8px;
     color: white;
-    font-size: 25px;
-
-    background-color: #800080;
+    margin: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px;
-    /* Adjust margin as needed */
-
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 30px;
+    transition-property: color;
+    transition-duration: 0.3s;
 }
 
 /* hover animation effect*/
@@ -572,6 +572,7 @@ header .nav-btn {
     border-radius: 3px;
     box-shadow: 0 1px 3px white;
     align-items: center;
+    color: #ffffff;
     background-color: purple;
 }
 

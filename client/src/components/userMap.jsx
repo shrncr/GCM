@@ -72,7 +72,7 @@ const UserMap = (props) => {
                     )}
                 </div>
                 <div className="box-container">
-                    <h2>Play Places</h2>
+                    <h2>Play Around The Bay</h2>
                     {renderBoxes()}
                 </div>
             </div>

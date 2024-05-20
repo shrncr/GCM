@@ -6,8 +6,9 @@ function Banner({text, className}) {
         
         <div 
         
-        className={`background-image ${className}`}>
+        className={`background-image ${className}`} style={{ backgroundImage: `url(${className})` }}>
             <div className="intro-text">
+                
                 <h1>{text}</h1>
             </div>
         </div>
