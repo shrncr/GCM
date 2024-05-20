@@ -12,7 +12,7 @@ const MongoStore = require('connect-mongo');
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:3000', // allow requests from frontend
+  origin: 'https://gcm-frontend.vercel.app', // allow requests from frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed  methods
   allowedHeaders: ['Content-Type', 'Authorization','User-Agent', 'Accept', 'Referer'], // headers to allow
   credentials: true, // allow setting of cookies or sessions
