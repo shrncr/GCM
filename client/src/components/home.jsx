@@ -59,8 +59,8 @@ function Home() {
     trackVisit();
   }, []); // empty dependency array ensures this runs once on mount
   const [boxesData, setBoxesData] = useState([
-    { id: 1, title: 'Learn About Playstyles', link: '/playstyles'},
-    { id: 2, title: 'Learn About Exhibits', link: '/playPlaces' },
+    { id: 1, title: 'Browse Playstyles', link: '/playstyles'},
+    { id: 2, title: 'Browse Exhibits', link: '/playPlaces' },
     
 ]);
 
