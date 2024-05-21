@@ -83,8 +83,16 @@ p {
 }
 
 .descriptoin{
-    margin: auto;
+    width: 90%; /* Spans most of the width of the screen */
+    border: 1px solid purple; /* Purple outline */
+    border-radius: 10px;
+    overflow: auto; /* Allows overflow text to be scrolled */
+    margin: 0 auto; /* Centers the div horizontally */
     margin-top: 2%;
+    margin-bottom: 2%;
+    max-height: 300px;
+    min-height: 30px;
+    box-sizing: border-box; /* Includes the border in the width and height */
 }
 .background-image::before {
     content: '';
@@ -125,8 +133,8 @@ p {
     background-color: purple;
     text-decoration: none;
     font-size: xx-large;
-    width: 200px;
-    height: 200px;
+    width: 225px;
+    height: 225px;
     color: white;
     margin: 10px;
     display: flex;
