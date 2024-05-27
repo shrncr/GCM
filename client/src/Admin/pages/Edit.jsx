@@ -133,16 +133,27 @@ export default function Edit(props) {
     console.log(exh.description)
     d = exh.description
   }
+  //exhibit map playstyle
+
+  
   const [description, setDescription] = useState(d);
   console.log(description)
 
+  useEffect(()=>{
+    if (props.title == "Exhibits" || props.title == "Playstyles" || props.title == "Map"){
+      setImage(exh.image)
+    }
+  },[])
 
   let v;
+  console.log(exh)
   if (exh.status !== undefined) {
     v = exh.status;
+  }else if (exh.atHome !== undefined){
+    v = exh.atHome;
   } else {
     v = true;
-  };
+  } ;
 
   /* Visibility variable and function used to track if the 
   exhibit/playstyle will populate on the client side */
