@@ -28,7 +28,7 @@ const ExhibitFeedback = ({ exhibitId }) => {
         <div>
             {/* Exhibit Feedback UI */}
 
-            <h5>Did you find this exhibit helpful?</h5>
+            <h5>Did you find this activity helpful?</h5>
             {/* Dropdown to select visitor's age */}
             <div className='age-select'>
                 <label htmlFor="child-age">Visitor's Age:</label>
