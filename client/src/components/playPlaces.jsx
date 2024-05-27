@@ -24,6 +24,9 @@ function Playplaces() {
   const apiUrl = process.env.REACT_APP_API_URL;
   const [exdata, setExhibitData] = useState([]);
   const [interactions, setInteractions] = useState(0);
+  let [HomeText, setHomeText] = useState('');
+
+  
   useEffect(() => {
     axios({
       url: `${apiUrl}/exhibits`,
@@ -37,6 +40,20 @@ function Playplaces() {
       }
     }).then((res) => {
       setExhibitData(res.data)
+    });
+
+    axios({
+      url: `${apiUrl}/Exhibitspage`,
+      method: 'GET',
+      headers: {
+        authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+      },
+      catch(error) {
+        console.error('error:', error);
+        alert('An error occured.')
+      }
+    }).then((res) => {
+      setHomeText(res.data.desc)
     });
   },[]);
   useEffect(() => {
@@ -73,8 +90,8 @@ function Playplaces() {
 
   return (
     <>
-      <Banner className="playstyles-background" text="Places to Play" />
-      <h1 className="user">I want to play at...</h1>
+      <Banner className="playstyles-background" text="Museum Play" />
+      <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <GridBoxes data={exdata} />
       <Footer />
     </>

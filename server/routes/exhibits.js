@@ -53,7 +53,7 @@ router.post('/home', async (req, res) => {
 //returns text associated with homepage
 router.get('/resources', async (req, res) => {
   try {
-    let data = await HomeText.findOne({ num: "Resource" }); //find all
+    let data = await HomeText.findOne({ num: "Resources" }); //find all
     res.json(data);
   } catch (err) {
     res.error;
@@ -65,13 +65,120 @@ router.post('/resources', async (req, res) => {
   console.log("here")
   //);
   let options = {
-    desc: req.body.resourcesText
+    desc: req.body.homeText
   };
   HomeText.findOneAndUpdate({ num: "Resources" }, options).then(
     console.log("success")
   );
 });
 
+//returns text associated with homepage
+router.get('/Playstylespage', async (req, res) => {
+  try {
+    let data = await HomeText.findOne({ num: "playstyles" }); //find all
+    res.json(data);
+  } catch (err) {
+    res.error;
+    console.log("err");
+  }
+});
+//returns text associated with homepage
+router.post('/Playstylespage', async (req, res) => {
+  console.log("here")
+  //);
+  let options = {
+    desc: req.body.homeText
+  };
+  HomeText.findOneAndUpdate({ num: "playstyles" }, options).then(
+    console.log("success")
+  );
+});
+
+
+router.get('/Exhibitspage', async (req, res) => {
+  try {
+    let data = await HomeText.findOne({ num: "exhibits" }); //find all
+    res.json(data);
+  } catch (err) {
+    res.error;
+    console.log("err");
+  }
+});
+//returns text associated with homepage
+router.post('/Exhibitspage', async (req, res) => {
+  console.log("here")
+  //);
+  let options = {
+    desc: req.body.homeText
+  };
+  HomeText.findOneAndUpdate({ num: "exhibits" }, options).then(
+    console.log("success")
+  );
+});
+
+
+router.get('/Mappage', async (req, res) => {
+  try {
+    let data = await HomeText.findOne({ num: "map" }); //find all
+    res.json(data);
+  } catch (err) {
+    res.error;
+    console.log("err");
+  }
+});
+//returns text associated with homepage
+router.post('/Mappage', async (req, res) => {
+  console.log("here")
+  //);
+  let options = {
+    desc: req.body.homeText
+  };
+  HomeText.findOneAndUpdate({ num: "map" }, options).then(
+    console.log("success")
+  );
+});
+
+router.get('/Activitiespage', async (req, res) => {
+  try {
+    let data = await HomeText.findOne({ num: "activities" }); //find all
+    res.json(data);
+  } catch (err) {
+    res.error;
+    console.log("err");
+  }
+});
+//returns text associated with homepage
+router.post('/Activitiespage', async (req, res) => {
+  console.log("here")
+  //);
+  let options = {
+    desc: req.body.homeText
+  };
+  HomeText.findOneAndUpdate({ num: "activities" }, options).then(
+    console.log("success")
+  );
+});
+
+router.get('/Skillspage', async (req, res) => {
+  try {
+    let data = await HomeText.findOne({ num: "skills" }); //find all
+    res.json(data);
+  } catch (err) {
+    res.error;
+    console.log("err");
+  }
+});
+//returns text associated with homepage
+router.post('/Skillspage', async (req, res) => {
+  console.log("here")
+  //);
+  let options = {
+    desc: req.body.homeText
+  };
+  HomeText.findOneAndUpdate({ num: "skills" }, options).then(
+    console.log("success")
+  );
+});
 
 //returns map locations
 router.get('/map', async (req, res) => { //must load in all the pins
@@ -92,10 +199,29 @@ router.get('/playstyles', async (req, res) => {
     console.log(err);
   }
 });
+//returns the playstyle which is associated with given skill
+router.get('/playstylesBySkill/:skill', async (req, res) => {
+  try {
+    console.log(req.params.skill)
+    let ps = await PlayStyle.find({skills: req.params.skill});
+    res.json(ps);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 router.get('/activities', async (req, res) => {
   try {
     let data = await Activities.find({});
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.get('/homeactivities', async (req, res) => {
+  try {
+    let data = await Activities.find({atHome: true});
     res.json(data);
   } catch (err) {
     console.log(err);
@@ -436,7 +562,8 @@ router.post("/admin/editactivity", async (req, res) => {
     let options = {
       title: req.body.title,
       description: req.body.desc,
-      skills: req.body.skills
+      skills: req.body.skills,
+      atHome: req.body.atHome
     };
     Activities.findOneAndUpdate({ _id: req.body.id }, options).then(
       console.log("then")

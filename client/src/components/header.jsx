@@ -34,10 +34,10 @@ function Navbar() {
                 <img src={glazerLogo} alt="Logo" className='header-img' />
             </Link>
             <nav ref={navRef}>
-                <Link to="/playstyles" onClick={closeNavbar}>Learn to Play</Link>
-                <Link to="/playPlaces" onClick={closeNavbar}>Places to Play</Link>
-                <Link to="/athome" onClick={closeNavbar}>At Home</Link>
-                <Link to="/userMap" onClick={closeNavbar}>Map</Link>
+                <Link to="/playstyles" onClick={closeNavbar}>Playstyles</Link>
+                <Link to="/playPlaces" onClick={closeNavbar}>Museum Play</Link>
+                <Link to="/athome" onClick={closeNavbar}>Home Play</Link>
+                <Link to="/userMap" onClick={closeNavbar}>Bay Play</Link>
                 <Link to="/Resources" onClick={closeNavbar}>Resources</Link>
 
                 <button className="nav-btn nav-close-btn" onClick={toggleNavbar}>

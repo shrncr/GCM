@@ -24,6 +24,25 @@ function Resources() {
   const deviceType = getDeviceType(); // Device type is determined once on component mount.
   const apiUrl = process.env.REACT_APP_API_URL;
 
+  let [HomeText, setHomeText] = useState('');
+
+  useEffect(()=>{
+      axios({
+          url: `${apiUrl}/resources`,
+          method: 'GET',
+          headers: {
+            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+          },
+          catch(error) {
+            console.error('error:', error);
+            alert('An error occured.')
+          }
+        }).then((res) => {
+          setHomeText(res.data.desc)
+        });
+
+  },[])
+
   useEffect(() => {
     const page = 'resources';
     const time_of_day = new Date();
@@ -73,23 +92,7 @@ function Resources() {
     
     <div>
       <Banner className="home-background" text="Resources" />
-      <h2>More Info</h2>
-      <hr></hr>
-      <p>The Glazer Children's Museum offers many additional resources.</p>
-      <h3>Things to Checkout</h3>
-      <ul>
-      <li>Podcast</li>
-      <li><a href="https://www.instagram.com/glazerchildrensmuseum/?hl=en">Instagram</a></li>
-      <li><a href="https://www.facebook.com/GlazerChildrensMuseum/">Facebook</a></li>
-      </ul>
-      <h3>Why was this website created?</h3>
-      <p>
-  The goal of this website is to educate parents on the
-  <a href="/playstyles"> types of learning</a>. 
-  You can find numerous examples of how to implement these learning styles at the 
-  <a href="/playstyles"> museum</a>, at home, and around Tampa.
-</p>
-<p>Website Created by: Zac Swisher, Sara Hrnciar, Eboni Huggins, Carter Murawski, Luke Talham, and Nathan Frait </p>
+      <p dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <Footer/>
     </div>
   );

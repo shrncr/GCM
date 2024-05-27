@@ -8,13 +8,14 @@ const apiUrl = process.env.REACT_APP_API_URL;
 Component admin will use to edit locations on map
 */
 
-export default function HomeEdit() {
+export default function HomeEdit(props) {
     const navigate = useNavigate();
     let [HomeText, setHomeText] = useState("");
+    const title = props.title
 
     useEffect(()=>{
         axios({
-            url: `${apiUrl}/home`,
+            url: `${apiUrl}/${title}`,
             method: 'GET',
             headers: {
               authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -24,19 +25,20 @@ export default function HomeEdit() {
               alert('An error occured.')
             }
           }).then((res) => {
-            setHomeText(res.data)
+            setHomeText(res.data.desc)
           });
 
-    },[])
+    },[title])
 
     const handleHomeTextChange = (content) => {
         setHomeText(content);
       };
 
     const editHome = () => {
+      console.log(title)
         console.log("inhere")
         axios({
-            url: `${apiUrl}/home`,
+            url: `${apiUrl}/${title}`,
             method: 'POST',
             data: {homeText: HomeText},
             headers: {
@@ -44,6 +46,7 @@ export default function HomeEdit() {
             },
           }).then((res) => {
             console.log("done")
+            setHomeText("")
             navigate(-1)
           });
     }
@@ -54,7 +57,7 @@ export default function HomeEdit() {
             
             <div className="edit_button"  >
             <button className="normal" type="button" onClick={editHome}>
-              {"Submit New Home Text"}
+              {`Submit New ${title} Text`}
             </button>
 
             <button className="normal" type="button" onClick={() => navigate(-1)}>
