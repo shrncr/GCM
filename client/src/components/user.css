@@ -84,15 +84,10 @@ p {
 
 .descriptoin{
     width: 90%; /* Spans most of the width of the screen */
-    border: 1px solid purple; /* Purple outline */
     border-radius: 10px;
-    overflow: auto; /* Allows overflow text to be scrolled */
     margin: 0 auto; /* Centers the div horizontally */
     margin-top: 2%;
     margin-bottom: 2%;
-    max-height: 300px;
-    min-height: 30px;
-    box-sizing: border-box; /* Includes the border in the width and height */
 }
 .background-image::before {
     content: '';
@@ -646,3 +641,105 @@ strong {
     padding-left: 0px;
     padding-right: 0px;
 }
+.holdbox{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+.dropdownOptions{
+    width: 100%;
+}
+.dropdownDetails{
+margin: auto;
+font-size: large;
+color: white;
+margin-top:2% ;
+margin-bottom: 2%;
+background-color: purple;
+border-radius: 10px;
+padding-bottom: 10px;
+display: flex;
+flex-direction: column;
+}
+
+select {
+
+    /* styling */
+    background-color: #2383c6;
+    text-align: center;
+    color: white;
+    border: thin solid blue;
+    border-radius: 4px;
+    display: inline-block;
+    font: inherit;
+    font-size: xx-large;
+    width: 100%;
+    line-height: 1.5em;
+    padding: 0.5em 3.5em 0.5em 1em;
+  
+    /* reset */
+  
+    margin: 0 auto;      
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  
+
+.skills{
+    margin: 0 auto;
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+.skill{
+    background-color: #2383c6;
+    border: #eee;
+    color: white;
+    
+    border-radius: 10px;
+    
+}
+
+
+select.minimal {
+    background-image:
+      linear-gradient(45deg, transparent 50%, white 50%),
+      linear-gradient(135deg, white 50%, transparent 50%),
+      linear-gradient(to right, white, white);
+    background-position:
+      calc(100% - 20px) calc(1em + 2px),
+      calc(100% - 15px) calc(1em + 2px),
+      calc(100% - 2.5em) 0.5em;
+    background-size:
+      5px 5px,
+      5px 5px,
+      1px 1.5em;
+    background-repeat: no-repeat;
+  }
+  
+  select.minimal:focus {
+    background-image:
+      linear-gradient(45deg, white 50%, transparent 50%),
+      linear-gradient(135deg, transparent 50%, white 50%),
+      linear-gradient(to right, white, white);
+    background-position:
+      calc(100% - 15px) 1em,
+      calc(100% - 20px) 1em,
+      calc(100% - 2.5em) 0.5em;
+    background-size:
+      5px 5px,
+      5px 5px,
+      1px 1.5em;
+    background-repeat: no-repeat;
+    border-color: white;
+    outline: 0;
+  }
+  
+  
+  select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 white;
+  }

@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import Banner from './banner';
 import axios from 'axios';
+import SelectionBoxes from './selectionBoxes.jsx';
 import Accordion from '../Admin/components/Accordion.jsx';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import Footer from "./footer.jsx"
 import ExhibitFeedback from '../Admin/components/Feedback.jsx';
 function SingleInfo() {
+
+    const { state } = useLocation();
+    console.log(state)
     const [desc, setDesc] = useState('');
+    const [sel,setSel] = useState(null);
     const [title, setTitle] = useState('');
     const [skills, setSkills] = useState([]);
     const [img, setImg] = useState("");
-
+    //const [selSkill, setSelSkill] = useState(props.sel? props.sel : "")
     const { id, dest } = useParams();
     const apiUrl = process.env.REACT_APP_API_URL;
-
+    useEffect(()=>{ 
+        setSel(state)
+    },[state])
     useEffect(() => {
         axios.get(`${apiUrl}/${dest}/${id}`)
             .then((res) => {
@@ -47,11 +54,11 @@ function SingleInfo() {
             <br></br>
             <br></br>
             <div className="accordion-container">
-
-                <Accordion skills={skills} title={t} side={""} />
+                <SelectionBoxes skills={skills} title={t} side={""} sel = {sel}/>
+                {/* <Accordion skills={skills} title={t} side={""} /> */}
             </div>
             <div className="feedback-containter">
-                <ExhibitFeedback exhibitId={title} />
+                {dest == "athome" ? <ExhibitFeedback exhibitId={title} />: <p></p>}
             </div>
             <Footer />
         </div>

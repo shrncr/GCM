@@ -16,10 +16,11 @@ const Accordion = ({ skills, title, side }) => {
     let to;
     switch (title) {
         case "Exhibits":
+            to = "playstyles"
             console.log("RIGHT")
             console.log(skills)
             skills.forEach((item) => {
-                to = "playstyles"
+                side = "playstyles"
                 ext.push(item.skills)
                 desc.push(DOMPurify.sanitize(item.description))
                 let h = [];
@@ -32,6 +33,7 @@ const Accordion = ({ skills, title, side }) => {
         case "Playstyles":
             to = "exhibits"
             skills.forEach((item) => {
+                side = "playPlaces"
                 ext.push(item.Activities)
                 desc.push(DOMPurify.sanitize(item.desc))
                 let h = [];
@@ -70,7 +72,7 @@ const Accordion = ({ skills, title, side }) => {
                                 <p className="description" dangerouslySetInnerHTML={{ __html: desc[index] }} />
                                 <div className='acc-butt-cont'>
                                     {ext[index].map((skill, index) => (
-                                        <button key={index} onClick={(e) => navigate(`${side}/${to}`)}>{skill}</button>
+                                        <button key={index} onClick={(e) => navigate(`/playstyles`)}>{skill}</button>
                                     ))}
                                 </div>
                             </div>

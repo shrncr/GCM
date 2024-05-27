@@ -30,6 +30,7 @@ export default function Home(props) {
                 <Link to="skills"><button className="home-button">Edit Skills</button></Link>
                 <Link to="map"><button className="home-button">Edit Map</button></Link>
                 <Link to="homepage"><button className="home-button">Edit Home Page</button></Link>
+                <Link to="resources"><button className="home-button">Edit Resources Page</button></Link>
             </div>
 
 
