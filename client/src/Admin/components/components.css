@@ -343,7 +343,7 @@
     height: auto;
     display: flex;
     border-radius: 10px;
-    justify-content: center;
+    justify-content: baseline;
     /* Adjust width as needed */
 }
 
