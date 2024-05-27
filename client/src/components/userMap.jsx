@@ -9,6 +9,7 @@ const UserMap = (props) => {
     const [locations, setLocations] = useState([]);
     const [selectedMarker, setSelectedMarker] = useState(null);
     const [selectedBox, setSelectedBox] = useState(null);
+    let [HomeText, setHomeText] = useState('');
     const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
@@ -29,6 +30,21 @@ const UserMap = (props) => {
             console.error('error:', error);
             alert('An error occurred while fetching map data.');
         });
+
+        axios({
+            url: `${apiUrl}/Mappage`,
+            method: 'GET',
+            headers: {
+              authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+            },
+            catch(error) {
+              console.error('error:', error);
+              alert('An error occured.')
+            }
+          }).then((res) => {
+            setHomeText(res.data.desc)
+          });
+      
     }, [markerContent]);
 
     const handleMarkerClick = (marker, index) => {
@@ -54,7 +70,9 @@ const UserMap = (props) => {
     };
     return (
         <div>
+            
             <div className="user-map-container">
+            
                 <div className="user-map">
                     <Map pins={locations} onMarkerClick={handleMarkerClick} />
                 </div>
@@ -76,6 +94,7 @@ const UserMap = (props) => {
                     {renderBoxes()}
                 </div>
             </div>
+            <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
             <Footer />
         </div>
     );

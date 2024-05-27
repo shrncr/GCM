@@ -35,6 +35,11 @@ export default function Navbar() {
                     </Link>
                 </li>
                 <li>
+                    <Link to="resources" onClick={handleLinkClick}>
+                        <h1 className="navbar-buttons">Edit Resources</h1>
+                    </Link>
+                </li>
+                <li>
                     {/*link each page*/}
                     <Link to="exhibits" onClick={handleLinkClick}>
                         <h1 className="navbar-buttons">Exhibits</h1>

@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import Zillow_Box from "../components/Zillow_Box";
 import { ExhibitContext } from "../SetData.jsx";
+import HomeEdit from "./HomeEdit.jsx";
+import Home from "./Home.jsx";
 
 // the add box has different styling 
 
@@ -40,6 +42,7 @@ export default function Exhibits(props) {
 
     return (
         <div>
+            <HomeEdit title={props.title + "page"}/>
             <h1 className="admin-header">{props.title}</h1>
             <hr />
             <div className="zillow-container">

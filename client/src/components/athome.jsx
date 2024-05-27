@@ -24,10 +24,11 @@ function filterExhibitData(data) {
 function AtHome() {
     const apiUrl = process.env.REACT_APP_API_URL;
     const [exdata, setExhibitData] = useState([]);
+    let [HomeText, setHomeText] = useState('');
     const [interactions, setInteractions] = useState(0);
     useEffect(() => {
         axios({
-            url: `${apiUrl}/activities`,
+            url: `${apiUrl}/homeactivities`,
             method: 'GET',
             headers: {
                 authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
@@ -39,6 +40,21 @@ function AtHome() {
         }).then((res) => {
             setExhibitData(res.data)
         });
+
+        axios({
+            url: `${apiUrl}/Activitiespage`,
+            method: 'GET',
+            headers: {
+              authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+            },
+            catch(error) {
+              console.error('error:', error);
+              alert('An error occured.')
+            }
+          }).then((res) => {
+            setHomeText(res.data.desc)
+          });
+      
     }, []);
     useEffect(() => {
         const deviceType = getDeviceType();
@@ -74,8 +90,8 @@ function AtHome() {
 
     return (
         <>
-            <Banner className="playstyles-background" text="Places to Play" />
-            <h1 className="user">What to do at home...</h1>
+            <Banner className="playstyles-background" text="Home Play" />
+            <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
             <GridBoxes data={filterExhibitData(exdata)} />
             <Footer />
         </>

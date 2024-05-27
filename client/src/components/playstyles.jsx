@@ -20,6 +20,7 @@ function getDeviceType() { // for impressions
 function PlayStylesPage() {
   const [exdata, setExhibitData] = useState([]);
   const [interactions, setInteractions] = useState(0);
+  let [HomeText, setHomeText] = useState('');
   const apiUrl = process.env.REACT_APP_API_URL;
   const deviceType = getDeviceType();
   useEffect(() => {
@@ -36,6 +37,21 @@ function PlayStylesPage() {
     }).then((res) => {
       setExhibitData(res.data)
     });
+
+    axios({
+      url: `${apiUrl}/Playstylespage`,
+      method: 'GET',
+      headers: {
+        authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+      },
+      catch(error) {
+        console.error('error:', error);
+        alert('An error occured.')
+      }
+    }).then((res) => {
+      setHomeText(res.data.desc)
+    });
+
   }, []);
   useEffect(() => {
     const deviceType = getDeviceType();
@@ -72,8 +88,8 @@ function PlayStylesPage() {
  
   return (
     <>
-      <Banner className="playstyles-background" text="Learn to Play" />
-      <h1 className="user">I want to participate in...</h1>
+      <Banner className="playstyles-background" text="Playstyles" />
+      <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <GridBoxes data={exdata} />
       <Footer />
     </>
