@@ -185,10 +185,23 @@ export default function Edit(props) {
     });
   };
 
+
   useEffect(() => {
     console.log(selectedOptions);
   }, [selectedOptions]);
 
+  useEffect(() => {
+    if (location.pathname.includes("playstyles") || location.pathname.includes("activities")) {
+      
+      setSelectedOptions(exh.skills)
+    } else if (location.pathname.includes("exhibits") || location.pathname.includes("skills")) {
+      checkboxesTitle = "Activities:"
+      setSelectedOptions(exh.activities)
+    } else if (location.pathname.includes("map")) {
+      checkboxesTitle = "Playstyles:"
+      setSelectedOptions([exh.playstyle])
+    console.log(selectedOptions);
+}}, []);
   const handleDescriptionChange = (content) => {
     setDescription(content);
   };
@@ -204,9 +217,10 @@ export default function Edit(props) {
   array that is later used in the return section to put the buttons
   on the page. */
   let handler = (res) => {
+    console.log(exh)
     const availableStyles = res.data.map(style => style.title);
     const checkboxes = res.data.map((style, index) => (
-      <PlaystyleCheckbox key={style.title} label={style.title} color={colors[index % colors.length]} onSelect={toggleOption} start={startVal} item={style.title} />
+      <PlaystyleCheckbox key={style.title} label={style.title} color={colors[index % colors.length]} onSelect={toggleOption} start={props.title === "Map" ? exh.playstyle == style.title:(props.title === "Playstyles" || props.title === "Activities" ? (exh.skills.includes(style.title)) : exh.activities.includes(style.title))} item={style.title} />
     ));
     setCheckboxArr(checkboxes);
   }

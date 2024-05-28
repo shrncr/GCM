@@ -87,7 +87,7 @@ const SelectionBoxes = ({ skills, title, side, sel}) => {
     console.log(ext)
 
     return (
-        <div >
+        <div className='forDisplay'>
             <div className='roundedges holdbox' >
                 <div className='dropdownOptions'>
                 <select

@@ -321,6 +321,7 @@
 .accordion-container {
     margin-bottom: 20px;
     display: flex;
+    flex-wrap: wrap-reverse;
     justify-content: center;
     align-items: center;
     height: auto;

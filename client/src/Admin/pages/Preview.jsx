@@ -7,6 +7,7 @@ import ExhibitFeedback from "../components/Feedback.jsx";
 import DOMPurify from 'dompurify';
 import Accordion from "../components/Accordion.jsx";
 import pic from "../images/play_example.jpg"
+import SelectionBoxes from "../../components/selectionBoxes.jsx";
 
 export default function Preview(props) {
   const { exhibits, playstyles, locations, act, skills } = useContext(ExhibitContext);
@@ -77,9 +78,10 @@ export default function Preview(props) {
       </div>
       {/* Conditionally render the Accordion component */}
       {ext1.length !== 0 && (
-        <div className="accordion-container">
-          <Accordion skills={s} title={props.title} side={"/admin"} />
-        </div>
+        // <div className="accordion-container">
+        //   <Accordion skills={s} title={props.title} side={"/admin"} />
+        // </div>
+        <SelectionBoxes skills={s} title={props.title} side={"/admin"}/>
       )}
 
       <div className="button-container">
