@@ -151,6 +151,9 @@ export default function Edit(props) {
     v = exh.status;
   }else if (exh.atHome !== undefined){
     v = exh.atHome;
+  }else if (exh.isAge !== undefined){
+    console.log("is age")
+    v = exh.isAge;
   } else {
     v = true;
   } ;
@@ -220,7 +223,7 @@ export default function Edit(props) {
     console.log(exh)
     const availableStyles = res.data.map(style => style.title);
     const checkboxes = res.data.map((style, index) => (
-      <PlaystyleCheckbox key={style.title} label={style.title} color={colors[index % colors.length]} onSelect={toggleOption} start={props.title === "Map" ? exh.playstyle == style.title:(props.title === "Playstyles" || props.title === "Activities" ? (exh.skills.includes(style.title)) : exh.activities.includes(style.title))} item={style.title} />
+      <PlaystyleCheckbox key={style.title} label={style.title} color={colors[index % colors.length]} onSelect={toggleOption} start={location.pathname.includes("edit") ? (props.title === "Map" ? exh.playstyle == style.title:(props.title === "Playstyles" || props.title === "Activities" ? (exh.skills.includes(style.title)) : exh.activities.includes(style.title))) : false} item={style.title} />
     ));
     setCheckboxArr(checkboxes);
   }
@@ -251,6 +254,7 @@ export default function Edit(props) {
           method: 'PUT',
           data: { id: exh._id, title: name, desc: description, image: image, skills: selectedOptions },
           headers: {
+
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
           catch(error) {
@@ -299,7 +303,7 @@ export default function Edit(props) {
         axios({ //make request
           url: `${apiUrl}/admin/editskill`, //edit exhibit
           method: 'POST',
-          data: { title: name, desc: description, image: image, Activities: selectedOptions },
+          data: { id: exh._id, title: name, desc: description, image: image, Activities: selectedOptions, isAge: visible },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -382,7 +386,7 @@ export default function Edit(props) {
         axios({ //make request
           url: `${apiUrl}/admin/addskill`, //edit exhibit
           method: 'POST',
-          data: { title: name, desc: description, image: image, Activities: selectedOptions },
+          data: { title: name, desc: description, image: image, Activities: selectedOptions, isAge: visible },
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
@@ -502,7 +506,15 @@ export default function Edit(props) {
               <DropdownForm />
             </div>
           )}
-          {props.title === "Activities" ? (
+          {props.title === "Skills" ? 
+          <div>
+            <br />
+            <label>Is an age range:</label>
+            <div>
+              <PlaystyleCheckbox label="Is Age" color="red" onSelect={toggleVisibility} start={visible} />
+            </div>
+        </div>
+          : (props.title === "Activities" ? (
             <div>
               <br />
               <label>At Home:</label>
@@ -518,7 +530,7 @@ export default function Edit(props) {
                 <PlaystyleCheckbox label="Visible" color="green" onSelect={toggleVisibility} start={visible} />
               </div>
             </div>
-          )}
+          ))}
 
 
 

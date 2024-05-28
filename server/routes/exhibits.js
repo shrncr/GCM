@@ -352,6 +352,16 @@ router.get('/feedback', async (req, res) => {
   }
 });
 
+router.get('/ageRanges', async (req, res) => {
+  try {
+    let ages = await Skills({isAge: true});
+    res.json(ages);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
 // add a new feedback instance to the database
 router.post('/feedback', (req, res) => {
     const feedbackData = {
@@ -581,7 +591,8 @@ router.post("/admin/editskill", async (req, res) => {
     let options = {
       title: req.body.title,
       desc: req.body.desc,
-      Activities: req.body.activities
+      Activities: req.body.activities,
+      isAge: req.body.isAge
     };
     Skills.findOneAndUpdate({ _id: req.body.id }, options).then(
       console.log("then")
@@ -600,6 +611,7 @@ router.post("/admin/addskill", async (req, res) => {
       'title': req.body.title,
       'desc': req.body.desc,
       'Activities': req.body.connections,
+      'isAge': req.body.isAge
     }
     );
     console.log("bawls");

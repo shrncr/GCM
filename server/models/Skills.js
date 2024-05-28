@@ -16,6 +16,10 @@ const SkillSchema = new mongoose.Schema({ //schema for the exhibits. more to be 
     activities:{
         type:Array,
         required:false,
+    },
+    isAge:{
+        type:Boolean,
+        required:false
     }
 })
 
