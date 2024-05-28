@@ -16,6 +16,9 @@ const useSkillsLoader = ({ exhibit, location }) => {
             case "Playstyles":
                 dest = "playstyles";
                 break;
+            case "Activities":
+                dest = "activities";
+                break;
             case "Exhibits":
                 dest = "playPlaces";
                 break;

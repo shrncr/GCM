@@ -13,7 +13,7 @@ const SkillSchema = new mongoose.Schema({ //schema for the exhibits. more to be 
         type:String,
         required:true,
     },
-    Activities:{
+    activities:{
         type:Array,
         required:false,
     }
