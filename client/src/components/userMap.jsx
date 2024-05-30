@@ -76,6 +76,10 @@ const UserMap = (props) => {
                 <div className="user-map">
                     <Map pins={locations} onMarkerClick={handleMarkerClick} />
                 </div>
+                <div className="box-container">
+                    <h2>Play Around The Bay</h2>
+                    {renderBoxes()}
+                </div>
                 <div className="map-info-div">
                     {selectedMarker && (
                         <>
@@ -89,10 +93,7 @@ const UserMap = (props) => {
                         </>
                     )}
                 </div>
-                <div className="box-container">
-                    <h2>Play Around The Bay</h2>
-                    {renderBoxes()}
-                </div>
+                
             </div>
             <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
             <Footer />

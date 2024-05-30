@@ -4,6 +4,7 @@ import Banner from './banner';
 import Footer from './footer';
 import GridBoxes from './gridBoxes';
 import axios from 'axios';
+import AskCookie from './cookieAge';
 import Navbar from "./header";
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -72,9 +73,12 @@ const updateBoxesData = (newData) => {
     
     <div>
       <Navbar/>
+      
       <Banner className="home-background" text="Welcome" />
+      
       <p dangerouslySetInnerHTML={{ __html: HomeText }}></p>
-      <GridBoxes data={boxesData} updateData={updateBoxesData} />      
+      <GridBoxes data={boxesData} updateData={updateBoxesData} />  
+      <AskCookie/>    
       <Footer/>
     </div>
   );
