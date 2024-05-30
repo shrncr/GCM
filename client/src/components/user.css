@@ -1,6 +1,6 @@
-@media (max-width: 1170px) {
+@media (max-width: 668px) {
     .descriptoin{
-        font-size: 10px;
+        font-size: 12px;
     }
  }
 
@@ -94,7 +94,7 @@ p {
     margin: 0 auto; /* Centers the div horizontally */
     margin-top: 2%;
     margin-bottom: 2%;
-    font-size: 1vw;
+    font-size: 16px;
 }
 .background-image::before {
     content: '';
