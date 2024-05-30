@@ -354,8 +354,10 @@ router.get('/feedback', async (req, res) => {
 
 router.get('/ageRanges', async (req, res) => {
   try {
-    let ages = await Skills({isAge: true});
-    res.json(ages);
+    let data = await Skills.find({isAge: true});
+    console.log(data);
+    res.json(data);
+    
   } catch (err) {
     console.log(err);
   }
