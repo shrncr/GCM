@@ -1,8 +1,4 @@
-@media (max-width: 668px) {
-    .descriptoin{
-        font-size: 12px;
-    }
- }
+
 
 * {
     box-sizing: border-box;
@@ -74,7 +70,7 @@ p {
     background-position: center;
     position: relative;
     margin: auto;
-    height: 400px;
+    height: 30vh;
     /* Adjust height as needed */
     display: flex;
 
@@ -111,7 +107,7 @@ p {
 .intro-text {
     text-align: center;
     position: absolute;
-    top: 70%;
+    top: 65%;
     /* Move the top edge to the vertical center */
     left: 50%;
     /* Move the left edge to the horizontal center */
@@ -133,17 +129,16 @@ p {
 
 .box {
     background-color: purple;
-    text-decoration: none;
     font-size: xx-large;
-    width: 225px;
-    height: 225px;
+    width: 260px;
+    height: 150px;
     color: white;
     margin: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    border: 1px solid #000;
+    border: rgba(128, 0, 128, 0.683);
     border-radius: 30px;
     transition-property: color;
     transition-duration: 0.3s;
@@ -429,7 +424,7 @@ header .nav-btn {
         justify-content: center;
         gap: 50px;
         background-color: var(--mainColor);
-        transition: 1s;
+        transition: .4s;
         transform: translateY(-100vh);
     }
 
@@ -997,3 +992,16 @@ select.minimal {
     width: 10%vw;
     height: 60px;
 }
+@media (max-width: 897px) {
+    .descriptoin{
+        margin: 5%;
+        font-size: 14px;
+    }
+    .dropdownDetails{
+        font-size: 14px;
+    }
+    select.minimal{
+font-size: 20px;
+    }
+    
+ }
