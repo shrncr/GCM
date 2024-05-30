@@ -32,7 +32,8 @@ function Home() {
 
   const [boxesData, setBoxesData] = useState([
     { id: 1, title: 'Browse Playstyles', link: '/playstyles'},
-    { id: 2, title: 'Browse Exhibits', link: '/playPlaces' },
+    { id: 2, title: 'Museum Play', link: '/playPlaces' },
+    { id: 2, title: 'Home Play', link: '/athome' },
   ]);
 
   // Function to update boxesData if needed
