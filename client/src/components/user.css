@@ -754,26 +754,27 @@ select.minimal {
     color: transparent;
     text-shadow: 0 0 0 white;
   }
-.popup {
-
-cursor: pointer;
-display: flex;
-flex-direction: row;
-width: 75vh;
-color: #000000;
-font-size: x-large;
-text-align: center;
-position:fixed;
-z-index: 1;
-height: 75vh;
-bottom: 12vh;
-left:12vw;
-padding: 20px 0;
-border-radius:20px;
-background: rgb(254, 247, 255);
-border: thin solid black;
-
-}
+  .popup {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    width: 75vh;
+    height: 75vh;
+    color: #000000;
+    font-size: x-large;
+    text-align: center;
+    position: fixed;
+    z-index: 1;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgb(254, 247, 255);
+    border: thin solid black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box; /* Ensure padding is included in width/height */
+  }
+  
 .popupText {
     display: flex;
     flex-direction: column;
@@ -911,26 +912,25 @@ select.minimal {
     color: transparent;
     text-shadow: 0 0 0 white;
   }
-.popup {
+  .popup {
 
-cursor: pointer;
-display: flex;
-flex-direction: row;
-width: 75vh;
-color: #000000;
-font-size: x-large;
-text-align: center;
-position:fixed;
-z-index: 1;
-height: 75vh;
-bottom: 12vh;
-left:12vw;
-padding: 20px 0;
-border-radius:20px;
-background: rgb(254, 247, 255);
-border: thin solid black;
-
-}
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    width: 75vh;
+    color: #000000;
+    font-size: x-large;
+    text-align: center;
+    position:fixed;
+    z-index: 1;
+    height: 75vh;
+    align-self: baseline;
+    padding: 20px 0;
+    border-radius:20px;
+    background: rgb(254, 247, 255);
+    border: thin solid black;
+    
+    }
 .popupText {
     display: flex;
     flex-direction: column;
@@ -989,4 +989,11 @@ border: thin solid black;
 .invisible{
     visibility: hidden;
     display: none;
+}
+.popupButton{
+    background-color:purple;
+    color: white;
+    font-size: large;
+    width: 10%vw;
+    height: 60px;
 }
