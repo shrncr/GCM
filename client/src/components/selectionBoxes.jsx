@@ -30,6 +30,13 @@ const SelectionBoxes = ({ skills, title, side, sel}) => {
     let to;
     let h={};
     let type = "";
+    function filterSkills(data) {
+        return data.filter(item => 
+            item.isAge == false ? 
+            item : 
+            false
+        );
+    }
     switch (title) {
         case "Exhibits":
             type = "n activity"
@@ -68,6 +75,7 @@ const SelectionBoxes = ({ skills, title, side, sel}) => {
             to = "exhibits"
             type = " skill"
             console.log(skills)
+            
             skills.forEach((item) => {
                 side = "playPlaces"
                 //ext.push(item.Activities)
@@ -111,7 +119,7 @@ const SelectionBoxes = ({ skills, title, side, sel}) => {
                         value={selectedItem ? selectedItem.title : ''}
                     >
                         <option value="">{selPrompt}</option>
-                        {skills.map((item, index) => (
+                        {filterSkills(skills).map((item, index) => (
                             <option key={index} value={item.title}>{item.title}</option>
                         ))}
                     </select>
