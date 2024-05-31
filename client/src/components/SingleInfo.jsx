@@ -6,6 +6,7 @@ import Accordion from '../Admin/components/Accordion.jsx';
 import { useParams, useLocation } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import Footer from "./footer.jsx"
+import SideButton from './sideButton.jsx';
 import ExhibitFeedback from '../Admin/components/Feedback.jsx';
 function SingleInfo() {
 
@@ -49,6 +50,7 @@ function SingleInfo() {
     return (
         <div>
             <Banner className={img} text={title} />
+            <SideButton/>
             <h4 className="descriptoin" dangerouslySetInnerHTML={{ __html: desc }}></h4>
             <hr />
             <br></br>

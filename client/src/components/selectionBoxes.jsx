@@ -31,11 +31,16 @@ const SelectionBoxes = ({ skills, title, side, sel}) => {
     let h={};
     let type = "";
     function filterSkills(data) {
+        if (title=="Playstyles"){
         return data.filter(item => 
             item.isAge == false ? 
             item : 
             false
-        );
+        ); 
+    }else{
+        return data
+    }
+    
     }
     switch (title) {
         case "Exhibits":
