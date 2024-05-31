@@ -820,10 +820,11 @@ select.minimal {
 
 .meep {
     flex: 1; /* Distribute space equally among all .meep divs */
-    margin: 0 5px; /* Optional: Add some space between each .meep */
+    margin: 0 2px; /* Optional: Add some space between each .meep */
     display: flex; /* If you need to center content inside .meep */
     align-items: center; /* Center content vertically */
     justify-content: center; /* Center content horizontally */
+    font-size: 10px;
 }
 
 select.minimal {
@@ -978,10 +979,11 @@ select.minimal {
 
 .meep {
     flex: 1; /* Distribute space equally among all .meep divs */
-    margin: 0 5px; /* Optional: Add some space between each .meep */
+    margin: 0 4px; /* Optional: Add some space between each .meep */
     display: flex; /* If you need to center content inside .meep */
     align-items: center; /* Center content vertically */
     justify-content: center; /* Center content horizontally */
+    font-size: 12px;
 }
 .invisible{
     visibility: hidden;

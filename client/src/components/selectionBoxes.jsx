@@ -79,6 +79,19 @@ const SelectionBoxes = ({ skills, title, side, sel}) => {
             break;
 
         // Add other cases as needed
+        case "locations":
+            to = "exhibits"
+            type = " skill"
+            console.log(skills)
+            skills.forEach((item) => {
+                side = "playPlaces"
+                //ext.push(item.Activities)
+                desc.push(DOMPurify.sanitize(item.desc))
+                let k = [];
+                console.log(item)
+                
+            });
+            break;
         default:
             // Default case
             break;
