@@ -20,7 +20,7 @@ function AskCookie() {
     if (applyingAges){
         Cookies.set('ages',selAges);
     }else{
-        Cookies.set('ages',"all")
+        Cookies.set('ages',[])
     }
   }
   //gets all currently available age ranges
@@ -62,9 +62,6 @@ function AskCookie() {
                             <PlaystyleCheckbox key={range.title} label={range.title} color={"pink"} onSelect={toggleAge} start={false} item={range.title} />
                             </div>
                         ))}
-                        <div className='meep'>
-                        <PlaystyleCheckbox key={"no"} label={"Prefer not to say"} color={"pink"} onSelect={toggleAge} start={false} item={"no"}/>
-                        </div>
         </div>
         <div className='buttons-container' >
             <button className='innerButton' style={{"border-bottom-left-radius": "20px"}} onClick={() => applyFilter(true)}>Submit</button>

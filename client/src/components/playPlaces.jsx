@@ -2,6 +2,7 @@
 import Banner from './banner';
 // import GridBoxes from './gridBoxes';
 import Footer from './footer';
+import SideButton from './sideButton';
 // import playExample from '../components/images/playExample.webp'; // Corrected import path
 
 import React, { useState, useEffect } from 'react';
@@ -90,7 +91,9 @@ function Playplaces() {
 
   return (
     <>
+    
       <Banner className="playstyles-background" text="Museum Play" />
+      <SideButton/>
       <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <GridBoxes data={exdata} />
       <Footer />
