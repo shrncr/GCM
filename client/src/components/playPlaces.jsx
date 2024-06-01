@@ -92,7 +92,7 @@ function Playplaces() {
   return (
     <>
     
-      <Banner className="playstyles-background" text="Museum Play" />
+      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/glazer_dinasour.jpg" text="Museum Play" />
       <SideButton/>
       <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <GridBoxes data={exdata} />
