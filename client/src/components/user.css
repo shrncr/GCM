@@ -288,11 +288,16 @@ a:-webkit-any-link {
 /*footer stuff*/
 .footer {
     background-color: #2383c6;
-    min-height: 50px;
+    
     /* A reasonable minimum height, adjust based on content */
-    padding: 0.5rem 0;
+    
     /* Provides padding top and bottom */
-    margin-top: 100px;
+
+    position:relative;
+   left: 0;
+   bottom: 0;
+   
+   width: 100%;
 }
 
 .footer-content {
@@ -324,7 +329,7 @@ a:-webkit-any-link {
     .footer-content {
         font-size: 0.9rem;
         /* Smaller font size on mobile */
-        padding: 3vh 0;
+        
         /* Reduced padding */
     }
 }
@@ -1055,6 +1060,7 @@ select.minimal {
     select.minimal{
 font-size: 20px;
     }
+
     
  .user-map-container {
     position: relative;

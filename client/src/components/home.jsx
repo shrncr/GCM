@@ -48,7 +48,7 @@ function Home() {
   return (
     <div>
       <Navbar/>
-      <Banner className="home-background" text="Welcome" />
+      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/glazer_banner.jpg" text="Welcome" />
       <button className="popupButton" onClick={handleAskCookieClick}>Personalize Experience by Age</button>
       {showCookiePopup && <AskCookie />}
       <p dangerouslySetInnerHTML={{ __html: HomeText }}></p>
