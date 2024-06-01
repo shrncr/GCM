@@ -7,6 +7,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import Footer from "./footer.jsx"
 import SideButton from './sideButton.jsx';
+import Cookies from "js-cookie";
 import ExhibitFeedback from '../Admin/components/Feedback.jsx';
 function SingleInfo() {
 
@@ -19,6 +20,17 @@ function SingleInfo() {
     const [img, setImg] = useState("");
     //const [selSkill, setSelSkill] = useState(props.sel? props.sel : "")
     const { id, dest } = useParams();
+    let [ageRanges, setAgeRanges] = useState([]);
+    
+    useEffect(() => {
+        if (Cookies.get("ages")) {
+            console.log(Cookies.get("ages"));
+            setAgeRanges(Cookies.get("ages").split(',')); // Assuming the ages are stored as a comma-separated string
+        } else {
+            setAgeRanges(null);
+        }
+    }, []);
+
     const apiUrl = process.env.REACT_APP_API_URL;
     useEffect(()=>{ 
         setSel(state)
@@ -47,6 +59,8 @@ function SingleInfo() {
     }
 
 
+
+
     return (
         <div>
             <Banner className={img} text={title} />
@@ -56,7 +70,7 @@ function SingleInfo() {
             <br></br>
             <br></br>
             <div className="accordion-container">
-                <SelectionBoxes skills={skills} title={t} side={""} sel = {sel}/>
+                <SelectionBoxes skills={skills } title={t} side={""} sel = {sel}/>
                 {/* <Accordion skills={skills} title={t} side={""} /> */}
             </div>
             <div className="feedback-containter">
