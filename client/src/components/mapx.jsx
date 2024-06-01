@@ -14,7 +14,7 @@ const center = { //where center of map is (Tampa)
 
 const Map = ({ markerContent, onMarkerClick = () => {} }) => {
   const [locations, setLocations] = useState([]);
-  const [clickedMarkerIndex, setClickedMarkerIndex] = useState(null); // State to track clicked marker index
+  const [clickedMarkerIndex, setClickedMarkerIndex] = useState(0); // State to track clicked marker index
   const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {

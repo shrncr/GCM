@@ -28,7 +28,10 @@ const UserMap = (props) => {
             },
         }).then((res) => {
             console.log("Locations data:", res.data); // Log the locations data
+            
             setLocations(res.data);
+            setSelectedMarker(res.data[0])
+            setSelectedBox(0)
         }).catch(error => {
             console.error('error:', error);
             alert('An error occurred while fetching map data.');
