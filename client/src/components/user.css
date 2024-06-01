@@ -523,30 +523,6 @@ header .nav-btn {
     background-color: #ddd;
 }
 
-.user-map-container {
-    padding: 100px 5% 5% 5%;
-    display: flex;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-}
-
-.user-map {
-    overflow: hidden;
-    position: relative;
-}
-
-.map-info-div {
-    position: relative;
-    top: 0;
-    z-index: 1;
-    min-height: 200px;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 10px;
-    overflow-y: auto;
-    width: 500px;
-
-}
 
 .box-container {
     margin-top: 0px;
@@ -600,52 +576,14 @@ header .nav-btn {
 }
 
 /* Media query for smaller screens */
-@media (max-width: 900px) {
-    .user-map-container {
-        flex-direction: column;
-        /* Stack items vertically on smaller screens */
-        min-height: 2000px;
 
-    }
-
-    .map-info-div {
-        width: 100%;
-    }
-
-    .box-container {
-        min-width: 100%;
-    }
-
-    .box-image {
-        width: 80%;
-    }
-
-
-}
 
 strong {
     font-weight: bold;
 }
 
-.box-image-container {
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    display: flex;
-    /* Use flexbox */
-    justify-content: center;
-    /* Align items horizontally in the center */
-    align-items: center;
-    /* Align items vertically in the center */
-}
 
-.box-image {
-    width: 80%;
-    height: auto;
-    padding-bottom: 30px;
-    padding-left: 0px;
-    padding-right: 0px;
-}
+
 .holdbox{
     display: flex;
     flex-direction: column;
@@ -996,6 +934,116 @@ select.minimal {
     width: 10%vw;
     height: 60px;
 }
+
+
+
+.user-map-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-map {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.map-info-div {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; /* Adjust width as needed */
+    max-width: 800px; /* Optional: set a max width */
+    max-height: 30%; /* Adjust height as needed */
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10; /* Ensure it overlays the map */
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.map-info-div > div {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.map-info-div h2 {
+    font-size: 1.5em; /* Adjust as needed */
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.map-info-div div {
+    font-size: 1em; /* Adjust as needed */
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.box-image-container {
+    flex-shrink: 0;
+    width: 50%; /* Adjust width as needed */
+    height: 100%;
+    border-radius: 10px;
+    margin-left: 15px; /* Add margin to separate text and image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #ffffff; /* Optional: Add background color to indicate container bounds */
+}
+
+.box-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+    border-radius: 10px;
+}
+
+.map-text {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    overflow-wrap: normal;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: flex-start;
+}
+
+.map-text h2
+{
+    margin: 0;
+    margin-top: 3px;
+    font-size: 30px; /* Responsive font size */
+    margin-bottom: 4px;
+    white-space:initial;
+    
+}
+.map-text p
+{
+    margin: 0;
+    
+    font-size: 13px; /* Responsive font size */
+    white-space: initial;
+    
+}
+
+
+
 @media (max-width: 897px) {
     .descriptoin{
         margin: 5%;
@@ -1007,5 +1055,92 @@ select.minimal {
     select.minimal{
 font-size: 20px;
     }
+    
+ .user-map-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-map {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.map-info-div {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; /* Adjust width as needed */
+    max-width: 800px; /* Optional: set a max width */
+    max-height: 40%; /* Adjust height as needed */
+    background: white;
+    padding: 20px;
+    padding-top:0;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10; /* Ensure it overlays the map */
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.map-info-div > div {
+    flex: 1;
+}
+
+.box-image-container {
+    margin-top: 10px;
+    flex-shrink: 0;
+    height: 100%;
+    border-radius: 10px;
+    margin-left: 15px; /* Add margin to separate text and image */
+    justify-content:right;
+    display: block;
+    background: #ffffff; /* Optional: Add background color to indicate container bounds */
+}
+
+.box-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+    border-radius: 10px;
+
+}
+.map-text {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    overflow-wrap: normal;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: flex-start;
+}
+
+.map-text h2
+{
+    margin: 0;
+    margin-top: 3px;
+    font-size: 6vw; /* Responsive font size */
+    margin-bottom: 4px;
+    white-space:initial;
+    
+}
+.map-text p
+{
+    margin: 0;
+    
+    font-size: 3.5vw; /* Responsive font size */
+    white-space: initial;
+    
+}
     
  }
