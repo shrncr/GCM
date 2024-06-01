@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import DOMPurify from 'dompurify';
+import Cookies from "js-cookie";
 import useSkillsLoader from '../Admin/classes/skillsLoader';
 
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -9,7 +10,17 @@ const SelectionBoxes = ({ skills, title, side, sel}) => {
     
     const [selectedItem, setSelectedItem] = useState(sel === null ? null : skills.find(skill => skill.title == sel));
     const [selPrompt, setSelPrompt] = useState((title === "Exhibits" ? "Select Activities" : "Select Skills"));
+    let [ageRanges, setAgeRanges] = useState([]);
     
+    useEffect(() => {
+        if (Cookies.get("ages")) {
+            console.log(Cookies.get("ages"));
+            setAgeRanges(Cookies.get("ages").split(',')); // Assuming the ages are stored as a comma-separated string
+        } else {
+            setAgeRanges(null);
+        }
+    }, []);
+
     useEffect(()=>{
         setSelectedItem(sel === null ? null : skills.find(skill => skill.title == sel));
         
@@ -31,12 +42,22 @@ const SelectionBoxes = ({ skills, title, side, sel}) => {
     let h={};
     let type = "";
     function filterSkills(data) {
+        console.log(title)
         if (title=="Playstyles"){
         return data.filter(item => 
             item.isAge == false ? 
             item : 
             false
         ); 
+    }else if (title=="Exhibits"){
+        console.log(data)
+        console.log("emOEmf")
+        return data.filter(item => 
+            ageRanges != null ? 
+            ageRanges.some(age => item.skills.includes(age)) : 
+            true
+        );
+
     }else{
         return data
     }

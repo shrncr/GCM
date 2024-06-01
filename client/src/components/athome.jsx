@@ -7,24 +7,10 @@ import SideButton from './sideButton';
 import Cookies from "js-cookie";
 
 
-function getDeviceType() {
-    const ua = navigator.userAgent;
-    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
-        return "tablet";
-    }
-    if (/Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|MQQBrowser|Opera Mini|Windows Phone|webOS|Kindle|Silk-Accelerated|(hpw|web)OS/i.test(ua)) {
-        return "mobile";
-    }
-    return "desktop";
-}
-
-
-
-
-
 
 function AtHome() {
     let [ageRanges, setAgeRanges] = useState([]);
+    
     useEffect(() => {
         if (Cookies.get("ages")) {
             console.log(Cookies.get("ages"));
@@ -80,37 +66,6 @@ function AtHome() {
           });
       
     }, []);
-    useEffect(() => {
-        const deviceType = getDeviceType();
-        const page = 'athome';
-        const time_of_day = new Date();
-        const apiUrl = process.env.REACT_APP_API_URL;
-        axios.post(`${apiUrl}/create`, { time_of_day, page, deviceType })
-            .then(response => {
-                console.log('Visit and session start recorded:', response.data);
-            })
-            .catch(error => {
-                console.error('Error recording visit and session start:', error);
-            });
-
-        function handleUnload() {
-            const sessionEnd = new Date();
-            const sessionDuration = sessionEnd - time_of_day; // Duration in milliseconds
-
-            axios.post(`${apiUrl}/sessions/end`, {
-                deviceType,
-                sessionDuration,
-                page,
-                bounce: interactions === 0 // Consider it a bounce if no interactions
-            }).then(response => console.log('Session end data saved:', response.data))
-                .catch(error => console.error('Error saving session end data:', error));
-        }
-
-        window.addEventListener('beforeunload', handleUnload);
-        return () => {
-            window.removeEventListener('beforeunload', handleUnload);
-        };
-    }, [interactions]);
 
     return (
         <>
