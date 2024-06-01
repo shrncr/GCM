@@ -50,7 +50,7 @@ function SingleInfo() {
     return (
         <div>
             <Banner className={img} text={title} />
-            <SideButton/>
+            {dest == "playPlaces" ? <SideButton/> : <></>}
             <h4 className="descriptoin" dangerouslySetInnerHTML={{ __html: desc }}></h4>
             <hr />
             <br></br>
