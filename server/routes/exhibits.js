@@ -507,7 +507,7 @@ router.put('/admin/editlearningstyle', async (req, res) => {
 
   let options = {
     title: req.body.title,
-    desc: req.body.description,
+    desc: req.body.desc,
     image: req.body.image,
     skills: req.body.skills
   }

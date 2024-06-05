@@ -249,6 +249,7 @@ export default function Edit(props) {
       console.log("editing...");
       if (props.title === "Playstyles") { //if editing a playstyle
         console.log("specifically, a playstyle");
+        console.log(exh.id)
         axios({ //make request
           url: `${apiUrl}/admin/editlearningstyle`, //edit exhibit
           method: 'PUT',
