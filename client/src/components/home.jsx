@@ -3,8 +3,10 @@ import Banner from './banner';
 import Footer from './footer';
 import GridBoxes from './gridBoxes';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 import AskCookie from './cookieAge';
 import Navbar from "./header";
+
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -24,7 +26,7 @@ function Home() {
         alert('An error occured.')
       }
     }).then((res) => {
-      setHomeText(res.data.desc)
+      setHomeText( DOMPurify.sanitize(res.data.desc))
     });
   }, [])
 

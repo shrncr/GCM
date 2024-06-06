@@ -6,7 +6,7 @@ import SetData from "../Admin/SetData";
 export default function UserApp(props) {
     return (
         <SetData>
-            <div>
+            <div className="wrapper">
                 <Navbar />
                 <UserRoutes />
 
