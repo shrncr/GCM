@@ -555,7 +555,7 @@ router.post("/admin/addactivity", async (req, res) => {
     console.log("ma");
     await Activities.create({ //create new exhibit w/ the model
       'title': req.body.title,
-      'description': req.body.desc,
+      'desc': req.body.desc,
       'skills': req.body.connections,
       'atHome': req.body.atHome
     }
@@ -573,7 +573,7 @@ router.post("/admin/editactivity", async (req, res) => {
     console.log(req.body);
     let options = {
       title: req.body.title,
-      description: req.body.desc,
+      desc: req.body.desc,
       skills: req.body.skills,
       atHome: req.body.atHome
     };
