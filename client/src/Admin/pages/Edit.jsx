@@ -131,7 +131,8 @@ export default function Edit(props) {
   if (props.title == "Activities") {
     console.log("under")
     console.log(exh.description)
-    d = exh.description
+    d = exh.desc
+    
   }
   //exhibit map playstyle
 
@@ -180,7 +181,7 @@ export default function Edit(props) {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const toggleOption = (playstyle) => {
     setSelectedOptions((prevSelected) => {
-      if (prevSelected.includes(playstyle)) {
+      if ((prevSelected.includes(playstyle))) {
         return prevSelected.filter(ps => ps !== playstyle);
       } else {
         return [...prevSelected, playstyle];
@@ -223,7 +224,7 @@ export default function Edit(props) {
     console.log(exh)
     const availableStyles = res.data.map(style => style.title);
     const checkboxes = res.data.map((style, index) => (
-      <PlaystyleCheckbox key={style.title} label={style.title} color={colors[index % colors.length]} onSelect={toggleOption} start={location.pathname.includes("edit") ? (props.title === "Map" ? exh.playstyle == style.title:(props.title === "Playstyles" || props.title === "Activities" ? (exh.skills.includes(style.title)) : exh.activities.includes(style.title))) : false} item={style.title} />
+      <PlaystyleCheckbox key={style.title} label={style.title} color={colors[index % colors.length]} onSelect={() =>toggleOption} start={location.pathname.includes("edit") ? (props.title === "Map" ? exh.playstyle == style.title:(props.title === "Playstyles" || props.title === "Activities" ? (exh.skills.includes(style.title)) : exh.activities.includes(style.title))) : false} item={style.title} />
     ));
     setCheckboxArr(checkboxes);
   }
