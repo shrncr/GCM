@@ -10,6 +10,40 @@
 .ql-align-center{
     text-align: center !important;
 }
+/* Add this CSS to your main stylesheet or inline */
+.ql-font-arial {
+    font-family: 'Arial, sans-serif';
+}
+.ql-font-courier {
+    font-family: 'Courier, monospace';
+}
+.ql-font-georgia {
+    font-family: 'Georgia, serif';
+}
+.ql-font-impact {
+    font-family: 'Impact, Charcoal, sans-serif';
+}
+.ql-font-tahoma {
+    font-family: 'Tahoma, Geneva, sans-serif';
+}
+.ql-font-times {
+    font-family: 'Times New Roman, Times, serif';
+}
+.ql-font-verdana {
+    font-family: 'Verdana, Geneva, sans-serif';
+}
+.ql-size-huge {
+    font-size: 2.5em;
+}
+
+.ql-size-small {
+    font-size: 0.75em;
+}
+
+.ql-size-large {
+    font-size: 1.5em;
+}
+
 body {
     background: #eee;
     height: 100%;
