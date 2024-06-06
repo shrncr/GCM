@@ -11,6 +11,7 @@ const TextEditor = ({ value, onChange }) => {
             [{ 'list': 'ordered'}, { 'list': 'bullet' }],
             [{ 'indent': '-1'}, { 'indent': '+1' }],
             [{ 'size': ['small', false, 'large'] }],
+            [{ 'align': [] }],
         ],
     };
     
@@ -19,7 +20,8 @@ const TextEditor = ({ value, onChange }) => {
         'font',
         'color', 'background',
         'list', 'bullet', 'indent',
-        'size'
+        'size',
+        'align'
     ];
     
 

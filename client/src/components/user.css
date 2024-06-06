@@ -7,10 +7,24 @@
     padding: 0;
     margin: 0;
 }
-
+.ql-align-center{
+    text-align: center !important;
+}
 body {
     background: #eee;
+    height: 100%;
+    margin:0;
 }
+html, body {
+    height: 100%;
+    margin: 0;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 
 .user {
     text-align: center;
@@ -57,7 +71,6 @@ hr {
 }
 
 p {
-    text-align: left;
     margin-left: 5%;
     margin-right: 5%;
 }
@@ -288,16 +301,10 @@ a:-webkit-any-link {
 /*footer stuff*/
 .footer {
     background-color: #2383c6;
-    
-    /* A reasonable minimum height, adjust based on content */
-    
-    /* Provides padding top and bottom */
-
-    position:relative;
-   left: 0;
-   bottom: 0;
-   
-   width: 100%;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer-content {
@@ -306,15 +313,12 @@ a:-webkit-any-link {
     text-align: center;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-
 }
 
 .footer a,
 .footer a:visited {
     color: white;
-    /* Keeps the link color white even after being clicked */
     text-decoration: none;
-    /* removes underline from links */
 }
 
 
@@ -941,7 +945,6 @@ select.minimal {
 }
 
 
-
 .user-map-container {
     position: relative;
     width: 100vw;
@@ -964,23 +967,22 @@ select.minimal {
     transform: translateX(-50%);
     width: 90%; /* Adjust width as needed */
     max-width: 800px; /* Optional: set a max width */
-    max-height: 30%; /* Adjust height as needed */
+    max-height: 40%; /* Adjust height as needed */
     background: white;
     padding: 20px;
+    padding-top: 0;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 10; /* Ensure it overlays the map */
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start; /* Align items to the top */
 }
 
 .map-info-div > div {
     flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    overflow: auto;
 }
 
 .map-info-div h2 {
@@ -988,7 +990,7 @@ select.minimal {
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: initial;
 }
 
 .map-info-div div {
@@ -996,13 +998,13 @@ select.minimal {
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: initial;
 }
 
 .box-image-container {
     flex-shrink: 0;
-    width: 50%; /* Adjust width as needed */
-    height: 100%;
+    width: 40%; /* Adjust width as needed */
+    max-height: 150px; /* Set a max height */
     border-radius: 10px;
     margin-left: 15px; /* Add margin to separate text and image */
     display: flex;
@@ -1022,131 +1024,119 @@ select.minimal {
 .map-text {
     flex: 1;
     display: flex;
-    overflow: hidden;
+    overflow: auto;
     overflow-wrap: normal;
     flex-direction: column;
     justify-content: baseline;
     align-items: flex-start;
 }
 
-.map-text h2
-{
+.map-text h2 {
     margin: 0;
     margin-top: 3px;
     font-size: 30px; /* Responsive font size */
     margin-bottom: 4px;
-    white-space:initial;
-    
+    white-space: initial;
 }
-.map-text p
-{
+
+.map-text p {
     margin: 0;
-    
     font-size: 13px; /* Responsive font size */
     white-space: initial;
-    
 }
 
-
-
 @media (max-width: 897px) {
-    .descriptoin{
+    .description {
         margin: 5%;
         font-size: 14px;
     }
-    .dropdownDetails{
+
+    .dropdownDetails {
         font-size: 14px;
     }
-    select.minimal{
-font-size: 20px;
+
+    select.minimal {
+        font-size: 20px;
     }
 
-    
- .user-map-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .user-map-container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-map {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .map-info-div {
+        position: absolute;
+        bottom: 20px; /* Adjust as needed */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%; /* Adjust width as needed */
+        max-width: 800px; /* Optional: set a max width */
+        max-height: 50%; /* Adjust height as needed */
+        background: white;
+        padding: 20px;
+        padding-top: 0;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 10; /* Ensure it overlays the map */
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .map-info-div > div {
+        flex: 1;
+    }
+
+    .box-image-container {
+        margin-top: 10px;
+        flex-shrink: 0;
+        height: 100%;
+        max-height: 120px; /* Set a max height for mobile */
+        border-radius: 10px;
+        margin-left: 15px; /* Add margin to separate text and image */
+        justify-content: right;
+        display: block;
+        background: #ffffff; /* Optional: Add background color to indicate container bounds */
+    }
+
+    .box-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+        border-radius: 10px;
+    }
+
+    .map-text {
+        flex: 1;
+        display: flex;
+        overflow: auto;
+        overflow-wrap: normal;
+        flex-direction: column;
+        justify-content: baseline;
+        align-items: flex-start;
+    }
+
+    .map-text h2 {
+        margin: 0;
+        margin-top: 3px;
+        font-size: 6vw; /* Responsive font size */
+        margin-bottom: 4px;
+        white-space: initial;
+    }
+
+    .map-text p {
+        margin: 0;
+        font-size: 3.5vw; /* Responsive font size */
+        white-space: initial;
+    }
 }
-
-.user-map {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-
-
-.map-info-div {
-    position: absolute;
-    bottom: 20px; /* Adjust as needed */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%; /* Adjust width as needed */
-    max-width: 800px; /* Optional: set a max width */
-    max-height: 40%; /* Adjust height as needed */
-    background: white;
-    padding: 20px;
-    padding-top:0;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 10; /* Ensure it overlays the map */
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-
-}
-
-.map-info-div > div {
-    flex: 1;
-}
-
-.box-image-container {
-    margin-top: 10px;
-    flex-shrink: 0;
-    height: 100%;
-    border-radius: 10px;
-    margin-left: 15px; /* Add margin to separate text and image */
-    justify-content:right;
-    display: block;
-    background: #ffffff; /* Optional: Add background color to indicate container bounds */
-}
-
-.box-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
-    border-radius: 10px;
-
-}
-.map-text {
-    flex: 1;
-    display: flex;
-    overflow: hidden;
-    overflow-wrap: normal;
-    flex-direction: column;
-    justify-content: baseline;
-    align-items: flex-start;
-}
-
-.map-text h2
-{
-    margin: 0;
-    margin-top: 3px;
-    font-size: 6vw; /* Responsive font size */
-    margin-bottom: 4px;
-    white-space:initial;
-    
-}
-.map-text p
-{
-    margin: 0;
-    
-    font-size: 3.5vw; /* Responsive font size */
-    white-space: initial;
-    
-}
-    
- }
