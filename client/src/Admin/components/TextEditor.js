@@ -2,7 +2,6 @@ import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-
 const Font = ReactQuill.Quill.import('formats/font');
  // Set the whitelist for the fonts you want to include
 ReactQuill.Quill.register(Font, true);
@@ -31,7 +30,11 @@ const TextEditor = ({ value, onChange }) => {
 
     const handleChange = (content, delta, source, editor) => {
         onChange(editor.getHTML()); // Use the onChange prop to update the parent's state
+      
     };
+
+  
+
 
     return (
         <div>
