@@ -3,7 +3,9 @@ import { ExhibitContext } from "../SetData.jsx";
 import axios from 'axios'
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import TextEditor from "../components/TextEditor.js";
+
 const apiUrl = process.env.REACT_APP_API_URL;
+
 /*
 Component admin will use to edit locations on map
 */

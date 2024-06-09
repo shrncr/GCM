@@ -9,26 +9,30 @@
  */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+
 
 function GridBoxes(props) {
-    // Function to handle updating data
-    
-    console.log((props.data.toString()))
     return (
         <div className="grid-container">
             {/* Map over the data array to render each box */}
             {props.data.map(box => (
-                <Link key={box._id} to={box.link ? box.link : box._id}>
-                    <div className="box">
-                      {box.title}
+                <div key={box._id} className="grid-item">
+                    <Link to={box.link ? box.link : box._id} className="icon-link">
+                        
+                        <div className={box.icon ? 'box': 'imgbox'}>
+                        {box.icon 
+                                ? React.createElement(box.icon, { className: 'icon-large' }) // Render the icon if provided
+                                : <img src={box.image} alt="Placeholder" className="img-thumb" /> // Render a placeholder image if no icon is provided
+                            }
+                            <h6 className='box-text'>{box.title}</h6>
+                        </div>
+                        
+                    </Link>
                     
-                        
-                        
-                    </div>
-                </Link>
+                </div>
             ))}
-            {/* Button to update data */}
-            
         </div>
     );
 }

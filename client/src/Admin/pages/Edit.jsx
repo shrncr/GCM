@@ -17,6 +17,7 @@ import Delete_Button from "../components/Delete_Button.jsx";
 import TextEditor from "../components/TextEditor.js";
 import DropdownForm from "../components/DropdownForm.js";
 import ContentWrapper from "../components/ContentWrapper.jsx";
+
 /* Main edit function, this will be exported and used as needed
 throughout the admin page.*/
 export default function Edit(props) {
@@ -132,7 +133,7 @@ export default function Edit(props) {
     console.log("under")
     console.log(exh.description)
     d = exh.desc
-    
+
   }
   //exhibit map playstyle
 
