@@ -613,6 +613,7 @@ strong {
 }
 .dropdownOptions{
     width: 100%;
+    
 }
 .dropdownDetails{
 margin: auto;
@@ -1206,4 +1207,28 @@ select.minimal {
     font-size: 1.1em;
     cursor: pointer;
   }
-  
+  .tab{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+.tablink{
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    transition: background-color 0.3s ease;
+}
+
+.tablink.active{
+    background-color: #fff;
+    border-top: 2px solid #2383c6;
+    border-left: 2px solid #2383c6;
+    border-right: 2px solid #2383c6;
+    font-weight: bold;
+}
+
+.tablink:hover{
+    background-color: #ddd;
+}
