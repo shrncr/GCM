@@ -1,5 +1,5 @@
 .navbar {
-    background-color: purple;
+    background-color: #884c9d;
     color: white;
     display: flex;
     justify-content: space-between;
@@ -95,7 +95,7 @@
         position: absolute;
         top: 70px;
         left: 0;
-        background-color: purple;
+        background-color: #884c9d;
         width: 100%;
         height: auto;
         padding: 20px;
@@ -123,7 +123,7 @@
 
 
 .zillow-box {
-    background-color: purple;
+    background-color: #884c9d;
     text-decoration: none;
     width: 200px;
     height: 200px;
@@ -272,10 +272,10 @@
     text-decoration: none;
     width: 200px;
     height: 200px;
-    color: purple;
+    color: #884c9d;
     margin: 10px;
     border-radius: 20px;
-    border-color: purple;
+    border-color: #884c9d;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -329,7 +329,7 @@
     border-radius: 10px;
     margin-left: 15.25vw;
     margin-right: 15.25vw;
-    background-color: purple;
+    background-color: #884c9d;
     /* Adjust as needed */
 
 
@@ -339,7 +339,7 @@
 
 
 .accordion {
-    background-color: purple;
+    background-color: #884c9d;
     width: 70vw;
     height: auto;
     display: flex;
@@ -357,7 +357,7 @@
     margin: 0;
     display: flex;
     justify-content: center;
-    background-color: purple;
+    background-color: #884c9d;
     border: none;
     color: white;
 }
