@@ -366,9 +366,25 @@ router.get('/ageRanges', async (req, res) => {
 
 // add a new feedback instance to the database
 router.post('/feedback', (req, res) => {
-    const feedbackData = {
-    ...req.body,
-  };
+  //   const feedbackData = {
+  //   ...req.body,
+  // };
+  let age;
+  if (req.body.childAge === "prefer-not-to-say") {
+    age = -1;
+  }else{
+    age = req.body.childAge;
+  }
+
+  const feedbackData = {
+    'exhibitId':req.body.exhibitId,
+    'rating':req.body.rating,
+    'childAge':age 
+    };
+    console.log(req.body.exhibitId)
+    console.log(req.body.rating)
+    console.log(age)
+
 
   // create a new impression instance with the provided data
   const feedback = new Feedback(feedbackData);
