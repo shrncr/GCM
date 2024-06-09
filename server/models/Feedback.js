@@ -8,8 +8,8 @@ const FeedbackSchema = new mongoose.Schema({
         type:String,
         required:true, // string will be the URL pointing to the image stored externally
     },
-    isPositive:{
-        type:Boolean,
+    rating:{
+        type:Number,
         required:true, // string will be the URL pointing to the image stored externally
     },
     childAge: {

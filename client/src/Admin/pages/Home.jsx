@@ -3,6 +3,7 @@ import TextEditor from "../components/TextEditor"
 
 import ExhibitFeedback from "../components/Feedback.jsx";
 import { Link } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
 import Cookies from "js-cookie";
 export default function Home(props) {
     const getUserCookie = () => {

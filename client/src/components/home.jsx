@@ -5,14 +5,18 @@ import GridBoxes from './gridBoxes';
 import axios from 'axios';
 import DOMPurify from 'dompurify';
 import AskCookie from './cookieAge';
+import SideButton from './sideButton';
 import Navbar from "./header";
-
+import { FaHouseUser } from "react-icons/fa";
+import { MdMuseum } from "react-icons/md";
+import { LuToyBrick } from "react-icons/lu";
+import { MdOutlineFamilyRestroom } from "react-icons/md";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 function Home() {
-  let [HomeText, setHomeText] = useState('');
-  const [showCookiePopup, setShowCookiePopup] = useState(false);
+  const [HomeText, setHomeText] = useState('');
+  const [showCookiePopup, setShowCookiePopup] = useState(false); // Set initial state to false
 
   useEffect(() => {
     axios({
@@ -21,41 +25,39 @@ function Home() {
       headers: {
         authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
       },
-      catch(error) {
-        console.error('error:', error);
-        alert('An error occured.')
-      }
     }).then((res) => {
-      setHomeText( DOMPurify.sanitize(res.data.desc))
+      setHomeText(DOMPurify.sanitize(res.data.desc));
+    }).catch(error => {
+      console.error('error:', error);
+      alert('An error occurred.');
     });
-  }, [])
-
- // empty dependency array ensures this runs once on mount
+  }, []);
 
   const [boxesData, setBoxesData] = useState([
-    { id: 1, title: 'Browse Playstyles', link: '/playstyles'},
-    { id: 2, title: 'Museum Play', link: '/playPlaces' },
-    { id: 2, title: 'Home Play', link: '/athome' },
+    { id: 1, title: 'Playstyles', link: '/playstyles', icon: LuToyBrick },
+    { id: 2, title: 'Museum Play', link: '/playPlaces', icon: MdMuseum },
+    { id: 3, title: 'Home Play', link: '/athome', icon: FaHouseUser },
   ]);
 
-  // Function to update boxesData if needed
   const updateBoxesData = (newData) => {
     setBoxesData(newData);
   };
 
   const handleAskCookieClick = () => {
-    setShowCookiePopup(true);
+    setShowCookiePopup(prevState => !prevState); // Toggle the popup state
   };
 
   return (
     <div>
-      <Navbar/>
-      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/glazer_banner.jpg" text="Welcome" />
-      <button className="popupButton" onClick={handleAskCookieClick}>Personalize Experience by Age</button>
+      <Navbar />
+      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/glazer_banner.jpg" text="" />
+      <button className="popupButton" onClick={handleAskCookieClick}>
+        <MdOutlineFamilyRestroom />
+      </button>
       {showCookiePopup && <AskCookie />}
       <p dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <GridBoxes data={boxesData} updateData={updateBoxesData} />
-      <Footer/>
+      <Footer />
     </div>
   );
 }

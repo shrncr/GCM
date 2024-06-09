@@ -134,7 +134,7 @@ const SelectionBoxes = ({ skills, title, side, sel}) => {
     console.log(ext)
 
     return (
-        <div className='forDisplay'>
+        
             <div className='roundedges holdbox' >
                 <div className='dropdownOptions'>
                 <select
@@ -161,7 +161,7 @@ const SelectionBoxes = ({ skills, title, side, sel}) => {
                 </div>
                 
             </div>
-        </div>
+       
     );
 };
 

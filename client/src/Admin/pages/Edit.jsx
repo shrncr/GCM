@@ -17,6 +17,7 @@ import Delete_Button from "../components/Delete_Button.jsx";
 import TextEditor from "../components/TextEditor.js";
 import DropdownForm from "../components/DropdownForm.js";
 import ContentWrapper from "../components/ContentWrapper.jsx";
+
 /* Main edit function, this will be exported and used as needed
 throughout the admin page.*/
 export default function Edit(props) {
@@ -132,7 +133,7 @@ export default function Edit(props) {
     console.log("under")
     console.log(exh.description)
     d = exh.desc
-    
+
   }
   //exhibit map playstyle
 
@@ -224,7 +225,7 @@ export default function Edit(props) {
     console.log(exh)
     const availableStyles = res.data.map(style => style.title);
     const checkboxes = res.data.map((style, index) => (
-      <PlaystyleCheckbox key={style.title} label={style.title} color={colors[index % colors.length]} onSelect={() =>toggleOption} start={location.pathname.includes("edit") ? (props.title === "Map" ? exh.playstyle == style.title:(props.title === "Playstyles" || props.title === "Activities" ? (exh.skills.includes(style.title)) : exh.activities.includes(style.title))) : false} item={style.title} />
+      <PlaystyleCheckbox key={style.title} label={style.title} color={colors[index % colors.length]} onSelect={toggleOption} start={location.pathname.includes("edit") ? (props.title === "Map" ? exh.playstyle == style.title:(props.title === "Playstyles" || props.title === "Activities" ? (exh.skills.includes(style.title)) : exh.activities.includes(style.title))) : false} item={style.title} />
     ));
     setCheckboxArr(checkboxes);
   }
