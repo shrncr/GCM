@@ -178,6 +178,20 @@ p {
     padding:0px;
     margin: 0px;
 }
+.gridbox{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-items: center;
+    background-color: #884c9d;
+    color: white;
+    height: 80px;
+    margin: 10px;
+    width: 80px;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+}
 .icon-large {
     width: 100px;
     height: 100px;
