@@ -21,11 +21,11 @@ function GridBoxes(props) {
                 <div key={box._id} className="grid-item">
                     <Link to={box.link ? box.link : box._id} className="icon-link">
                         
-                        <div className={box.icon ? 'box': 'imgbox'}>
-                        {box.icon 
+                        <div className={box.icon ? 'box': (box.image? 'imgbox' : 'gridbox')}>
+                        {(box.icon 
                                 ? React.createElement(box.icon, { className: 'icon-large' }) // Render the icon if provided
-                                : <img src={box.image} alt="Placeholder" className="img-thumb" /> // Render a placeholder image if no icon is provided
-                            }
+                                : (box.image ? <img src={box.image} alt="Placeholder" className="img-thumb" /> : <></>) // Render a placeholder image if no icon is provided
+                            )}
                             <h6 className='box-text'>{box.title}</h6>
                         </div>
                         
