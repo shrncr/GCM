@@ -74,7 +74,12 @@ function SideButton() {
   return (
     <>
     {showCookiePopup && <AskCookie />}
-    {ageRanges && <Snackbar action={action}open={open} autoHideDuration={5000}  onClose={handleClose}message={`Showing ages: ${ageRanges}`}/>}
+    {ageRanges && <Snackbar ContentProps={{
+    sx: {
+      background: "#6DCEF4",
+      color: "black"
+    }
+  }}action={action}open={open} autoHideDuration={5000}  onClose={handleClose}message={`Showing ages: ${ageRanges}`}/>}
     {/* {showCookiePopup && <AskCookie />} */}
     </>
   );
