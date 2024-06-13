@@ -181,8 +181,8 @@ export default function Edit(props) {
   const colors = ["red", "orange", "yellow", "green", "blue", "purple"];
   const [selectedOptions, setSelectedOptions] = useState([]);
   const toggleOption = (playstyle) => {
-    setSelectedOptions((prevSelected) => {
-      if ((prevSelected.includes(playstyle))) {
+    setSelectedOptions((prevSelected=[]) => {
+      if (prevSelected && (prevSelected.includes(playstyle))) {
         return prevSelected.filter(ps => ps !== playstyle);
       } else {
         return [...prevSelected, playstyle];
@@ -385,7 +385,7 @@ export default function Edit(props) {
         });
       }
       else if (props.title === "Skills") {
-        console.log("specifically, a playstyle added");
+        console.log("specifically, a skill is added");
         axios({ //make request
           url: `${apiUrl}/admin/addskill`, //edit exhibit
           method: 'POST',
