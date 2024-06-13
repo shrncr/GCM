@@ -625,13 +625,15 @@ router.post("/admin/addskill", async (req, res) => {
     console.log("lig");
     let id = new mongoose.Types.ObjectId(); //make a unique objID
     console.log("ma");
-    await Skills.create({ //create new exhibit w/ the model
+    let data = await Skills.create({ //create new exhibit w/ the model
       'title': req.body.title,
       'desc': req.body.desc,
       'Activities': req.body.connections,
       'isAge': req.body.isAge
     }
     );
+    res.json(data)
+
     console.log("bawls");
   } catch (err) {
     console.log(err); // we will know if error
