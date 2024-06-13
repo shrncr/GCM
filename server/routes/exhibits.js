@@ -48,6 +48,7 @@ router.post('/home', async (req, res) => {
   HomeText.findOneAndUpdate({ num: "Main" }, options).then(
     console.log("success")
   );
+  
 });
 
 //returns text associated with homepage
@@ -569,13 +570,14 @@ router.post("/admin/addactivity", async (req, res) => {
     console.log("lig");
     let id = new mongoose.Types.ObjectId(); //make a unique objID
     console.log("ma");
-    await Activities.create({ //create new exhibit w/ the model
+    let data = await Activities.create({ //create new exhibit w/ the model
       'title': req.body.title,
       'desc': req.body.desc,
       'skills': req.body.connections,
       'atHome': req.body.atHome
     }
     );
+    res.json(data)
     console.log("bawls");
   } catch (err) {
     console.log(err); // we will know if error
@@ -646,7 +648,7 @@ router.post("/admin/addmap", async (req, res) => {
     console.log("lig");
     let id = new mongoose.Types.ObjectId(); //make a unique objID
     console.log("ma");
-    await Map.create({ //create new exhibit w/ the model
+    let data = await Map.create({ //create new exhibit w/ the model
       'map_id': id,
       'longitude': req.body.long,
       'latitude': req.body.lat,
@@ -658,6 +660,7 @@ router.post("/admin/addmap", async (req, res) => {
 
     }
     );
+    res.json(data)
     console.log("bawls");
   } catch (err) {
     console.log(err); // we will know if error
@@ -670,7 +673,7 @@ router.post("/admin/addexhibit", async (req, res) => {
     console.log("lig");
     let id = new mongoose.Types.ObjectId(); //make a unique objID
     console.log("ma");
-    await Exhibit.create({ //create new exhibit w/ the model
+    let data = await Exhibit.create({ //create new exhibit w/ the model
       'exhibit_id': id,
       'title': req.body.title,
       'desc': req.body.desc,
@@ -679,6 +682,7 @@ router.post("/admin/addexhibit", async (req, res) => {
       'activities': req.body.activities
     }
     );
+    res.json(data)
     console.log("bawls");
   } catch (err) {
     console.log(err); // we will know if error
@@ -692,7 +696,7 @@ router.post("/admin/addlearningstyle", async (req, res) => {
     console.log("lig");
     let id = new mongoose.Types.ObjectId(); //make a unique objID
     console.log("ma");
-    await PlayStyle.create({ //create new exhibit w/ the model
+    let data = await PlayStyle.create({ //create new exhibit w/ the model
       'style_id': id,
       'title': req.body.title,
       'desc': req.body.desc,
@@ -700,6 +704,7 @@ router.post("/admin/addlearningstyle", async (req, res) => {
       'skills': req.body.skills
     }
     );
+    res.json(data);
     console.log("bawls");
   } catch (err) {
     console.log(err); // we will know if error
