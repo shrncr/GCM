@@ -25,7 +25,7 @@ function Footer() {
           Glazer Children’s Museum | 110 W Gasparilla Plaza, Tampa FL 33602
           <a href="tel:+18134433861"> | 813-443-3861</a>
           <br />
-          Copyright © 2024 | All rights reserved | Tax ID 59-2637851 | Registration #CH20272
+          Copyright © 2024 | All rights reserved 
         </div>
 
       </div>
