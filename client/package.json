@@ -27,6 +27,7 @@
     "react-csv": "^2.0.3",
     "react-dom": "^18.2.0",
     "react-icons": "^4.3.1",
+    "react-material-ui-carousel": "^3.4.2",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.15.0",
     "react-scripts": "^5.0.1",

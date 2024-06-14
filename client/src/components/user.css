@@ -179,9 +179,9 @@ p {
     margin: 0px;
 }
 .gridbox{
-    display: flex;
+    display:grid;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     justify-items: center;
     background-color: #884C9D;
     color: white;
@@ -643,30 +643,7 @@ flex-direction: column;
 }
 
 
-select.minimal {
 
-    /* styling */
-    background-color: #54B9B6;
-    text-align: center;
-    color: white;
-    border: thin solid blue;
-    border-radius: 4px;
-    display: inline-block;
-    font: inherit;
-    font-size: xx-large;
-    width: 100%;
-    line-height: 1.5em;
-    padding: 0.5em 3.5em 0.5em 1em;
-  
-    /* reset */
-  
-    margin: 0 auto;      
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  }
   
   
 
@@ -685,39 +662,7 @@ select.minimal {
 }
 
 
-select.minimal {
-    background-image:
-      linear-gradient(45deg, transparent 50%, white 50%),
-      linear-gradient(135deg, white 50%, transparent 50%),
-      linear-gradient(to right, white, white);
-    background-position:
-      calc(100% - 20px) calc(1em + 2px),
-      calc(100% - 15px) calc(1em + 2px),
-      calc(100% - 2.5em) 0.5em;
-    background-size:
-      5px 5px,
-      5px 5px,
-      1px 1.5em;
-    background-repeat: no-repeat;
-  }
-  
-  select.minimal:focus {
-    background-image:
-      linear-gradient(45deg, white 50%, transparent 50%),
-      linear-gradient(135deg, transparent 50%, white 50%),
-      linear-gradient(to right, white, white);
-    background-position:
-      calc(100% - 15px) 1em,
-      calc(100% - 20px) 1em,
-      calc(100% - 2.5em) 0.5em;
-    background-size:
-      5px 5px,
-      5px 5px,
-      1px 1.5em;
-    background-repeat: no-repeat;
-    border-color: white;
-    outline: 0;
-  }
+
   
   
   select:-moz-focusring {
@@ -753,9 +698,8 @@ select.minimal {
     background-color: #54B9B6;
     text-align: center;
     color: white;
-    border: thin solid blue;
+    border: thin solid rgb(0, 0, 0);
     border-radius: 4px;
-    display: inline-block;
     font: inherit;
     font-size: xx-large;
     width: 100%;
@@ -1245,4 +1189,17 @@ select.minimal {
 
 .tablink:hover{
     background-color: #ddd;
+}
+.caroItem{
+    width: 100%;
+height: 100%;
+}
+.caro{
+    width: 50vw;
+    height: 50vw;
+    align-items: center;
+}
+.pap{
+width: 100%;
+height: 100%;
 }

@@ -3,28 +3,31 @@ import React, { useState, useEffect } from 'react';
 import Banner from './banner';
 import Footer from './footer';
 import axios from 'axios';
+import GridBoxes from './gridBoxes';
+import Navbar from './header';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import PodcastsIcon from '@mui/icons-material/Podcasts';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import LanguageIcon from '@mui/icons-material/Language';
 
-
-
-  
-function getDeviceType() { // for impressions
-  const ua = navigator.userAgent;
-    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
-      return "tablet";
-    }
-    if (/Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|MQQBrowser|Opera Mini|Windows Phone|webOS|Kindle|Silk-Accelerated|(hpw|web)OS/i.test(ua)) {
-      return "mobile";
-    }
-    return "desktop";
-}
-
- 
 function Resources() {
-  const [interactions, setInteractions] = useState(0);
-  const deviceType = getDeviceType(); // Device type is determined once on component mount.
   const apiUrl = process.env.REACT_APP_API_URL;
 
   let [HomeText, setHomeText] = useState('');
+
+  const [boxesData, setBoxesData] = useState([
+    { id: 1, title: 'Instagram', link: 'https://www.facebook.com/GlazerChildrensMuseum/', icon: InstagramIcon },
+    { id: 2, title: 'Facebook', link: 'https://www.facebook.com/GlazerChildrensMuseum/', icon: FacebookIcon },
+    { id: 1, title: 'Youtube', link: 'https://www.youtube.com/c/glazerchildrensmuseum', icon: YouTubeIcon},
+    { id: 2, title: 'LinkedIn', link: 'https://www.linkedin.com/company/glazer-children\'s-museum', icon: LinkedInIcon },
+    { id: 3, title: 'Book A Visit', link: 'https://glazermuseum.org/', icon: LanguageIcon },
+    { id: 3, title: 'Podcast', link: '/', icon: PodcastsIcon },
+  ]);
+  const updateBoxesData = (newData) => {
+    setBoxesData(newData);
+  };
 
   useEffect(()=>{
       axios({
@@ -43,56 +46,13 @@ function Resources() {
 
   },[])
 
-  useEffect(() => {
-    const page = 'resources';
-    const time_of_day = new Date();
-
-    // Create impression and start session tracking
-    axios.post(`${apiUrl}/create`, { time_of_day, page, deviceType })
-      .then(response => {
-        console.log('Visit and session start recorded:', response.data);
-      })
-      .catch(error => {
-        console.error('Error recording visit and session start:', error);
-      });
-
-    function handleUnload() {
-      const sessionEnd = new Date();
-      const sessionDuration = sessionEnd - time_of_day; // Duration in milliseconds
-
-      axios.post(`${apiUrl}/sessions/end`, {
-        deviceType,
-        sessionDuration,
-        page,
-        bounce: interactions === 0 // Consider it a bounce if no interactions
-      }).then(response => console.log('Session end data saved:', response.data))
-        .catch(error => console.error('Error saving session end data:', error));
-    }
-
-    window.addEventListener('beforeunload', handleUnload);
-    return () => {
-      window.removeEventListener('beforeunload', handleUnload);
-    };
-  }, [interactions]);
-
-  useEffect(() => {
-    function registerInteraction() {
-      setInteractions(current => current + 1);
-    }
-
-    window.addEventListener('click', registerInteraction);
-    window.addEventListener('scroll', registerInteraction);
-
-    return () => {
-      window.removeEventListener('click', registerInteraction);
-      window.removeEventListener('scroll', registerInteraction);
-    };
-  }, []);
   return (
     
     <div>
+      <Navbar/>
       <Banner className="home-background" text="Resources" />
       <p dangerouslySetInnerHTML={{ __html: HomeText }}></p>
+      <GridBoxes data={boxesData} updateData={updateBoxesData} />
       <Footer/>
     </div>
   );

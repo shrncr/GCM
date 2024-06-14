@@ -495,7 +495,7 @@ router.post('/admin/editmap', async (req, res) => {
     }
     console.log(req.body);
     Map.findOneAndUpdate({ _id: req.body.id }, options).then(
-      console.log(req.body.id)
+      res.status(200)
     );
 
   } catch (err) {
@@ -530,19 +530,12 @@ router.put('/admin/editlearningstyle', async (req, res) => {
   }
   console.log(req.body);
   PlayStyle.findOneAndUpdate({ _id: req.body.id }, options).then(
-    console.log(req.body.id)
+    res.status(200)
   );
-  //res.json(data);
-
-
 });
 
 //edit already existing exhibit
 router.put('/admin/editexhibit', async (req, res) => {
-  console.log("here")
-  console.log(req.body)
-
-  //);
   let options = {
     title: req.body.title,
     desc: req.body.desc,
@@ -551,16 +544,9 @@ router.put('/admin/editexhibit', async (req, res) => {
     activities: req.body.activities
   };
   Exhibit.findOneAndUpdate({ _id: req.body.id }, options).then(() => {
-
-
-
-
-
+    res.status(200)
   }
-
-
   );
-  //res.json(data);
 });
 
 
@@ -587,7 +573,6 @@ router.post("/admin/addactivity", async (req, res) => {
 
 router.post("/admin/editactivity", async (req, res) => {
   try {
-    console.log("mewo meow")
     console.log(req.body);
     let options = {
       title: req.body.title,
@@ -596,9 +581,8 @@ router.post("/admin/editactivity", async (req, res) => {
       atHome: req.body.atHome
     };
     Activities.findOneAndUpdate({ _id: req.body.id }, options).then(
-      console.log("then")
+      res.status(200)
     )
-
   } catch (err) {
     console.log(err);
   }
@@ -615,18 +599,15 @@ router.post("/admin/editskill", async (req, res) => {
       isAge: req.body.isAge
     };
     Skills.findOneAndUpdate({ _id: req.body.id }, options).then(
-      console.log("then")
+      res.status(200)
     )
-
   } catch (err) {
     console.log(err);
   }
 });
 router.post("/admin/addskill", async (req, res) => {
   try {
-    console.log("lig");
     let id = new mongoose.Types.ObjectId(); //make a unique objID
-    console.log("ma");
     let data = await Skills.create({ //create new exhibit w/ the model
       'title': req.body.title,
       'desc': req.body.desc,
@@ -635,8 +616,6 @@ router.post("/admin/addskill", async (req, res) => {
     }
     );
     res.json(data)
-
-    console.log("bawls");
   } catch (err) {
     console.log(err); // we will know if error
   }
@@ -645,9 +624,7 @@ router.post("/admin/addskill", async (req, res) => {
 //add a new pin to pin page
 router.post("/admin/addmap", async (req, res) => {
   try {
-    console.log("lig");
     let id = new mongoose.Types.ObjectId(); //make a unique objID
-    console.log("ma");
     let data = await Map.create({ //create new exhibit w/ the model
       'map_id': id,
       'longitude': req.body.long,
@@ -661,7 +638,6 @@ router.post("/admin/addmap", async (req, res) => {
     }
     );
     res.json(data)
-    console.log("bawls");
   } catch (err) {
     console.log(err); // we will know if error
   }
@@ -670,9 +646,7 @@ router.post("/admin/addmap", async (req, res) => {
 //add a new exhibit to exhibits page
 router.post("/admin/addexhibit", async (req, res) => {
   try {
-    console.log("lig");
     let id = new mongoose.Types.ObjectId(); //make a unique objID
-    console.log("ma");
     let data = await Exhibit.create({ //create new exhibit w/ the model
       'exhibit_id': id,
       'title': req.body.title,
@@ -683,7 +657,6 @@ router.post("/admin/addexhibit", async (req, res) => {
     }
     );
     res.json(data)
-    console.log("bawls");
   } catch (err) {
     console.log(err); // we will know if error
   }
@@ -693,9 +666,7 @@ router.post("/admin/addexhibit", async (req, res) => {
 //edit an already existing exhibit
 router.post("/admin/addlearningstyle", async (req, res) => {
   try {
-    console.log("lig");
     let id = new mongoose.Types.ObjectId(); //make a unique objID
-    console.log("ma");
     let data = await PlayStyle.create({ //create new exhibit w/ the model
       'style_id': id,
       'title': req.body.title,
@@ -705,7 +676,6 @@ router.post("/admin/addlearningstyle", async (req, res) => {
     }
     );
     res.json(data);
-    console.log("bawls");
   } catch (err) {
     console.log(err); // we will know if error
   }
