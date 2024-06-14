@@ -23,11 +23,11 @@ export default function AdminRoutes(props) {
                 {/* The NavBar Routes */}
                 <Route path="/*" element={<Home />} />
 
-                <Route path="/exhibits/*" element={<Exhibits title={"Exhibits"} />} />
-                <Route path="/playstyles/*" element={<Exhibits title={"Playstyles"} />} />
-                <Route path="/activities/*" element={<Exhibits title={"Activities"} />} />
-                <Route path="/skills/*" element={<Exhibits title={"Skills"} />} />
-                <Route path="/map/*" element={<MapEdit />} />
+                <Route path="/exhibits" element={<Exhibits title={"Exhibits"} />} />
+                <Route path="/playstyles" element={<Exhibits title={"Playstyles"} />} />
+                <Route path="/activities" element={<Exhibits title={"Activities"} />} />
+                <Route path="/skills" element={<Exhibits title={"Skills"} />} />
+                <Route path="/map" element={<MapEdit />} />
                 <Route path="/homepage" element={<HomeEdit title={"home"}/>} />
                 <Route path="/resources" element={<HomeEdit title={"resources"}/>} />
                 {/*<Route path="/map" element={<MapEdit />} />
