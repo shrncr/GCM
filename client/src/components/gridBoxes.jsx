@@ -16,6 +16,7 @@ import CardContent from '@mui/material/CardContent';
 function GridBoxes(props) {
     return (
         <div className="grid-container">
+            
             {/* Map over the data array to render each box */}
             {props.data.map(box => (
                 <div key={box._id} className="grid-item">
