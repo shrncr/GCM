@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import glazerLogo from '../components/images/glazerLogo.webp'; // Corrected import path
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-
+import Breadcrumb from './crumb';
 function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const navRef = useRef();
@@ -30,9 +30,12 @@ function Navbar() {
 
     return (
         <header className={scrolled ? 'scrolled' : ''}>
+            
             <Link to="/" onClick={closeNavbar}>
                 <img src={glazerLogo} alt="Logo" className='header-img' />
             </Link>
+            <Breadcrumb className="crumb"/>
+            
             <nav ref={navRef}>
                 <Link to="/playstyles" onClick={closeNavbar}>Playstyles</Link>
                 <Link to="/playPlaces" onClick={closeNavbar}>Museum Play</Link>
@@ -44,6 +47,7 @@ function Navbar() {
                     <FaTimes />
                 </button>
             </nav>
+            
             <button className="nav-btn nav-close-btn" onClick={toggleNavbar}>
                 <FaBars />
             </button>

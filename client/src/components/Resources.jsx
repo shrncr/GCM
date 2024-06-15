@@ -18,7 +18,7 @@ function Resources() {
   let [HomeText, setHomeText] = useState('');
 
   const [boxesData, setBoxesData] = useState([
-    { id: 1, title: 'Instagram', link: 'https://www.facebook.com/GlazerChildrensMuseum/', icon: InstagramIcon },
+    { id: 1, title: 'Instagram', link: 'https://www.instagram.com/glazerchildrensmuseum/?hl=en', icon: InstagramIcon },
     { id: 2, title: 'Facebook', link: 'https://www.facebook.com/GlazerChildrensMuseum/', icon: FacebookIcon },
     { id: 1, title: 'Youtube', link: 'https://www.youtube.com/c/glazerchildrensmuseum', icon: YouTubeIcon},
     { id: 2, title: 'LinkedIn', link: 'https://www.linkedin.com/company/glazer-children\'s-museum', icon: LinkedInIcon },
