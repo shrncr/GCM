@@ -1240,3 +1240,11 @@ height: 100%;
     font-weight: 500;
     text-shadow: #000000;
 }
+.noLink{
+    text-decoration: None;
+    color: white;
+    font-size: .5em;
+}
+.crumb{
+   float: right;
+}
