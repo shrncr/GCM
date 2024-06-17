@@ -484,7 +484,7 @@ router.post('/admin', async (req, res) => {
 //when adding or editing map pins. incomplete
 router.post('/admin/editmap', async (req, res) => {
   try {
-    let options = {
+    const options = {
       title: req.body.title,
       desc: req.body.desc,
       address: req.body.address,
@@ -492,15 +492,22 @@ router.post('/admin/editmap', async (req, res) => {
       longitude: req.body.longitude,
       latitude: req.body.latitude,
       image: req.body.image
-    }
-    console.log(req.body);
-    Map.findOneAndUpdate({ _id: req.body.id }, options).then(
-      res.status(200)
-    );
+    };
 
+    console.log(req.body);
+
+    const result = await Map.findOneAndUpdate({ _id: req.body.id }, options, { new: true });
+
+    if (result) {
+      res.status(200).json({ message: 'Map updated successfully', map: result });
+    } else {
+      res.status(404).json({ message: 'Map not found' });
+    }
   } catch (err) {
-    console.log("err")
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred', error: err.message });
   }
+
 });
 
 router.delete("", ({ session }, res) => {
@@ -521,32 +528,53 @@ router.delete("", ({ session }, res) => {
 });
 
 router.put('/admin/editlearningstyle', async (req, res) => {
+  try {
+    const options = {
+      title: req.body.title,
+      desc: req.body.desc,
+      image: req.body.image,
+      skills: req.body.skills
+    };
 
-  let options = {
-    title: req.body.title,
-    desc: req.body.desc,
-    image: req.body.image,
-    skills: req.body.skills
+    console.log(req.body);
+
+    const result = await PlayStyle.findOneAndUpdate({ _id: req.body.id }, options, { new: true });
+
+    if (result) {
+      res.status(200).json({ message: 'PlayStyle updated successfully', playstyle: result });
+    } else {
+      res.status(404).json({ message: 'PlayStyle not found' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred', error: err.message });
   }
-  console.log(req.body);
-  PlayStyle.findOneAndUpdate({ _id: req.body.id }, options).then(
-    res.status(200)
-  );
 });
 
 //edit already existing exhibit
 router.put('/admin/editexhibit', async (req, res) => {
-  let options = {
-    title: req.body.title,
-    desc: req.body.desc,
-    image: req.body.image,
-    status: req.body.status,
-    activities: req.body.activities
-  };
-  Exhibit.findOneAndUpdate({ _id: req.body.id }, options).then(() => {
-    res.status(200)
+  try {
+    const options = {
+      title: req.body.title,
+      desc: req.body.desc,
+      image: req.body.image,
+      status: req.body.status,
+      activities: req.body.activities
+    };
+
+    console.log(req.body);
+
+    const result = await Exhibit.findOneAndUpdate({ _id: req.body.id }, options, { new: true });
+
+    if (result) {
+      res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
+    } else {
+      res.status(404).json({ message: 'Exhibit not found' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred', error: err.message });
   }
-  );
 });
 
 
@@ -574,35 +602,46 @@ router.post("/admin/addactivity", async (req, res) => {
 router.post("/admin/editactivity", async (req, res) => {
   try {
     console.log(req.body);
-    let options = {
+    const options = {
       title: req.body.title,
       desc: req.body.desc,
       skills: req.body.skills,
       atHome: req.body.atHome
     };
-    Activities.findOneAndUpdate({ _id: req.body.id }, options).then(
-      res.status(200)
-    )
+    const result = await Activities.findOneAndUpdate({ _id: req.body.id }, options, { new: true });
+    if (result) {
+      res.status(200).json({ message: 'Activity updated successfully', activity: result });
+    } else {
+      res.status(404).json({ message: 'Activity not found' });
+    }
   } catch (err) {
-    console.log(err);
-  }
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred', error: err.message });
+  } 
 });
 
 router.post("/admin/editskill", async (req, res) => {
   try {
-    console.log("mewo meow")
+    console.log("meow meow");
     console.log(req.body);
-    let options = {
+
+    const options = {
       title: req.body.title,
       desc: req.body.desc,
-      Activities: req.body.activities,
+      activities: req.body.activities,
       isAge: req.body.isAge
     };
-    Skills.findOneAndUpdate({ _id: req.body.id }, options).then(
-      res.status(200)
-    )
+
+    const result = await Skills.findOneAndUpdate({ _id: req.body.id }, options, { new: true });
+
+    if (result) {
+      res.status(200).json({ message: 'Skill updated successfully', skill: result });
+    } else {
+      res.status(404).json({ message: 'Skill not found' });
+    }
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred', error: err.message });
   }
 });
 router.post("/admin/addskill", async (req, res) => {
