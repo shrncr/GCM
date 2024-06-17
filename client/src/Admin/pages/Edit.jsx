@@ -194,19 +194,21 @@ export default function Edit(props) {
   useEffect(() => {
     console.log(selectedOptions);
   }, [selectedOptions]);
-
+  let [availableStyles, setAvailableStyles] = useState([]);
+let filteredStuff;
   useEffect(() => {
     if (location.pathname.includes("playstyles") || location.pathname.includes("activities")) {
-      
-      setSelectedOptions(exh.skills)
+      filteredStuff = exh.skills.filter(skill => availableStyles.includes(skill));
+      setSelectedOptions(filteredStuff)
     } else if (location.pathname.includes("exhibits") || location.pathname.includes("skills")) {
       checkboxesTitle = "Activities:"
-      setSelectedOptions(exh.activities)
+      filteredStuff = exh.activities.filter(skill => availableStyles.includes(skill));
+      setSelectedOptions(filteredStuff)
     } else if (location.pathname.includes("map")) {
       checkboxesTitle = "Playstyles:"
       setSelectedOptions([exh.playstyle])
     console.log(selectedOptions);
-}}, []);
+}}, [availableStyles]);
   const handleDescriptionChange = (content) => {
     setDescription(content);
   };
@@ -223,7 +225,8 @@ export default function Edit(props) {
   on the page. */
   let handler = (res) => {
     console.log(exh)
-    const availableStyles = res.data.map(style => style.title);
+    setAvailableStyles(res.data.map(style => style.title));
+
     const checkboxes = res.data.map((style, index) => (
       <PlaystyleCheckbox key={style.title} label={style.title} color={colors[index % colors.length]} onSelect={toggleOption} start={location.pathname.includes("edit") ? (props.title === "Map" ? exh.playstyle == style.title:(props.title === "Playstyles" || props.title === "Activities" ? (exh.skills.includes(style.title)) : exh.activities.includes(style.title))) : false} item={style.title} />
     ));
@@ -550,13 +553,7 @@ export default function Edit(props) {
             </button>
           </div>
         </div>
-
-
       </form >
-
     </div >
-
   );
 }
-
-{/*() => props.title === "Playstyles" ? navigate('/admin/playstyles') : navigate('/admin/exhibits')*/ }
