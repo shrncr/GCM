@@ -12,11 +12,12 @@ const MongoStore = require('connect-mongo');
 const app = express();
 
 app.use(cors({
-  origin: 'https://thelearningproject.vercel.app', // allow requests from frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed  methods
-  allowedHeaders: ['Content-Type', 'Authorization','User-Agent', 'Accept', 'Referer'], // headers to allow
-  credentials: true, // allow setting of cookies or sessions
+  origin: 'https://thelearningproject.vercel.app', // Allow requests from frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization', 'User-Agent', 'Accept', 'Referer'], // Headers to allow
+  credentials: true, // Allow setting of cookies or sessions
 }));
+
 
 
 app.options('*', cors()); 
