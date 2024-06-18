@@ -5,7 +5,7 @@ const { ObjectId } = require('mongodb');
 const ExhibitSchema = new mongoose.Schema({ 
     exhibit_id:{
         type:ObjectId,
-        required:true,
+        required:false,
     },
     title:{
         type:String,

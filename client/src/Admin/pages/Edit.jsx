@@ -197,10 +197,11 @@ export default function Edit(props) {
   let [availableStyles, setAvailableStyles] = useState([]);
 let filteredStuff;
   useEffect(() => {
-    if (location.pathname.includes("playstyles") || location.pathname.includes("activities")) {
+    if ((location.pathname.includes("playstyles") || location.pathname.includes("activities"))&& location.pathname.includes("edit")) {
+      
       filteredStuff = exh.skills.filter(skill => availableStyles.includes(skill));
       setSelectedOptions(filteredStuff)
-    } else if (location.pathname.includes("exhibits") || location.pathname.includes("skills")) {
+    } else if ((location.pathname.includes("exhibits") || location.pathname.includes("skills")) && location.pathname.includes("edit")) {
       checkboxesTitle = "Activities:"
       filteredStuff = exh.activities.filter(skill => availableStyles.includes(skill));
       setSelectedOptions(filteredStuff)
