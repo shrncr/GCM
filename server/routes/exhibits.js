@@ -602,11 +602,7 @@ router.post("/admin/editactivity", async (req, res) => {
       atHome: req.body.atHome
     };
     const result = await Activities.findOneAndUpdate({ _id: req.body.id }, options, { new: true });
-    if (result) {
-      res.status(200).json({ message: 'Activity updated successfully', activity: result });
-    } else {
-      res.status(404).json({ message: 'Activity not found' });
-    }
+    res.json(result);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'An error occurred', error: err.message });
