@@ -45,9 +45,8 @@ router.post('/home', async (req, res) => {
   let options = {
     desc: req.body.homeText
   };
-  HomeText.findOneAndUpdate({ num: "Main" }, options).then(
-    console.log("success")
-  );
+  let data = HomeText.findOneAndUpdate({ num: "Main" }, options)
+  res.json(data)
   
 });
 
@@ -68,9 +67,8 @@ router.post('/resources', async (req, res) => {
   let options = {
     desc: req.body.homeText
   };
-  HomeText.findOneAndUpdate({ num: "Resources" }, options).then(
-    console.log("success")
-  );
+  let data = HomeText.findOneAndUpdate({ num: "Resources" }, options);
+  res.json(data);
 });
 
 //returns text associated with homepage
@@ -90,9 +88,8 @@ router.post('/Playstylespage', async (req, res) => {
   let options = {
     desc: req.body.homeText
   };
-  HomeText.findOneAndUpdate({ num: "playstyles" }, options).then(
-    console.log("success")
-  );
+  let data = HomeText.findOneAndUpdate({ num: "playstyles" }, options);
+  res.json(data);
 });
 
 
@@ -112,9 +109,8 @@ router.post('/Exhibitspage', async (req, res) => {
   let options = {
     desc: req.body.homeText
   };
-  HomeText.findOneAndUpdate({ num: "exhibits" }, options).then(
-    console.log("success")
-  );
+  let data = HomeText.findOneAndUpdate({ num: "exhibits" }, options);
+  res.json(data);
 });
 
 
@@ -134,9 +130,8 @@ router.post('/Mappage', async (req, res) => {
   let options = {
     desc: req.body.homeText
   };
-  HomeText.findOneAndUpdate({ num: "map" }, options).then(
-    console.log("success")
-  );
+  let data = HomeText.findOneAndUpdate({ num: "map" }, options);
+  res.json(data);
 });
 
 router.get('/Activitiespage', async (req, res) => {
@@ -155,9 +150,8 @@ router.post('/Activitiespage', async (req, res) => {
   let options = {
     desc: req.body.homeText
   };
-  HomeText.findOneAndUpdate({ num: "activities" }, options).then(
-    console.log("success")
-  );
+  let data = HomeText.findOneAndUpdate({ num: "activities" }, options);
+  res.json(data);
 });
 
 router.get('/Skillspage', async (req, res) => {
@@ -176,9 +170,8 @@ router.post('/Skillspage', async (req, res) => {
   let options = {
     desc: req.body.homeText
   };
-  HomeText.findOneAndUpdate({ num: "skills" }, options).then(
-    console.log("success")
-  );
+  let data = HomeText.findOneAndUpdate({ num: "skills" }, options);
+  res.json(data)
 });
 
 //returns map locations
