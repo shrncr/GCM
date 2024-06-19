@@ -3,11 +3,8 @@ Root file for backend. Brings together API endpoints, defines port number, and c
 */
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv");
 const connectDB = require("./db/conn");
 const router = require("./routes/exhibits");
-
-dotenv.config({ path: "./config.env" }); // Load environment variables early
 
 const app = express();
 
