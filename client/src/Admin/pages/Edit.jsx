@@ -330,7 +330,7 @@ let filteredStuff;
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
-        }).then((res) => {
+        }).then(() => {
           console.log('Response:');
         }).catch((error) => {
           console.error('Error:', error);
