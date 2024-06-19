@@ -3,10 +3,12 @@ Root file for backend. Brings together API endpoints, defines port number, and c
 */
 const express = require("express");
 const cors = require("cors");
+
 const connectDB = require("./db/conn");
 const router = require("./routes/exhibits");
 
 const app = express();
+require('core-js');
 
 app.use(cors({
   origin: 'https://thelearningproject.vercel.app', // Allow requests from frontend
