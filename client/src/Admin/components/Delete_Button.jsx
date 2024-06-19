@@ -10,7 +10,7 @@ export default function Delete_Button(props) {
             method: 'DELETE',
             data: { id: props.id },
             headers: {
-              authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+             "Authorization": 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
             },
             catch(error) {
               console.error('error:', error);

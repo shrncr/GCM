@@ -262,7 +262,7 @@ let filteredStuff;
           data: { id: exh._id, title: name, desc: description, image: image, skills: selectedOptions },
           headers: {
 
-            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+            "Authorization": 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
           catch(error) {
             console.error('error:', error);
@@ -281,7 +281,7 @@ let filteredStuff;
           method: 'PUT',
           data: { id: exh._id, title: name, desc: description, image: image, status: visible, activities: selectedOptions },
           headers: {
-            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+            "Authorization": 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
           catch(error) {
             console.error('error:', error);
@@ -296,7 +296,7 @@ let filteredStuff;
           method: 'POST',
           data: { id: exh._id, title: name, desc: description, latitude: lat, longitude: long, address: addy, playstyle: selectedOptions[0], image: image },
           headers: {
-            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+           "Authorization": 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
           catch(error) {
             console.error('error:', error);
@@ -312,7 +312,7 @@ let filteredStuff;
           method: 'POST',
           data: { id: exh._id, title: name, desc: description, image: image, Activities: selectedOptions, isAge: visible },
           headers: {
-            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+           "Authorization": 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
           catch(error) {
             console.error('error:', error);
@@ -348,7 +348,7 @@ let filteredStuff;
           method: 'POST',
           data: { title: name, desc: description, image: image, status: visible, activities: selectedOptions },
           headers: {
-            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+           "Authorization": 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
           catch(error) {
             console.error('error:', error);
@@ -364,7 +364,7 @@ let filteredStuff;
           method: 'POST',
           data: { long: long, lat: lat, address: addy, title: name, desc: description, playstyle: selectedOptions[0], image: image },
           headers: {
-            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+           "Authorization": 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
           catch(error) {
             console.error('error:', error);
@@ -380,7 +380,7 @@ let filteredStuff;
           method: 'POST',
           data: { title: name, desc: description, image: image, skills: selectedOptions },
           headers: {
-            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+           "Authorization": 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
           catch(error) {
             console.error('error:', error);
@@ -396,7 +396,7 @@ let filteredStuff;
           method: 'POST',
           data: { title: name, desc: description, image: image, Activities: selectedOptions, isAge: visible },
           headers: {
-            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+           "Authorization": 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
           catch(error) {
             console.error('error:', error);
@@ -411,7 +411,7 @@ let filteredStuff;
           method: 'POST',
           data: { title: name, desc: description, image: image, skills: selectedOptions, atHome: visible },
           headers: {
-            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+           "Authorization": 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
           catch(error) {
             console.error('error:', error);
