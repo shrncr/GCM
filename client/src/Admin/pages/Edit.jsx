@@ -330,12 +330,11 @@ let filteredStuff;
           headers: {
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
-          catch(error) {
-            console.error('error:', error);
-            alert('An error occured.')
-          }
         }).then((res) => {
-
+          console.log('Response:', res.data);
+        }).catch((error) => {
+          console.error('Error:', error);
+          alert('An error occurred.');
         });
 
       };
