@@ -42,7 +42,7 @@ export default function Edit(props) {
       url: endpt,
     });
     const presignedUrl = response.data.presignedUrl;
-    console.log(presignedUrl);
+    //console.log(presignedUrl);
     return presignedUrl;
   };
 
@@ -58,7 +58,7 @@ export default function Edit(props) {
           (progressEvent.loaded * 100) / progressEvent.total
         );
         setUploadProgress(percentCompleted);
-        console.log(`Upload Progress: ${percentCompleted}%`);
+        //console.log(`Upload Progress: ${percentCompleted}%`);
       },
     });
 
@@ -79,10 +79,10 @@ export default function Edit(props) {
   const handleImageChange = async (event) => { //calls whenever the file to upload changes
     event.preventDefault();
     const files = event.target.files;
-    console.log(files);
-    console.log(event.target)
+    //console.log(files);
+    //console.log(event.target)
     if (files && files.length > 0) {
-      console.log("mepw")
+      //console.log("mepw")
       // Since we're allowing only one file, let's take the first one
       selectedFile = files[0];
 
@@ -107,7 +107,7 @@ export default function Edit(props) {
       exh = skills[props.index]
     } else {
       exh = act[props.index]
-      console.log(exh)
+      //console.log(exh)
     }
 
   } else {
@@ -130,8 +130,8 @@ export default function Edit(props) {
   const [name, setName] = useState(exh.title);
   let d = exh.desc;
   if (props.title == "Activities") {
-    console.log("under")
-    console.log(exh.description)
+    //console.log("under")
+    //console.log(exh.description)
     d = exh.desc
 
   }
@@ -139,7 +139,7 @@ export default function Edit(props) {
 
   
   const [description, setDescription] = useState(d);
-  console.log(description)
+  //console.log(description)
 
   useEffect(()=>{
     if (props.title == "Exhibits" || props.title == "Playstyles" || props.title == "Map"){
@@ -148,13 +148,13 @@ export default function Edit(props) {
   },[])
 
   let v;
-  console.log(exh)
+  //console.log(exh)
   if (exh.status !== undefined) {
     v = exh.status;
   }else if (exh.atHome !== undefined){
     v = exh.atHome;
   }else if (exh.isAge !== undefined){
-    console.log("is age")
+    //console.log("is age")
     v = exh.isAge;
   } else {
     v = true;
@@ -192,7 +192,7 @@ export default function Edit(props) {
 
 
   useEffect(() => {
-    console.log(selectedOptions);
+    //console.log(selectedOptions);
   }, [selectedOptions]);
   let [availableStyles, setAvailableStyles] = useState([]);
 let filteredStuff;
@@ -208,7 +208,7 @@ let filteredStuff;
     } else if (location.pathname.includes("map")) {
       checkboxesTitle = "Playstyles:"
       setSelectedOptions([exh.playstyle])
-    console.log(selectedOptions);
+    //console.log(selectedOptions);
 }}, [availableStyles]);
   const handleDescriptionChange = (content) => {
     setDescription(content);
@@ -225,7 +225,7 @@ let filteredStuff;
   array that is later used in the return section to put the buttons
   on the page. */
   let handler = (res) => {
-    console.log(exh)
+    //console.log(exh)
     setAvailableStyles(res.data.map(style => style.title));
 
     const checkboxes = res.data.map((style, index) => (
@@ -252,10 +252,10 @@ let filteredStuff;
 
   const addExhibit = () => {
     if (location.pathname.includes("edit")) { //if youre editing
-      console.log("editing...");
+      //console.log("editing...");
       if (props.title === "Playstyles") { //if editing a playstyle
-        console.log("specifically, a playstyle");
-        console.log(exh.id)
+        //console.log("specifically, a playstyle");
+        //console.log(exh.id)
         axios({ //make request
           url: `${apiUrl}/admin/editlearningstyle`, //edit exhibit
           method: 'PUT',
@@ -269,13 +269,13 @@ let filteredStuff;
             alert('An error occured.')
           }
         }).then((res) => {
-          console.log("success")
+          //console.log("success")
 
         })
       } else if (props.title === "Exhibits") {
 
-        console.log("specifically, an exhibit");
-        console.log(exh);
+        //console.log("specifically, an exhibit");
+        //console.log(exh);
         axios({ //make request
           url: `${apiUrl}/admin/editexhibit`, //edit exhibit
           method: 'PUT',
@@ -331,7 +331,7 @@ let filteredStuff;
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
         }).then(() => {
-          console.log('Response:');
+          //console.log('Response:');
         }).catch((error) => {
           console.error('Error:', error);
           alert('An error occurred.');
@@ -340,7 +340,7 @@ let filteredStuff;
       };
     } else {//if adding newc
       if (props.title === "Exhibits") {
-        console.log("specifically, an exhibit");
+        //console.log("specifically, an exhibit");
         axios({ //make request
           url: `${apiUrl}/admin/addexhibit`, //edit exhibit
           method: 'POST',
@@ -372,7 +372,7 @@ let filteredStuff;
         });
       }
       else if (props.title === "Playstyles") {
-        console.log("specifically, a playstyle added");
+        //console.log("specifically, a playstyle added");
         axios({ //make request
           url: `${apiUrl}/admin/addlearningstyle`, //edit exhibit
           method: 'POST',
@@ -388,7 +388,7 @@ let filteredStuff;
         });
       }
       else if (props.title === "Skills") {
-        console.log("specifically, a skill is added");
+        //console.log("specifically, a skill is added");
         axios({ //make request
           url: `${apiUrl}/admin/addskill`, //edit exhibit
           method: 'POST',
@@ -403,7 +403,7 @@ let filteredStuff;
         }).then((res) => {
         });
       } else {
-        console.log("specifically, a activity added");
+        //console.log("specifically, a activity added");
         axios({ //make request
           url: `${apiUrl}/admin/addactivity`, //edit exhibit
           method: 'POST',
