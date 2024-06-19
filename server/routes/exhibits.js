@@ -335,6 +335,17 @@ router.get('/athome/:id', async (req, res) => {
     console.log(err);
   }
 });
+//returns data for a specific activity
+router.get('/activity/:id', async (req, res) => {
+  try {
+    console.log(req.params.id);
+    let activity = await Activities.findById(req.params.id);
+    let activitySkills = await Skills.find({ title: activity.skills });
+    res.json({ baseData: activity, dropdown: activitySkills });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 //returns all currently existing feedback
 router.get('/feedback', async (req, res) => {
