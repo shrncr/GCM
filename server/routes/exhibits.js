@@ -336,7 +336,7 @@ router.get('/athome/:id', async (req, res) => {
   }
 });
 //returns data for a specific activity
-router.get('/activity/:id', async (req, res) => {
+router.get('/activities/:id', async (req, res) => {
   try {
     console.log(req.params.id);
     let activity = await Activities.findById(req.params.id);
