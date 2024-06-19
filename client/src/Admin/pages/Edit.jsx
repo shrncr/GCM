@@ -331,7 +331,7 @@ let filteredStuff;
             authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
         }).then((res) => {
-          console.log('Response:', res.data);
+          console.log('Response:', res);
         }).catch((error) => {
           console.error('Error:', error);
           alert('An error occurred.');
