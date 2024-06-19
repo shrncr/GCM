@@ -328,7 +328,8 @@ let filteredStuff;
           method: 'POST',
           data: { id: exh._id, title: name, desc: description, skills: selectedOptions, atHome: visible },
           headers: {
-            authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+            'Content-Type': 'application/json',
+            'Authorization': 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
           },
         }).then((res) => {
           //console.log('Response:', res);
