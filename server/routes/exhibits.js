@@ -612,7 +612,7 @@ router.post("/admin/editactivity", async (req, res) => {
       atHome: req.body.atHome
     };
     const result = await Activities.findOneAndUpdate({ _id: req.body.id }, options, { new: true });
-    res.json(result);
+    res.status(200).json(result);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'An error occurred', error: err.message });

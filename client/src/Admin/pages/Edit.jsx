@@ -250,13 +250,12 @@ let filteredStuff;
   make edits to any existing playstyles/exhibits. */
 
 
-  const addExhibit = () => {
+  const addExhibit = async () => {
     if (location.pathname.includes("edit")) { //if youre editing
-      //console.log("editing...");
-      if (props.title === "Playstyles") { //if editing a playstyle
-        //console.log("specifically, a playstyle");
-        //console.log(exh.id)
-        axios({ //make request
+      if (props.title === "Playstyles") { 
+        try{
+
+          const response = await axios({ //make request
           url: `${apiUrl}/admin/editlearningstyle`, //edit exhibit
           method: 'PUT',
           data: { id: exh._id, title: name, desc: description, image: image, skills: selectedOptions },
@@ -264,102 +263,144 @@ let filteredStuff;
 "Content-Type": "application/json",
              
           }
-        }).then(() => {
-          //console.log('Response:', res);
-          alert('success')
-        }).catch((error) => {
-          console.error('Error:', error);
-          alert('An error occurred.');
-        });
+        }) 
+        if (response.status === 200) {
+          alert('Success');
+        } else {
+          // Handle unexpected status codes
+          console.error('Unexpected response:', response);
+          alert('An unexpected error occurred.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred.');
+      }
       } else if (props.title === "Exhibits") {
 
         //console.log("specifically, an exhibit");
         //console.log(exh);
-        axios({ //make request
+        try{
+
+          const response = await axios({ //make request
           url: `${apiUrl}/admin/editexhibit`, //edit exhibit
           method: 'PUT',
           data: { id: exh._id, title: name, desc: description, image: image, status: visible, activities: selectedOptions },
           headers: {
              "Content-Type": "application/json",
           },
-        }).then(() => {
-          //console.log('Response:', res);
-          alert('success')
-        }).catch((error) => {
-          console.error('Error:', error);
-          alert('An error occurred.');
-        });
+        })
+        if (response.status === 200) {
+          alert('Success');
+        } else {
+          // Handle unexpected status codes
+          console.error('Unexpected response:', response);
+          alert('An unexpected error occurred.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred.');
+      }
       } else if (props.title === "Map") { // if editing a map location
-        axios({ //make request
+        try{
+
+          const response = await axios({ //make request
           url: `${apiUrl}/admin/editmap`, //edit exhibit
           method: 'POST',
           data: { id: exh._id, title: name, desc: description, latitude: lat, longitude: long, address: addy, playstyle: selectedOptions[0], image: image },
           headers: {
             "Content-Type": "application/json",
           },
-        }).then(() => {
-          //console.log('Response:', res);
-          alert('success')
-        }).catch((error) => {
-          console.error('Error:', error);
-          alert('An error occurred.');
-        });
+        })
+        if (response.status === 200) {
+          alert('Success');
+        } else {
+          // Handle unexpected status codes
+          console.error('Unexpected response:', response);
+          alert('An unexpected error occurred.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred.');
+      }
 
       } else if (props.title === "Skills") { // if editing a map location
-        axios({ //make request
+        try{
+
+          const response = await axios({ //make request
           url: `${apiUrl}/admin/editskill`, //edit exhibit
           method: 'POST',
           data: { id: exh._id, title: name, desc: description, image: image, Activities: selectedOptions, isAge: visible },
           headers: {
             "Content-Type": "application/json",
           }
-        }).then(() => {
-          //console.log('Response:', res);
-          alert('success')
-        }).catch((error) => {
-          console.error('Error:', error);
-          alert('An error occurred.');
-        });
+        })
+        if (response.status === 200) {
+          alert('Success');
+        } else {
+          // Handle unexpected status codes
+          console.error('Unexpected response:', response);
+          alert('An unexpected error occurred.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred.');
+      }
 
       } else {
-        axios({ //make request
+        try{
+
+        const response = await axios({ //make request
           url: `${apiUrl}/admin/editactivity`, //edit exhibit
           method: 'POST',
           data: { id: exh._id, title: name, desc: description, skills: selectedOptions, atHome: visible },
           headers: {
             'Content-Type': 'application/json',
-           
           },
-        }).then(() => {
-          //console.log('Response:', res);
-          alert('success')
-        }).catch((error) => {
-          console.error('Error:', error);
-          alert('An error occurred.');
-        });
+        })
 
-      };
-    } else {//if adding newc
+        // Check the response status to confirm success
+        if (response.status === 200) {
+          alert('Success');
+        } else {
+          // Handle unexpected status codes
+          console.error('Unexpected response:', response);
+          alert('An unexpected error occurred.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred.');
+      }
+
+    }} else {//if adding newc
       if (props.title === "Exhibits") {
         //console.log("specifically, an exhibit");
-        axios({ //make request
+        try{
+
+          const response = await axios({ //make request
           url: `${apiUrl}/admin/addexhibit`, //edit exhibit
           method: 'POST',
           data: { title: name, desc: description, image: image, status: visible, activities: selectedOptions },
           headers: {
             "Content-Type": "application/json",
           },
-        }).then(() => {
-          //console.log('Response:', res);
-          alert('success')
-        }).catch((error) => {
-          console.error('Error:', error);
-          alert('An error occurred.');
-        });
+        })
+        if (response.status === 200) {
+          alert('Success');
+        } else {
+          // Handle unexpected status codes
+          console.error('Unexpected response:', response);
+          alert('An unexpected error occurred.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred.');
+      }
 
 
       } else if (props.title === "Map") {
-        axios({ //make request
+        try{
+
+          const response = await axios({ //make request
           url: `${apiUrl}/admin/addmap`, //edit exhibit
           method: 'POST',
           data: { long: long, lat: lat, address: addy, title: name, desc: description, playstyle: selectedOptions[0], image: image },
@@ -367,50 +408,71 @@ let filteredStuff;
             "Content-Type": "application/json",
             
           },
-        }).then(() => {
-          //console.log('Response:', res);
-          alert('success')
-        }).catch((error) => {
-          console.error('Error:', error);
-          alert('An error occurred.');
-        });
+        })
+        if (response.status === 200) {
+          alert('Success');
+        } else {
+          // Handle unexpected status codes
+          console.error('Unexpected response:', response);
+          alert('An unexpected error occurred.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred.');
+      }
       }
       else if (props.title === "Playstyles") {
         //console.log("specifically, a playstyle added");
-        axios({ //make request
+        try{
+
+          const response = await axios({ //make request
           url: `${apiUrl}/admin/addlearningstyle`, //edit exhibit
           method: 'POST',
           data: { title: name, desc: description, image: image, skills: selectedOptions },
           headers: {
             "Content-Type": "application/json",
           },
-        }).then(() => {
-          //console.log('Response:', res);
-          alert('success')
-        }).catch((error) => {
-          console.error('Error:', error);
-          alert('An error occurred.');
-        });
+        })
+        if (response.status === 200) {
+          alert('Success');
+        } else {
+          // Handle unexpected status codes
+          console.error('Unexpected response:', response);
+          alert('An unexpected error occurred.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred.');
+      }
       }
       else if (props.title === "Skills") {
         //console.log("specifically, a skill is added");
-        axios({ //make request
+        try{
+
+          const response = await axios({ //make request
           url: `${apiUrl}/admin/addskill`, //edit exhibit
           method: 'POST',
           data: { title: name, desc: description, image: image, Activities: selectedOptions, isAge: visible },
           headers: {
             "Content-Type": "application/json",
           },
-        }).then(() => {
-          //console.log('Response:', res);
-          alert('success')
-        }).catch((error) => {
-          console.error('Error:', error);
-          alert('An error occurred.');
-        });
+        })
+        if (response.status === 200) {
+          alert('Success');
+        } else {
+          // Handle unexpected status codes
+          console.error('Unexpected response:', response);
+          alert('An unexpected error occurred.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred.');
+      }
       } else {
         //console.log("specifically, a activity added");
-        axios({ //make request
+        try{
+
+          const response = await axios({ //make request
           url: `${apiUrl}/admin/addactivity`, //edit exhibit
           method: 'POST',
           data: { title: name, desc: description, image: image, skills: selectedOptions, atHome: visible },
@@ -418,8 +480,18 @@ let filteredStuff;
             "Content-Type": "application/json",
           },
           
-        }).then((res) => {
-        });
+        })
+        if (response.status === 200) {
+          alert('Success');
+        } else {
+          // Handle unexpected status codes
+          console.error('Unexpected response:', response);
+          alert('An unexpected error occurred.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred.');
+      }
 
       }
     }
