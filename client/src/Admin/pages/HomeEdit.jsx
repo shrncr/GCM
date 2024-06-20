@@ -36,21 +36,31 @@ export default function HomeEdit(props) {
         setHomeText(content);
       };
 
-    const editHome = () => {
+    const editHome = async () => {
       console.log(title)
         console.log("inhere")
-        axios({
+        try{
+
+          const response = await axios({
             url: `${apiUrl}/${title}`,
             method: 'POST',
             data: {homeText: HomeText},
             headers: {
               authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
             },
-          }).then((res) => {
-            console.log("done")
+          })
+          if (response.status === 200) {
+            alert('Success');
             setHomeText("")
-            navigate(-1)
-          });
+          } else {
+            // Handle unexpected status codes
+            console.error('Unexpected response:', response);
+            alert('An unexpected error occurred.');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('An error occurred.');
+        }
     }
     
     return (
