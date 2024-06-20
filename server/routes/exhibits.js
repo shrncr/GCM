@@ -179,8 +179,8 @@ router.get('/map', async (req, res) => { //must load in all the pins
   try {
     let data = await Map.find({}); //find all
     res.json(data)
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -189,8 +189,8 @@ router.get('/playstyles', async (req, res) => {
   try {
     let data = await PlayStyle.find({});
     res.json(data);
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 //returns the playstyle which is associated with given skill
@@ -199,8 +199,8 @@ router.get('/playstylesBySkill/:skill', async (req, res) => {
     console.log(req.params.skill)
     let ps = await PlayStyle.find({skills: req.params.skill});
     res.json(ps);
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -208,8 +208,8 @@ router.get('/activities', async (req, res) => {
   try {
     let data = await Activities.find({});
     res.json(data);
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -217,8 +217,8 @@ router.get('/homeactivities', async (req, res) => {
   try {
     let data = await Activities.find({atHome: true});
     res.json(data);
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -226,8 +226,8 @@ router.get('/skills', async (req, res) => {
   try {
     let data = await Skills.find({});
     res.json(data);
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -237,48 +237,48 @@ router.get('/playstyles/:id', async (req, res) => {
     let playstyle = await PlayStyle.findById(req.params.id);
     let playstyleSkills = await Skills.find({ title: playstyle.skills });
     res.json({ baseData: playstyle, dropdown: playstyleSkills });
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 router.delete('/Exhibits/delete', async (req, res) => {
   try {
     let data = await Exhibit.deleteOne({ _id: req.body.id })
-    res.json(data);
-  } catch (err) {
-    console.log(err);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 router.delete('/Playstyles/delete', async (req, res) => {
   try {
     let data = await PlayStyle.deleteOne({ _id: req.body.id })
-    res.json(data);
-  } catch (err) {
-    console.log(err);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 router.delete('/Map/delete', async (req, res) => {
   try {
     let data = await Map.deleteOne({ _id: req.body.id })
-    res.json(data);
-  } catch (err) {
-    console.log(err);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 router.delete('/Activities/delete', async (req, res) => {
   try {
     let data = await Activities.deleteOne({ _id: req.body.id })
-    res.json(data);
-  } catch (err) {
-    console.log(err);
+    res.status(200).json(data);
+  }catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 router.delete('/Skills/delete', async (req, res) => {
   try {
     let data = await Skills.deleteOne({ _id: req.body.id })
-    res.json(data);
-  } catch (err) {
-    console.log(err);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -291,8 +291,8 @@ router.get('/playPlaces/:id', async (req, res) => {
     console.log(exhibitActivities)
     console.log("paninipanini\n\n");
     res.json({ baseData: exhibit, dropdown: exhibitActivities });
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -305,9 +305,8 @@ router.get('/exhibits/:id', async (req, res) => {
     let exhibitActivities = await Activities.findOne({ title: exhibit.activities[0] });
     conosle.log(exhibitActivities)
     res.json({ baseData: exhibit, dropdown: exhibitActivities });
-  } catch (err) {
-    console.log(err);
-    console.log('ioesngiesnf')
+  } catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -319,8 +318,8 @@ router.get('/skills/:id', async (req, res) => {
     let skill = await Skills.findById(req.params.id);
     let skillActivities = await Activities.find({ title: skill.Activities });
     res.json({ baseData: exhibit, dropdown: skillActivities });
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -331,8 +330,8 @@ router.get('/athome/:id', async (req, res) => {
     let activity = await Activities.findById(req.params.id);
     let activitySkills = await Skills.find({ title: activity.skills });
     res.json({ baseData: activity, dropdown: activitySkills });
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 //returns data for a specific activity
@@ -342,8 +341,8 @@ router.get('/activities/:id', async (req, res) => {
     let activity = await Activities.findById(req.params.id);
     let activitySkills = await Skills.find({ title: activity.skills });
     res.json({ baseData: activity, dropdown: activitySkills });
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -352,8 +351,8 @@ router.get('/feedback', async (req, res) => {
   try {
     let feedback = await Feedback({});
     res.json(feedback);
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -363,8 +362,8 @@ router.get('/ageRanges', async (req, res) => {
     console.log(data);
     res.json(data);
     
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -424,8 +423,8 @@ router.get('/exhibits', async (req, res) => {
     let data = await Exhibit.find({ status: true });
     console.log(data);
     res.json(data);
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -434,8 +433,8 @@ router.get('/allexhibits', async (req, res) => { //find all exhibit
   try {
     let data = await Exhibit.find({});
     res.json(data);
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -445,8 +444,8 @@ router.get('/playplace', async (req, res) => {
   try {
     let data = await Exhibit.find({ status: true });
     res.json(data);
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -456,8 +455,8 @@ router.get('/exhibitsandplaystyles'), async (req, res) => {
     let exdata = await Exhibit.find({});
     let playdata = await PlayStyle.find({});
     res.json(exdata, playdata);
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 };
 
@@ -479,8 +478,8 @@ router.post('/admin', async (req, res) => {
       res.json(data)
     }
 
-  } catch (err) {
-    console.log("err")
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
@@ -725,8 +724,8 @@ router.get("/admin/admininfo", async (req, res) => {
   try {
     let data = await Admin.find({});
     res.json(data);
-  } catch (err) {
-    console.log(err);
+  }  catch (error) {
+    res.status(500).send('Error occurred: ' + error.message);
   }
 });
 
