@@ -263,15 +263,14 @@ let filteredStuff;
           headers: {
 "Content-Type": "application/json",
              
-          },
-          catch(error) {
-            console.error('error:', error);
-            alert('An error occured.')
           }
-        }).then((res) => {
-          //console.log("success")
-
-        })
+        }).then(() => {
+          //console.log('Response:', res);
+          alert('success')
+        }).catch((error) => {
+          console.error('Error:', error);
+          alert('An error occurred.');
+        });
       } else if (props.title === "Exhibits") {
 
         //console.log("specifically, an exhibit");
@@ -283,12 +282,12 @@ let filteredStuff;
           headers: {
              "Content-Type": "application/json",
           },
-          catch(error) {
-            console.error('error:', error);
-            alert('An error occured.')
-          }
-        }).then((res) => {
-
+        }).then(() => {
+          //console.log('Response:', res);
+          alert('success')
+        }).catch((error) => {
+          console.error('Error:', error);
+          alert('An error occurred.');
         });
       } else if (props.title === "Map") { // if editing a map location
         axios({ //make request
@@ -298,12 +297,12 @@ let filteredStuff;
           headers: {
             "Content-Type": "application/json",
           },
-          catch(error) {
-            console.error('error:', error);
-            alert('An error occured.')
-          }
-        }).then((res) => {
-
+        }).then(() => {
+          //console.log('Response:', res);
+          alert('success')
+        }).catch((error) => {
+          console.error('Error:', error);
+          alert('An error occurred.');
         });
 
       } else if (props.title === "Skills") { // if editing a map location
@@ -313,13 +312,13 @@ let filteredStuff;
           data: { id: exh._id, title: name, desc: description, image: image, Activities: selectedOptions, isAge: visible },
           headers: {
             "Content-Type": "application/json",
-          },
-          catch(error) {
-            console.error('error:', error);
-            alert('An error occured.')
           }
-        }).then((res) => {
-
+        }).then(() => {
+          //console.log('Response:', res);
+          alert('success')
+        }).catch((error) => {
+          console.error('Error:', error);
+          alert('An error occurred.');
         });
 
       } else {
@@ -331,7 +330,7 @@ let filteredStuff;
             'Content-Type': 'application/json',
            
           },
-        }).then((res) => {
+        }).then(() => {
           //console.log('Response:', res);
           alert('success')
         }).catch((error) => {
@@ -350,11 +349,12 @@ let filteredStuff;
           headers: {
             "Content-Type": "application/json",
           },
-          catch(error) {
-            console.error('error:', error);
-            alert('An error occured.')
-          }
-        }).then((res) => {
+        }).then(() => {
+          //console.log('Response:', res);
+          alert('success')
+        }).catch((error) => {
+          console.error('Error:', error);
+          alert('An error occurred.');
         });
 
 
@@ -367,11 +367,12 @@ let filteredStuff;
             "Content-Type": "application/json",
             
           },
-          catch(error) {
-            console.error('error:', error);
-            alert('An error occured.')
-          }
-        }).then((res) => {
+        }).then(() => {
+          //console.log('Response:', res);
+          alert('success')
+        }).catch((error) => {
+          console.error('Error:', error);
+          alert('An error occurred.');
         });
       }
       else if (props.title === "Playstyles") {
@@ -383,11 +384,12 @@ let filteredStuff;
           headers: {
             "Content-Type": "application/json",
           },
-          catch(error) {
-            console.error('error:', error);
-            alert('An error occured.')
-          }
-        }).then((res) => {
+        }).then(() => {
+          //console.log('Response:', res);
+          alert('success')
+        }).catch((error) => {
+          console.error('Error:', error);
+          alert('An error occurred.');
         });
       }
       else if (props.title === "Skills") {
@@ -399,11 +401,12 @@ let filteredStuff;
           headers: {
             "Content-Type": "application/json",
           },
-          catch(error) {
-            console.error('error:', error);
-            alert('An error occured.')
-          }
-        }).then((res) => {
+        }).then(() => {
+          //console.log('Response:', res);
+          alert('success')
+        }).catch((error) => {
+          console.error('Error:', error);
+          alert('An error occurred.');
         });
       } else {
         //console.log("specifically, a activity added");
@@ -414,10 +417,7 @@ let filteredStuff;
           headers: {
             "Content-Type": "application/json",
           },
-          catch(error) {
-            console.error('error:', error);
-            alert('An error occured.')
-          }
+          
         }).then((res) => {
         });
 
