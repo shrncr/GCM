@@ -20,7 +20,7 @@ export default function HomeEdit(props) {
             url: `${apiUrl}/${title}`,
             method: 'GET',
             headers: {
-              authorization: 'mongodb+srv://sarahrnciar:m66Wpq4mggMTOZw8@admin.eqktqv7.mongodb.net/?retryWrites=true&w=majority',
+              "Content-Type": "application/json",
             },
             catch(error) {
               console.error('error:', error);
