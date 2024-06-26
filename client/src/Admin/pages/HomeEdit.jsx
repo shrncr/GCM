@@ -41,7 +41,7 @@ export default function HomeEdit(props) {
           const response = await axios({
             url: `${apiUrl}/${title}`,
             method: 'POST',
-            data: {'homeText': HomeText},
+            data: {homeText: HomeText},
             headers: {
               "Content-Type": "application/json",
             },

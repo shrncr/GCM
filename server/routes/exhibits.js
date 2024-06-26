@@ -44,7 +44,7 @@ router.post('/home', async (req, res) => {
     const options = {
       desc: req.body.homeText
     };
-    const result = HomeText.findOneAndUpdate({ num: "Main" }, options)
+    const result = await HomeText.findOneAndUpdate({ num: "Main" }, options, { new: true })
     if (result) {
       res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
     } else {
@@ -72,7 +72,7 @@ router.post('/resources', async (req, res) => {
     const options = {
       desc: req.body.homeText
     };
-    const result = HomeText.findOneAndUpdate({ num: "Resources" }, options)
+    const result = await HomeText.findOneAndUpdate({ num: "Resources" }, options, { new: true })
     if (result) {
       res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
     } else {
@@ -100,7 +100,7 @@ router.post('/Playstylespage', async (req, res) => {
     const options = {
       desc: req.body.homeText
     };
-    const result = HomeText.findOneAndUpdate({ num: "playstyles" }, options)
+    const result = await HomeText.findOneAndUpdate({ num: "playstyles" }, options, { new: true })
     if (result) {
       res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
     } else {
@@ -128,7 +128,7 @@ router.post('/Exhibitspage', async (req, res) => {
     const options = {
       desc: req.body.homeText
     };
-    const result = HomeText.findOneAndUpdate({ num: "exhibits" }, options)
+    const result = await HomeText.findOneAndUpdate({ num: "exhibits" }, options, { new: true })
     if (result) {
       res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
     } else {
@@ -156,7 +156,7 @@ router.post('/Mappage', async (req, res) => {
     const options = {
       desc: req.body.homeText
     };
-    const result = HomeText.findOneAndUpdate({ num: "map" }, options)
+    const result = await HomeText.findOneAndUpdate({ num: "map" }, options, { new: true })
     if (result) {
       res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
     } else {
@@ -183,7 +183,7 @@ router.post('/Activitiespage', async (req, res) => {
     const options = {
       desc: req.body.homeText
     };
-    const result = HomeText.findOneAndUpdate({ num: "activities" }, options)
+    const result = await HomeText.findOneAndUpdate({ num: "activities" }, options, { new: true })
     if (result) {
       res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
     } else {
@@ -210,7 +210,7 @@ router.post('/Skillspage', async (req, res) => {
     const options = {
       desc: req.body.homeText
     };
-    const result = HomeText.findOneAndUpdate({ num: "skills" }, options)
+    const result =  await HomeText.findOneAndUpdate({ num: "skills" }, options, { new: true })
     if (result) {
       res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
     } else {
