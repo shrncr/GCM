@@ -40,14 +40,20 @@ router.get('/home', async (req, res) => {
 
 //returns text associated with homepage
 router.post('/home', async (req, res) => {
-  console.log("here")
-  //);
-  let options = {
-    desc: req.body.homeText
-  };
-  let data = HomeText.findOneAndUpdate({ num: "Main" }, options)
-  res.json(data)
-  
+  try {
+    const options = {
+      desc: req.body.homeText
+    };
+    const result = HomeText.findOneAndUpdate({ num: "Main" }, options)
+    if (result) {
+      res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
+    } else {
+      res.status(404).json({ message: 'Exhibit not found' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred', error: err.message });
+  }
 });
 
 //returns text associated with homepage
@@ -62,13 +68,20 @@ router.get('/resources', async (req, res) => {
 });
 //returns text associated with homepage
 router.post('/resources', async (req, res) => {
-  console.log("here")
-  //);
-  let options = {
-    desc: req.body.homeText
-  };
-  let data = HomeText.findOneAndUpdate({ num: "Resources" }, options);
-  res.json(data);
+  try {
+    const options = {
+      desc: req.body.homeText
+    };
+    const result = HomeText.findOneAndUpdate({ num: "Resources" }, options)
+    if (result) {
+      res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
+    } else {
+      res.status(404).json({ message: 'Exhibit not found' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred', error: err.message });
+  }
 });
 
 //returns text associated with homepage
@@ -83,13 +96,20 @@ router.get('/Playstylespage', async (req, res) => {
 });
 //returns text associated with homepage
 router.post('/Playstylespage', async (req, res) => {
-  console.log("here")
-  //);
-  let options = {
-    desc: req.body.homeText
-  };
-  let data = HomeText.findOneAndUpdate({ num: "playstyles" }, options);
-  res.json(data);
+  try {
+    const options = {
+      desc: req.body.homeText
+    };
+    const result = HomeText.findOneAndUpdate({ num: "playstyles" }, options)
+    if (result) {
+      res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
+    } else {
+      res.status(404).json({ message: 'Exhibit not found' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred', error: err.message });
+  }
 });
 
 
@@ -104,13 +124,20 @@ router.get('/Exhibitspage', async (req, res) => {
 });
 //returns text associated with homepage
 router.post('/Exhibitspage', async (req, res) => {
-  console.log("here")
-  //);
-  let options = {
-    desc: req.body.homeText
-  };
-  let data = HomeText.findOneAndUpdate({ num: "exhibits" }, options);
-  res.json(data);
+  try {
+    const options = {
+      desc: req.body.homeText
+    };
+    const result = HomeText.findOneAndUpdate({ num: "exhibits" }, options)
+    if (result) {
+      res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
+    } else {
+      res.status(404).json({ message: 'Exhibit not found' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred', error: err.message });
+  }
 });
 
 
@@ -125,13 +152,20 @@ router.get('/Mappage', async (req, res) => {
 });
 //returns text associated with homepage
 router.post('/Mappage', async (req, res) => {
-  console.log("here")
-  //);
-  let options = {
-    desc: req.body.homeText
-  };
-  let data = HomeText.findOneAndUpdate({ num: "map" }, options);
-  res.json(data);
+  try {
+    const options = {
+      desc: req.body.homeText
+    };
+    const result = HomeText.findOneAndUpdate({ num: "map" }, options)
+    if (result) {
+      res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
+    } else {
+      res.status(404).json({ message: 'Exhibit not found' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred', error: err.message });
+  }
 });
 
 router.get('/Activitiespage', async (req, res) => {
@@ -145,13 +179,20 @@ router.get('/Activitiespage', async (req, res) => {
 });
 //returns text associated with homepage
 router.post('/Activitiespage', async (req, res) => {
-  console.log("here")
-  //);
-  let options = {
-    desc: req.body.homeText
-  };
-  let data = HomeText.findOneAndUpdate({ num: "activities" }, options);
-  res.json(data);
+  try {
+    const options = {
+      desc: req.body.homeText
+    };
+    const result = HomeText.findOneAndUpdate({ num: "activities" }, options)
+    if (result) {
+      res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
+    } else {
+      res.status(404).json({ message: 'Exhibit not found' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred', error: err.message });
+  }
 });
 
 router.get('/Skillspage', async (req, res) => {
@@ -165,13 +206,20 @@ router.get('/Skillspage', async (req, res) => {
 });
 //returns text associated with homepage
 router.post('/Skillspage', async (req, res) => {
-  console.log("here")
-  //);
-  let options = {
-    desc: req.body.homeText
-  };
-  let data = HomeText.findOneAndUpdate({ num: "skills" }, options);
-  res.json(data)
+  try {
+    const options = {
+      desc: req.body.homeText
+    };
+    const result = HomeText.findOneAndUpdate({ num: "skills" }, options)
+    if (result) {
+      res.status(200).json({ message: 'Exhibit updated successfully', exhibit: result });
+    } else {
+      res.status(404).json({ message: 'Exhibit not found' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'An error occurred', error: err.message });
+  }
 });
 
 //returns map locations
