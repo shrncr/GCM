@@ -366,7 +366,7 @@ a:-webkit-any-link {
     }
     .intro-text{
         font-size: 18px;
-        width: 100%;
+        width: 95%;
     }
 }
 
@@ -849,6 +849,8 @@ select.minimal {
     width: 20%vw;
     height: 20%vw;
     border-radius: 15px;
+    right:0;
+    
 }
 
 
