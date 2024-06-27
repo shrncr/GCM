@@ -48,7 +48,6 @@ export default function HomeEdit(props) {
           })
           if (response.status === 200) {
             alert('Success');
-            setHomeText("")
           } else {
             // Handle unexpected status codes
             console.error('Unexpected response:', response);
