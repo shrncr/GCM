@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react';
 import GridBoxes from './gridBoxes';
 import axios from 'axios'
 
+
 function getDeviceType() { // for impressions
   const ua = navigator.userAgent;
     if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
@@ -93,6 +94,7 @@ function Playplaces() {
     <>
     
       <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/glazer_dinasour.jpg" text="Museum Play" />
+      
       <SideButton/>
       <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <GridBoxes data={exdata} />

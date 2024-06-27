@@ -364,6 +364,10 @@ a:-webkit-any-link {
         
         /* Reduced padding */
     }
+    .intro-text{
+        font-size: 18px;
+        width: 100%;
+    }
 }
 
 
@@ -1242,7 +1246,7 @@ height: 100%;
 }
 .noLink{
     text-decoration: None;
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: .5em;
 }
 .crumb{
