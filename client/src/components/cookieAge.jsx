@@ -8,7 +8,7 @@ function AskCookie() {
   const [ageRanges, setAgeRanges] = useState([]);
   const [selAges, setSelAges] = useState([]);
   const [selOn, setSelOn] = useState('popup');
-  
+  const [alreadyAges, setAlreadyAges] = useState([]);
   const apiUrl = process.env.REACT_APP_API_URL;
 
   const applyFilter = (applyingAges) => {
@@ -35,6 +35,14 @@ function AskCookie() {
       setAgeRanges(res.data);
     });
   }, []);
+  useEffect(() => { //get age ranges which you may need to filter by
+    if (Cookies.get("ages")) {
+        console.log(Cookies.get("ages"));
+        setAlreadyAges(Cookies.get("ages").split(',')); // Assuming the ages are stored as a comma-separated string
+    } else {
+        setAlreadyAges([]);
+    }
+}, []);
   
   const toggleAge = (age) => {
     setSelAges((prevSelected) => {
@@ -59,7 +67,7 @@ function AskCookie() {
                 label={range.title}
                 color={"#2383c6"}
                 onSelect={toggleAge}
-                start={false}
+                start={alreadyAges.includes(range.title)}
                 item={range.title}
               />
             </div>
