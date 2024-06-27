@@ -50,7 +50,7 @@ function Resources() {
     
     <div>
       <Navbar/>
-      <Banner className="home-background" text="Resources" />
+      <Banner className="home-background" text="About" />
       <p dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <GridBoxes data={boxesData} updateData={updateBoxesData} />
       <Footer/>
