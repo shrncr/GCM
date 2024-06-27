@@ -50,7 +50,7 @@ function Home() {
   return (
     <div>
       <Navbar />
-      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/glazer_banner.jpg" text="" />
+      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/glazer_banner.jpg" text="Glazer Children's Museum" />
       <button className="popupButton" onClick={handleAskCookieClick}>
         <MdOutlineFamilyRestroom />
       </button>
