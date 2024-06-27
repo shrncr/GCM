@@ -1247,9 +1247,10 @@ height: 100%;
     text-shadow: #000000;
 }
 .noLink{
-    text-decoration: None;
-    color: rgb(0, 0, 0);
-    font-size: .5em;
+    color: blue;
+    font-size: 1em;
+    text-decoration: underline;
+
 }
 .crumb{
    float: right;
