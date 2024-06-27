@@ -23,7 +23,7 @@ function Resources() {
     { id: 1, title: 'Youtube', link: 'https://www.youtube.com/c/glazerchildrensmuseum', icon: YouTubeIcon},
     { id: 2, title: 'LinkedIn', link: 'https://www.linkedin.com/company/glazer-children\'s-museum', icon: LinkedInIcon },
     { id: 3, title: 'Book A Visit', link: 'https://glazermuseum.org/', icon: LanguageIcon },
-    { id: 3, title: 'Podcast', link: '/', icon: PodcastsIcon },
+    //{ id: 3, title: 'Podcast', link: '/', icon: PodcastsIcon },
   ]);
   const updateBoxesData = (newData) => {
     setBoxesData(newData);
