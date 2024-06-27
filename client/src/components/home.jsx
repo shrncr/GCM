@@ -45,7 +45,7 @@ function Home() {
   return (
     <div>
       <Navbar />
-      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/glazer_banner.jpg" text="" />
+      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/glazer_banner.jpg" text="Glazer Children's Museum" />
       <p dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <GridBoxes data={boxesData} updateData={updateBoxesData} />
       <Footer />
