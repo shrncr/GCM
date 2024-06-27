@@ -32,7 +32,7 @@ const Breadcrumb = () => {
         const isLast = index === pathnames.length - 1;
         return (
           <span key={name}>
-            <span className='noLink' > / </span>
+            <span className='noLink' > &gt; </span>
             {isLast ? (
               <span className='noLink'>{transformToGoodText(name)}</span>
             ) : (

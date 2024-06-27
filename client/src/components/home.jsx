@@ -4,19 +4,16 @@ import Footer from './footer';
 import GridBoxes from './gridBoxes';
 import axios from 'axios';
 import DOMPurify from 'dompurify';
-import AskCookie from './cookieAge';
-import SideButton from './sideButton';
+
 import Navbar from "./header";
 import { FaHouseUser } from "react-icons/fa";
 import { MdMuseum } from "react-icons/md";
 import { LuToyBrick } from "react-icons/lu";
-import { MdOutlineFamilyRestroom } from "react-icons/md";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 function Home() {
   const [HomeText, setHomeText] = useState('');
-  const [showCookiePopup, setShowCookiePopup] = useState(false); // Set initial state to false
 
   useEffect(() => {
     axios({
@@ -43,18 +40,12 @@ function Home() {
     setBoxesData(newData);
   };
 
-  const handleAskCookieClick = () => {
-    setShowCookiePopup(prevState => !prevState); // Toggle the popup state
-  };
+
 
   return (
     <div>
       <Navbar />
-      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/glazer_banner.jpg" text="Glazer Children's Museum" />
-      <button className="popupButton" onClick={handleAskCookieClick}>
-        <MdOutlineFamilyRestroom />
-      </button>
-      {showCookiePopup && <AskCookie />}
+      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/glazer_banner.jpg" text="" />
       <p dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <GridBoxes data={boxesData} updateData={updateBoxesData} />
       <Footer />
