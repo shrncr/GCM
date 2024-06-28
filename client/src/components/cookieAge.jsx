@@ -38,11 +38,13 @@ function AskCookie() {
   useEffect(() => { //get age ranges which you may need to filter by
     if (Cookies.get("ages")) {
         console.log(Cookies.get("ages"));
+        setSelAges(Cookies.get("ages").split(','));
         setAlreadyAges(Cookies.get("ages").split(',')); // Assuming the ages are stored as a comma-separated string
     } else {
+        
         setAlreadyAges([]);
     }
-}, []);
+}, [ageRanges]);
   
   const toggleAge = (age) => {
     setSelAges((prevSelected) => {
