@@ -72,7 +72,7 @@ const UserMap = (props) => {
 
     return (
         <div>
-            <Banner text={"Bay Play"} className={"glazer_dinosaur"}/>
+            <Banner text={"Bay Play"} className="https://gcmchildrensmuseum.s3.amazonaws.com/toys+all+over+f+22a082bd-a64a-4b9c-b786-1b62b0adf596.png"/>
             <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
             <div className="user-map-container">
                 <div className="user-map">

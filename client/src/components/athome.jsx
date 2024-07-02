@@ -93,14 +93,11 @@ function AtHome() {
         );
         return(playstyleActivities)
         
-       // return(filteredActivities)
-        
-        
     }
 
     return (
         <>
-            <Banner className="playstyles-background" text="Home Play" />
+            <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/toys+all+over+f+22a082bd-a64a-4b9c-b786-1b62b0adf596.png" text="Home Play" />
             <SideButton/>
             <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
             {playstyles && playstyles.map((style)=>
