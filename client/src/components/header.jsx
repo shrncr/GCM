@@ -32,9 +32,10 @@ function Navbar() {
         
         <header className={scrolled ? 'scrolled' : ''}>
             
-            <Link to="/" onClick={closeNavbar}>
-                <img src={glazerLogo} alt="Logo" className='header-img' />
+            <Link to="/" onClick={closeNavbar} className='HeaderHomeTxt'>
+                Let's Play.
             </Link>
+            
             
             
             <nav ref={navRef}>
