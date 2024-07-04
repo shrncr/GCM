@@ -10,9 +10,13 @@ export default function UserApp(props) {
         <SetData>
             <div className="wrapper">
                 <Navbar />
+                
                 <UserRoutes />
+                
+                
 
             </div>
+            
         </SetData>
     )
 };
