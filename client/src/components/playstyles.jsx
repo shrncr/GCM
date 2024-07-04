@@ -88,7 +88,7 @@ function PlayStylesPage() {
  
   return (
     <>
-      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/glazer_banner.jpg" text="Playstyles" />
+      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/Banner+Play+Styles.png" text="Playstyles" />
       <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <GridBoxes data={exdata} />
       <Footer />
