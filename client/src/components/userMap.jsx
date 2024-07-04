@@ -72,7 +72,7 @@ const UserMap = (props) => {
 
     return (
         <div>
-            <Banner text={"Bay Play"} className="https://gcmchildrensmuseum.s3.amazonaws.com/tpb.jpg"/>
+            <Banner text={"Bay Play"} className="https://gcmchildrensmuseum.s3.amazonaws.com/Banner+Bay+Play.png"/>
             <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
             <div className="user-map-container">
                 <div className="user-map">
@@ -91,6 +91,7 @@ const UserMap = (props) => {
                     </div>
                 )}
             </div>
+            
             <Footer />
         </div>
     );
