@@ -1,20 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import Banner from './banner';
 import Footer from './footer';
 import GridBoxes from './gridBoxes';
 import axios from 'axios';
 import DOMPurify from 'dompurify';
-
+import Breadcrumb from './crumb';
+import { useIntersection } from './useIntersection';
 import Navbar from "./header";
 import { FaHouseUser } from "react-icons/fa";
 import { MdMuseum } from "react-icons/md";
 import { LuToyBrick } from "react-icons/lu";
-
+import AskCookie from './cookieAge';
+import { MdOutlineFamilyRestroom } from "react-icons/md";
 const apiUrl = process.env.REACT_APP_API_URL;
-
+const kids = require(`./images/playExample.webp`)
 function Home() {
-  const [HomeText, setHomeText] = useState('');
 
+  const triggerRef1 = React.useRef(null);
+  const isVisible1 = useIntersection(triggerRef1, "0px");
+
+  const triggerRef2 = React.useRef(null);
+  const isVisible2 = useIntersection(triggerRef2, "0px");
+  
+  const triggerRef3 = React.useRef(null);
+  const isVisible3 = useIntersection(triggerRef3, "0px");
+  
+  const triggerRef4 = React.useRef(null);
+  const isVisible4 = useIntersection(triggerRef4, "0px");
+  
+
+
+  const paragraphRef = useRef(null);
+  const [HomeText, setHomeText] = useState('');
+  const [showCookiePopup, setShowCookiePopup] = useState(false); // Set initial state to false
+  const handleAskCookieClick = () => {
+      setShowCookiePopup(prevState => !prevState); // Toggle the popup state
+    };
   useEffect(() => {
     axios({
       url: `${apiUrl}/home`,
@@ -45,9 +66,60 @@ function Home() {
   return (
     <div>
       <Navbar />
-      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/glazer_banner.jpg" text="Glazer Children's Museum" />
-      <p dangerouslySetInnerHTML={{ __html: HomeText }}></p>
+      <div id={"mainBanner"}>
+            
+            <div 
+            
+            className={`background-imagehome ${"https://gcmchildrensmuseum.s3.amazonaws.com/Banner+Bay+Play.png"}`} style={{ backgroundImage: `url(${"https://gcmchildrensmuseum.s3.amazonaws.com/glazer_banner.jpg"})` }}>
+                <div className="intro-text">
+                    
+                    <h1>{"Glazer Children's Museum "}</h1>
+                    <Breadcrumb/>
+                    
+                </div>
+                
+                
+                <button className="scrollDown" onClick = {() => 
+                  paragraphRef.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                  })
+                }> Check Out Ways to Play </button>
+                <button className="popupButton" onClick={() => setShowCookiePopup(prevState => !prevState)}>
+                <MdOutlineFamilyRestroom />
+            </button>
+            
+            </div>
+            
+    
+        
+            
+            
+            
+            {showCookiePopup && <AskCookie />}
+            
+            </div>
+      <div className='blurbs'>
+        <div  className={'playstylesContainer' }>
+          <img ref={triggerRef1} className={"kids"+ (isVisible1 ? " appear" :  " animateinvis")} src= {"https://gcmchildrensmuseum.s3.us-east-2.amazonaws.com/GCM+Museum+Play.jpg"}></img>
+          <div ref={triggerRef2} className={"purposeful" + (isVisible2 ? " appear" :  " animateinvis")}>
+            <p className={"purposefulText"}>The museum provides children with the opportunity for purposeful play!</p>
+          </div>
+        </div>
+        <div  className={'playstylesContainer' }>
+          <img  ref={triggerRef3} className={"alt kids "+ (isVisible3 ? " appear" :  " animateinvis")} src= {"https://gcmchildrensmuseum.s3.us-east-2.amazonaws.com/GCM+Playstyles.JPG"}></img>
+          <div ref={triggerRef4} className={"alt2 purposeful "+ (isVisible4 ? " appear" :  " animateinvis")}>
+            <p className={"purposefulText"}>Purposeful play helps develop communication, resilience, and critical thinking skills.</p>
+          </div>
+        </div>
+      </div>
+
+      <div ref={paragraphRef}>
       <GridBoxes data={boxesData} updateData={updateBoxesData} />
+      </div>
+                
+                
+      
       <Footer />
     </div>
   );
