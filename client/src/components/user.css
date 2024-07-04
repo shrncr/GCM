@@ -2,8 +2,6 @@
 
 * {
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 300;
     padding: 0;
     margin: 0;
 }
@@ -32,17 +30,7 @@
 .ql-font-verdana {
     font-family: 'Verdana, Geneva, sans-serif';
 }
-.ql-size-huge {
-    font-size: 2.5em;
-}
 
-.ql-size-small {
-    font-size: 0.75em;
-}
-
-.ql-size-large {
-    font-size: 1.5em;
-}
 
 body {
     background: #eee;
@@ -61,18 +49,25 @@ html, body {
 
 
 .user {
-    text-align: center;
-    margin-top: 50px;
-    margin-bottom: 20px;
-    font-size: 50px;
+    margin-top: 6vh;
+    background-color: rgba(255, 255, 255, 0.649);
+    margin-bottom: 6vh;
+    line-height: normal !important;
+    border-style: solid ;
+    border-color: #49B14A ;
+    border-width: 1.5px;
+    min-height: fit-content;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+.ql-size-small{
+    font-size: 1.3em;
+    font-weight: 400;
 }
 
 h2 {
-    text-align: center;
-    margin-top: 50px;
     margin-bottom: 20px;
-    font-size: 40px;
-
 }
 
 h3 {
@@ -112,17 +107,51 @@ p {
 
 /*///////////////////////////////*/
 /*Banner and text stuff*/
+.background-imagehome {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    margin: auto;
+    height: 100%;
+    /* Adjust height as needed */
+
+}
 .background-image {
     background-size: cover;
     background-position: center;
     position: relative;
     margin: auto;
-    height: 30vh;
+    height: 38vh;
+    min-height: fit-content;
     /* Adjust height as needed */
-    display: flex;
 
 }
+.background-image img{
 
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.background-image::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient( #000000ab, rgba(0, 0, 0, 0)); /* Adjust gradient as needed */
+    pointer-events: none; /* Allows clicking through the gradient overlay */
+}
+.background-imagehome::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient( #2892decd, rgba(0, 0, 0, 0)); /* Adjust gradient as needed */
+    pointer-events: none; /* Allows clicking through the gradient overlay */
+}
 .home-background {
     background-image: url('../../public/glazer_banner.jpg');
 }
@@ -146,24 +175,39 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(128, 0, 128, 0), rgba(128, 0, 128, 0.4));
+    
     /* #884C9D hue getting darker towards the bottom */
 
 }
 
-.intro-text {
-    text-align: center;
+
+.intro-text{
     position: absolute;
-    top: 65%;
+    height: fit-content;
+width: 70vw;
     /* Move the top edge to the vertical center */
     left: 50%;
     /* Move the left edge to the horizontal center */
     transform: translate(-50%, -50%);
-    font-size: 30px;
     color: white;
-    text-shadow: 4px 4px 5px rgba(0, 0, 0, .4);
-    /* Add shadow */
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    z-index: 1;
 }
+
+.intro-text h1, .intro-text .CrumbHolder{
+    font-size: 2.5em;
+    font-weight: 500;
+    text-align: center;
+    height: fit-content;
+    color: white;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.844);
+}
+.intro-text .CrumbHolder{
+    font-size: .9em;
+}
+
 
 /*///////////////////////////////*/
 /*Grid Boxes stuff*/
@@ -176,7 +220,7 @@ p {
 }
 .grid-item{
     padding:0px;
-    margin: 0px;
+    margin-bottom:2vh;
 }
 .gridbox{
     display:grid;
@@ -193,8 +237,8 @@ p {
     text-align: center;
 }
 .icon-large {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
   }
   .box:hover {
     color: #d124d1;
@@ -405,12 +449,11 @@ header {
     z-index: 11;
     justify-content: space-between;
     height: 80px;
-    background-color: var(--mainColor);
-    color: var(--textColor);
+    
     font-size: 20px;
     margin: auto;
     padding: 16px 32px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    
     transition: .5s;
 
 
@@ -419,6 +462,9 @@ header {
 /* Adjust header height when scrolled */
 header.scrolled {
     height: 60px;
+    background-color: var(--mainColor);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    color: var(--textColor);
     /* Adjust the height as desired */
     transition: .5s;
 
@@ -444,6 +490,12 @@ header .nav-btn {
     visibility: hidden;
     opacity: 0;
     font-size: 1.8rem
+}
+.HeaderHomeTxt{
+    font-weight: 300;
+    font-size: 1em;
+    text-shadow: 0px 0px 10px rgb(0, 0, 0);
+    color: #f0f0f0;
 }
 
 @media only screen and (max-width: 900px) {
@@ -600,7 +652,7 @@ header .nav-btn {
 
 .box-text {
     font-size: 90%;
-    margin-top: 1px;
+    margin-top: .5vh;
 
 }
 
@@ -683,8 +735,8 @@ flex-direction: column;
     position: fixed;
     z-index: 1;
     padding: 20px;
-    top: 50%;
-    left: 50%;
+    top: 50vh;
+    left: 50vw;
     transform: translate(-50%, -50%);
     box-sizing: border-box; /* Ensure padding is included in width/height */
     
@@ -726,11 +778,17 @@ select.minimal {
     margin: 0 auto;
     padding-top: 2%;
     padding-bottom: 1%;
+    display: flex;
+    width: inherit;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
 }
 .skill{
     background-color: #54B9B6;
     border: #eee;
     color: white;
+    width: fit-content;
     
     border-radius: 10px;
     
@@ -770,7 +828,13 @@ select.minimal {
     outline: 0;
   }
   
-  
+  .creators{
+    font-size: .7em;
+    display: flex;
+    height: fit-content;
+    overflow: scroll;
+    margin-bottom: 5px;
+  }
   select:-moz-focusring {
     color: transparent;
     text-shadow: 0 0 0 white;
@@ -844,13 +908,23 @@ select.minimal {
 .popupButton{
     background-color: #884C9D;
     color:white;
-    font-size: large;
     position: absolute;
-    width: 20%vw;
-    height: 20%vw;
-    border-radius: 15px;
-    right:0;
-    
+    width: fit-content;
+    height: fit-content;
+    border-radius: 0px;
+    right:5px;
+    bottom: 5px;
+    z-index: 1;
+    display: flex;
+}
+.popupButtonIcon{
+    height: 5vw;
+    width: 5vw;
+    align-self: center;
+}
+.popupButtonIconHome{
+    height: 8vw;
+    width: 8vw;
 }
 
 
@@ -879,10 +953,14 @@ select.minimal {
 .imgbox{
     display: flex;
     flex-direction: column;
-    width: 45vw;
-    height: 15vh;
+    width: 93vw;
+    height: 35vh;
+    font-size: 1.5em;
     align-items: center;
     
+}
+.imgbox img:hover{
+    filter: brightness(1.15);
 }
 .map-info-div {
     position: absolute;
@@ -1073,7 +1151,7 @@ select.minimal {
 
 .icon-link {
     display: inline-block;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     text-decoration: none;
     color: inherit;
 }
@@ -1220,20 +1298,21 @@ height: 100%;
 .track{
     display: flex;
     width: 30000px;
-    height: 8.5em;
-
-
+    height: 24vh;
 }
 .item{
     float: left;
     text-align: center;
     align-content: center;
-    width: 6.5em;
-    height: 8.5em;
+    width: 30vw;
+    height: 24vh;
     background-color: #884C9D;
     color: white;
     margin-right: 5px;
     border-radius: 5px;
+}
+.item:hover{
+    filter: brightness(1.2);
 }
 .styletitle{
     font-size: 1.2em;
@@ -1242,16 +1321,451 @@ height: 100%;
     font-weight: bold;
 }
 .activitytitle{
-    font-size: 1.2em;
-    font-weight: 500;
+    font-size: 1.1em;
+    text-size-adjust: auto;
     text-shadow: #000000;
 }
 .noLink{
-    color: blue;
-    font-size: 1em;
+    color: rgb(0, 0, 0);
+    font-size: .9em;
     text-decoration: underline;
 
 }
+.link{
+    color: blue;
+    font-size: .9em;
+    text-decoration: underline;
+}
 .crumb{
    float: right;
+   text-shadow: 0px 0px 5px rgb(0, 0, 0);
 }
+span .link, span .noLi{
+    text-shadow: 0px 0px 5px rgb(0, 0, 0);
+}
+#mainBanner{
+    width: 100%;
+    height: 98vh;
+    object-fit: cover;
+    margin: 0 auto;
+    margin-bottom: 1.5vh;
+    position: relative;
+}
+#mainBanner .intro-text{
+    position: absolute;
+    top: 19vh;
+}
+.learn{
+    font-size: 1.2em;
+    text-align: center;
+}
+#mainBanner .intro-text h1{
+    font-size: 2.6em;
+}
+.kids{
+    object-fit:cover;
+    position: absolute;
+    width:50vw;
+    height: 20vh;
+    top:.2em;
+    left:.2em;
+    z-index: 0;
+    border-style: solid;
+    border-color: #884C9D;
+}
+.playstylesContainer{
+    padding:1em;
+    width: 80vw;
+    height:max-content;
+    min-height: 38vh;
+    max-height: 50vh;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    position: relative;
+    
+}
+
+.purposeful{
+    position:absolute;
+    display: flex;
+    flex-direction: column;
+    width:55vw;
+    height: fit-content;
+    min-height: 10vh;
+    max-height: 30vh;
+    font-size: .9em;
+    z-index:0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 2%;
+    text-align: left;
+    bottom: .2em;
+    right: .2em;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: white;
+    border-style: solid;
+    border-color: #49B14A;
+    overflow: hidden;
+}
+.alt{
+left:auto;
+right:.2em;
+}
+.alt2{
+    bottom: .2em;
+    left: .2em;
+    border-color: #2892de;
+}
+
+.blurbs{
+    padding: .5em;
+    margin-left:.5em;
+    margin-right: .5em;
+}
+.scrollDown{
+    box-shadow: 0 0px 15px rgba(255, 255, 255, 0.318);
+    font-size: 1.5em;
+    font-weight: 475;
+    width: 50vw;
+    height: 10vh;
+    min-height: fit-content;
+    background-color: #2892de;
+    color: #f0f0f0;
+    cursor: pointer;
+    position: absolute;
+    bottom: 5vh;
+    right: 0;
+    transform: translate(-50%, -50%);
+}
+@media (max-height: 668px) {
+    .scrollDown{
+        height: 13vh;
+    }
+}
+.scrollDown:hover{
+    background-color: #2892dedb;
+}
+.purposefulText{
+    font-size: 1.65em;
+    overflow-wrap: normal;
+}
+@keyframes fadeInAnimation {
+    
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes bob {
+    
+    0% {
+        box-shadow: 0 0px 0px white;
+    }
+    50%{
+        box-shadow: 0 0px 25px white;
+    }
+    
+    100% {
+        box-shadow: 0 0px 0px white;
+    }
+}
+
+.animateinvis{
+    opacity: 0;
+}
+.appear{
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@media (min-width: 600px) {
+    .playstylesContainer {
+      min-height: none;
+      max-height: none;
+      height: 50vh;
+      width: 80vw;
+    }
+    .kids{
+        height: 35vh;
+    }
+    .scrollDown{
+        font-size: 2.1em;
+    }
+    
+    .purposeful{
+        height: fit-content;
+        min-height: 20vh;
+        font-size: 1.5em;
+    }
+    .popupButton{
+        height: 5vw;
+        width: 5vw;
+        align-self: center;
+        align-content: center;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+    }
+    .popupButtonIcon{
+        margin: auto;
+        align-self: center;
+    }
+    #mainBanner .intro-text{
+        position: absolute;
+        top: 170px;
+        width: 80vw;
+    }
+    #mainBanner .intro-text h1{
+        font-size: 3.2em;
+    }
+    .intro-text
+    {
+        bottom: 6vh;
+        font-size: 1.4em;
+        width: 80vw;
+    }
+    .popupButton{
+        width: 10vw;
+        height: 10vw;
+    }
+    .user{
+        font-size: 2em;
+    }
+    .intro-text{
+        font-size:2.1em;
+    }
+ 
+    .CrumbHolder{
+       margin: 0;
+    }
+    
+    .item{
+        font-size: 1.4em;
+        height: 27vh;
+    }
+    .track{
+        height: 27vh;
+    }
+    .styletitle{
+        font-size: 1.7em;
+    }
+    
+  }
+  @media (max-width: 376px) {
+    .playstylesContainer {
+        max-height: none;
+        min-height: none;
+      height: 8vh;
+
+      width: 70vw;
+    }
+    .kids{
+        height: 20vh;
+    }
+    .purposeful{
+        height: fit-content;
+        min-height: 10vh;
+        font-size: .7em;
+    }
+    #mainBanner .intro-text{
+        position: absolute;
+        width: 90vw;
+        top: 140px;
+    }
+    #mainBanner .intro-text h1{
+        font-size: 1.9em;
+    }
+  }
+  @media (min-width: 1250px) {
+
+    .playstylesContainer {
+        max-height: none;
+        min-height: none;
+      height: 30vh;
+
+      width: 70vw;
+    }
+    .kids{
+        height: 20vh;
+    }
+    .purposeful{
+        height: fit-content;
+        min-height: 10vh;
+        font-size: .7em;
+    }
+    .slidercontainer{
+        width: 80vw;
+        align-self: center;
+        margin: auto;
+        border-style: solid;
+        border-color:#54B9B6;
+        margin-bottom: 15px;
+    }
+    .item{
+        width: 12vw;
+        height: 22vh;
+    }
+    .track{
+        height: 22vh;
+    }
+    .user{
+        font-size: 1.1em;
+        width: fit-content;
+        margin: auto;
+        margin-bottom: 7vh;
+        margin-top: 7vh;
+    }
+    .styletitle{
+        font-size: 3em;
+        font-weight: 200;
+        text-align: center;
+        margin-bottom: 15px;
+        margin-top: 30px;
+    }
+    .slidercontainer::-webkit-scrollbar {
+        display: none;
+      }
+
+    .popupButton{
+        height: fit-content;
+        width: fit-content;
+        display: flex;
+    }
+    .popupButtonIcon{
+        height: 1vw;
+        width: 1vw;
+    }
+    .popupButtonIconHome{
+        height: 2vw;
+        width: 2vw;
+    }
+    .imgbox{
+        width: 45vw;
+    }
+    .descriptoin{
+        font-size: 1.5em;
+    }
+    .kids{
+        object-fit:contain;
+        width: 40vw;
+        height: 70vh;
+        float: none;
+        border-style: none;
+    }
+
+    .purposeful{
+        width: 30vw;
+        height: 60vh;
+        min-height: fit-content;
+        padding-left: 1vw;
+        padding-right: 1vw;
+        float: none;
+        margin-left: 3vw;
+        margin-right: 3vw;
+    }
+    .playstylesContainer{
+        margin-top: 5vh;
+        
+        height: 35vw;
+        width: 60vw;
+        display: flex;
+        flex-direction: column;
+        border-left-style: solid;
+        border-right-style: solid;
+        border-width: 1px;
+        
+    }
+    .map-info-div {
+        bottom: 1vw; /* Adjust as needed */
+        width: 20vw; /* Adjust width as needed */
+        max-width: fit-content; /* Optional: set a max width */
+        max-height: 80%; /* Adjust height as needed */
+        background: #ffffff8a;
+        padding-top: 0;
+        border-radius: 5px;
+        left: 15vw;
+        height: inherit;
+        margin-bottom: 5vh;
+        height: 100%;
+        flex-direction: column;
+        
+
+    }
+    .box-image-container{
+        min-height: auto;
+        width: 100%;
+     height: fit-content;
+        padding: 0;
+        margin: 0;
+    }
+    .box-image{
+        object-fit:cover;
+        width: 100%;
+        height: 30vh;
+        padding:0;
+        margin: 0;
+    }
+    .map-text p{
+        font-size: 2em;
+        margin-top: 1vh;
+    }
+    .map-text h2{
+        font-size: 2.2em;
+    }
+    .map-text a{
+        padding: 1vh;
+        font-size:1em;
+    }
+    .blurbs{
+        border-left-style: groove;
+        border-right-style: groove;
+        padding: 3vw;
+        border-radius: 20px;
+        width: 70vw;
+        margin: 0 auto;
+    }
+    .purposefulText{
+        font-size: 3em;
+        margin: auto;
+        text-align: center;       
+    }
+    .scrollDown{
+        display: none;
+    }
+    #mainBanner .intro-text{
+        top: 50%;
+        font-size: 1.5em;
+    }
+    #mainBanner{
+        position: relative;
+    }
+    .background-imagehome::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient( #000000ab, rgba(0, 0, 0, 0)); /* Adjust gradient as needed */
+        pointer-events: none; /* Allows clicking through the gradient overlay */
+    }
+    .icon-large{
+        height: 100px;
+        width: 100px;
+        margin-top: 2vh;
+    }
+  }
+  *{
+    font-weight:350;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+
+  }
+  .popupButton{
+    animation: bob ease 1.5s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+  }

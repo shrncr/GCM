@@ -10,25 +10,32 @@ function Banner({text, className}) {
     const handleAskCookieClick = () => {
         setShowCookiePopup(prevState => !prevState); // Toggle the popup state
       };
+
+      
     return (
-        <div>
+        
+            <>
         <div 
         
-        className={`background-image ${className}`} style={{ backgroundImage: `url(${className})` }}>
+        className={`background-image overBanner` + ` ${className}`} style={{ backgroundImage: `url(${className})` }}>
+
+            <button className="popupButton" onClick={() => setShowCookiePopup(prevState => !prevState)}>
+            
+            <MdOutlineFamilyRestroom className='popupButtonIcon'/>
+           
+        </button>
             <div className="intro-text">
                 
                 <h1>{text}</h1>
+                <Breadcrumb/>
+                
             </div>
             
         </div>
-        <Breadcrumb/>
-        <button className="popupButton" onClick={handleAskCookieClick}>
-            <MdOutlineFamilyRestroom />
-        </button>
         {showCookiePopup && <AskCookie />}
-        </div>
-
         
+
+        </>
     );
 }
 

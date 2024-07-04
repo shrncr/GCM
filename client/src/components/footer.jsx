@@ -1,12 +1,17 @@
 // creates footer
-import React from 'react';
+import React, { useContext, useState, useEffect } from "react";
 
 //functio to create footer
 function Footer() {
+
   return (
+    <>
+    
     <footer className="footer">
+      
       <div className="footer-content">
         <div>
+
           <a href="/" style={{ fontWeight: 'bold' }}>Home</a>
           {" | "}
           <a href="https://glazermuseum.org/visit" style={{ fontWeight: 'bold' }}>Plan Your Visit</a>
@@ -30,6 +35,7 @@ function Footer() {
 
       </div>
     </footer>
+    </>
   );
 }
 

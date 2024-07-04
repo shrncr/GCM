@@ -53,6 +53,11 @@ function Resources() {
       <Banner className="home-background" text="About" />
       <p dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <GridBoxes data={boxesData} updateData={updateBoxesData} />
+      <div className='creators'>
+        <p>Website Created By : Sara Hrnciar, Carter Murawaski, Zachary Swisher, Nathaniel Frait, Luke Talham, and Eboni Hudgens under The University of Tampa Computer Science Department</p>
+        <p>Content Created By : Allison Wieland, Heather Berwanger under The University of Tampa Psychology Department</p>
+      </div>
+      
       <Footer/>
     </div>
   );
