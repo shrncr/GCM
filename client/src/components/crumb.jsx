@@ -25,8 +25,9 @@ const Breadcrumb = () => {
         }
     }
   return (
-    <div>
-      <span className={'noLink'}> <Link className={"noLink"} to="/">Home</Link> </span>
+    pathnames.length > 0 &&   
+      <div className='CrumbHolder'>
+      <span className={'link'}> <Link className={"link"} to="/">Home</Link> </span>
       {pathnames.map((name, index) => {
         const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;
         const isLast = index === pathnames.length - 1;
@@ -36,12 +37,14 @@ const Breadcrumb = () => {
             {isLast ? (
               <span className={'noLi'}>{transformToGoodText(name)}</span>
             ) : (
-              <span className={'noLink'}> <Link className={"noLink"} to={routeTo}>{transformToGoodText(name)}</Link> </span>
+              <span className={'link'}> <Link className={"link"} to={routeTo}>{transformToGoodText(name)}</Link> </span>
             )}
           </span>
         );
       })}
     </div>
+    
+    
   );
 };
 
