@@ -7,9 +7,9 @@ import DOMPurify from 'dompurify';
 import Breadcrumb from './crumb';
 import { useIntersection } from './useIntersection';
 import Navbar from "./header";
-import { FaHouseUser } from "react-icons/fa";
-import { MdMuseum } from "react-icons/md";
-import { LuToyBrick } from "react-icons/lu";
+import { PiHouseSimple } from "react-icons/pi";
+import { PiGameControllerLight } from "react-icons/pi";
+import { PiPersonArmsSpread } from "react-icons/pi";
 import AskCookie from './cookieAge';
 import { MdOutlineFamilyRestroom } from "react-icons/md";
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -52,9 +52,9 @@ function Home() {
   }, []);
 
   const [boxesData, setBoxesData] = useState([
-    { id: 1, title: 'Playstyles', link: '/playstyles', icon: LuToyBrick },
-    { id: 2, title: 'Museum Play', link: '/playPlaces', icon: MdMuseum },
-    { id: 3, title: 'Home Play', link: '/athome', icon: FaHouseUser },
+    { id: 1, title: 'Playstyles', link: '/playstyles', icon: PiGameControllerLight },
+    { id: 2, title: 'Museum Play', link: '/playPlaces', icon: PiPersonArmsSpread },
+    { id: 3, title: 'Home Play', link: '/athome', icon: PiHouseSimple },
   ]);
 
   const updateBoxesData = (newData) => {
@@ -86,15 +86,10 @@ function Home() {
                   })
                 }> Check Out Ways to Play </button>
                 <button className="popupButton" onClick={() => setShowCookiePopup(prevState => !prevState)}>
-                <MdOutlineFamilyRestroom />
+                <MdOutlineFamilyRestroom  className='popupButtonIconHome'/>
             </button>
             
             </div>
-            
-    
-        
-            
-            
             
             {showCookiePopup && <AskCookie />}
             
@@ -115,6 +110,7 @@ function Home() {
       </div>
 
       <div ref={paragraphRef}>
+        <h4 className='learn'>Click an Icon Below to Learn More!</h4>
       <GridBoxes data={boxesData} updateData={updateBoxesData} />
       </div>
                 

@@ -99,7 +99,7 @@ function AtHome() {
         <>
             <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/Banner+HomePlay.png" text="Home Play" />
             <SideButton/>
-            <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
+            <p className='user' style={{borderColor: "#2892de"}} dangerouslySetInnerHTML={{ __html: HomeText }}></p>
             {playstyles && playstyles.map((style)=>
             <>
             <div className='styletitlecontainer'>

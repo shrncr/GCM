@@ -20,9 +20,9 @@ function Banner({text, className}) {
         className={`background-image overBanner` + ` ${className}`} style={{ backgroundImage: `url(${className})` }}>
 
             <button className="popupButton" onClick={() => setShowCookiePopup(prevState => !prevState)}>
-            <div className='popupButtonIcon' >
-            <MdOutlineFamilyRestroom />
-            </div>
+            
+            <MdOutlineFamilyRestroom className='popupButtonIcon'/>
+           
         </button>
             <div className="intro-text">
                 

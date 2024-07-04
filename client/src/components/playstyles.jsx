@@ -5,6 +5,7 @@ import GridBoxes from './gridBoxes';
 import Footer from './footer'; // Corrected import path
 
 import axios from 'axios'
+import { borderColor } from '@mui/system';
 
 function getDeviceType() { // for impressions
   const ua = navigator.userAgent;
@@ -89,7 +90,9 @@ function PlayStylesPage() {
   return (
     <>
       <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/Banner+Play+Styles.png" text="Playstyles" />
-      <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
+      <p className='user' style={{borderColor: "#884C9D"}}
+      
+       dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <GridBoxes data={exdata} />
       <Footer />
     </>

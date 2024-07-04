@@ -96,7 +96,7 @@ function Playplaces() {
       <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/glazer_dinasour.jpg" text="Museum Play" />
       
       <SideButton/>
-      <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
+      <p className='user' style={{borderColor: "#54B9B6"}} dangerouslySetInnerHTML={{ __html: HomeText }}></p>
       <GridBoxes data={exdata} />
       <Footer />
     </>
