@@ -547,6 +547,20 @@ header .nav-btn {
     /* Adjusted height for full viewport height */
 }
 
+.mapdesc p span{
+    font-size: 1em;
+    overflow: scroll;
+}
+.mapInfoContainer a{
+    position: absolute;
+    top: 1vh;
+    right: 1vw;
+    z-index: 9;
+    text-shadow: 0 0 5 white;
+    font-size: 2em;
+}
+
+
 .map {
     flex: 1;
     /* Adjusted map width to take up remaining space */
@@ -966,53 +980,12 @@ select.minimal {
 .imgbox img:hover{
     filter: brightness(1.15);
 }
-.map-info-div {
-    position: absolute;
-    bottom: 20px; /* Adjust as needed */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%; /* Adjust width as needed */
-    max-width: 800px; /* Optional: set a max width */
-    max-height: 40%; /* Adjust height as needed */
-    background: white;
-    padding: 20px;
-    padding-top: 0;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 10; /* Ensure it overlays the map */
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start; /* Align items to the top */
-}
 
-.map-info-div > div {
-    flex: 1;
-    overflow: auto;
-}
-
-.map-info-div h2 {
-    font-size: 1.5em; /* Adjust as needed */
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: initial;
-}
-
-.map-info-div div {
-    font-size: 1em; /* Adjust as needed */
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: initial;
-}
 
 .box-image-container {
-    flex-shrink: 0;
+    position: absolute;
     width: 40%; /* Adjust width as needed */
-    max-height: 150px; /* Set a max height */
-    border-radius: 10px;
-    margin-left: 15px; /* Add margin to separate text and image */
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1024,33 +997,18 @@ select.minimal {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
-    border-radius: 10px;
 }
-
-.map-text {
-    flex: 1;
-    display: flex;
-    overflow: auto;
-    overflow-wrap: normal;
-    flex-direction: column;
-    justify-content: baseline;
-    align-items: flex-start;
+.mapInfoContainer{
+    position: relative;
+    height: inherit;
 }
-
-.map-text h2 {
-    margin: 0;
-    margin-top: 3px;
-    font-size: 30px; /* Responsive font size */
-    margin-bottom: 4px;
-    white-space: initial;
+.map-text{
+    height: 25vh;
 }
-
-.map-text p {
-    margin: 0;
-    font-size: 13px; /* Responsive font size */
-    white-space: initial;
+.mapplaystyle{
+    font-weight: 500;
+    color: #2892de;
 }
-
 @media (max-width: 897px) {
     .description {
         margin: 5%;
@@ -1082,54 +1040,41 @@ select.minimal {
 
     .map-info-div {
         position: absolute;
-        bottom: 20px; /* Adjust as needed */
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%; /* Adjust width as needed */
-        max-width: 800px; /* Optional: set a max width */
-        max-height: 50%; /* Adjust height as needed */
+        bottom: 0px; /* Adjust as needed */
+        width: 100vw; /* Adjust width as needed */
+        height: 25vh;
         background: white;
-        padding: 20px;
-        padding-top: 0;
-        border-radius: 15px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         z-index: 10; /* Ensure it overlays the map */
-        overflow: hidden;
-        display: flex;
-        flex-direction: row;
-    }
+        flex-direction: column;
 
-    .map-info-div > div {
-        flex: 1;
+        padding-left: 2vw;
     }
 
     .box-image-container {
-        margin-top: 10px;
         flex-shrink: 0;
-        height: 100%;
-        max-height: 120px; /* Set a max height for mobile */
-        border-radius: 10px;
+        right:0;
+        top:0;
+        height: inherit;
         margin-left: 15px; /* Add margin to separate text and image */
         justify-content: right;
-        display: block;
         background: #ffffff; /* Optional: Add background color to indicate container bounds */
     }
 
     .box-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
-        border-radius: 10px;
+
+        object-fit:cover; /* Ensures the image covers the container while maintaining aspect ratio */
+       
     }
 
     .map-text {
-        flex: 1;
         display: flex;
+        position: absolute;
+        display: block;
+        width: 59%;
         overflow: auto;
         overflow-wrap: normal;
         flex-direction: column;
-        justify-content: baseline;
-        align-items: flex-start;
+        
     }
 
     .map-text h2 {
@@ -1138,6 +1083,7 @@ select.minimal {
         font-size: 6vw; /* Responsive font size */
         margin-bottom: 4px;
         white-space: initial;
+        font-weight: 700 ;
     }
 
     .map-text p {
@@ -1302,7 +1248,7 @@ height: 100%;
 .track{
     display: flex;
     width: 30000px;
-    height: 24vh;
+    height: 30vw;
 }
 .item{
     float: left;
@@ -1310,10 +1256,10 @@ height: 100%;
     align-content: center;
     align-items: center;
     width: 30vw;
-    height: 20vh;
+    height: 30vw;
     background-color: #884C9D;
     color: white;
-    
+    font-size: 1.1em;
     margin-right: 5px;
     border-radius: 5px;
 }
@@ -1491,7 +1437,9 @@ right:.2em;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
+
 @media (min-width: 600px) {
+
     .playstylesContainer {
       min-height: none;
       max-height: none;
@@ -1553,7 +1501,7 @@ right:.2em;
     }
     
     .item{
-        font-size: 1.4em;
+        font-size: 1.8em;
         height: 27vh;
     }
     .track{
@@ -1641,6 +1589,85 @@ right:.2em;
     }
     .purposeful{
         width: 30vw;
+    }
+  }
+
+  @media(min-width:900px){
+    .user-map-container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-map {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .map-info-div {
+        height: fit-content;
+        min-height: 15vh;
+        max-height: inherit;
+        position: absolute;
+        top:0px;
+        left: 0px;
+        bottom: 0px; /* Adjust as needed */
+        width: 35vw; /* Adjust width as needed */
+        height: inherit;
+        background: white;
+        z-index: 10; /* Ensure it overlays the map */
+        flex-direction: column;
+    }
+
+    .box-image-container {
+        flex-shrink: 0;
+        right:0;
+        bottom:0;
+        width: 100%;
+        height: 45%;
+        justify-content: right;
+        background: #ffffff; /* Optional: Add background color to indicate container bounds */
+    }
+
+    .box-image {
+width: inherit;
+        object-fit:cover; /* Ensures the image covers the container while maintaining aspect ratio */
+       
+    }
+
+    .map-text {
+        display: flex;
+        position: absolute;
+        display: block;
+        width: inherit;
+        height: fit-content;
+        overflow: auto;
+        overflow-wrap: normal;
+        flex-direction: column;
+        
+    }
+
+    .map-text h2 {
+        margin: 0;
+        margin-top: 3vh;
+        margin-left: 1vw;
+        font-size: 2.1em; /* Responsive font size */
+        margin-bottom: 4px;
+        white-space: initial;
+        font-weight: 700 ;
+    }
+
+    .map-text p {
+        margin-top: 1vh;
+        font-size: 1.2em; /* Responsive font size */
+        white-space: initial;
+    }
+    .mapdesc{
+        height: 30vh;
     }
   }
   @media (min-width: 1900px) {
@@ -1742,45 +1769,76 @@ right:.2em;
         border-width: 1px;
         
     }
-    .map-info-div {
-        bottom: 1vw; /* Adjust as needed */
-        width: 20vw; /* Adjust width as needed */
-        max-width: fit-content; /* Optional: set a max width */
-        max-height: 80%; /* Adjust height as needed */
-        background: #ffffff8a;
-        padding-top: 0;
-        border-radius: 5px;
-        left: 15vw;
-        height: inherit;
-        margin-bottom: 5vh;
+    .user-map-container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-map {
+        position: relative;
+        width: 100%;
         height: 100%;
+    }
+
+    .map-info-div {
+        height: fit-content;
+        min-height: 15vh;
+        max-height: inherit;
+        position: absolute;
+        top:0px;
+        left: 0px;
+        bottom: 0px; /* Adjust as needed */
+        width: 25vw; /* Adjust width as needed */
+        height: inherit;
+        background: white;
+        z-index: 10; /* Ensure it overlays the map */
         flex-direction: column;
-    
     }
-    .box-image-container{
-        min-height: auto;
+
+    .box-image-container {
+        flex-shrink: 0;
+        right:0;
+        bottom:0;
         width: 100%;
-     height: fit-content;
-        padding: 0;
-        margin: 0;
+        height: 45%;
+        justify-content: right;
+        background: #ffffff; /* Optional: Add background color to indicate container bounds */
     }
-    .box-image{
-        object-fit:cover;
-        width: 100%;
-        height: 30vh;
-        padding:0;
-        margin: 0;
+
+    .box-image {
+width: inherit;
+        object-fit:cover; /* Ensures the image covers the container while maintaining aspect ratio */
+       
     }
-    .map-text p{
-        font-size: 2em;
+
+    .map-text {
+        display: flex;
+        position: absolute;
+        display: block;
+        width: inherit;
+        overflow: auto;
+        overflow-wrap: normal;
+        flex-direction: column;
+        
+    }
+
+    .map-text h2 {
+        margin: 0;
+        margin-top: 3vh;
+        font-size: 2.1em; /* Responsive font size */
+        margin-bottom: 4px;
+        white-space: initial;
+        font-weight: 700 ;
+    }
+
+    .map-text p {
         margin-top: 1vh;
-    }
-    .map-text h2{
-        font-size: 2.2em;
-    }
-    .map-text a{
-        padding: 1vh;
-        font-size:1em;
+        font-size: 1em; /* Responsive font size */
+        white-space: initial;
     }
     .blurbs{
         border-left-style: groove;

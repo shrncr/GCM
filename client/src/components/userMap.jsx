@@ -4,6 +4,7 @@ import Map from './mapx'; // Import your Map component
 import Footer from "./footer";
 import Banner from './banner';
 import SelectionBoxes from './selectionBoxes';
+import { FaDirections } from "react-icons/fa";
 
 const UserMap = (props) => {
     const markerContent = props.markerContent;
@@ -80,18 +81,26 @@ const UserMap = (props) => {
                 </div>
                 {selectedMarker && (
                     <div className="map-info-div">
-                        <div className='map-text'>
-                        <h2>{selectedMarker.title}</h2>
-                        <p>{selectedMarker.playstyle}</p>
-                        <div dangerouslySetInnerHTML={{__html: selectedMarker.desc}}/>
-                        <a href={`https://www.google.com/maps/dir/?api=1&destination=${selectedMarker.address}` } target="_blank">Directions</a>
-                        </div>
-                        
-                        <div className="box-image-container">
-                            <img src={selectedMarker.image} alt={selectedMarker.title} className="box-image"/>
-                        </div>
+                        <div className='mapInfoContainer'>
+                            <div>
+                            <div className='map-text'>
+                            <h2>{selectedMarker.title}</h2>
+                            <p className='mapplaystyle'>{selectedMarker.playstyle} Play</p>
+                            <div className="mapdesc" dangerouslySetInnerHTML={{__html: selectedMarker.desc}}/>
+                            
+                            </div>
+                            <a href={`https://www.google.com/maps/dir/?api=1&destination=${selectedMarker.address}` } target="_blank"><FaDirections /></a>
+                            </div>
+                            <div className="box-image-container">
+                                <img src={selectedMarker.image} alt={selectedMarker.title} className="box-image"/>
+                            </div>
+                            
+                            </div>
+                            
                     </div>
+                    
                 )}
+
             </div>
             
             <Footer />
