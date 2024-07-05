@@ -33,6 +33,7 @@ export default function Home(props) {
                 <Link to="homepage"><button className="home-button">Edit Home Page</button></Link>
                 <Link to="resources"><button className="home-button">Edit Resources Page</button></Link>
             </div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeDk9maL3R-fCqbA4bHq8z8ioRwl1688Cj6ugmWwLzKPi3Q5A/viewform?usp=sf_link">Report a Bug!</a>
 
 
 
