@@ -1302,7 +1302,7 @@ height: 100%;
 .track{
     display: flex;
     width: 30000px;
-    height: 24vh;
+    height: 30vw;
 }
 .item{
     float: left;
@@ -1310,10 +1310,10 @@ height: 100%;
     align-content: center;
     align-items: center;
     width: 30vw;
-    height: 20vh;
+    height: 30vw;
     background-color: #884C9D;
     color: white;
-    
+    font-size: 1.1em;
     margin-right: 5px;
     border-radius: 5px;
 }
@@ -1553,7 +1553,7 @@ right:.2em;
     }
     
     .item{
-        font-size: 1.4em;
+        font-size: 1.8em;
         height: 27vh;
     }
     .track{

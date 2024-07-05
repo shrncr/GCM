@@ -63,7 +63,7 @@ function SingleInfo() {
 
     return (
         <div>
-            <Banner className={img ===undefined? " noImgBanner" :img} text={title} />
+            <Banner className={img} text={title} />
             {dest == "playPlaces" ? <SideButton/> : <></>}
             <h4 className="descriptoin" dangerouslySetInnerHTML={{ __html: desc }}></h4>
             <hr />
