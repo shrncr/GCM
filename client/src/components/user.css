@@ -1363,6 +1363,9 @@ span .link, span .noLi{
 #mainBanner .intro-text h1{
     font-size: 2.6em;
 }
+.noImgBanner{
+    background-color:#54b9b682;
+}
 .kids{
     object-fit:cover;
     position: absolute;
