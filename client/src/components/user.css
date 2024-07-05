@@ -1376,9 +1376,9 @@ span .link, span .noLi{
 .playstylesContainer{
     padding:1em;
     width: 80vw;
-    height:max-content;
+    height: fit-content;
     min-height: 38vh;
-    max-height: 50vh;
+    max-height: 45vh;
     margin: 0 auto;
     margin-bottom: 20px;
     position: relative;
@@ -1392,7 +1392,7 @@ span .link, span .noLi{
     width:55vw;
     height: fit-content;
     min-height: 10vh;
-    max-height: 30vh;
+    max-height: 25vh;
     font-size: .6em;
     z-index:0;
     padding-top: 10px;
@@ -1447,7 +1447,7 @@ right:.2em;
     background-color: #2892dedb;
 }
 .purposefulText{
-    font-size: 1.65em;
+    font-size: 1.9em;
     overflow-wrap: normal;
 }
 @keyframes fadeInAnimation {
@@ -1555,12 +1555,11 @@ right:.2em;
     }
     
   }
-  @media (max-width: 376px) {
+  @media (max-width: 391px) {
     .playstylesContainer {
         max-height: none;
         min-height: none;
       height: 8vh;
-
       width: 70vw;
     }
     .kids{
@@ -1569,7 +1568,8 @@ right:.2em;
     .purposeful{
         height: fit-content;
         min-height: 10vh;
-        font-size: .7em;
+        font-size: .65em;
+        padding: 1.3vh;
     }
     #mainBanner .intro-text{
         position: absolute;
