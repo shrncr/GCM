@@ -15,6 +15,7 @@ function Banner({text, className}) {
     return (
         
             <>
+            <>
         <div 
         
         className={`background-image overBanner` + ` ${className}`} style={{ backgroundImage: `url(${className})` }}>
@@ -27,11 +28,13 @@ function Banner({text, className}) {
             <div className="intro-text">
                 
                 <h1>{text}</h1>
-                <Breadcrumb/>
+                
                 
             </div>
             
         </div>
+        <Breadcrumb/>
+        </>
         {showCookiePopup && <AskCookie />}
         
 
