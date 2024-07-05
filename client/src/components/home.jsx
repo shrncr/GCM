@@ -96,13 +96,13 @@ function Home() {
             </div>
       <div className='blurbs'>
         <div  className={'playstylesContainer' }>
-          <img ref={triggerRef1} className={"kids"+ (isVisible1 ? " appear" :  " animateinvis")} src= {"https://gcmchildrensmuseum.s3.us-east-2.amazonaws.com/GCM+Museum+Play.jpg"}></img>
+          <img ref={triggerRef1} className={"kids"+ (isVisible1 ? " appear" :  " animateinvis")} src= {"https://gcmchildrensmuseum.s3.us-east-2.amazonaws.com/GCM+Museum+Play.webp"}></img>
           <div ref={triggerRef2} className={"purposeful" + (isVisible2 ? " appear" :  " animateinvis")}>
             <p className={"purposefulText"}>The museum provides children with the opportunity for purposeful play!</p>
           </div>
         </div>
         <div  className={'playstylesContainer' }>
-          <img  ref={triggerRef3} className={"alt kids "+ (isVisible3 ? " appear" :  " animateinvis")} src= {"https://gcmchildrensmuseum.s3.us-east-2.amazonaws.com/GCM+Playstyles.JPG"}></img>
+          <img  ref={triggerRef3} className={"alt kids "+ (isVisible3 ? " appear" :  " animateinvis")} src= {"https://gcmchildrensmuseum.s3.us-east-2.amazonaws.com/GCM+Playstyles.webp"}></img>
           <div ref={triggerRef4} className={"alt2 purposeful "+ (isVisible4 ? " appear" :  " animateinvis")}>
             <p className={"purposefulText"}>Purposeful play helps develop communication, resilience, and critical thinking skills.</p>
           </div>

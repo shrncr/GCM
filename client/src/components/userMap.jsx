@@ -72,7 +72,7 @@ const UserMap = (props) => {
 
     return (
         <div>
-            <Banner text={"Bay Play"} className="https://gcmchildrensmuseum.s3.amazonaws.com/Banner+Bay+Play.png"/>
+            <Banner text={"Bay Play"} className="https://gcmchildrensmuseum.s3.amazonaws.com/Banner+Bay+Play.webp"/>
             <p className='user' dangerouslySetInnerHTML={{ __html: HomeText }}></p>
             <div className="user-map-container">
                 <div className="user-map">
@@ -82,9 +82,11 @@ const UserMap = (props) => {
                     <div className="map-info-div">
                         <div className='map-text'>
                         <h2>{selectedMarker.title}</h2>
+                        <p>{selectedMarker.playstyle}</p>
                         <div dangerouslySetInnerHTML={{__html: selectedMarker.desc}}/>
                         <a href={`https://www.google.com/maps/dir/?api=1&destination=${selectedMarker.address}` } target="_blank">Directions</a>
                         </div>
+                        
                         <div className="box-image-container">
                             <img src={selectedMarker.image} alt={selectedMarker.title} className="box-image"/>
                         </div>

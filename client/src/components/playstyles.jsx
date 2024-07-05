@@ -89,7 +89,7 @@ function PlayStylesPage() {
  
   return (
     <>
-      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/Banner+Play+Styles.png" text="Playstyles" />
+      <Banner className="https://gcmchildrensmuseum.s3.amazonaws.com/Banner+Play+Styles.webp" text="Playstyles" />
       <p className='user' style={{borderColor: "#884C9D"}}
       
        dangerouslySetInnerHTML={{ __html: HomeText }}></p>
