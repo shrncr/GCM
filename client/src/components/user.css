@@ -1308,10 +1308,12 @@ height: 100%;
     float: left;
     text-align: center;
     align-content: center;
+    align-items: center;
     width: 30vw;
-    height: 24vh;
+    height: 20vh;
     background-color: #884C9D;
     color: white;
+    
     margin-right: 5px;
     border-radius: 5px;
 }
