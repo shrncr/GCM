@@ -19,7 +19,7 @@ function CarouselAct(props)
                         <Link to={box.link ? box.link : box._id} className="icon-link">
                             
                             <div className={box.icon ? 'box': (box.image? 'imgbox' : 'gridbox')}>
-                                <h6 className='activitytitle'>{box.title}</h6>
+                                {box.title}
                             </div>
                             
                         </Link>
