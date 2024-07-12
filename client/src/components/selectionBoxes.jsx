@@ -63,6 +63,7 @@ const SelectionBoxes = ({ skills, title, side, sel}) => {
     }
     
     }
+
     switch (title) {
         case "Exhibits":
             type = "n activity"
@@ -75,6 +76,9 @@ const SelectionBoxes = ({ skills, title, side, sel}) => {
                 desc.push(DOMPurify.sanitize(item.desc))
                 //h = [];
                 console.log(item.skills)
+                if (item.skills === undefined){
+                    window.location.reload()
+                }
                 item.skills.forEach((act) => {
                     axios({
                         url: `${apiUrl}/playstylesBySkill/${act}`,
@@ -155,7 +159,7 @@ const SelectionBoxes = ({ skills, title, side, sel}) => {
                     {selectedItem &&title==="Exhibits"? 
                     <div className='skills'>
                     {selectedItem.skills.map((skill, index) => (
-                        <button className='skill' key={index} onClick={(e) => {(h[skill].length) > 0 ? navigate(`/playstyles/${h[skill][0]._id}`, {state: skill}) : navigate('/playstyles')}}>{skill}</button>
+                        <button className='skill' key={index} onClick={(e) => {(h[skill].length) > 0 ? ( navigate(`/playstyles/${h[skill][0]._id}`, {state: skill})) : console.log("no")}}>{skill}</button>
                     ))}
                 </div>: <></>}    
                 </div>

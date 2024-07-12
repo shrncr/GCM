@@ -34,6 +34,7 @@ function SingleInfo() {
     const apiUrl = process.env.REACT_APP_API_URL;
     useEffect(()=>{ 
         setSel(state)
+        
     },[state])
     useEffect(() => {
         axios.get(`${apiUrl}/${dest}/${id}`)
@@ -48,7 +49,7 @@ function SingleInfo() {
             })
             .catch((err) => {
                 console.log('Error:', err);
-            });
+            })
     }, [id, dest]);
 
     let t;

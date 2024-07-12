@@ -73,7 +73,8 @@ function Home() {
             className={`background-imagehome ${"https://gcmchildrensmuseum.s3.amazonaws.com/Banner+Bay+Play.png"}`} style={{ backgroundImage: `url(${"https://gcmchildrensmuseum.s3.amazonaws.com/glazer_banner.jpg"})` }}>
                 <div className="intro-text">
                     
-                    <h1>{"Glazer Children's Museum "}</h1>
+                    <h1>{"Purposeful Play: "}</h1>
+                    <h5>{"A Research Project Conducted by the University of Tampa in support of the Glazer Children`s Museum"}</h5>
                     <Breadcrumb/>
                     
                 </div>
