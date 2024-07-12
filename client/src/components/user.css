@@ -149,7 +149,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient( #2892decd, rgba(0, 0, 0, 0)); /* Adjust gradient as needed */
+    background: linear-gradient( #2892de, rgba(0, 0, 0, 0.094)); /* Adjust gradient as needed */
     pointer-events: none; /* Allows clicking through the gradient overlay */
 }
 .home-background {
@@ -1308,6 +1308,10 @@ span .link, span .noLi{
 }
 #mainBanner .intro-text h1{
     font-size: 2.6em;
+}
+#mainBanner .intro-text h5{
+    font-size: 1em;
+    text-align: center;
 }
 .noImgBanner{
     background-color:#54b9b682;
