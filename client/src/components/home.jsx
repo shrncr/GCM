@@ -74,7 +74,7 @@ function Home() {
                 <div className="intro-text">
                     
                     <h1>{"Purposeful Play: "}</h1>
-                    <h5>{"A Research Project Conducted by the University of Tampa in Support of the Glazer Children`s Museum"}</h5>
+                    <h5>{"A Research Project Conducted by the University of Tampa in Support of the Glazer Children’s Museum"}</h5>
                     <Breadcrumb/>
                     
                 </div>
